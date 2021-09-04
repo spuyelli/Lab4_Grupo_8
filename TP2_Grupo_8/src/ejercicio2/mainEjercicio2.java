@@ -1,4 +1,4 @@
-///Probando GitHub, push 1.0 TP2
+///Probando GitHub, push 1.1 TP2
 package ejercicio2;
 
 import java.text.SimpleDateFormat;
