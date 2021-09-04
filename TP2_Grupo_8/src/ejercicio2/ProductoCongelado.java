@@ -1,5 +1,7 @@
 package ejercicio2;
 
+import java.util.Date;
+
 public class ProductoCongelado extends Producto{
 	
 	private static int TemperaturaCongelacion;

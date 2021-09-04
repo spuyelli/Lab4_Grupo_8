@@ -1,5 +1,8 @@
 package ejercicio2;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ProductoFresco extends Producto {
 	
 	private static Date FechaEnvasado;
@@ -13,8 +16,15 @@ public class ProductoFresco extends Producto {
 		ProductoFresco.PaisOrigen = PaisOrigen;
 	}
 
-	public Date getFechaEnvasado() {
-		return FechaEnvasado;
+	public String getFechaEnvasado() {
+		SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			return formatoFecha.format(FechaEnvasado);
+		}
+		catch (Exception e) {
+			System.out.println("Error al convertir fecha.");
+		}
+		return FechaEnvasado.toString();
 	}
 
 	public void setFechaEnvasado(Date fechaEnvasado) {

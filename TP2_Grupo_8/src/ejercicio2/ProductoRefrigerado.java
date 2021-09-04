@@ -1,5 +1,7 @@
 package ejercicio2;
 
+import java.util.Date;
+
 public class ProductoRefrigerado extends Producto {
 	
 	private static int CodigoSupervisionAlimentaria;

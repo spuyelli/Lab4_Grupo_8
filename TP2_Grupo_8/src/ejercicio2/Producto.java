@@ -1,5 +1,8 @@
 package ejercicio2;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Producto {
 
 	private int numeroLote;
@@ -18,8 +21,15 @@ public class Producto {
 		this.numeroLote = numeroLote;
 	}
 
-	public Date getFechaCaducidad() {
-		return fechaCaducidad;
+	public String getFechaCaducidad() {
+		SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			return formatoFecha.format(fechaCaducidad);
+		}
+		catch (Exception e) {
+			System.out.println("Error al convertir fecha.");
+		}
+		return fechaCaducidad.toString();
 	}
 
 	public void setFechaCaducidad(Date fechaCaducidad) {
