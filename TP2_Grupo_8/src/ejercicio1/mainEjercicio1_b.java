@@ -19,7 +19,15 @@ public class mainEjercicio1_b {
 			Profesor p = (Profesor) ITprofesor.next();
 			System.out.println(p.toString());
 		}
-
+		
+		//		PUNTO 7
+		Profesor Prof1 = new Profesor("Titular", 5, "Juan", 32);
+		Profesor Prof2 = new Profesor("Titular", 5, "Juan", 32);
+		
+		if(Prof1.equals(Prof2)) {
+			System.out.println("Es el mismo profesor");
+		}
+	
 	}
 
 }
