@@ -24,7 +24,7 @@ public class Edificio {
 
 		@Override
 		public String toString() {
-			return "Edificio: superficieEdificio=" + superficieEdificio ;
+			return "Edificio: superficieEdificio= " + superficieEdificio ;
 		}
 
 		

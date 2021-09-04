@@ -7,7 +7,7 @@ public class Polideportivo extends InstalacionDeportiva{
 		super();
 	}
 	
-	public Polideportivo( Double sup, String tipo,String nombre) {
+	public Polideportivo( Double sup, int tipo,String nombre) {
 		super(sup, tipo);
 		this.nombre = nombre;
 	}
@@ -21,8 +21,8 @@ public class Polideportivo extends InstalacionDeportiva{
 
 	@Override
 	public String toString() {
-		return "Polideportivo: nombre=" + nombre +  ", tipo de instalacion="
-				+ getTipo_instalacion() + ", superficie edif=" +super.getSuperficieEdificio() ;
+		return "Polideportivo: nombre= " + nombre +  ", tipo de instalacion= "
+				+ getTipo_instalacion() + ", superficie edif= " +super.getSuperficieEdificio() ;
 	}
 	
 	

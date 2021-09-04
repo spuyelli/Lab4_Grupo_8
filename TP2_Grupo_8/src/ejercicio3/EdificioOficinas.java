@@ -19,7 +19,7 @@ public class EdificioOficinas extends Edificio {
 
 	@Override
 	public String toString() {
-		return "Edificio Oficinas:  cantidadOficinas=" + cantidadOficinas + ", superficieEdificio="
+		return "Edificio Oficinas:  cantidadOficinas= " + cantidadOficinas + ", superficieEdificio= "
 				+ getSuperficieEdificio() ;
 	}
 
