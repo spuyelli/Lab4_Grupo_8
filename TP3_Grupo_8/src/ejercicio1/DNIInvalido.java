@@ -1,6 +1,8 @@
 package ejercicio1;
 
-public class DNIInvalido extends Exception{
+import java.io.IOException;
+
+public class DNIInvalido extends IOException{
 	
 	public DNIInvalido() {}
 

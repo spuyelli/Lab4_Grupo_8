@@ -45,9 +45,8 @@ public class Persona {
 		
 		for (int i = 0; i < this.DNI.length(); i++) {
 			
-			if( this.DNI.charAt(i) < 48 || this.DNI.charAt(i) > 57 ) {
-				DNIInvalido exc = new DNIInvalido();
-				throw exc; 
+			if( !Character.isDigit(this.DNI.charAt(i)) ) {
+				throw new DNIInvalido(); 
 			}
 		}
 		return false;
