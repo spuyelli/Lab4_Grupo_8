@@ -1,24 +1,26 @@
 package ejercicio1;
 
+import java.util.Iterator;
+import java.util.TreeSet;
+
 public class Principal {
 
 	public static void main(String[] args) {
-		
-		/*		TEST DE EXCEPCION 
-		Persona p = new Persona();
-		
-		p.setDNI("12a3");
-		try {
-			System.out.println(p.verificarDniInvalido());
-		} catch (DNIInvalido e) {
-			e.printStackTrace();
-		}
-		*/
-		
+			
 		Archivo archivo = new Archivo();
 
-		archivo.setRuta("Personas.txt"); ///Este archivo se encuentra en el proyecto
-		archivo.lee_lineas();
+		archivo.setRuta("resourses/Personas.txt"); ///Este archivo se encuentra en el proyecto
+		TreeSet<Persona> set = archivo.lee_lineas();
+		
+		archivo.setRuta("resourses/Resultado.txt");
+		archivo.escribe_lineas(set);
+
+		Iterator<Persona> It = set.iterator();
+		while (It.hasNext()) {
+			Persona p = (Persona) It.next();
+			System.out.println(p.toString());
+		}
+
 	}
 
 }
