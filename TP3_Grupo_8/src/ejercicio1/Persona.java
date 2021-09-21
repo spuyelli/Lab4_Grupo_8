@@ -10,9 +10,9 @@ public class Persona implements Comparable<Persona>{
 	}
 
 	public Persona(String apellido, String nombre, String dNI) {
-		Apellido = apellido;
-		Nombre = nombre;
-		DNI = dNI;
+		this.Apellido = apellido;
+		this.Nombre = nombre;
+		this.DNI = dNI;
 	}
 
 	public Persona(String linea) {
@@ -56,22 +56,6 @@ public class Persona implements Comparable<Persona>{
 		return false;
 	}
 
-
-	/*
-	 * @Override public int hashCode() { final int prime = 31; int result = 1;
-	 * result = prime * result + ((Apellido == null) ? 0 : Apellido.hashCode());
-	 * result = prime * result + ((DNI == null) ? 0 : DNI.hashCode()); result =
-	 * prime * result + ((Nombre == null) ? 0 : Nombre.hashCode()); return result; }
-	 * 
-	 * @Override public boolean equals(Object obj) { if (this == obj) return true;
-	 * if (obj == null) return false; if (getClass() != obj.getClass()) return
-	 * false; Persona other = (Persona) obj; if (Apellido == null) { if
-	 * (other.Apellido != null) return false; } else if
-	 * (!Apellido.equals(other.Apellido)) return false; if (DNI == null) { if
-	 * (other.DNI != null) return false; } else if (!DNI.equals(other.DNI)) return
-	 * false; if (Nombre == null) { if (other.Nombre != null) return false; } else
-	 * if (!Nombre.equals(other.Nombre)) return false; return true; }
-	 */
 	@Override
 	public String toString() {
 		return this.Apellido + "-" + this.Nombre + "-" + this.DNI;
