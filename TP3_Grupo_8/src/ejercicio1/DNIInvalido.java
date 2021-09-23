@@ -4,6 +4,8 @@ import java.io.IOException;
 
 public class DNIInvalido extends IOException{
 	
+	private static final long serialVersionUID = 1L;
+
 	public DNIInvalido() {}
 
 	@Override

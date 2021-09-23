@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class VentanEj1 extends JFrame{
+public class VentanaEj1 extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -24,8 +24,9 @@ public class VentanEj1 extends JFrame{
 	private JTextField txtFechaNac;
 	private JButton btnMostrar;
 	
-	public VentanEj1() {
-		setDefaultCloseOperation(VentanEj1.DISPOSE_ON_CLOSE);
+	public VentanaEj1() {
+		setResizable(false);
+		setDefaultCloseOperation(VentanaEj1.DISPOSE_ON_CLOSE);
 		setSize(500, 500);
 		setLocationRelativeTo(null);
 		setTitle("Ejercicio 1");

@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Dimension;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -17,6 +18,8 @@ public class VentanaPrincipal extends JFrame {
 	private JButton btnEj3;
 
 	public VentanaPrincipal() {
+		setMaximumSize(new Dimension(500, 500));
+		setResizable(false);
 		setDefaultCloseOperation(VentanaPrincipal.EXIT_ON_CLOSE);
 		setSize(500, 500);
 		setLocationRelativeTo(null);
@@ -66,11 +69,12 @@ class eventoBoton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch (ejercicio) {
 		case 1:
-			VentanEj1 V = new VentanEj1();
-			V.cambiarVisibilidad(true);
+			VentanaEj1 V1 = new VentanaEj1();
+			V1.cambiarVisibilidad(true);
 			break;
 		case 2:
-			
+			VentanaEj2 V2 = new VentanaEj2();
+			V2.cambiarVisibilidad(true);
 			break;
 		case 3:
 			
