@@ -149,9 +149,50 @@ public class VentanaEj2 extends JFrame {
 		});
 		btnSalir.setBounds(341, 182, 116, 40);
 		contentPane.add(btnSalir);
+		
+		btnCalcular.addActionListener(new ActionListener() { //CALCULA PROMEDIO Y CONDICION Y LO MUESTRA DONDE CORRESÖNDE
+			
+			public void actionPerformed(ActionEvent e) {
+				String condicion;
+				
+				int nota1 = Integer.parseInt(textNota1.getText());
+				int nota2 = Integer.parseInt(textNota2.getText());
+				int nota3 = Integer.parseInt(textNota3.getText());
+				float promedio = ((float)nota1+(float)nota2+(float)nota3)/3;
+				if ( nota1 >=8 && nota2 >=8 && nota3 >=8) {
+					condicion = "promocionado";
+				}
+				else if((nota1 >=6) && (nota2 >=6) && (nota3 >=6)){
+					condicion = "regular";
+				}
+				else {
+					condicion = "libre";
+				}
+				
+				if(cbTP.getSelectedItem().toString() =="Desaprobado") {
+					//SI O SI ES LIBRE DE CONDICION
+					condicion = "libre";
+				}
+				textPromedio.setText(String.valueOf(promedio));
+				textCondicion.setText(condicion);
+			}
+		});
+		btnNuevo.addActionListener(new ActionListener() { //BORRA TODOS LOS TEXTOS PARA INGRESAR NUEVAMENTE LAS NOTAS
+			
+			public void actionPerformed(ActionEvent e) {
+				textNota1.setText("");
+				textNota2.setText("");
+				textNota3.setText("");
+				textPromedio.setText("");
+				textCondicion.setText("");
+				cbTP.setSelectedItem("Aprobado");
+			}
+		});
 	}
 
 	public void cambiarVisibilidad(boolean estado) {
 		setVisible(estado);
 	}
+	
+
 }
