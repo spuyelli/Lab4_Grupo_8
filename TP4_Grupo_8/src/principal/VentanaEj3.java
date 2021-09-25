@@ -6,18 +6,26 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+
 import javax.swing.JRadioButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 
 public class VentanaEj3 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtComp;
-	private JRadioButton rdbtnMac;
+    //Agrego un grupo de botones
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	public VentanaEj3() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -34,8 +42,12 @@ public class VentanaEj3 extends JFrame {
 		panelSo.setBounds(20, 47, 440, 80);
 		layeredPane.add(panelSo);
 		panelSo.setLayout(null);
-
+	
+		
+		//radio butons viejos (no los pude hacer formar parte del button group)
+		/*
 		rdbtnMac = new JRadioButton("Mac");
+		buttonGroup.add("Mac");
 		rdbtnMac.setFont(new Font("Tahoma", Font.BOLD, 11));
 		rdbtnMac.setBounds(270, 31, 82, 23);
 		panelSo.add(rdbtnMac);
@@ -49,7 +61,27 @@ public class VentanaEj3 extends JFrame {
 		rdbtnWin.setFont(new Font("Tahoma", Font.BOLD, 11));
 		rdbtnWin.setBounds(186, 31, 82, 23);
 		panelSo.add(rdbtnWin);
-
+         */
+		
+		JRadioButton rdbtnWindows = new JRadioButton("Windows");
+		rdbtnWindows.setActionCommand("Windows");
+		buttonGroup.add(rdbtnWindows);
+		rdbtnWindows.setBounds(183, 31, 87, 23);
+		panelSo.add(rdbtnWindows);
+		
+		JRadioButton rdbtnMac = new JRadioButton("Mac");
+		rdbtnMac.setActionCommand("Mac");
+		buttonGroup.add(rdbtnMac);
+		rdbtnMac.setBounds(272, 31, 61, 23);
+		panelSo.add(rdbtnMac);
+		
+		JRadioButton rdbtnLinux = new JRadioButton("Linux");
+		rdbtnLinux.setActionCommand("Linux");
+		buttonGroup.add(rdbtnLinux);
+		rdbtnLinux.setBounds(344, 31, 66, 23);
+		panelSo.add(rdbtnLinux);
+		
+		
 		JLabel lblSo = new JLabel("Elije un sistema operativo");
 		lblSo.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblSo.setBounds(10, 35, 170, 14);
@@ -69,11 +101,18 @@ public class VentanaEj3 extends JFrame {
 		lblComp.setBounds(10, 23, 230, 14);
 		panelComp.add(lblComp);
 
+		
 		txtComp = new JTextField();
 		txtComp.setBounds(266, 21, 100, 20);
 		panelComp.add(txtComp);
 		txtComp.setColumns(10);
+							
+		
 
+		
+
+		
+		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnAceptar.setBounds(341, 91, 89, 23);
@@ -104,6 +143,35 @@ public class VentanaEj3 extends JFrame {
 		chckbxDg.setFont(new Font("Tahoma", Font.BOLD, 12));
 		chckbxDg.setBounds(220, 102, 117, 23);
 		panelEsp.add(chckbxDg);
+		
+		//Comportamiento del boton aceptar
+		
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String checkBoxes = " - ";
+				String actionCommand = "";
+				ButtonModel buttonModel = buttonGroup.getSelection();
+				
+				if (chckbxProg.isSelected()) {
+					checkBoxes += (chckbxProg.getText() + " - ");
+				}
+				if (chckbxDg.isSelected()) {
+					checkBoxes += chckbxDg.getText() + " - ";
+				}
+				if (chckbxAdm.isSelected()) {
+					checkBoxes += chckbxAdm.getText() + " - ";
+				}
+				
+				if (buttonModel != null) {
+					   actionCommand = buttonModel.getActionCommand();
+					   JOptionPane.showMessageDialog(null, actionCommand + checkBoxes + txtComp.getText() + "hs");
+					} else {
+						JOptionPane.showMessageDialog(null, "No se selecciono sistema operativo");
+					}
+			}
+		});
+		
+		
 	}
 
 	public void cambiarVisibilidad(boolean estado) {
