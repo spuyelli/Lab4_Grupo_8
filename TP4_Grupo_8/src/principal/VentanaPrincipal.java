@@ -77,8 +77,8 @@ class eventoBoton implements ActionListener {
 			V2.cambiarVisibilidad(true);
 			break;
 		case 3:
-			VentanaEj3 V3 = new VentanaEj3();
-			V3.cambiarVisibilidad(true);
+			FrameEj3 V3 = new FrameEj3();
+			V3.setVisible(true);
 			break;
 		default:
 			break;
