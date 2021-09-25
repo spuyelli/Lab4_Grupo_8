@@ -25,7 +25,7 @@ public class VentanaPrincipal extends JFrame {
 		setLocationRelativeTo(null);
 		setTitle("Principal");
 		getContentPane().setLayout(null);
-		
+
 		lblGrupo = new JLabel();
 		lblGrupo.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblGrupo.setText("GRUPO NRO: 8");
@@ -35,12 +35,12 @@ public class VentanaPrincipal extends JFrame {
 		btnEj1.setText("Ejercicio 1");
 		btnEj1.setBounds(180, 150, 140, 30);
 		btnEj1.addActionListener(new eventoBoton(1));
-		
+
 		btnEj2 = new JButton();
 		btnEj2.setText("Ejercicio 2");
 		btnEj2.setBounds(180, 230, 140, 30);
 		btnEj2.addActionListener(new eventoBoton(2));
-		
+
 		btnEj3 = new JButton();
 		btnEj3.setText("Ejercicio 3");
 		btnEj3.setBounds(180, 310, 140, 30);
@@ -60,7 +60,7 @@ public class VentanaPrincipal extends JFrame {
 class eventoBoton implements ActionListener {
 
 	private int ejercicio;
-	
+
 	public eventoBoton(int ejercicio) {
 		this.ejercicio = ejercicio;
 	}
