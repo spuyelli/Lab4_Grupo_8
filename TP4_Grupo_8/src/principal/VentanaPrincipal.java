@@ -34,17 +34,17 @@ public class VentanaPrincipal extends JFrame {
 		btnEj1 = new JButton();
 		btnEj1.setText("Ejercicio 1");
 		btnEj1.setBounds(180, 150, 140, 30);
-		btnEj1.addActionListener(new eventoBoton(1));
+		btnEj1.addActionListener(new eventoBoton("btnEj1"));
 
 		btnEj2 = new JButton();
 		btnEj2.setText("Ejercicio 2");
 		btnEj2.setBounds(180, 230, 140, 30);
-		btnEj2.addActionListener(new eventoBoton(2));
+		btnEj2.addActionListener(new eventoBoton("btnEj2"));
 
 		btnEj3 = new JButton();
 		btnEj3.setText("Ejercicio 3");
 		btnEj3.setBounds(180, 310, 140, 30);
-		btnEj3.addActionListener(new eventoBoton(3));
+		btnEj3.addActionListener(new eventoBoton("btnEj3"));
 
 		getContentPane().add(lblGrupo);
 		getContentPane().add(btnEj1);
@@ -59,26 +59,27 @@ public class VentanaPrincipal extends JFrame {
 
 class eventoBoton implements ActionListener {
 
-	private int ejercicio;
+	private String botonID;
 
-	public eventoBoton(int ejercicio) {
-		this.ejercicio = ejercicio;
+	public eventoBoton(String botonID) {
+		this.botonID = botonID;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		switch (ejercicio) {
-		case 1:
+
+		switch (botonID) {
+		case "btnEj1":
 			VentanaEj1 V1 = new VentanaEj1();
 			V1.cambiarVisibilidad(true);
 			break;
-		case 2:
+		case "btnEj2":
 			VentanaEj2 V2 = new VentanaEj2();
 			V2.cambiarVisibilidad(true);
 			break;
-		case 3:
+		case "btnEj3":
 			VentanaEj3 V3 = new VentanaEj3();
-			V3.setVisible(true);
+			V3.cambiarVisibilidad(true);
 			break;
 		default:
 			break;

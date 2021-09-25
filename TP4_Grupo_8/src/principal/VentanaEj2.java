@@ -26,6 +26,20 @@ public class VentanaEj2 extends JFrame {
 	private JTextField textNota3;
 	private JTextField textPromedio;
 	private JTextField textCondicion;
+	private JPanel panelEntrada;
+	private JLabel lblNota1;
+	private JLabel lblNota2;
+	private JLabel lblNota3;
+	private JLabel lblTP;
+	private JComboBox<String> cbTP;
+	private GroupLayout gl_panelEntrada;
+	private JPanel panelSalida;
+	private JLabel lblPromedio;
+	private JLabel lblCondicion;
+	private GroupLayout gl_panelSalida;
+	private JButton btnCalcular;
+	private JButton btnNuevo;
+	private JButton btnSalir;
 
 	public VentanaEj2() {
 		setResizable(false);
@@ -38,19 +52,19 @@ public class VentanaEj2 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JPanel panelEntrada = new JPanel();
+		panelEntrada = new JPanel();
 		panelEntrada.setBorder(new TitledBorder(new LineBorder(new Color(51, 153, 255)), "Notas del estudiante",
 				TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panelEntrada.setBounds(35, 33, 275, 213);
 		contentPane.add(panelEntrada);
 
-		JLabel lblNota1 = new JLabel("Nota 1");
+		lblNota1 = new JLabel("Nota 1");
 
-		JLabel lblNota2 = new JLabel("Nota 2");
+		lblNota2 = new JLabel("Nota 2");
 
-		JLabel lblNota3 = new JLabel("Nota 3");
+		lblNota3 = new JLabel("Nota 3");
 
-		JLabel lblTP = new JLabel("TP");
+		lblTP = new JLabel("TP");
 
 		textNota1 = new JTextField();
 		textNota1.setColumns(10);
@@ -61,10 +75,10 @@ public class VentanaEj2 extends JFrame {
 		textNota3 = new JTextField();
 		textNota3.setColumns(10);
 
-		JComboBox<String> cbTP = new JComboBox<String>();
+		cbTP = new JComboBox<String>();
 		cbTP.setModel(new DefaultComboBoxModel<String>(new String[] { "Aprobado", "Desaprobado" }));
 
-		GroupLayout gl_panelEntrada = new GroupLayout(panelEntrada);
+		gl_panelEntrada = new GroupLayout(panelEntrada);
 		gl_panelEntrada.setHorizontalGroup(gl_panelEntrada.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelEntrada.createSequentialGroup().addContainerGap()
 						.addGroup(gl_panelEntrada.createParallelGroup(Alignment.LEADING).addComponent(lblNota1)
@@ -92,15 +106,15 @@ public class VentanaEj2 extends JFrame {
 				.addContainerGap()));
 		panelEntrada.setLayout(gl_panelEntrada);
 
-		JPanel panelSalida = new JPanel();
+		panelSalida = new JPanel();
 		panelSalida.setBorder(new TitledBorder(new LineBorder(new Color(51, 153, 255)), "Notas del estudiante",
 				TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panelSalida.setBounds(35, 270, 275, 141);
 		contentPane.add(panelSalida);
 
-		JLabel lblPromedio = new JLabel("Promedio");
+		lblPromedio = new JLabel("Promedio");
 
-		JLabel lblCondicion = new JLabel("Condici\u00F3n");
+		lblCondicion = new JLabel("Condici\u00F3n");
 
 		textPromedio = new JTextField();
 		textPromedio.setEditable(false);
@@ -109,7 +123,7 @@ public class VentanaEj2 extends JFrame {
 		textCondicion = new JTextField();
 		textCondicion.setEditable(false);
 		textCondicion.setColumns(10);
-		GroupLayout gl_panelSalida = new GroupLayout(panelSalida);
+		gl_panelSalida = new GroupLayout(panelSalida);
 		gl_panelSalida.setHorizontalGroup(gl_panelSalida.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelSalida.createSequentialGroup().addContainerGap()
 						.addGroup(gl_panelSalida.createParallelGroup(Alignment.LEADING)
@@ -133,15 +147,15 @@ public class VentanaEj2 extends JFrame {
 				.addContainerGap(20, Short.MAX_VALUE)));
 		panelSalida.setLayout(gl_panelSalida);
 
-		JButton btnCalcular = new JButton("CALCULAR");
+		btnCalcular = new JButton("CALCULAR");
 		btnCalcular.setBounds(341, 60, 116, 40);
 		contentPane.add(btnCalcular);
 
-		JButton btnNuevo = new JButton("NUEVO");
+		btnNuevo = new JButton("NUEVO");
 		btnNuevo.setBounds(341, 121, 116, 40);
 		contentPane.add(btnNuevo);
 
-		JButton btnSalir = new JButton("SALIR");
+		btnSalir = new JButton("SALIR");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
@@ -150,7 +164,8 @@ public class VentanaEj2 extends JFrame {
 		btnSalir.setBounds(341, 182, 116, 40);
 		contentPane.add(btnSalir);
 
-		btnCalcular.addActionListener(new ActionListener() { // CALCULA PROMEDIO Y CONDICION Y LO MUESTRA DONDE CORRESPONDE
+		btnCalcular.addActionListener(new ActionListener() { // CALCULA PROMEDIO Y CONDICION Y LO MUESTRA DONDE
+																// CORRESPONDE
 
 			public void actionPerformed(ActionEvent e) {
 				String condicion;

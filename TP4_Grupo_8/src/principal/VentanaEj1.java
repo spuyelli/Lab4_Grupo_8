@@ -75,32 +75,36 @@ public class VentanaEj1 extends JFrame {
 				int cont = 0;
 
 				if (txtNombre.getText().isEmpty()) {
-					cont += 1;
+					cont++;
 					txtNombre.setBackground(Color.red);
+				} else {
+					txtNombre.setBackground(Color.white);
 				}
 
 				if (txtApellido.getText().isEmpty()) {
-					cont += 1;
+					cont++;
 					txtApellido.setBackground(Color.red);
+				} else {
+					txtApellido.setBackground(Color.white);
 				}
 				if (txtTelefono.getText().isEmpty()) {
-					cont += 1;
+					cont++;
 					txtTelefono.setBackground(Color.red);
+				} else {
+					txtTelefono.setBackground(Color.white);
 				}
 				if (txtFechaNac.getText().isEmpty()) {
-					cont += 1;
+					cont++;
 					txtFechaNac.setBackground(Color.red);
+				} else {
+					txtFechaNac.setBackground(Color.white);
 				}
 
 				if (cont > 0) {
 					return false;
 				} else {
-					txtNombre.setBackground(Color.white);
-					txtApellido.setBackground(Color.white);
-					txtTelefono.setBackground(Color.white);
-					txtFechaNac.setBackground(Color.white);
+					return true;
 				}
-				return true;
 			}
 
 			public void actionPerformed(ActionEvent e) {
