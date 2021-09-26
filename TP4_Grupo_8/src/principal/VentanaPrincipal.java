@@ -1,14 +1,15 @@
 package principal;
 
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.Dimension;
 
-public class VentanaPrincipal extends JFrame {
+public class VentanaPrincipal extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
@@ -34,17 +35,17 @@ public class VentanaPrincipal extends JFrame {
 		btnEj1 = new JButton();
 		btnEj1.setText("Ejercicio 1");
 		btnEj1.setBounds(180, 150, 140, 30);
-		btnEj1.addActionListener(new eventoBoton("btnEj1"));
+		btnEj1.addActionListener(this);
 
 		btnEj2 = new JButton();
 		btnEj2.setText("Ejercicio 2");
 		btnEj2.setBounds(180, 230, 140, 30);
-		btnEj2.addActionListener(new eventoBoton("btnEj2"));
+		btnEj2.addActionListener(this);
 
 		btnEj3 = new JButton();
 		btnEj3.setText("Ejercicio 3");
 		btnEj3.setBounds(180, 310, 140, 30);
-		btnEj3.addActionListener(new eventoBoton("btnEj3"));
+		btnEj3.addActionListener(this);
 
 		getContentPane().add(lblGrupo);
 		getContentPane().add(btnEj1);
@@ -55,29 +56,19 @@ public class VentanaPrincipal extends JFrame {
 	public void cambiarVisibilidad(boolean estado) {
 		setVisible(estado);
 	}
-}
 
-class eventoBoton implements ActionListener {
-
-	private String botonID;
-
-	public eventoBoton(String botonID) {
-		this.botonID = botonID;
-	}
-
-	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		switch (botonID) {
-		case "btnEj1":
+		switch (((JButton) e.getSource()).getText()) {
+		case "Ejercicio 1":
 			VentanaEj1 V1 = new VentanaEj1();
 			V1.cambiarVisibilidad(true);
 			break;
-		case "btnEj2":
+		case "Ejercicio 2":
 			VentanaEj2 V2 = new VentanaEj2();
 			V2.cambiarVisibilidad(true);
 			break;
-		case "btnEj3":
+		case "Ejercicio 3":
 			VentanaEj3 V3 = new VentanaEj3();
 			V3.cambiarVisibilidad(true);
 			break;
@@ -87,3 +78,22 @@ class eventoBoton implements ActionListener {
 	}
 
 }
+
+// ----------OLD LOGIC----------
+/*
+ * class eventoBoton implements ActionListener {
+ * 
+ * private String botonID;
+ * 
+ * public eventoBoton(String botonID) { this.botonID = botonID; }
+ * 
+ * @Override public void actionPerformed(ActionEvent e) {
+ * 
+ * switch (botonID) { case "btnEj1": VentanaEj1 V1 = new VentanaEj1();
+ * V1.cambiarVisibilidad(true); break; case "btnEj2": VentanaEj2 V2 = new
+ * VentanaEj2(); V2.cambiarVisibilidad(true); break; case "btnEj3": VentanaEj3
+ * V3 = new VentanaEj3(); V3.cambiarVisibilidad(true); break; default: break; }
+ * }
+ * 
+ * }
+ */

@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class VentanaEj1 extends JFrame {
+public class VentanaEj1 extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
@@ -70,54 +70,7 @@ public class VentanaEj1 extends JFrame {
 		btnMostrar = new JButton();
 		btnMostrar.setBounds(290, 250, 140, 30);
 		btnMostrar.setText("Mostrar");
-		btnMostrar.addActionListener(new ActionListener() {
-			public boolean validator() {
-				int cont = 0;
-
-				if (txtNombre.getText().isEmpty()) {
-					cont++;
-					txtNombre.setBackground(Color.red);
-				} else {
-					txtNombre.setBackground(Color.white);
-				}
-
-				if (txtApellido.getText().isEmpty()) {
-					cont++;
-					txtApellido.setBackground(Color.red);
-				} else {
-					txtApellido.setBackground(Color.white);
-				}
-				if (txtTelefono.getText().isEmpty()) {
-					cont++;
-					txtTelefono.setBackground(Color.red);
-				} else {
-					txtTelefono.setBackground(Color.white);
-				}
-				if (txtFechaNac.getText().isEmpty()) {
-					cont++;
-					txtFechaNac.setBackground(Color.red);
-				} else {
-					txtFechaNac.setBackground(Color.white);
-				}
-
-				if (cont > 0) {
-					return false;
-				} else {
-					return true;
-				}
-			}
-
-			public void actionPerformed(ActionEvent e) {
-				if (validator()) {
-					lblDatosIngresados.setText("Los datos ingresados fueron: " + " " + txtNombre.getText() + " "
-							+ txtApellido.getText() + " " + txtTelefono.getText() + " " + txtFechaNac.getText());
-					txtNombre.setText("");
-					txtApellido.setText("");
-					txtTelefono.setText("");
-					txtFechaNac.setText("");
-				}
-			}
-		});
+		btnMostrar.addActionListener(this);
 
 		getContentPane().setLayout(null);
 
@@ -136,6 +89,53 @@ public class VentanaEj1 extends JFrame {
 
 	public void cambiarVisibilidad(boolean estado) {
 		setVisible(estado);
+	}
+
+	public boolean validator() {
+		int cont = 0;
+
+		if (txtNombre.getText().isEmpty()) {
+			cont++;
+			txtNombre.setBackground(Color.red);
+		} else {
+			txtNombre.setBackground(Color.white);
+		}
+
+		if (txtApellido.getText().isEmpty()) {
+			cont++;
+			txtApellido.setBackground(Color.red);
+		} else {
+			txtApellido.setBackground(Color.white);
+		}
+		if (txtTelefono.getText().isEmpty()) {
+			cont++;
+			txtTelefono.setBackground(Color.red);
+		} else {
+			txtTelefono.setBackground(Color.white);
+		}
+		if (txtFechaNac.getText().isEmpty()) {
+			cont++;
+			txtFechaNac.setBackground(Color.red);
+		} else {
+			txtFechaNac.setBackground(Color.white);
+		}
+
+		if (cont > 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (validator()) {
+			lblDatosIngresados.setText("Los datos ingresados fueron: " + " " + txtNombre.getText() + " "
+					+ txtApellido.getText() + " " + txtTelefono.getText() + " " + txtFechaNac.getText());
+			txtNombre.setText("");
+			txtApellido.setText("");
+			txtTelefono.setText("");
+			txtFechaNac.setText("");
+		}
 	}
 
 }

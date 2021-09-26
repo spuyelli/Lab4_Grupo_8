@@ -1,26 +1,25 @@
 package principal;
 
 import java.awt.BorderLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.border.LineBorder;
 import java.awt.Color;
-
-import javax.swing.JRadioButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JCheckBox;
-import javax.swing.JTextField;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 
-public class VentanaEj3 extends JFrame {
+public class VentanaEj3 extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtComp;
@@ -129,38 +128,38 @@ public class VentanaEj3 extends JFrame {
 
 		// Comportamiento del boton aceptar
 
-		btnAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String checkBoxes = " - ";
-				String actionCommand = "";
-				ButtonModel buttonModel = buttonGroup.getSelection();
-
-				if (chckbxProg.isSelected()) {
-					checkBoxes += (chckbxProg.getText() + " - ");
-				}
-				if (chckbxDg.isSelected()) {
-					checkBoxes += chckbxDg.getText() + " - ";
-				}
-				if (chckbxAdm.isSelected()) {
-					checkBoxes += chckbxAdm.getText() + " - ";
-				}
-
-				if (buttonModel != null) {
-					actionCommand = buttonModel.getActionCommand();
-					if (txtComp.getText().isEmpty()) {
-						JOptionPane.showMessageDialog(null, actionCommand + checkBoxes + "0hs");
-					} else {
-						JOptionPane.showMessageDialog(null, actionCommand + checkBoxes + txtComp.getText() + "hs");
-					}
-				} else {
-					JOptionPane.showMessageDialog(null, "No se seleccionó sistema operativo");
-				}
-			}
-		});
+		btnAceptar.addActionListener(this);
 
 	}
 
 	public void cambiarVisibilidad(boolean estado) {
 		setVisible(estado);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		String checkBoxes = " - ";
+		String actionCommand = "";
+		ButtonModel buttonModel = buttonGroup.getSelection();
+
+		if (chckbxProg.isSelected()) {
+			checkBoxes += (chckbxProg.getText() + " - ");
+		}
+		if (chckbxDg.isSelected()) {
+			checkBoxes += chckbxDg.getText() + " - ";
+		}
+		if (chckbxAdm.isSelected()) {
+			checkBoxes += chckbxAdm.getText() + " - ";
+		}
+
+		if (buttonModel != null) {
+			actionCommand = buttonModel.getActionCommand();
+			if (txtComp.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, actionCommand + checkBoxes + "0hs");
+			} else {
+				JOptionPane.showMessageDialog(null, actionCommand + checkBoxes + txtComp.getText() + "hs");
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "No se seleccionó sistema operativo");
+		}
 	}
 }
