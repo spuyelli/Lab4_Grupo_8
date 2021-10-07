@@ -1,6 +1,6 @@
 package Principal;
 
-public class Peliculas {
+public class Peliculas implements Comparable<Peliculas> {
 
 	private Categorias categoria;
 	private static int idCont = 0;
@@ -35,10 +35,16 @@ public class Peliculas {
 
 	@Override
 	public String toString() {
-		return nombre + " - " + categoria.getCategoria();
+		return id + " - " + nombre + " - " + categoria.getCategoria();
 	}
 
 	static int getProximoID() {
 		return idCont + 1;
+	}
+
+	@Override
+	public int compareTo(Peliculas o) {
+		// TODO Auto-generated method stub
+		return this.nombre.compareTo(o.nombre);
 	}
 }

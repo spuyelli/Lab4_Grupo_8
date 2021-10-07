@@ -73,6 +73,7 @@ public class PanelAgregarPelicula extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+
 		this.dlModel.addElement(
 				new Peliculas(new Categorias(this.cbGenero.getSelectedItem().toString()), this.txtNombre.getText()));
 	}
