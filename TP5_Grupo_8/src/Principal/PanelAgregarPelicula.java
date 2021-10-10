@@ -6,6 +6,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -55,6 +56,7 @@ public class PanelAgregarPelicula extends JPanel implements ActionListener {
 		cbGenero.setBounds(160, 98, 150, 20);
 		add(cbGenero);
 
+		cbGenero.addItem("Seleccione un género");
 		cbGenero.addItem("Terror");
 		cbGenero.addItem("Acción");
 		cbGenero.addItem("Suspenso");
@@ -74,8 +76,26 @@ public class PanelAgregarPelicula extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 
-		this.dlModel.addElement(
-				new Peliculas(new Categorias(this.cbGenero.getSelectedItem().toString()), this.txtNombre.getText()));
+		String error = "";
+
+		if (this.txtNombre.getText().trim().isEmpty()) {
+			error += "No se ecribió nombre de película\n";
+		}
+		if (this.cbGenero.getSelectedItem().toString() == "Seleccione un género") {
+			error += "Género no seleccionado";
+		}
+
+		if (error.isEmpty()) {
+			this.dlModel.addElement(new Peliculas(new Categorias(this.cbGenero.getSelectedItem().toString()),
+					this.txtNombre.getText().trim()));
+
+			lblIdNumber.setText(Integer.toString(Peliculas.getProximoID()));
+			this.cbGenero.setSelectedIndex(0);
+			this.txtNombre.setText("");
+		} else {
+			JOptionPane.showMessageDialog(null, error);
+		}
+
 	}
 
 }
