@@ -44,7 +44,6 @@ public class Peliculas implements Comparable<Peliculas> {
 
 	@Override
 	public int compareTo(Peliculas o) {
-		// TODO Auto-generated method stub
-		return this.nombre.compareTo(o.nombre);
+		return this.nombre.toUpperCase().compareTo(o.nombre.toUpperCase());
 	}
 }

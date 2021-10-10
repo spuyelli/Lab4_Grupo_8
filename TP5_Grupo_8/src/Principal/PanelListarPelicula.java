@@ -7,12 +7,14 @@ import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class PanelListarPelicula extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel lblPeliculas;
 	private JList<Peliculas> jlistPeliculas;
+	private ArrayList<Peliculas> arrayList;
 	
 	public PanelListarPelicula(DefaultListModel<Peliculas> dlModel) {
 		setLayout(null);
@@ -24,10 +26,13 @@ public class PanelListarPelicula extends JPanel {
 		add(lblPeliculas);
 
 		jlistPeliculas = new JList<Peliculas>();
-		jlistPeliculas.setBounds(140, 21, 250, 200);
-		add(jlistPeliculas);
+		jlistPeliculas.setLayoutOrientation(JList.VERTICAL);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setViewportView(jlistPeliculas);
+		scrollPane.setBounds(140, 21, 250, 200);
+		add(scrollPane);
 		
-		ArrayList<Peliculas> arrayList = Collections.list(dlModel.elements());
+		arrayList = Collections.list(dlModel.elements());
 		dlModel.clear();
 		Collections.sort(arrayList);
 		

@@ -57,10 +57,10 @@ public class PanelAgregarPelicula extends JPanel implements ActionListener {
 		add(cbGenero);
 
 		cbGenero.addItem("Seleccione un género");
-		cbGenero.addItem("Terror");
 		cbGenero.addItem("Acción");
-		cbGenero.addItem("Suspenso");
 		cbGenero.addItem("Romantico");
+		cbGenero.addItem("Suspenso");
+		cbGenero.addItem("Terror");
 
 		lblIdNumber = new JLabel(Integer.toString(Peliculas.getProximoID()));
 		lblIdNumber.setBounds(160, 34, 100, 20);
