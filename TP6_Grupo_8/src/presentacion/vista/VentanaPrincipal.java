@@ -16,6 +16,8 @@ import entidad.Persona;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -37,9 +39,11 @@ public class VentanaPrincipal extends JFrame {
 	
 
 	public VentanaPrincipal() {
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(450, 300);
+		
 		setLocationRelativeTo(null);
 		setTitle("Programa");
 		getContentPane().setLayout(null);
@@ -60,6 +64,7 @@ public class VentanaPrincipal extends JFrame {
 		mnPersona.add(mntmEliminar);
 
 		mntmListar = new JMenuItem("Listar");
+
 		mnPersona.add(mntmListar);
 
 		ContentPane = new JPanel();
@@ -119,27 +124,27 @@ public class VentanaPrincipal extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(jlistPersonas);
 		scrollPane.setBounds(35, 20, 374, 170);
-		add(scrollPane);
+		getContentPane().add(scrollPane);
 		
 		txtNombre = new JTextField();
 		txtNombre.setBounds(35, 200, 96, 20);
-		add(txtNombre);
+		getContentPane().add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		txtApellido = new JTextField();
 		txtApellido.setBounds(135, 200, 95, 20);
-		add(txtApellido);
+		getContentPane().add(txtApellido);
 		txtApellido.setColumns(10);
 		
 		txtDni = new JTextField();
 		txtDni.setBounds(234, 200, 80, 20);
 		txtDni.setEditable(false);
-		add(txtDni);
+		getContentPane().add(txtDni);
 		txtDni.setColumns(10);
 		
 		btnModificar = new JButton("Modificar");
 		btnModificar.setBounds(320, 200, 89, 23);
-		add(btnModificar);
+		getContentPane().add(btnModificar);
 		
 		DefaultListModel<Persona> dlModel = new DefaultListModel<Persona>();
 		for (Persona var : alPersonas) 

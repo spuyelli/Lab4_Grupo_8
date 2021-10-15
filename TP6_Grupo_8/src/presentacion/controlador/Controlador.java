@@ -8,21 +8,35 @@ import javax.swing.event.ListSelectionEvent;
 
 import entidad.Persona;
 import negocio.PersonaNegocio;
+
+//import presentacion.vista.PanelAgregarPersonas;
+//import presentacion.vista.PanelEliminarPersonas;
+import presentacion.vista.PanelListado;
+import presentacion.vista.PanelModificarPersona;
 import presentacion.vista.VentanaPrincipal;
 
 public class Controlador implements ActionListener {
 	private VentanaPrincipal ventanaPrincipal;
 	private PersonaNegocio pNeg;
+	private ArrayList<Persona> personasEnTabla;
 	private ArrayList<Persona> arrayPersonas;
+	
+	private PanelListado pnlListado;
+	private PanelModificarPersona pnlModificar;
 
 	public Controlador(VentanaPrincipal vista, PersonaNegocio negocio) {
+		//Guardo todas las instancias que recibo en el constructor
 		this.ventanaPrincipal = vista;
 		this.pNeg = negocio;
+		
+		//Instancio los paneles
+		this.pnlListado = new PanelListado();
+		
+			
 		this.ventanaPrincipal.getMntmAgregar().addActionListener(alAgregar -> ventanaAgregar(alAgregar));
 		this.ventanaPrincipal.getMntmModificar().addActionListener(alModificar -> ventanaModificar(alModificar));
 		this.ventanaPrincipal.getMntmEliminar().addActionListener(alEliminar -> ventanaEliminar(alEliminar));
 		this.ventanaPrincipal.getMntmListar().addActionListener(alListar -> ventanaListar(alListar));
-
 	}
 
 	private void ventanaAgregar(ActionEvent alAgregar) {
@@ -72,14 +86,25 @@ public class Controlador implements ActionListener {
 	}
 
 	private void ventanaListar(ActionEvent alListar) {
-		// TODO Auto-generated method stub
+		System.out.println("ACA");
+		ventanaPrincipal.getContentPane().removeAll();
+		ventanaPrincipal.getContentPane().add(this.pnlListado);
+		ventanaPrincipal.getContentPane().repaint();
+		ventanaPrincipal.getContentPane().revalidate();
+		this.refrescarTabla();
 		return;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 	}
-
+	
+	private void refrescarTabla()
+	{
+		this.personasEnTabla = (ArrayList<Persona>) pNeg.readAll();
+		this.pnlListado.llenarTabla(this.personasEnTabla);
+	}
+	
 	public void inicializar() {
 		// TODO Auto-generated method stub
 	}
