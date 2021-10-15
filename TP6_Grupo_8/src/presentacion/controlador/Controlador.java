@@ -10,22 +10,31 @@ import entidad.Persona;
 import negocio.PersonaNegocio;
 import presentacion.vista.PanelModificarPersona;
 import presentacion.vista.PanelPersonaAgregar;
+import presentacion.vista.PanelListado;
 import presentacion.vista.VentanaPrincipal;
 
 public class Controlador implements ActionListener {
-	
+
 	private VentanaPrincipal ventanaPrincipal;
 	private PanelModificarPersona pnlModificarPersonas;
 	private PanelPersonaAgregar pnlPeronaAgregar;
-	
+
 	private PersonaNegocio pNeg;
+	private ArrayList<Persona> personasEnTabla;
 	private ArrayList<Persona> arrayPersonas;
 
+	private PanelListado pnlListado;
+	private PanelModificarPersona pnlModificar;
+
 	public Controlador(VentanaPrincipal vista, PersonaNegocio negocio) {
-		
+		//Guardo todas las instancias que recibo en el constructor
 		this.ventanaPrincipal = vista;
 		this.pNeg = negocio;
-		
+
+		//Instancio los paneles
+		this.pnlListado = new PanelListado();
+
+
 		this.ventanaPrincipal.getMntmAgregar().addActionListener(alAgregar -> ventanaAgregar(alAgregar));
 		this.ventanaPrincipal.getMntmModificar().addActionListener(alModificar -> ventanaModificar(alModificar));
 		this.ventanaPrincipal.getMntmEliminar().addActionListener(alEliminar -> ventanaEliminar(alEliminar));
@@ -35,7 +44,7 @@ public class Controlador implements ActionListener {
 		pnlModificarPersonas = new PanelModificarPersona(arrayPersonas);
 		this.pnlModificarPersonas.getJlistPersonas().addListSelectionListener(alJLPersonas -> seleccionPersona(alJLPersonas));
 		this.pnlModificarPersonas.getBtnModificar().addActionListener(alBtnModificar -> modificarPersona(alBtnModificar));
-		
+
 	}
 
 	private void ventanaAgregar(ActionEvent alAgregar) {
@@ -44,7 +53,7 @@ public class Controlador implements ActionListener {
 	}
 
 	private void ventanaModificar(ActionEvent alModificar) {
-		
+
 		/*this.arrayPersonas = (ArrayList<Persona>) pNeg.readAll();
 		ventanaPrincipal.panelModificar(this.arrayPersonas);
 
@@ -88,19 +97,29 @@ public class Controlador implements ActionListener {
 			}
 		}
 	}
-	
+
 	private void ventanaEliminar(ActionEvent alEliminar) {
 		// TODO Auto-generated method stub
 		return;
 	}
 
 	private void ventanaListar(ActionEvent alListar) {
-		// TODO Auto-generated method stub
+		ventanaPrincipal.getContentPane().removeAll();
+		ventanaPrincipal.getContentPane().add(this.pnlListado);
+		ventanaPrincipal.getContentPane().repaint();
+		ventanaPrincipal.getContentPane().revalidate();
+		this.refrescarTabla();
 		return;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+	}
+
+	private void refrescarTabla()
+	{
+		this.personasEnTabla = (ArrayList<Persona>) pNeg.readAll();
+		this.pnlListado.llenarTabla(this.personasEnTabla);
 	}
 
 	public void inicializar() {

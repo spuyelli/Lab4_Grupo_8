@@ -1,4 +1,5 @@
 package presentacion.vista;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -6,6 +7,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -17,11 +20,13 @@ public class VentanaPrincipal extends JFrame {
 	private JMenuItem mntmModificar;
 	private JMenuItem mntmEliminar;
 	private JMenuItem mntmListar;
-	
+
 	public VentanaPrincipal() {
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(450, 300);
+
 		setLocationRelativeTo(null);
 		setTitle("Programa");
 		getContentPane().setLayout(null);
@@ -42,6 +47,7 @@ public class VentanaPrincipal extends JFrame {
 		mnPersona.add(mntmEliminar);
 
 		mntmListar = new JMenuItem("Listar");
+
 		mnPersona.add(mntmListar);
 
 		ContentPane = new JPanel();
@@ -91,5 +97,5 @@ public class VentanaPrincipal extends JFrame {
 	public void setPanel(JPanel contentPane) {
 		this.ContentPane = contentPane;
 	}
-		
+
 }
