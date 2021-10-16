@@ -18,7 +18,6 @@ public class Controlador implements ActionListener {
 	private PanelModificarPersona pnlModificarPersonas;
 	private PanelPersonaAgregar pnlPeronaAgregar;
 	private PanelEliminarPersona pnlEliminarPersonas;
-	
 
 	private PersonaNegocio pNeg;
 	private ArrayList<Persona> arrayPersonas;
@@ -44,7 +43,9 @@ public class Controlador implements ActionListener {
 
 		// Instancio los paneles
 		this.pnlListado = new PanelListado();
+
 		this.pnlEliminarPersonas = new PanelEliminarPersona(arrayPersonas);
+		this.pnlEliminarPersonas.getBtnEliminar().addActionListener(alBtnEliminar -> eliminarPersona(alBtnEliminar));
 
 	}
 
@@ -94,20 +95,24 @@ public class Controlador implements ActionListener {
 	}
 
 	private void ventanaEliminar(ActionEvent alEliminar) {
-		
-		
+
 		this.arrayPersonas = (ArrayList<Persona>) pNeg.readAll();
 		this.pnlEliminarPersonas.setArrayList(arrayPersonas);
 		this.pnlEliminarPersonas.llenarLista();
-		
+
 		ventanaPrincipal.getContentPane().removeAll();
-		ventanaPrincipal.getContentPane().add(this.pnlEliminarPersonas);
+		ventanaPrincipal.getContentPane().add(pnlEliminarPersonas);
 		ventanaPrincipal.getContentPane().repaint();
 		ventanaPrincipal.getContentPane().revalidate();
-		ventanaPrincipal.setVisible(true);
-		
-		
-		
+	}
+
+	private void eliminarPersona(ActionEvent alBtnEliminar) {
+		//*
+		//*
+		//*
+		//*
+		//*
+		return;
 	}
 
 	private void ventanaListar(ActionEvent alListar) {
@@ -127,8 +132,6 @@ public class Controlador implements ActionListener {
 		this.arrayPersonas = (ArrayList<Persona>) pNeg.readAll();
 		this.pnlListado.llenarTabla(this.arrayPersonas);
 	}
-	
-	
 
 	public void inicializar() {
 		// TODO Auto-generated method stub
