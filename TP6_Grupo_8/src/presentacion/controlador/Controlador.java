@@ -20,30 +20,29 @@ public class Controlador implements ActionListener {
 	private PanelPersonaAgregar pnlPeronaAgregar;
 
 	private PersonaNegocio pNeg;
-	private ArrayList<Persona> personasEnTabla;
 	private ArrayList<Persona> arrayPersonas;
 
 	private PanelListado pnlListado;
-	private PanelModificarPersona pnlModificar;
 
 	public Controlador(VentanaPrincipal vista, PersonaNegocio negocio) {
-		//Guardo todas las instancias que recibo en el constructor
+		// Guardo todas las instancias que recibo en el constructor
 		this.ventanaPrincipal = vista;
 		this.pNeg = negocio;
-
-		//Instancio los paneles
-		this.pnlListado = new PanelListado();
-
 
 		this.ventanaPrincipal.getMntmAgregar().addActionListener(alAgregar -> ventanaAgregar(alAgregar));
 		this.ventanaPrincipal.getMntmModificar().addActionListener(alModificar -> ventanaModificar(alModificar));
 		this.ventanaPrincipal.getMntmEliminar().addActionListener(alEliminar -> ventanaEliminar(alEliminar));
 		this.ventanaPrincipal.getMntmListar().addActionListener(alListar -> ventanaListar(alListar));
 
-		//*****	MODIFICAR PERSONA	****
-		pnlModificarPersonas = new PanelModificarPersona(arrayPersonas);
-		this.pnlModificarPersonas.getJlistPersonas().addListSelectionListener(alJLPersonas -> seleccionPersona(alJLPersonas));
-		this.pnlModificarPersonas.getBtnModificar().addActionListener(alBtnModificar -> modificarPersona(alBtnModificar));
+		// ***** MODIFICAR PERSONA ****
+		this.pnlModificarPersonas = new PanelModificarPersona(arrayPersonas);
+		this.pnlModificarPersonas.getJlistPersonas()
+				.addListSelectionListener(alJLPersonas -> seleccionPersona(alJLPersonas));
+		this.pnlModificarPersonas.getBtnModificar()
+				.addActionListener(alBtnModificar -> modificarPersona(alBtnModificar));
+
+		// Instancio los paneles
+		this.pnlListado = new PanelListado();
 
 	}
 
@@ -54,13 +53,6 @@ public class Controlador implements ActionListener {
 
 	private void ventanaModificar(ActionEvent alModificar) {
 
-		/*this.arrayPersonas = (ArrayList<Persona>) pNeg.readAll();
-		ventanaPrincipal.panelModificar(this.arrayPersonas);
-
-		this.ventanaPrincipal.getJlistPersonas()
-				.addListSelectionListener(alJLPersonas -> seleccionPersona(alJLPersonas));
-		this.ventanaPrincipal.getBtnModificar().addActionListener(alBtnModificar -> modificarPersona(alBtnModificar));
-		*/
 		this.arrayPersonas = (ArrayList<Persona>) pNeg.readAll();
 		this.pnlModificarPersonas.setArrayList(arrayPersonas);
 		this.pnlModificarPersonas.llenarTabla();
@@ -73,11 +65,11 @@ public class Controlador implements ActionListener {
 	private void seleccionPersona(ListSelectionEvent alJLPersonas) {
 		try {
 			this.pnlModificarPersonas
-			.setTxtDni(this.pnlModificarPersonas.getJlistPersonas().getSelectedValue().getDni().toString());
-	this.pnlModificarPersonas
-			.setTxtNombre(this.pnlModificarPersonas.getJlistPersonas().getSelectedValue().getNombre().toString());
-	this.pnlModificarPersonas
-			.setTxtApellido(this.pnlModificarPersonas.getJlistPersonas().getSelectedValue().getApellido().toString());
+					.setTxtDni(this.pnlModificarPersonas.getJlistPersonas().getSelectedValue().getDni().toString());
+			this.pnlModificarPersonas.setTxtNombre(
+					this.pnlModificarPersonas.getJlistPersonas().getSelectedValue().getNombre().toString());
+			this.pnlModificarPersonas.setTxtApellido(
+					this.pnlModificarPersonas.getJlistPersonas().getSelectedValue().getApellido().toString());
 		} catch (Exception e) {
 			return;
 		}
@@ -85,8 +77,9 @@ public class Controlador implements ActionListener {
 
 	private void modificarPersona(ActionEvent alBtnModificar) {
 		if (this.pnlModificarPersonas.getJlistPersonas().getSelectedIndex() > 0) {
-			if(pNeg.update(new Persona(this.pnlModificarPersonas.getJlistPersonas().getSelectedValue().getDni().toString(),
-					this.pnlModificarPersonas.getTxtNombre(), this.pnlModificarPersonas.getTxtApellido()))) {
+			if (pNeg.update(
+					new Persona(this.pnlModificarPersonas.getJlistPersonas().getSelectedValue().getDni().toString(),
+							this.pnlModificarPersonas.getTxtNombre(), this.pnlModificarPersonas.getTxtApellido()))) {
 				this.pnlModificarPersonas.setTxtDni("");
 				this.pnlModificarPersonas.setTxtNombre("");
 				this.pnlModificarPersonas.setTxtApellido("");
@@ -116,10 +109,9 @@ public class Controlador implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 	}
 
-	private void refrescarTabla()
-	{
-		this.personasEnTabla = (ArrayList<Persona>) pNeg.readAll();
-		this.pnlListado.llenarTabla(this.personasEnTabla);
+	private void refrescarTabla() {
+		this.arrayPersonas = (ArrayList<Persona>) pNeg.readAll();
+		this.pnlListado.llenarTabla(this.arrayPersonas);
 	}
 
 	public void inicializar() {

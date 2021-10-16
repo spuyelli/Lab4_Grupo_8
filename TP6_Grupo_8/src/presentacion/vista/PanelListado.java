@@ -1,34 +1,24 @@
 package presentacion.vista;
 
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-
-import daoImpl.Conexion;
 import entidad.Persona;
-
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.BorderLayout;
 
 public class PanelListado extends JPanel {
 	
+	private static final long serialVersionUID = 1L;
+
 	//private JFrame frmAgenda;
 	private JTable tablaPersonas;
 	
 	private DefaultTableModel modelPersonas;
-	private String[] nombreColumnas = {"Nombre","Apellido", "Telefono"};
+	private String[] nombreColumnas = {"DNI", "Nombre", "Apellido"};
 
 	
 	 public PanelListado() {
@@ -104,7 +94,7 @@ public class PanelListado extends JPanel {
 			String nombre = p.getNombre();
 			String ape = p.getApellido();
 			String dni = p.getDni();
-			Object[] fila = {nombre, ape, dni };
+			Object[] fila = {dni, nombre, ape};
 			this.getModelPersonas().addRow(fila);
 		}
 		
