@@ -3,13 +3,12 @@ package presentacion.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.event.ListSelectionEvent;
-
 import entidad.Persona;
 import negocio.PersonaNegocio;
 import presentacion.vista.PanelModificarPersona;
 import presentacion.vista.PanelPersonaAgregar;
+import presentacion.vista.PanelEliminarPersona;
 import presentacion.vista.PanelListado;
 import presentacion.vista.VentanaPrincipal;
 
@@ -18,6 +17,8 @@ public class Controlador implements ActionListener {
 	private VentanaPrincipal ventanaPrincipal;
 	private PanelModificarPersona pnlModificarPersonas;
 	private PanelPersonaAgregar pnlPeronaAgregar;
+	private PanelEliminarPersona pnlEliminarPersonas;
+	
 
 	private PersonaNegocio pNeg;
 	private ArrayList<Persona> arrayPersonas;
@@ -43,6 +44,7 @@ public class Controlador implements ActionListener {
 
 		// Instancio los paneles
 		this.pnlListado = new PanelListado();
+		this.pnlEliminarPersonas = new PanelEliminarPersona(arrayPersonas);
 
 	}
 
@@ -92,8 +94,20 @@ public class Controlador implements ActionListener {
 	}
 
 	private void ventanaEliminar(ActionEvent alEliminar) {
-		// TODO Auto-generated method stub
-		return;
+		
+		
+		this.arrayPersonas = (ArrayList<Persona>) pNeg.readAll();
+		this.pnlEliminarPersonas.setArrayList(arrayPersonas);
+		this.pnlEliminarPersonas.llenarLista();
+		
+		ventanaPrincipal.getContentPane().removeAll();
+		ventanaPrincipal.getContentPane().add(this.pnlEliminarPersonas);
+		ventanaPrincipal.getContentPane().repaint();
+		ventanaPrincipal.getContentPane().revalidate();
+		ventanaPrincipal.setVisible(true);
+		
+		
+		
 	}
 
 	private void ventanaListar(ActionEvent alListar) {
@@ -113,6 +127,8 @@ public class Controlador implements ActionListener {
 		this.arrayPersonas = (ArrayList<Persona>) pNeg.readAll();
 		this.pnlListado.llenarTabla(this.arrayPersonas);
 	}
+	
+	
 
 	public void inicializar() {
 		// TODO Auto-generated method stub
