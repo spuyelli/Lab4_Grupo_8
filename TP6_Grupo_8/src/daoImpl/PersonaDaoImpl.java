@@ -21,7 +21,20 @@ public class PersonaDaoImpl implements PersonaDao {
 	}
 
 	public boolean delete(Persona persona_a_eliminar) {
-		return false;
+		PreparedStatement statement;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		boolean isUpdateExitoso = false;
+		try {
+			statement = conexion.prepareStatement(delete);
+			statement.setString(1, persona_a_eliminar.getDni());
+			if (statement.executeUpdate() > 0) {
+				conexion.commit();
+				isUpdateExitoso = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return isUpdateExitoso;
 	}
 
 	public List<Persona> readAll() {

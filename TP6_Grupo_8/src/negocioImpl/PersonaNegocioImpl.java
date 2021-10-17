@@ -19,8 +19,12 @@ public class PersonaNegocioImpl implements PersonaNegocio{
 
 	@Override
 	public boolean delete(Persona persona_a_eliminar) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean estado=false;
+		if(persona_a_eliminar.getDni() != "" ) 
+		{
+			estado=pdao.delete(persona_a_eliminar);
+		}
+		return estado;
 	}
 
 	@Override

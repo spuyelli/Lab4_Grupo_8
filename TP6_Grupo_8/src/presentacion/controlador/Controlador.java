@@ -3,6 +3,8 @@ package presentacion.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import entidad.Persona;
 import negocio.PersonaNegocio;
@@ -107,12 +109,17 @@ public class Controlador implements ActionListener {
 	}
 
 	private void eliminarPersona(ActionEvent alBtnEliminar) {
-		//*
-		//*
-		//*
-		//*
-		//*
-		return;
+		if(this.pnlEliminarPersonas.getListEliminar().getSelectedIndex() > -1) {
+			//Elimina La persona seleccionada
+			pNeg.delete(this.pnlEliminarPersonas.getListEliminar().getSelectedValue());
+			//Carga la lista
+			this.arrayPersonas = (ArrayList<Persona>) pNeg.readAll();
+			this.pnlEliminarPersonas.setArrayList(arrayPersonas);
+			this.pnlEliminarPersonas.llenarLista();
+			this.pnlEliminarPersonas.getListEliminar().setSelectedIndex(-1);
+			
+			JOptionPane.showMessageDialog(null, "Se Eliminó el Usuario Correctamente");
+		}
 	}
 
 	private void ventanaListar(ActionEvent alListar) {
