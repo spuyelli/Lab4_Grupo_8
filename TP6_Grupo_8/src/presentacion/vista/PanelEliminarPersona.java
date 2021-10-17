@@ -4,17 +4,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.JList;
-import javax.swing.border.LineBorder;
-
 import entidad.Persona;
-
-import java.awt.Color;
 import java.awt.Dimension;
-
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.util.ArrayList;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 

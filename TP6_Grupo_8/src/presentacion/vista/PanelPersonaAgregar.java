@@ -1,5 +1,6 @@
 package presentacion.vista;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -18,90 +19,58 @@ public class PanelPersonaAgregar extends JPanel{
 	private JTextField txtDni;
 	private JTextField txtApellido;
 	private JTextField txtNombre;
+	
 	public PanelPersonaAgregar() 
 	{
-		super();
 		dibujarControles();
 	}
 	
 	public void dibujarControles() {
+		setMaximumSize(new Dimension(450, 230));
+		setLayout(null);
+		setBounds(0, 0, 450, 230);
 		
 		Font fuenteComun = new Font("Segoe UI", Font.PLAIN, 18);
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{30, 0, 0, 0, 30, 0};
-		gridBagLayout.rowHeights = new int[]{30, 0, 0, 0, 0, 0, 30, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
 		
 		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setBounds(30, 20, 66, 25);
 		lblNombre.setFont(fuenteComun);
-		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
-		gbc_lblNombre.anchor = GridBagConstraints.WEST;
-		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNombre.gridx = 1;
-		gbc_lblNombre.gridy = 2;
-		add(lblNombre, gbc_lblNombre);
+		add(lblNombre);
 		
 		txtNombre = new JTextField();
+		txtNombre.setBounds(283, 20, 131, 31);
 		txtNombre.setFont(fuenteComun);
-		GridBagConstraints gbc_txtNombre = new GridBagConstraints();
-		gbc_txtNombre.anchor = GridBagConstraints.WEST;
-		gbc_txtNombre.insets = new Insets(0, 0, 5, 5);
-		gbc_txtNombre.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtNombre.gridx = 3;
-		gbc_txtNombre.gridy = 2;
-		add(txtNombre, gbc_txtNombre);
+		add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		JLabel lblApellido = new JLabel("Apellido");
-		lblApellido.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblApellido.setBounds(30, 60, 66, 25);
+		//lblApellido.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblApellido.setFont(fuenteComun);
-		GridBagConstraints gbc_lblGenero = new GridBagConstraints();
-		gbc_lblGenero.anchor = GridBagConstraints.WEST;
-		gbc_lblGenero.insets = new Insets(0, 0, 5, 5);
-		gbc_lblGenero.gridx = 1;
-		gbc_lblGenero.gridy = 3;
-		add(lblApellido, gbc_lblGenero);
+		add(lblApellido);
 		
 		btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBounds(30, 150, 140, 27);
 		
 		txtApellido = new JTextField();
+		txtApellido.setBounds(283, 60, 131, 31);
 		txtApellido.setFont(fuenteComun);
 		txtApellido.setColumns(10);
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_1.gridx = 3;
-		gbc_textField_1.gridy = 3;
-		add(txtApellido, gbc_textField_1);
+		add(txtApellido);
 		
 		JLabel lblDni = new JLabel("DNI");
+		lblDni.setBounds(30, 100, 31, 25);
 		lblDni.setFont(fuenteComun);
-		GridBagConstraints gbc_lblId = new GridBagConstraints();
-		gbc_lblId.anchor = GridBagConstraints.WEST;
-		gbc_lblId.insets = new Insets(0, 0, 5, 5);
-		gbc_lblId.gridx = 1;
-		gbc_lblId.gridy = 4;
-		add(lblDni, gbc_lblId);
+		add(lblDni);
 		
 		txtDni = new JTextField();
+		txtDni.setBounds(283, 100, 131, 31);
 		txtDni.setFont(fuenteComun);
 		txtDni.setColumns(10);
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 3;
-		gbc_textField.gridy = 4;
-		add(txtDni, gbc_textField);
+		add(txtDni);
 		
 		btnAceptar.setFont(fuenteComun);
-		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
-		gbc_btnAceptar.anchor = GridBagConstraints.WEST;
-		gbc_btnAceptar.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAceptar.gridx = 1;
-		gbc_btnAceptar.gridy = 5;
-		add(btnAceptar, gbc_btnAceptar);
+		add(btnAceptar);
 	}
 
 	public JButton getBtnAceptar() {

@@ -96,4 +96,8 @@ public class VentanaPrincipal extends JFrame {
 		this.ContentPane = contentPane;
 	}
 
+	public void refresh() {
+		
+	}
+
 }
