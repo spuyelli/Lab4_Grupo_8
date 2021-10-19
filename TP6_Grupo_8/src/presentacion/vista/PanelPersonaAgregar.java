@@ -2,6 +2,7 @@ package presentacion.vista;
 
 import java.awt.Dimension;
 import java.awt.Font;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -34,6 +35,7 @@ public class PanelPersonaAgregar extends JPanel{
 		add(lblNombre);
 		
 		txtNombre = new JTextField();
+		txtNombre.setName("txtNombre");
 		txtNombre.setBounds(283, 20, 131, 31);
 		txtNombre.setFont(fuenteComun);
 		add(txtNombre);
@@ -49,6 +51,7 @@ public class PanelPersonaAgregar extends JPanel{
 		btnAceptar.setBounds(30, 150, 140, 27);
 		
 		txtApellido = new JTextField();
+		txtApellido.setName("txtApellido");
 		txtApellido.setBounds(283, 60, 131, 31);
 		txtApellido.setFont(fuenteComun);
 		txtApellido.setColumns(10);
@@ -60,6 +63,7 @@ public class PanelPersonaAgregar extends JPanel{
 		add(lblDni);
 		
 		txtDni = new JTextField();
+		txtDni.setName("txtDNI");
 		txtDni.setBounds(283, 100, 131, 31);
 		txtDni.setFont(fuenteComun);
 		txtDni.setColumns(10);

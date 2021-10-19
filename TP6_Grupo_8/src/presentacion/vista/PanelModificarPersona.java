@@ -1,15 +1,17 @@
 package presentacion.vista;
 
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JList;
-import javax.swing.JTextField;
-import entidad.Persona;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
 import java.awt.Dimension;
 import java.util.ArrayList;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+
+import entidad.Persona;
 
 public class PanelModificarPersona extends JPanel {
 
@@ -38,11 +40,13 @@ public class PanelModificarPersona extends JPanel {
 		add(scrollPane);
 
 		txtNombre = new JTextField();
+		txtNombre.setName("txtNombre");
 		txtNombre.setBounds(35, 200, 96, 20);
 		add(txtNombre);
 		txtNombre.setColumns(10);
 
 		txtApellido = new JTextField();
+		txtApellido.setName("txtApellido");
 		txtApellido.setBounds(135, 200, 95, 20);
 		add(txtApellido);
 		txtApellido.setColumns(10);
@@ -82,24 +86,24 @@ public class PanelModificarPersona extends JPanel {
 		return jlistPersonas;
 	}
 
-	public String getTxtNombre() {
-		return txtNombre.getText();
+	public JTextField getTxtNombre() {
+		return txtNombre;
 	}
 
 	public void setTxtNombre(String Nombre) {
 		this.txtNombre.setText(Nombre);
 	}
 
-	public String getTxtApellido() {
-		return txtApellido.getText();
+	public JTextField getTxtApellido() {
+		return txtApellido;
 	}
 
 	public void setTxtApellido(String Apellido) {
 		this.txtApellido.setText(Apellido);
 	}
 
-	public String getTxtDni() {
-		return txtDni.getText();
+	public JTextField getTxtDni() {
+		return txtDni;
 	}
 
 	public void setTxtDni(String Dni) {

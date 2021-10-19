@@ -13,8 +13,9 @@ public class PersonaNegocioImpl implements PersonaNegocio{
 	
 	@Override
 	public boolean insert(Persona persona) {
-		// TODO Auto-generated method stub
-		return false;
+		Boolean estado;
+		estado = pdao.insert(persona);
+		return estado;
 	}
 
 	@Override
@@ -40,6 +41,11 @@ public class PersonaNegocioImpl implements PersonaNegocio{
 			estado=pdao.update(persona);
 		}
 		return estado;
+	}
+
+	@Override
+	public Persona select(String dni) {
+		return pdao.select(dni);
 	}
 
 }
