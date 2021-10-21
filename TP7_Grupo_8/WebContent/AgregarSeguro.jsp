@@ -7,6 +7,23 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<a href="Inicio.jsp"> Inicio </a> 
+	<a href="AgregarSeguro.jsp"> Agregar Seguro </a> 
+	<a href="ListarSeguros.jsp"> Listar Seguros </a>
+
+<h1>Agregar Seguro</h1>
+	
+	<form action="Ejemplo5.jsp" method="get">
+	IDseguro: <br>
+	
+	Descripción: <input type="text" name="txtNombre"> <br>
+	<br>
+	Tipo de Seguro: <br>
+	Costo Contratación: <input type="text" name="txtApellido"> <br>
+	Costo Máximo Asegurado: <input type="text" name="txtApellido"> <br>
+	<input type="submit" name="btnAceptar" value="Aceptar">
+</form>
+	
 
 </body>
 </html>
