@@ -3,4 +3,5 @@
 /.recommenders
 **/bin/*
 /*/.settings
-TP6_Grupo_8/.classpath
+/*/.classpath
+/Servers*

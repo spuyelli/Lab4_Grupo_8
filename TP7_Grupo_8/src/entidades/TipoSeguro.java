@@ -5,6 +5,10 @@ public class TipoSeguro {
 	private int Id;
 	private String Descripcion;
 	
+	public TipoSeguro(int id, String descripcion) {
+		Id = id;
+		Descripcion = descripcion;
+	}
 	public int getId() {
 		return Id;
 	}

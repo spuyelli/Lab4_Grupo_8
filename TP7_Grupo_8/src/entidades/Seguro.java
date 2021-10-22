@@ -7,6 +7,16 @@ public class Seguro {
 	private TipoSeguro tipoSeguro;
 	private float CostoContratacion;
 	private float CostoMaximoAsegurado;
+		
+	public Seguro(int idSeguro, String descripcion, TipoSeguro tipoSeguro, float costoContratacion,
+			float costoMaximoAsegurado) {
+		IdSeguro = idSeguro;
+		Descripcion = descripcion;
+		this.tipoSeguro = tipoSeguro;
+		CostoContratacion = costoContratacion;
+		CostoMaximoAsegurado = costoMaximoAsegurado;
+	}
+	
 	public int getIdSeguro() {
 		return IdSeguro;
 	}
