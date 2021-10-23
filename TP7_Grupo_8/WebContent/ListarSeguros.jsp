@@ -10,7 +10,20 @@
 	<a href="Inicio.jsp"> Inicio </a> &emsp;
 	<a href="AgregarSeguro.jsp"> Agregar Seguro </a> &emsp;
 	<a href="ListarSeguros.jsp"> Listar Seguros </a>
-
-	<h1>Listar Seguros</h1>
+	
+	<br>
+	<br>
+	<h2>Tipo de seguros de la base de datos"</h2>
+	<label for="cars">Busqueda por tipo de seguros :</label>
+	
+<select name="lblSeguros" id="Seguros">
+  <option value="Casas">Seguro de casas</option>
+  <option value="Vida">Seguro de vida</option>
+  <option value="Motos">Seguro de motos</option>
+</select>      <input type="submit" name="BtnListar" value="Listar seguros">
+	
+	<form method ="" action="">
+	
+	</form>
 </body>
 </html>
