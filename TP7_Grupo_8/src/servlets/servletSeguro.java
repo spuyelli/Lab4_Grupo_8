@@ -1,7 +1,6 @@
 package servlets;
 
 import javax.servlet.RequestDispatcher;
-//import java.util.ArrayList;
 import java.util.List;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,56 +9,88 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import entidades.Seguro;
+import entidades.TipoSeguro;
 import daoImpl.SeguroDaoImpl;
+import daoImpl.TipoSeguroDaoImpl;
+
 /**
  * Servlet implementation class servletSeguro
  */
 @WebServlet("/servletSeguro")
 public class servletSeguro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public servletSeguro() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public servletSeguro() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("Completo")!=null) {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if (request.getParameter("Completo") != null) {
 			SeguroDaoImpl sdao = new SeguroDaoImpl();
-			List<Seguro> lista= sdao.readAll();
-			
+			List<Seguro> lista = sdao.readAll();
+
 			request.setAttribute("listaS", lista);
-			
-			RequestDispatcher rd = request.getRequestDispatcher("/ListarSeguros.jsp");   
-	        rd.forward(request, response);
+
+			RequestDispatcher rd = request.getRequestDispatcher("/ListarSeguros.jsp");
+			rd.forward(request, response);
 		}
-		
-	        
-		/*if(request.getParameter("BtnListar")!=null)
-		{
-			SeguroDaoImpl sdao = new SeguroDaoImpl();
-			List<Seguro> lista= sdao.readAllTipoEspecifico();//ACA LE TENGO QUE PASAR EL TIPO QUE VIENE SELCCIONADO EN EL BOTON LISTAR
+
+		/*
+		 * if(request.getParameter("BtnListar")!=null) { SeguroDaoImpl sdao = new
+		 * SeguroDaoImpl(); List<Seguro> lista= sdao.readAllTipoEspecifico();//ACA LE
+		 * TENGO QUE PASAR EL TIPO QUE VIENE SELCCIONADO EN EL BOTON LISTAR
+		 * 
+		 * request.setAttribute("listaS", lista);
+		 * 
+		 * RequestDispatcher rd = request.getRequestDispatcher("/ListarSeguros.jsp");
+		 * rd.forward(request, response);
+		 * 
+		 * }
+		 */
+
+		if (request.getParameter("btnAceptar") != null) {
+			Seguro nuevoSeguro;
+			TipoSeguroDaoImpl tipoSeguroDaoImpl = new TipoSeguroDaoImpl();
 			
-			request.setAttribute("listaS", lista);
+			int idSeguro = Integer.parseInt(request.getParameter("lblID"));
+			String descripcion = request.getParameter("txtDescripcion");
+			TipoSeguro tipoSeguro = tipoSeguroDaoImpl.select(Integer.parseInt(request.getParameter("tiposSeguros"))); 
+			float costoCont = Float.parseFloat(request.getParameter("txtContratacion"));
+			float costoMax = Float.parseFloat(request.getParameter("txtMaximo"));
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/ListarSeguros.jsp");   
-	        rd.forward(request, response);
+			//		VALIDACIONES			
 			
-		}*/
+			nuevoSeguro= new Seguro(idSeguro, descripcion, tipoSeguro, costoCont, costoMax);
+			
+			SeguroDaoImpl seguroDaoImpl = new SeguroDaoImpl();
+			try {
+				if(seguroDaoImpl.insert(nuevoSeguro)) {
+					getServletContext().getRequestDispatcher("/AgregarSeguro.jsp").forward (request, response);
+					System.out.println("Se agregó el siguiente seguro: " + nuevoSeguro.toString());
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

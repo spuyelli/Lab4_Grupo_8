@@ -22,6 +22,11 @@ public class TipoSeguro {
 	public void setDescripcion(String descripcion) {
 		Descripcion = descripcion;
 	}
+
+	@Override
+	public String toString() {
+		return "ID= " + Id + ", Descripción= " + Descripcion;
+	}
 	
 	
 }

@@ -1,5 +1,7 @@
 <%@page import="servlets.servletSeguro"%>
 <%@page import="entidades.Seguro"%>
+<%@page import="entidades.TipoSeguro"%>
+<%@page import="daoImpl.TipoSeguroDaoImpl"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -21,9 +23,13 @@
 	
 	<form method ="post" action="servletSeguro">
 		<select name="lblSeguros" id="Seguros">
-		  <option value="Casas">Seguro de casas</option>
-		  <option value="Vida">Seguro de vida</option>
-		  <option value="Motos">Seguro de motos</option>
+		  <%	ArrayList<TipoSeguro> alTipoSeguro = new ArrayList<TipoSeguro>();
+				TipoSeguroDaoImpl tsdi = new TipoSeguroDaoImpl();
+				alTipoSeguro = (ArrayList<TipoSeguro>) tsdi.readAll();
+				for(TipoSeguro ts:alTipoSeguro){
+					%><option value="<%=ts.getId() %>"><%=ts.getDescripcion()%></option> <%
+				} 
+			%>
 		</select>      
 		<input type="submit" name="BtnListar" value="Listar seguros">
 	</form>

@@ -18,31 +18,55 @@
 
 	<h1>Agregar Seguro</h1>
 
-<%
-	Seguro seguro = new Seguro();
-	ArrayList<TipoSeguro> alTipoSeguro = new ArrayList<TipoSeguro>();
-	TipoSeguroDaoImpl tsdi = new TipoSeguroDaoImpl();
-	alTipoSeguro = (ArrayList<TipoSeguro>) tsdi.readAll();
-%>
+	<%
+		Seguro seguro = new Seguro();
+		ArrayList<TipoSeguro> alTipoSeguro = new ArrayList<TipoSeguro>();
+		TipoSeguroDaoImpl tsdi = new TipoSeguroDaoImpl();
+		alTipoSeguro = (ArrayList<TipoSeguro>) tsdi.readAll();
+	%>
 
-	<form action="Inicio.jsp" method="get">
-		IDseguro:
-		<%=seguro.getIdSeguro()%>
-		<br>
-		Descripción: <input type="text" name="txtDescripcion"> <br>
-		Tipo de Seguro: 
-		<select name="tiposSeguros" id="selectTipoSeguro">
-		<%
-			for(TipoSeguro ts:alTipoSeguro){
-				%><option value="<%=ts.getId() %>"><%=ts.getDescripcion()%></option> <%
-			}
-		 %>
-		</select>
+	<form method ="post" action="servletSeguro">
+		<table>
+			<tr>
+				<th>
+					IDseguro:
+				<th>
+					<%=seguro.getIdSeguro() %> <input type="hidden" name="lblID" value="<%=seguro.getIdSeguro() %>"> 
+			<tr>
+				<th>
+					Descripción: 
+				<th>
+					<input type="text" name="txtDescripcion"> <br>
+			<tr>
+				<th>
+					Tipo de Seguro:
+				<th> 
+					<select name="tiposSeguros" id="selectTipoSeguro">
+						<%
+							for(TipoSeguro ts:alTipoSeguro){
+								%><option value="<%=ts.getId() %>"><%=ts.getDescripcion()%></option> <%
+							}
+						 %>
+					</select>
+			<tr>
+				<th> 
+					Costo Contratación: 
+				<th>
+					<input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 44' name="txtContratacion"> <br>
+			<tr>
+				<th>
+					Costo MáximoAsegurado: 
+				<th>
+					<input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 44' name="txtMaximo"> <br>
+			<tr>
+				<th>
+				
+				<th>
+					<input type="submit" name="btnAceptar" value="Aceptar">
+		</table>
 		
-		<br> 
-		Costo Contratación: <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 44' name="txtContratacion"> <br>
-		Costo MáximoAsegurado: <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 44' name="txtMaximo"> <br>
-		<input type="submit" name="btnAceptar" value="Aceptar">
+		
+		
 	</form>
 
 

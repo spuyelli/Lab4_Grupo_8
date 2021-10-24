@@ -11,9 +11,7 @@ public class Seguro {
 	private float CostoContratacion;
 	private float CostoMaximoAsegurado;
 		
-	public Seguro () {
-	}
-	public Seguro(int idSeguro, String descripcion, TipoSeguro tipoSeguro, float costoContratacion,
+		public Seguro(int idSeguro, String descripcion, TipoSeguro tipoSeguro, float costoContratacion,
 			float costoMaximoAsegurado) {
 		IdSeguro = idSeguro;
 		Descripcion = descripcion;
@@ -62,6 +60,12 @@ public class Seguro {
 	}
 	public void setCostoMaximoAsegurado(float costoMaximoAsegurado) {
 		CostoMaximoAsegurado = costoMaximoAsegurado;
+	}
+
+	@Override
+	public String toString() {
+		return "ID= " + IdSeguro + ", Descripción= " + Descripcion + ", Tipo de Seguro= [" + tipoSeguro.toString()
+				+ "], Costo de Contratacion= $" + CostoContratacion + ", Costo Máximo Asegurado= $" + CostoMaximoAsegurado;
 	}
 	
 }

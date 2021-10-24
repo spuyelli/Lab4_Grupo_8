@@ -12,7 +12,7 @@ import entidades.TipoSeguro;
 public class TipoSeguroDaoImpl implements TipoSeguroDao{
 
 	private static final String readall = "SELECT * FROM tiposeguros";
-	private static final String select = "SELECT * FROM tiposeguros WHERE idSeguro = ?";
+	private static final String select = "SELECT * FROM tiposeguros WHERE idTipo = ?";
 	
 	@Override
 	public TipoSeguro select(int tipoSeguro) {
