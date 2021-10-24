@@ -6,14 +6,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+
 import dao.SeguroDao;
 import entidades.Seguro;
 import entidades.TipoSeguro;
 
 public class SeguroDaoImpl implements SeguroDao {
-
+	
 	private static final String insert = "INSERT INTO seguros (idSeguro, descripcion, idTipo, costoContratacion, costoAsegurado) VALUES(?, ?, ?, ?, ?)";
 	private static final String readall = "SELECT * FROM seguros inner join tiposeguros on seguros.idTipo = tiposeguros.idTipo";
+	private static final String readallTipoEspecifico = "SELECT * FROM seguros inner join tiposeguros on seguros.idTipo = tiposeguros.idTipo WHERE (seguros.idTipo = ?)";
 	private static final String select = "SELECT * FROM seguros WHERE idSeguro = ?";
 	private static final String lastID = "SELECT max(idSeguro) as \"idSeguro\" FROM seguros";
 	
@@ -56,7 +59,26 @@ public class SeguroDaoImpl implements SeguroDao {
 		}
 		return seguros;
 	}
-
+	
+	public List<Seguro> readAllTipoEspecifico(Integer idTipo) {
+		PreparedStatement statement;
+		ResultSet resultSet;
+		ArrayList<Seguro> seguros = new ArrayList<Seguro>();
+		Conexion conexion = Conexion.getConexion();
+		try {
+			statement = conexion.getSQLConexion().prepareStatement(readallTipoEspecifico);
+			statement.setInt(1, idTipo);
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				seguros.add(getSeguro(resultSet));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return seguros;
+	}
+	
+	
 	public Seguro select(String idSeguro) {
 		PreparedStatement statement;
 		Connection conexion = Conexion.getConexion().getSQLConexion();

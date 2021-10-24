@@ -11,6 +11,8 @@ public class Seguro {
 	private float CostoContratacion;
 	private float CostoMaximoAsegurado;
 		
+	public Seguro () {
+	}
 	public Seguro(int idSeguro, String descripcion, TipoSeguro tipoSeguro, float costoContratacion,
 			float costoMaximoAsegurado) {
 		IdSeguro = idSeguro;
@@ -48,6 +50,7 @@ public class Seguro {
 	public void setTipoSeguro(TipoSeguro tipoSeguro) {
 		this.tipoSeguro = tipoSeguro;
 	}
+	
 	public float getCostoContratacion() {
 		return CostoContratacion;
 	}

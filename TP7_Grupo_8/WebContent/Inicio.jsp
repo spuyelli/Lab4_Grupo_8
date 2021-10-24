@@ -9,7 +9,7 @@
 <body>
 	<a href="Inicio.jsp"> Inicio </a> &emsp;
 	<a href="AgregarSeguro.jsp"> Agregar Seguro </a> &emsp;
-	<a href="ListarSeguros.jsp"> Listar Seguros </a>
+	<a href="servletSeguro?Completo=0"> Listar Seguros </a>
 	
 	<h1>Soy la página Inicio</h1>
 
