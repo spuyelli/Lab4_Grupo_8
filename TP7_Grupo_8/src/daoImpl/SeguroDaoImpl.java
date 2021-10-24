@@ -13,11 +13,10 @@ import entidades.TipoSeguro;
 public class SeguroDaoImpl implements SeguroDao {
 
 	private static final String insert = "INSERT INTO seguros (idSeguro, descripcion, idTipo, costoContratacion, costoAsegurado) VALUES(?, ?, ?, ?, ?)";
-	private static final String delete = "DELETE FROM seguros WHERE idSeguro = ?";
 	private static final String readall = "SELECT * FROM seguros inner join tiposeguros on seguros.idTipo = tiposeguros.idTipo";
 	private static final String select = "SELECT * FROM seguros WHERE idSeguro = ?";
-	private static final String update = "UPDATE seguros SET Descripcion = ?, tipoSeguro = ?, CostoContratacion = ?, CostoMaximoAsegurado = ? WHERE (IdSeguro = ?)";
-
+	private static final String lastID = "SELECT max(idSeguro) as \"idSeguro\" FROM seguros";
+	
 	public boolean insert(Seguro seguro) {
 		PreparedStatement statement;
 		Connection conexion = Conexion.getConexion().getSQLConexion();
@@ -39,23 +38,6 @@ public class SeguroDaoImpl implements SeguroDao {
 			e.printStackTrace();
 		}
 		return isInsertExitoso;
-	}
-
-	public boolean delete(Seguro seguro) {
-		PreparedStatement statement;
-		Connection conexion = Conexion.getConexion().getSQLConexion();
-		boolean isDeleteExitoso = false;
-		try {
-			statement = conexion.prepareStatement(delete);
-			statement.setInt(1, seguro.getIdSeguro());
-			if (statement.executeUpdate() > 0) {
-				conexion.commit();
-				isDeleteExitoso = true;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return isDeleteExitoso;
 	}
 
 	public List<Seguro> readAll() {
@@ -93,6 +75,62 @@ public class SeguroDaoImpl implements SeguroDao {
 		return null;
 	}
 
+	private Seguro getSeguro(ResultSet resultSet) throws SQLException {
+		int idSeguro = resultSet.getInt("idSeguro");
+		String descripcion = resultSet.getString("descripcion");
+		TipoSeguro tipoSeguro = getTipoSeguro(resultSet);
+		float costoContratacion = resultSet.getFloat("costoContratacion");
+		float costoMaximoAsegurado = resultSet.getFloat("costoAsegurado");
+		return new Seguro(idSeguro, descripcion, tipoSeguro, costoContratacion, costoMaximoAsegurado);
+	}
+	
+	private TipoSeguro getTipoSeguro(ResultSet resultSet) {
+		TipoSeguroDaoImpl tsdaoi = new TipoSeguroDaoImpl();
+		try {
+			tsdaoi.select(resultSet.getInt("idTipo"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public int getLastID() {
+		PreparedStatement statement;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		ResultSet resultSet;
+		try {
+			statement = conexion.prepareStatement(lastID);
+			resultSet = statement.executeQuery();
+			resultSet.next();
+			return resultSet.getInt("idSeguro");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	/*
+	 	private static final String update = "UPDATE seguros SET Descripcion = ?, tipoSeguro = ?, CostoContratacion = ?, CostoMaximoAsegurado = ? WHERE (IdSeguro = ?)";
+	private static final String delete = "DELETE FROM seguros WHERE idSeguro = ?";
+	
+	public boolean delete(Seguro seguro) {
+		PreparedStatement statement;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		boolean isDeleteExitoso = false;
+		try {
+			statement = conexion.prepareStatement(delete);
+			statement.setInt(1, seguro.getIdSeguro());
+			if (statement.executeUpdate() > 0) {
+				conexion.commit();
+				isDeleteExitoso = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return isDeleteExitoso;
+	}
+	
 	public boolean update(Seguro seguro) {
 		PreparedStatement statement;
 		Connection conexion = Conexion.getConexion().getSQLConexion();
@@ -114,23 +152,5 @@ public class SeguroDaoImpl implements SeguroDao {
 		return isUpdateExitoso;
 	}
 
-	private Seguro getSeguro(ResultSet resultSet) throws SQLException {
-		int idSeguro = resultSet.getInt("idSeguro");
-		String descripcion = resultSet.getString("descripcion");
-		TipoSeguro tipoSeguro = getTipoSeguro(resultSet);
-		float costoContratacion = resultSet.getFloat("costoContratacion");
-		float costoMaximoAsegurado = resultSet.getFloat("costoAsegurado");
-		return new Seguro(idSeguro, descripcion, tipoSeguro, costoContratacion, costoMaximoAsegurado);
-	}
-	
-	private TipoSeguro getTipoSeguro(ResultSet resultSet) {
-		TipoSeguroDaoImpl tsdaoi = new TipoSeguroDaoImpl();
-		try {
-			tsdaoi.select(resultSet.getInt("idTipo"));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
+	 */
 }

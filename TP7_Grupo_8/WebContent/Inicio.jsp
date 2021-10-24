@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Seguros</title>
 </head>
 <body>
 	<a href="Inicio.jsp"> Inicio </a> &emsp;

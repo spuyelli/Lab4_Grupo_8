@@ -9,6 +9,7 @@ public class TipoSeguro {
 		Id = id;
 		Descripcion = descripcion;
 	}
+		
 	public int getId() {
 		return Id;
 	}

@@ -1,5 +1,8 @@
 package entidades;
 
+import dao.SeguroDao;
+import daoImpl.SeguroDaoImpl;
+
 public class Seguro {
 	
 	private int IdSeguro;
@@ -16,6 +19,16 @@ public class Seguro {
 		CostoContratacion = costoContratacion;
 		CostoMaximoAsegurado = costoMaximoAsegurado;
 	}
+	
+	public Seguro()
+    {
+        SeguroDao data = new SeguroDaoImpl();
+        IdSeguro = data.getLastID() + 1;
+        Descripcion = "";
+        tipoSeguro = null;
+        CostoContratacion = 0;
+        CostoMaximoAsegurado = 0;
+    }
 	
 	public int getIdSeguro() {
 		return IdSeguro;

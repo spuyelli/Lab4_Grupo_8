@@ -7,7 +7,11 @@ public interface SeguroDao {
 
 	public boolean insert(Seguro seguro);
 	public Seguro select(String IdSeguro);
-	public boolean update(Seguro seguro);
-	public boolean delete(Seguro seguro_a_eliminar);
 	public List<Seguro> readAll();
+	public int getLastID();
+	
+	/*
+	public boolean update(Seguro seguro);
+	public boolean delete(Seguro seguro);
+	*/
 }
