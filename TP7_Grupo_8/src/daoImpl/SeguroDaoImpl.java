@@ -6,31 +6,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-
 import dao.SeguroDao;
 import entidades.Seguro;
-import entidades.TipoSeguro;
 
 public class SeguroDaoImpl implements SeguroDao {
-	
+
 	private static final String insert = "INSERT INTO seguros (idSeguro, descripcion, idTipo, costoContratacion, costoAsegurado) VALUES(?, ?, ?, ?, ?)";
 	private static final String readall = "SELECT * FROM seguros inner join tiposeguros on seguros.idTipo = tiposeguros.idTipo";
-	private static final String readallTipoEspecifico = "SELECT * FROM seguros inner join tiposeguros on seguros.idTipo = tiposeguros.idTipo WHERE (seguros.idTipo = ?)";
+	private static final String readallTipoEspecifico = "SELECT seguros.idSeguro, seguros.descripcion, tiposeguros.idTipo, seguros.costoContratacion, "
+			+ "seguros.costoAsegurado FROM seguros inner join tiposeguros on seguros.idTipo = tiposeguros.idTipo WHERE seguros.idTipo = ?";
 	private static final String select = "SELECT * FROM seguros WHERE idSeguro = ?";
 	private static final String lastID = "SELECT max(idSeguro) as \"idSeguro\" FROM seguros";
-	
+
 	public boolean insert(Seguro seguro) {
 		PreparedStatement statement;
 		Connection conexion = Conexion.getConexion().getSQLConexion();
 		boolean isInsertExitoso = false;
 		try {
 			statement = conexion.prepareStatement(insert);
-			
-			///Hasta aca hice habría que continuar desarrollando
 			statement.setInt(1, seguro.getIdSeguro());
 			statement.setString(2, seguro.getDescripcion());
-			statement.setInt(3, seguro.getTipoSeguro().getId());
+			statement.setInt(3, seguro.getTipoSeguro());
 			statement.setFloat(4, seguro.getCostoContratacion());
 			statement.setFloat(5, seguro.getCostoMaximoAsegurado());
 			if (statement.executeUpdate() > 0) {
@@ -59,8 +55,8 @@ public class SeguroDaoImpl implements SeguroDao {
 		}
 		return seguros;
 	}
-	
-	public List<Seguro> readAllTipoEspecifico(Integer idTipo) {
+
+	public List<Seguro> readAllTipoEspecifico(int idTipo) {
 		PreparedStatement statement;
 		ResultSet resultSet;
 		ArrayList<Seguro> seguros = new ArrayList<Seguro>();
@@ -77,8 +73,7 @@ public class SeguroDaoImpl implements SeguroDao {
 		}
 		return seguros;
 	}
-	
-	
+
 	public Seguro select(String idSeguro) {
 		PreparedStatement statement;
 		Connection conexion = Conexion.getConexion().getSQLConexion();
@@ -100,20 +95,10 @@ public class SeguroDaoImpl implements SeguroDao {
 	private Seguro getSeguro(ResultSet resultSet) throws SQLException {
 		int idSeguro = resultSet.getInt("idSeguro");
 		String descripcion = resultSet.getString("descripcion");
-		TipoSeguro tipoSeguro = getTipoSeguro(resultSet);
+		int tipoSeguro = resultSet.getInt("idTipo");
 		float costoContratacion = resultSet.getFloat("costoContratacion");
 		float costoMaximoAsegurado = resultSet.getFloat("costoAsegurado");
 		return new Seguro(idSeguro, descripcion, tipoSeguro, costoContratacion, costoMaximoAsegurado);
-	}
-	
-	private TipoSeguro getTipoSeguro(ResultSet resultSet) {
-		TipoSeguroDaoImpl tsdaoi = new TipoSeguroDaoImpl();
-		try {
-			tsdaoi.select(resultSet.getInt("idTipo"));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 	@Override
@@ -131,48 +116,4 @@ public class SeguroDaoImpl implements SeguroDao {
 		}
 		return 0;
 	}
-
-	/*
-	 	private static final String update = "UPDATE seguros SET Descripcion = ?, tipoSeguro = ?, CostoContratacion = ?, CostoMaximoAsegurado = ? WHERE (IdSeguro = ?)";
-	private static final String delete = "DELETE FROM seguros WHERE idSeguro = ?";
-	
-	public boolean delete(Seguro seguro) {
-		PreparedStatement statement;
-		Connection conexion = Conexion.getConexion().getSQLConexion();
-		boolean isDeleteExitoso = false;
-		try {
-			statement = conexion.prepareStatement(delete);
-			statement.setInt(1, seguro.getIdSeguro());
-			if (statement.executeUpdate() > 0) {
-				conexion.commit();
-				isDeleteExitoso = true;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return isDeleteExitoso;
-	}
-	
-	public boolean update(Seguro seguro) {
-		PreparedStatement statement;
-		Connection conexion = Conexion.getConexion().getSQLConexion();
-		boolean isUpdateExitoso = false;
-		try {
-			statement = conexion.prepareStatement(update);
-			statement.setInt(1, seguro.getIdSeguro());
-			statement.setString(2, seguro.getDescripcion());
-			statement.setInt(3, seguro.getTipoSeguro().getId());
-			statement.setFloat(4, seguro.getCostoContratacion());
-			statement.setFloat(5, seguro.getCostoMaximoAsegurado());
-			if (statement.executeUpdate() > 0) {
-				conexion.commit();
-				isUpdateExitoso = true;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return isUpdateExitoso;
-	}
-
-	 */
 }

@@ -14,7 +14,7 @@
 <body>
 	<a href="Inicio.jsp"> Inicio </a> &emsp;
 	<a href="AgregarSeguro.jsp"> Agregar Seguro </a> &emsp;
-	<a href="servletSeguro?Completo=0"> Listar Seguros </a>
+	<a href="ListarSeguros.jsp"> Listar Seguros </a>
 
 	<h1>Agregar Seguro</h1>
 
@@ -25,48 +25,36 @@
 		alTipoSeguro = (ArrayList<TipoSeguro>) tsdi.readAll();
 	%>
 
-	<form method ="post" action="servletSeguro">
+	<form method="post" action="servletSeguro">
 		<table>
 			<tr>
-				<th>
-					IDseguro:
-				<th>
-					<%=seguro.getIdSeguro() %> <input type="hidden" name="lblID" value="<%=seguro.getIdSeguro() %>" required> 
+				<th>IDseguro:
+				<th><%=seguro.getIdSeguro()%> <input type="hidden" name="lblID" value="<%=seguro.getIdSeguro()%>" required>
 			<tr>
-				<th>
-					Descripción: 
-				<th>
-					<input type="text" name="txtDescripcion" required oncopy="return false" onpaste="return false"> <br>
+				<th>Descripción:
+				<th><input type="text" name="txtDescripcion" required oncopy="return false" onpaste="return false"> <br>
 			<tr>
-				<th>
-					Tipo de Seguro:
-				<th> 
-					<select name="tiposSeguros" id="selectTipoSeguro" required >
+				<th>Tipo de Seguro:
+				<th><select name="tiposSeguros_agregar" id="selectTipoSeguro" required>
 						<%
-							for(TipoSeguro ts:alTipoSeguro){
-								%><option value="<%=ts.getId() %>"><%=ts.getDescripcion()%></option> <%
+							for (TipoSeguro ts : alTipoSeguro) {
+						%><option value="<%=ts.getId()%>"><%=ts.getDescripcion()%></option>
+						<%
 							}
-						 %>
-					</select>
+						%>
+				</select>
 			<tr>
-				<th> 
-					Costo Contratación: 
-				<th>
-					<input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 44' name="txtContratacion" required oncopy="return false" onpaste="return false"> <br>
+				<th>Costo Contratación:
+				<th><input type="number" min="0" name="txtContratacion" required oncopy="return false" onpaste="return false"> <br>
 			<tr>
+				<th>Costo MáximoAsegurado:
+				<th><input type="number" min="0" name="txtMaximo" required oncopy="return false" onpaste="return false"> <br><tr>
 				<th>
-					Costo MáximoAsegurado: 
-				<th>
-					<input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 44' name="txtMaximo" required oncopy="return false" onpaste="return false"> <br>
-			<tr>
-				<th>
-				
-				<th>
-					<input type="submit" name="btnAceptar" value="Aceptar">
+				<th><input type="submit" name="btnAceptar" value="Aceptar">
 		</table>
-		
-		
-		
+
+
+
 	</form>
 
 

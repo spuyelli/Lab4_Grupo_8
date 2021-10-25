@@ -2,32 +2,33 @@ package entidades;
 
 import dao.SeguroDao;
 import daoImpl.SeguroDaoImpl;
+import daoImpl.TipoSeguroDaoImpl;
 
 public class Seguro {
 	
 	private int IdSeguro;
 	private String Descripcion;
-	private TipoSeguro tipoSeguro;
+	private int tipoSeguro;
 	private float CostoContratacion;
 	private float CostoMaximoAsegurado;
 		
-		public Seguro(int idSeguro, String descripcion, TipoSeguro tipoSeguro, float costoContratacion,
+	public Seguro(int idSeguro, String descripcion, int tipoSeguro, float costoContratacion,
 			float costoMaximoAsegurado) {
-		IdSeguro = idSeguro;
-		Descripcion = descripcion;
+		this.IdSeguro = idSeguro;
+		this.Descripcion = descripcion;
 		this.tipoSeguro = tipoSeguro;
-		CostoContratacion = costoContratacion;
-		CostoMaximoAsegurado = costoMaximoAsegurado;
+		this.CostoContratacion = costoContratacion;
+		this.CostoMaximoAsegurado = costoMaximoAsegurado;
 	}
 	
 	public Seguro()
     {
         SeguroDao data = new SeguroDaoImpl();
-        IdSeguro = data.getLastID() + 1;
-        Descripcion = "";
-        tipoSeguro = null;
-        CostoContratacion = 0;
-        CostoMaximoAsegurado = 0;
+		this.IdSeguro = data.getLastID() + 1;
+		this.Descripcion = "";
+		this.tipoSeguro = 0;
+		this.CostoContratacion = 0;
+		this.CostoMaximoAsegurado = 0;
     }
 	
 	public int getIdSeguro() {
@@ -36,21 +37,18 @@ public class Seguro {
 	public void setIdSeguro(int idSeguro) {
 		IdSeguro = idSeguro;
 	}
-	
 	public String getDescripcion() {
 		return Descripcion;
 	}
 	public void setDescripcion(String descripcion) {
 		Descripcion = descripcion;
 	}
-	public TipoSeguro getTipoSeguro() {
+
+	public int getTipoSeguro() {
 		return tipoSeguro;
 	}
-	
-	
 
-	
-	public void setTipoSeguro(TipoSeguro tipoSeguro) {
+	public void setTipoSeguro(int tipoSeguro) {
 		this.tipoSeguro = tipoSeguro;
 	}
 	
@@ -69,8 +67,14 @@ public class Seguro {
 
 	@Override
 	public String toString() {
-		return "ID= " + IdSeguro + ", Descripción= " + Descripcion + ", Tipo de Seguro= [" + tipoSeguro.toString()
+		return "ID= " + IdSeguro + ", Descripción= " + Descripcion + ", Tipo de Seguro= ["
+				+ getFullTipoSeguro(tipoSeguro).toString()
 				+ "], Costo de Contratacion= $" + CostoContratacion + ", Costo Máximo Asegurado= $" + CostoMaximoAsegurado;
 	}
 	
+	public TipoSeguro getFullTipoSeguro(int idTipoSeguro) {
+		TipoSeguro tSeguro = new TipoSeguroDaoImpl().select(idTipoSeguro);
+		return tSeguro;
+	}
+
 }

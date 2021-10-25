@@ -1,5 +1,6 @@
 <%@page import="servlets.servletSeguro"%>
 <%@page import="entidades.Seguro"%>
+<%@page import="daoImpl.SeguroDaoImpl"%>
 <%@page import="entidades.TipoSeguro"%>
 <%@page import="daoImpl.TipoSeguroDaoImpl"%>
 <%@page import="java.util.ArrayList"%>
@@ -14,44 +15,59 @@
 <body>
 	<a href="Inicio.jsp"> Inicio </a> &emsp;
 	<a href="AgregarSeguro.jsp"> Agregar Seguro </a> &emsp;
-	<a href="servletSeguro?Completo=0"> Listar Seguros </a>
+	<a href="ListarSeguros.jsp"> Listar Seguros </a>
+	
+	<%
+		ArrayList<TipoSeguro> listaTiposSeguros = new ArrayList<TipoSeguro>();
+		TipoSeguroDaoImpl tsdi = new TipoSeguroDaoImpl();
+		listaTiposSeguros = (ArrayList<TipoSeguro>) tsdi.readAll();
+
+		ArrayList<Seguro> listaSeguros = new ArrayList<Seguro>();
+		SeguroDaoImpl sdi = new SeguroDaoImpl();
+		listaSeguros = (ArrayList<Seguro>) sdi.readAll();
+	%>
 	
 	<br>
 	<br>
 	<h2>Tipo de seguros de la base de datos"</h2>
-	<label for="cars">Busqueda por tipo de seguros :</label>
+	Busqueda por tipo de seguros :
 	
-	<form method ="post" action="servletSeguro">
-		<select name="lblSeguros" id="Seguros">
-		  <%	ArrayList<TipoSeguro> alTipoSeguro = new ArrayList<TipoSeguro>();
-				TipoSeguroDaoImpl tsdi = new TipoSeguroDaoImpl();
-				alTipoSeguro = (ArrayList<TipoSeguro>) tsdi.readAll();
-				for(TipoSeguro ts:alTipoSeguro){
-					%><option value="<%=ts.getId() %>"><%=ts.getDescripcion()%></option> <%
-				} 
+	<form name="formulario" action="servletSeguro" method="post">
+		<select name="TiposSeguros_listar" id="SelectTiposSeguros">
+			<option value="0">Todos</option>
+			<%
+				for (TipoSeguro ts : listaTiposSeguros) {
 			%>
-		</select>      
-		<input type="submit" name="BtnListar" value="Listar seguros">
+			<option value=" <%=ts.getId()%> "> <%=ts.getDescripcion()%></option>
+			<%
+				}
+			%>
+		</select> <input type="submit" name="btnListar" value="Listar seguros">
 	</form>
 	
 	
 
 <% 
-	ArrayList<Seguro> listaSeguros = null;
-	if(request.getAttribute("listaS")!=null)
+	if(request.getAttribute("listaSeguros")!=null)
 	{
-		listaSeguros = (ArrayList<Seguro>) request.getAttribute("listaS");
+		listaSeguros = (ArrayList<Seguro>) request.getAttribute("listaSeguros");
 	}
 
  %>
 
-<table border="1">
-	<tr> <th>ID Seguro</th>  <th>Descripción seguro</th>  <th>Descripción tipo seguro</th>  <th>Costo contratación</th> <th>Costo máximo asegurado</th> </tr>
-	
-	<%  
-	TipoSeguroDaoImpl tsdi2 = new TipoSeguroDaoImpl();
-	if(listaSeguros!=null)
+<table class="display" border="1">
+		<thead>
+			<tr>
+				<th>ID Seguro</th>
+				<th>Descripción seguro</th>
+				<th>Descripción tipo seguro</th>
+				<th>Costo contratación</th>
+				<th>Costo máximo asegurado</th>
+			</tr>
+		</thead>
 		
+	<%  
+	if(listaSeguros!=null)
 		for(Seguro seguro : listaSeguros) 
 		{ 
 		
@@ -59,7 +75,7 @@
 	<tr>  
 	     <td><%=seguro.getIdSeguro() %> </td>    
 	     <td><%=seguro.getDescripcion() %></td>   
-	     <td><%=seguro.getTipoSeguro() %></td>   
+	     <td><%=(new TipoSeguroDaoImpl().select(seguro.getTipoSeguro())).getDescripcion()%></td>
 	     <td><%=seguro.getCostoContratacion() %></td>   
 	     <td><%=seguro.getCostoMaximoAsegurado() %></td>     
 	</tr>
