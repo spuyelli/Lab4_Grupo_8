@@ -46,13 +46,15 @@ INSERT INTO tipoSeguros (descripcion) VALUES ('Seguro de casas');
 INSERT INTO tipoSeguros (descripcion) VALUES ('Seguro de vida');
 INSERT INTO tipoSeguros (descripcion) VALUES ('Seguro de motos');
 
-INSERT INTO seguros (descripcion,idTipo,costoContratacion,costoAsegurado) VALUES ('Seguro de departamentos',2,600, 15000);
-INSERT INTO seguros (descripcion,idTipo,costoContratacion,costoAsegurado) VALUES ('Seguro de casas grandes',2,800, 30000);
-INSERT INTO seguros (descripcion,idTipo,costoContratacion,costoAsegurado) VALUES ('Seguro de casas chicas',2,400, 10000);
+INSERT INTO seguros (descripcion,idTipo,costoContratacion,costoAsegurado) VALUES ('Seguro de departamentos',1,600, 15000);
+INSERT INTO seguros (descripcion,idTipo,costoContratacion,costoAsegurado) VALUES ('Seguro de casas grandes',1,800, 30000);
+INSERT INTO seguros (descripcion,idTipo,costoContratacion,costoAsegurado) VALUES ('Seguro de casas chicas',1,400, 10000);
+INSERT INTO seguros (descripcion,idTipo,costoContratacion,costoAsegurado) VALUES ('Seguro de casas medianas',1,300, 11000);
 INSERT INTO seguros (descripcion,idTipo,costoContratacion,costoAsegurado) VALUES ('Es un seguro de salud cirugías al corazón',2,1000, 100000);
 INSERT INTO seguros (descripcion,idTipo,costoContratacion,costoAsegurado) VALUES ('Es un seguro de salud para intervenciones quirÃºrgicas de alta complejidad, a un costo accesible.',2,600, 15000);
 INSERT INTO seguros (descripcion,idTipo,costoContratacion,costoAsegurado) VALUES ('Asegura toda la gama de motocicletas de uso particular, desde motos y ciclomotores hasta deportivas: street, custom, enduro, scooter y choperas, entre otras.',3,1200, 28000);
 INSERT INTO seguros (descripcion,idTipo,costoContratacion,costoAsegurado) VALUES ('Moto cross',3,1400, 31000);
+INSERT INTO seguros (descripcion,idTipo,costoContratacion,costoAsegurado) VALUES ('Moto Alta gama',3,2400, 45000);
 
 INSERT INTO contratacion (nombreUsuario,idSeguro,costoContratacion) VALUES ('user1',3,1200);
 INSERT INTO contratacion (nombreUsuario,idSeguro,costoContratacion) VALUES ('user2',1,600);
