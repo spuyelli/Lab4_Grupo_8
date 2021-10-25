@@ -31,17 +31,17 @@
 				<th>
 					IDseguro:
 				<th>
-					<%=seguro.getIdSeguro() %> <input type="hidden" name="lblID" value="<%=seguro.getIdSeguro() %>"> 
+					<%=seguro.getIdSeguro() %> <input type="hidden" name="lblID" value="<%=seguro.getIdSeguro() %>" required> 
 			<tr>
 				<th>
 					Descripción: 
 				<th>
-					<input type="text" name="txtDescripcion"> <br>
+					<input type="text" name="txtDescripcion" required oncopy="return false" onpaste="return false"> <br>
 			<tr>
 				<th>
 					Tipo de Seguro:
 				<th> 
-					<select name="tiposSeguros" id="selectTipoSeguro">
+					<select name="tiposSeguros" id="selectTipoSeguro" required >
 						<%
 							for(TipoSeguro ts:alTipoSeguro){
 								%><option value="<%=ts.getId() %>"><%=ts.getDescripcion()%></option> <%
@@ -52,12 +52,12 @@
 				<th> 
 					Costo Contratación: 
 				<th>
-					<input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 44' name="txtContratacion"> <br>
+					<input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 44' name="txtContratacion" required oncopy="return false" onpaste="return false"> <br>
 			<tr>
 				<th>
 					Costo MáximoAsegurado: 
 				<th>
-					<input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 44' name="txtMaximo"> <br>
+					<input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 44' name="txtMaximo" required oncopy="return false" onpaste="return false"> <br>
 			<tr>
 				<th>
 				
