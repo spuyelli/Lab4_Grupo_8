@@ -34,8 +34,16 @@ public class servletSeguro extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+			if (request.getParameter("Completo") != null) {
+			
+				SeguroDaoImpl sdao = new SeguroDaoImpl();
+				List<Seguro> lista = sdao.readAll();
+
+				request.setAttribute("listaS", lista);
+
+				RequestDispatcher rd = request.getRequestDispatcher("/ListarSeguros.jsp");
+				rd.forward(request, response);
+		}
 	}
 
 	/**
@@ -45,6 +53,7 @@ public class servletSeguro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		if (request.getParameter("Completo") != null) {
+			
 			SeguroDaoImpl sdao = new SeguroDaoImpl();
 			List<Seguro> lista = sdao.readAll();
 
@@ -54,18 +63,20 @@ public class servletSeguro extends HttpServlet {
 			rd.forward(request, response);
 		}
 
-		/*
-		 * if(request.getParameter("BtnListar")!=null) { SeguroDaoImpl sdao = new
-		 * SeguroDaoImpl(); List<Seguro> lista= sdao.readAllTipoEspecifico();//ACA LE
-		 * TENGO QUE PASAR EL TIPO QUE VIENE SELCCIONADO EN EL BOTON LISTAR
-		 * 
-		 * request.setAttribute("listaS", lista);
-		 * 
-		 * RequestDispatcher rd = request.getRequestDispatcher("/ListarSeguros.jsp");
-		 * rd.forward(request, response);
-		 * 
-		 * }
-		 */
+		
+		  if(request.getParameter("BtnListar")!=null) { 
+			  SeguroDaoImpl sdao = new SeguroDaoImpl();
+			 int idTipo =  Integer.parseInt(request.getParameter("Seguros")); 
+			 List<Seguro> lista= sdao.readAllTipoEspecifico(idTipo);//ACA LE  TENGO QUE PASAR EL TIPO QUE VIENE SELCCIONADO EN EL BOTON LISTAR
+		
+		  
+		  request.setAttribute("listaS", lista);
+		  
+		  RequestDispatcher rd = request.getRequestDispatcher("/ListarSeguros.jsp");
+		  rd.forward(request, response);
+		  
+		  }
+		 
 
 		if (request.getParameter("btnAceptar") != null) {
 			Seguro nuevoSeguro;
