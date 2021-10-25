@@ -28,14 +28,14 @@
 	<form method="post" action="servletSeguro">
 		<table>
 			<tr>
-				<th>IDseguro:
-				<th><%=seguro.getIdSeguro()%> <input type="hidden" name="lblID" value="<%=seguro.getIdSeguro()%>" required>
+				<th ALIGN="left">IDseguro:
+				<th ALIGN="left"><%=seguro.getIdSeguro()%> <input type="hidden" name="lblID" value="<%=seguro.getIdSeguro()%>" required >
 			<tr>
-				<th>Descripción:
-				<th><input type="text" name="txtDescripcion" required oncopy="return false" onpaste="return false"> <br>
+				<th ALIGN="left">Descripción:
+				<th ALIGN="left"><input type="text" name="txtDescripcion" required oncopy="return false" onpaste="return false"> <br>
 			<tr>
-				<th>Tipo de Seguro:
-				<th><select name="tiposSeguros_agregar" id="selectTipoSeguro" required>
+				<th ALIGN="left">Tipo de Seguro:
+				<th ALIGN="left"><select name="tiposSeguros_agregar" id="selectTipoSeguro" required>
 						<%
 							for (TipoSeguro ts : alTipoSeguro) {
 						%><option value="<%=ts.getId()%>"><%=ts.getDescripcion()%></option>
@@ -44,13 +44,13 @@
 						%>
 				</select>
 			<tr>
-				<th>Costo Contratación:
-				<th><input type="number" min="0" name="txtContratacion" required oncopy="return false" onpaste="return false"> <br>
+				<th ALIGN="left">Costo Contratación:
+				<th ALIGN="left"><input type="number" min="0" name="txtContratacion" required oncopy="return false" onpaste="return false"> <br>
 			<tr>
-				<th>Costo MáximoAsegurado:
-				<th><input type="number" min="0" name="txtMaximo" required oncopy="return false" onpaste="return false"> <br><tr>
-				<th>
-				<th><input type="submit" name="btnAceptar" value="Aceptar">
+				<th ALIGN="left">Costo MáximoAsegurado:
+				<th ALIGN="left"><input type="number" min="0" name="txtMaximo" required oncopy="return false" onpaste="return false"> <br><tr>
+				<th ALIGN="left">
+				<th ALIGN="left"><input type="submit" name="btnAceptar" value="Aceptar">
 		</table>
 
 
