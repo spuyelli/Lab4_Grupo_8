@@ -48,9 +48,13 @@
 <table border="1">
 	<tr> <th>ID Seguro</th>  <th>Descripción seguro</th>  <th>Descripción tipo seguro</th>  <th>Costo contratación</th> <th>Costo máximo asegurado</th> </tr>
 	
-	<%  if(listaSeguros!=null)
+	<%  
+	TipoSeguroDaoImpl tsdi2 = new TipoSeguroDaoImpl();
+	if(listaSeguros!=null)
+		
 		for(Seguro seguro : listaSeguros) 
-		{
+		{ 
+		
 	%>
 	<tr>  
 	     <td><%=seguro.getIdSeguro() %> </td>    

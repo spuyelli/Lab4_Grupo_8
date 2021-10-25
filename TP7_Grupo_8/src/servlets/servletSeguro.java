@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import entidades.Seguro;
 import entidades.TipoSeguro;
 import daoImpl.SeguroDaoImpl;
@@ -66,8 +67,10 @@ public class servletSeguro extends HttpServlet {
 		
 		  if(request.getParameter("BtnListar")!=null) { 
 			  SeguroDaoImpl sdao = new SeguroDaoImpl();
-			 int idTipo =  Integer.parseInt(request.getParameter("Seguros")); 
-			 List<Seguro> lista= sdao.readAllTipoEspecifico(idTipo);//ACA LE  TENGO QUE PASAR EL TIPO QUE VIENE SELCCIONADO EN EL BOTON LISTAR
+			 
+			 int idTipo =  Integer.parseInt(request.getParameter("lblSeguros")); 
+			 System.out.println(idTipo);
+			 List<Seguro> lista= sdao.readAllTipoEspecifico(idTipo);
 		
 		  
 		  request.setAttribute("listaS", lista);

@@ -36,6 +36,7 @@ public class Seguro {
 	public void setIdSeguro(int idSeguro) {
 		IdSeguro = idSeguro;
 	}
+	
 	public String getDescripcion() {
 		return Descripcion;
 	}
@@ -45,6 +46,10 @@ public class Seguro {
 	public TipoSeguro getTipoSeguro() {
 		return tipoSeguro;
 	}
+	
+	
+
+	
 	public void setTipoSeguro(TipoSeguro tipoSeguro) {
 		this.tipoSeguro = tipoSeguro;
 	}
