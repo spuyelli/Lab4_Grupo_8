@@ -23,13 +23,13 @@
 	<div class="row mb-4 justify-content-center">
 		<div class="col-3 ml-4">
 			<div class="form-outline">
-				<label for="formGroupExampleInput">Legajo</label>
+				<label for="">Legajo</label>
 		   		<input type="number" class="form-control" id="inputLegajo" required placeholder="1234">
 			</div>
 	    </div>
 	    <div class="col-3 pr-4">
 		    <div class = "form-outline">
-			    <label for="formGroupExampleInput">Dni</label>
+			    <label for="">Dni</label>
 			    <input type="number" class="form-control" id="inputDNI" required placeholder="12345678">
 		    </div>
 	    </div>
@@ -37,44 +37,51 @@
 	 </div>
 	 <div class="row mb-4 justify-content-center">
 		 <div class="col-3 ml-4">
-		    <label for="formGroupExampleInput">Nombre y apellido</label>
-		    <input type="text" class="form-control" id="inputNombre"  required placeholder="Juana Perez">
+		    <label for="">Nombre</label>
+		    <input type="text" class="form-control" id="inputNombre"  required placeholder="Juana">
 		 </div>
-		 <div class="col-3 pr-4">
-		    <label for="formGroupExampleInput">Fecha de Nacimiento</label>
-		    <input type="date" class="form-control" required id="inputFechaNacimiento">
+		 <div class="col-3 ml-4">
+		    <label for="">Apellido</label>
+		    <input type="text" class="form-control" id="inputApellido"  required placeholder="Perez">
 		 </div>
 	</div>
 	 <div class="row mb-4 justify-content-center">
 	 	<div class="col-3 ml-4">
-		    <label for="formGroupExampleInput">Dirección</label>
+		    <label for="">Dirección</label>
 		    <input type="text" class="form-control" id="inputDireccion" required  placeholder="Cabildo 1234, Tigre">
 	    </div>
 	    <div class="col-3 ml-4">
-	    	<label for="formGroupExampleInput">Nacionalidad</label>
+	    	<label for="">Nacionalidad</label>
 	    	<input type="text" class="form-control" id="inputNacionalidad" required placeholder="Argentina">
 	 	</div>
 	 </div>
 	 
 	 <div class="row mb-4 justify-content-center">
 	 	<div class="col-3 ml-4">
-	    	<label for="formGroupExampleInput">Provincia</label>
+	    	<label for="">Provincia</label>
 	    	<input type="text" class="form-control" id="inputProvincia" required placeholder="Buenos Aires">
 	 	</div>
 	 	
 	 	<div class="col-3 ml-4">
-    		<label for="exampleFormControlInput1">Email</label>
+    		<label for="">Email</label>
     		<input type="email" class="form-control" id="exampleFormControlInput1" required placeholder="juana@perez.com">
   		</div>
 	 </div>
   	
   	<div class="row mb-4 justify-content-center">
   		<div class="col-3 ml-4">
-		    <label for="formGroupExampleInput">Teléfono</label>
+		    <label for="">Teléfono</label>
 		    <input type="number" class="form-control" id="inputTelefono" required placeholder="1122223333">
 	 	</div>  
-	 	<div class="col-3 ml-4">
-	 		<button type="submit" class="btn btn-primary w-50 mt-4 ml-2">Agregar</button>
+	 	<div class="col-3 pr-4">
+		    <label for="">Fecha de Nacimiento</label>
+		    <input type="date" class="form-control" required id="inputFechaNacimiento">
+		 </div>
+	 	
+	 </div>
+	 <div class="row mb-4 justify-content-center">
+	 	<div class="col-4 ml-4">
+	 		<button type="submit" class="btn btn-primary w-100 mt-4 ml-2">Agregar</button>
 	 	</div>
 	 </div>
 	 
