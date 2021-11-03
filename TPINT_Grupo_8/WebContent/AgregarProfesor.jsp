@@ -10,12 +10,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<title>Agregar alumno</title>
+<title>Agregar profesor</title>
 </head>
 <body>
-	<h1 class="display-4 mt-5 ml-5">Agregar Alumno</h1>
+	<h1 class="display-4 mt-5 ml-5">Agregar Profesor</h1>
 
 <br>
+
 	<br>
 	<div class= "conteiner d-flex justify-content-center">
 	<form class="card p-3 bg-light w-75 justify-content-center">
@@ -59,7 +60,7 @@
 	 <div class="row mb-4 justify-content-center">
 	 	<div class="col-3 ml-4">
 	    	<label for="">Provincia</label>
-	    	<input type="text" class="form-control" id="inputProvincia" required placeholder="Buenos Aires">
+	    	<input type="text" class="form-control" id="inputLocalidad" required placeholder="General Pacheco">
 	 	</div>
 	 	
 	 	<div class="col-3 ml-4">
@@ -76,6 +77,17 @@
 	 	<div class="col-3 pr-4">
 		    <label for="">Fecha de Nacimiento</label>
 		    <input type="date" class="form-control" required id="inputFechaNacimiento">
+		 </div>
+	 	
+	 </div>
+	 <div class="row mb-4 justify-content-center">
+  		<div class="col-3 ml-4">
+		    <label for="">Contraseña</label>
+		    <input type="password" class="form-control" id="inputPass" required >
+	 	</div>  
+	 	<div class="col-3 pr-4">
+		    <label for="">Repetir Contraseña</label>
+		    <input type="password" class="form-control" required id="inputCfmPass">
 		 </div>
 	 	
 	 </div>
