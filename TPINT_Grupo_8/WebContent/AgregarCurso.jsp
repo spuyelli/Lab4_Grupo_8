@@ -39,7 +39,10 @@
 	 <div class="row mb-4 justify-content-center">
 		 <div class="col-3 ml-4">
 		    <label for="">Año: </label>
-		    <input type="number" class="form-control" id="inputAnio">
+		    <input type="number" class="form-control" id="inputAnio" style="width: 50%; ">
+		    <label for="">Semestre: </label>
+		    <INPUT TYPE="radio" name="command" value="0"/>Run
+			<INPUT TYPE="radio" NAME="command" VALUE="1"/>Walk
 		 </div>
 		 <div class="col-3 ml-4">
 		    <label for="">Nombre y Apellido del Docente: </label>
