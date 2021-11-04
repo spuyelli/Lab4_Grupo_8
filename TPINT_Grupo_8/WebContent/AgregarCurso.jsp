@@ -19,37 +19,43 @@
 <br>
 	<br>
 	<div class= "conteiner d-flex justify-content-center">
-	<form class="card p-3 bg-light w-75 justify-content-center">
+	<form class="card p-3 bg-light w-75 justify-content-center" style="height: 350px; ">
 	
 	<div class="row mb-4 justify-content-center">
-		<div class="col-3 ml-4">
+		<div class="col-3 ml-3">
 			<div class="form-outline">
+				<label for="">Nombre de la Carrera: </label>
+		   		<select class="form-control" name="inputNombreCarrera" id="inputNombreCarrera" required>></select> 
+		   		</div>
+		   		</div>
+		   		<div class="col-3 ml-3">
+				<div class="form-outline">
 				<label for="">Nombre de la Materia: </label>
-		   		<input type="text" class="form-control" id="inputNombreMateria" required placeholder="">
+		   		<input type="text" class="form-control" id="inputNombreMateria" required>
+			
+		   		
 			</div>
 	    </div>
-	    <div class="col-3 pr-4">
-		    <div class = "form-outline">
-			    <label for="">Semestre: </label>
-			    <input type="number" class="form-control" id="inputSemestre">
-		    </div>
-	    </div>
+	 
 	    
 	 </div>
 	 <div class="row mb-4 justify-content-center">
 		 <div class="col-3 ml-4">
 		    <label for="">Año: </label>
-		    <input type="number" class="form-control" id="inputAnio">
+		    <input type="number" class="form-control" id="inputAnio" style="width:50%">
+		    <label for="">Semestre: </label>
+			<input type="radio" name="inputSemestre" value=1>1
+			<input type="radio" name="inputSemestre" value=2>2
 		 </div>
 		 <div class="col-3 ml-4">
 		    <label for="">Nombre y Apellido del Docente: </label>
-		    <input type="text" class="form-control" id="inputDocente"  required placeholder="Perez">
+		    <select type="text" class="form-control" id="inputDocente"  required placeholder="Perez"></select>
 		 </div>
 	</div>
 	
-	 <div class="row mb-4 justify-content-center">
+	 <div class="row mb-4 justify-content-center" style="height: 50px; ">
 	 	<div class="col-4 ml-4">
-	 		<button type="reset" class="btn btn-primary w-100 mt-4 ml-2">Reset</button>
+	 		
 	 		<button type="submit" class="btn btn-primary w-100 mt-4 ml-2">Agregar</button>
 	 	</div>
 	 </div>

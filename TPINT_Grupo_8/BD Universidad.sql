@@ -1,5 +1,6 @@
 create schema Universidad;
 
+
 use Universidad;
 
 create table Paises(
