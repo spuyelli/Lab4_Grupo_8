@@ -11,9 +11,15 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- FONTAWESOME -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <title>Iniciar Sesión</title>
 </head>
 <body>
+<div class="d-flex justify-content-center">
+	<h1 class="display-4 mt-3">Iniciar Sesión</h1>
+	</div>
+	<br>	
 
 <div class="container d-flex justify-content-center">
     <form class="card p-3 mt-5 bg-light">

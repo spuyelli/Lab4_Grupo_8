@@ -10,14 +10,17 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- FONTAWESOME -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <title>Agregar profesor</title>
 </head>
 <body>
-	<h1 class="display-4 mt-5 ml-5">Agregar Profesor</h1>
+<jsp:include page="Navbar.html"></jsp:include>
+<div class="d-flex justify-content-center">
+	<h1 class="display-4 mt-3 ml-5">Agregar Profesor</h1>
+	</div>
+	<br>	
 
-<br>
-
-	<br>
 	<div class= "conteiner d-flex justify-content-center">
 	<form class="card p-3 bg-light w-75 justify-content-center">
 	
@@ -80,7 +83,7 @@
 		 </div>
 	 	
 	 </div>
-	 <div class="row mb-4 justify-content-center">
+	 <div class="row  justify-content-center">
   		<div class="col-3 ml-4">
 		    <label for="">Contraseña</label>
 		    <input type="password" class="form-control" id="inputPass" required >
@@ -91,7 +94,7 @@
 		 </div>
 	 	
 	 </div>
-	 <div class="row mb-4 justify-content-center">
+	 <div class="row mb-1 justify-content-center">
 	 	<div class="col-4 ml-4">
 	 		<button type="submit" class="btn btn-primary w-100 mt-4 ml-2">Agregar</button>
 	 	</div>
