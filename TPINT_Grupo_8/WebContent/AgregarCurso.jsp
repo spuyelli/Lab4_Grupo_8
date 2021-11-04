@@ -46,6 +46,7 @@
 		    <label for="">Semestre: </label>
 			<input type="radio" name="inputSemestre" value=1>1
 			<input type="radio" name="inputSemestre" value=2>2
+
 		 </div>
 		 <div class="col-3 ml-4">
 		    <label for="">Nombre y Apellido del Docente: </label>
