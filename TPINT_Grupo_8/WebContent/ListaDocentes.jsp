@@ -17,7 +17,7 @@
 
   	<script type="text/javascript">
     	$(document).ready( function () {
-        $('#ListaAlumnos').DataTable();
+        $('#ListaDocentes').DataTable();
     	} );
     </script>
     
@@ -26,14 +26,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- FONTAWESOME -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
+
 	<jsp:include page="Navbar.html"></jsp:include>
-	<h1 class="display-4 mt-3 ml-5">Listado de Alumnos</h1>
+	<h1 class="display-4 mt-3 ml-5">Listado de Docentes</h1>
 	<br>	
 	
 <form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="Servlet.jsp">
-	<table id="ListaAlumnos" class="display">
+	<table id="ListaDocentes" class="display">
     	<thead>
         	<tr>
 	            <th>Legajo</th>
@@ -54,30 +56,30 @@
     
     		<!-- DATOS DE EJEMPLO. ACA REALIZAMOS LA BUSQUEDA SEGUN LO NECESITADO  -->
         	<tr>
-	            <td>1</td>
+	            <td>100</td>
 	            <td>30256365</td>
-	            <td>Juan Gonzalez</td>
+	            <td>Tamara Herrera</td>
 	            <td>14/02/2000</td>
-	            <td>El salvador 326</td>
+	            <td>El salvador 256</td>
 	            <td>Argentina</td>
 	            <td>Bs. As.</td>
-	            <td>jgonzalez@gmail.com</td>
-	            <td>1125365258</td>
+	            <td>THerrera@gmail.com</td>
+	            <td>1165326986</td>
 	            <td><input type="submit" name="btnModificar1" value="Modificar"></input></td>
 	            <td><input type="submit" name="btnEliminar1" value="Eliminar"></input></td>
 	            
             
         	</tr>
         	<tr>
-	            <td>2</td>
+	            <td>102</td>
 	            <td>28256365</td>
-	            <td>Luis Miguel</td>
+	            <td>Pedro Elescamoso</td>
 	            <td>14/02/1980</td>
-	            <td>Miami 256</td>
-	            <td>Puerto Rico</td>
-	            <td>San Juan</td>
-	            <td>lmiguel@gmail.com</td>
-	            <td>1165985698</td>
+	            <td>Av. SiempreViva 125</td>
+	            <td>Venezuela</td>
+	            <td>Caracas</td>
+	            <td>PElescamoso@hotmail.com</td>
+	            <td>1125365245</td>
 	             <td><input type="submit" name="btnModificar2" value="Modificar"></input></td>
 	            <td><input type="submit" name="btnEliminar2" value="Eliminar"></input></td>
             
@@ -87,6 +89,7 @@
     	</tbody>
 	</table>
 </form>
+
 
 </body>
 </html>
