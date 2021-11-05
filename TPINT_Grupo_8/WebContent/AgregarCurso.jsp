@@ -27,14 +27,15 @@
 	</div>
 	<br>
 	<div class="conteiner d-flex justify-content-center">
-		<form class="card p-3 bg-light w-75 justify-content-center" style="height: 350px;">
+		<form class="card p-3 bg-light w-75 justify-content-center"
+			style="height: 350px;">
 
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<div class="form-outline">
 						<label for="">Nombre de la Carrera: </label>
 						<select class="form-control" name="inputNombreCarrera" id="inputNombreCarrera" required>
-						<option value="value1">Técnico Superior en Programación</option>
+							<option value="value1">Técnico Superior en Programación</option>
 						</select>
 					</div>
 				</div>
@@ -45,22 +46,22 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="row mb-4 justify-content-center">
-			<div class="col-3 ml-4">
-			<div class="row justify-content-center">
-				<div class="col">
-					<label for="">Año: </label>
-					<input type="number" class="form-control" id="inputAnio">
+				<div class="col-3 ml-4">
+					<div class="row justify-content-center">
+						<div class="col">
+							<label for="">Año: </label>
+							<input type="number" class="form-control" id="inputAnio">
+						</div>
+						<div class="col" style="text-align: center;">
+							<label for="">Semestre: </label>
+							<br>
+							<input type="radio" name="inputSemestre" value=1> 1
+							<input type="radio" name="inputSemestre" value=2> 2
+						</div>
+					</div>
 				</div>
-				<div class="col" style="text-align: center;">
-					<label for="">Semestre: </label>
-					<br>
-					<input type="radio" name="inputSemestre" value=1> 1
-					<input type="radio" name="inputSemestre" value=2> 2
-				</div>
-			</div>
-			</div>
 				<div class="col-3 ml-4">
 					<label for="">Nombre del Docente: </label>
 					<select type="text" class="form-control" id="inputDocente" required placeholder="Perez">
