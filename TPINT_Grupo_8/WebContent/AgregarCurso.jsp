@@ -16,8 +16,15 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 <!-- FONTAWESOME -->
-<script src="https://kit.fontawesome.com/a076d05399.js"
+	<script src="https://kit.fontawesome.com/a076d05399.js"
 	crossorigin="anonymous"></script>
+	
+	<script type="text/javascript">
+    	$(document).ready( function () {
+        $('#ListaAlumnosXCursos').DataTable();
+    	} );
+    </script>
+    
 <title>Agregar Curso</title>
 </head>
 <body>
@@ -27,7 +34,7 @@
 	</div>
 	<br>
 	<div class="conteiner d-flex justify-content-center">
-		<form class="card p-3 bg-light w-75 justify-content-center" style="height: 350px;" method="post" action="AgregarAlumnosXCurso.jsp">
+		<form class="card p-3 bg-light  h-100 w-75 justify-content-center" style="height: 350px;" method="post" action="AgregarAlumnosXCurso.jsp">
 
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
@@ -70,12 +77,45 @@
 				</div>
 			</div>
 
+			<!-- Search form -->
+		        <input class="form-control me-2 w-25 mb-2" type="search" placeholder="Buscar alumno" aria-label="Search">			
+			<table id="ListaAlumnosXCursos" class="table" >
+		    	<thead>
+		        	<tr>
+			            <th>Legajo</th>
+			            <th>Nombre y Apellido</th>
+			            <th>DNI</th>
+			            <th>Selección</th>
+			        </tr>
+		    	</thead>
+		    	<tbody>
+		    
+		    		<!-- DATOS DE EJEMPLO. ACA REALIZAMOS LA BUSQUEDA SEGUN LO NECESITADO  -->
+		        	<tr>
+						<td>1</td>
+			            <td>Juan Gonzalez</td>
+			            <td>30256365</td>
+			            <td>  <input type="checkbox" id="cbox1" > </td>
+		        	</tr>
+		        	
+		        	<tr>
+			            <td>2</td>
+			            <td>Luis Miguel</td>
+			            <td>28256365</td>
+			            <td> <input type="checkbox" id="cbox2" > </td>
+		            
+		        	</tr>
+		            
+		        
+		    	</tbody>
+			</table>
 			<div class="row mb-4 justify-content-center" style="height: 50px;">
 				<div class="col-4 ml-4">
 					<button type="submit" class="btn btn-primary w-100 mt-4 ml-2">Agregar</button>
 				</div>
 			</div>
 		</form>
+		
 	</div>
 
 	<!-- Optional JavaScript -->
