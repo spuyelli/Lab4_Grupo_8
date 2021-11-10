@@ -22,7 +22,7 @@
 <body>
 	<jsp:include page="Navbar.html"></jsp:include>
 	<div class="d-flex justify-content-center">
-		<h1 class="display-4 mt-3 ml-5">Agregar Profesor</h1>
+		<h1 class="display-4 mt-3 ml-5">Agregar Docente</h1>
 	</div>
 	<br>
 	<div class="conteiner d-flex justify-content-center">

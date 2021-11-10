@@ -32,7 +32,7 @@
 	<h1 class="display-4 mt-3 ml-5">Listado de Alumnos</h1>
 	<br>	
 	
-<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="Servlet.jsp">
+<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="ModificarAlumno.jsp">
 	<table id="ListaAlumnos" class="display">
     	<thead>
         	<tr>

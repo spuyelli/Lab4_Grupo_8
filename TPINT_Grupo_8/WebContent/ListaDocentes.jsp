@@ -34,7 +34,7 @@
 	<h1 class="display-4 mt-3 ml-5">Listado de Docentes</h1>
 	<br>	
 	
-<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="Servlet.jsp">
+<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="ModificarDocente.jsp">
 	<table id="ListaDocentes" class="display">
     	<thead>
         	<tr>
@@ -80,7 +80,7 @@
 	            <td>Caracas</td>
 	            <td>PElescamoso@hotmail.com</td>
 	            <td>1125365245</td>
-	             <td><input type="submit" name="btnModificar2" value="Modificar"></input></td>
+	            <td><input type="submit" name="btnModificar2" value="Modificar"></input></td>
 	            <td><input type="submit" name="btnEliminar2" value="Eliminar"></input></td>
             
         	</tr>
