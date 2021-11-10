@@ -27,8 +27,7 @@
 	</div>
 	<br>
 	<div class="conteiner d-flex justify-content-center">
-		<form class="card p-3 bg-light w-75 justify-content-center"
-			style="height: 350px;">
+		<form class="card p-3 bg-light w-75 justify-content-center" style="height: 350px;" method="post" action="AgregarAlumnosXCurso.jsp">
 
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">

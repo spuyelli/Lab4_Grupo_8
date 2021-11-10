@@ -24,7 +24,7 @@
 <div class="container d-flex justify-content-center">
     <form class="card p-3 mt-5 bg-light">
   <div class="mb-3">
-    <label for="" class="form-label">Email</label>
+    <label for="" class="form-label">DNI</label>
     <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
   </div>
   <div class="mb-3">

@@ -27,7 +27,7 @@
 	</div>
 	<br>
 	<div class="conteiner d-flex justify-content-center">
-		<form class="card p-3 bg-light w-75 justify-content-center">
+		<form class="card p-3 bg-light w-75 justify-content-center" method="post" action="">
 
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">

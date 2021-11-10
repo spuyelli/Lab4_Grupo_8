@@ -3,8 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Listado de Alumnos</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Alumnos por Curso</title>
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -17,11 +17,11 @@
 
   	<script type="text/javascript">
     	$(document).ready( function () {
-        $('#ListaAlumnos').DataTable();
+        $('#ListaAlumnosXCursos').DataTable();
     	} );
     </script>
     
-	  
+    
 	<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- FONTAWESOME -->
@@ -29,63 +29,45 @@
 </head>
 <body>
 	<jsp:include page="Navbar.html"></jsp:include>
-	<h1 class="display-4 mt-3 ml-5">Listado de Alumnos</h1>
-	<br>	
 	
-<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="ModificarAlumno.jsp">
-	<table id="ListaAlumnos" class="display">
+<h1 class="display-4 mt-3 ml-5">Selección de Alumnos por Curso</h1>
+<br>		
+	<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="Servlet.jsp">
+
+	<table id="ListaAlumnosXCursos" class="display">
     	<thead>
         	<tr>
 	            <th>Legajo</th>
-	            <th>Dni</th>
 	            <th>Nombre y Apellido</th>
-	            <th>Fecha de Nacimiento</th>
-	            <th>Dirección</th>
-	            <th>Nacionalidad</th>
-	            <th>Provincia</th>
-	            <th>E-mail</th>
-	            <th>Teléfono</th>
-	            <th></th>
-	            <th></th>
-	            
+	            <th>DNI</th>
+	            <th>Selección</th>
 	        </tr>
     	</thead>
     	<tbody>
     
     		<!-- DATOS DE EJEMPLO. ACA REALIZAMOS LA BUSQUEDA SEGUN LO NECESITADO  -->
         	<tr>
-	            <td>1</td>
-	            <td>30256365</td>
+				<td>1</td>
 	            <td>Juan Gonzalez</td>
-	            <td>14/02/2000</td>
-	            <td>El salvador 326</td>
-	            <td>Argentina</td>
-	            <td>Bs. As.</td>
-	            <td>jgonzalez@gmail.com</td>
-	            <td>1125365258</td>
-	            <td><input type="submit" name="btnModificar1" value="Modificar"></input></td>
-	            <td><input type="submit" name="btnEliminar1" value="Eliminar"></input></td>
-	            
-            
+	            <td>30256365</td>
+	            <td>  <input type="checkbox" id="cbox1" > </td>
         	</tr>
         	<tr>
 	            <td>2</td>
-	            <td>28256365</td>
 	            <td>Luis Miguel</td>
-	            <td>14/02/1980</td>
-	            <td>Miami 256</td>
-	            <td>Puerto Rico</td>
-	            <td>San Juan</td>
-	            <td>lmiguel@gmail.com</td>
-	            <td>1165985698</td>
-	             <td><input type="submit" name="btnModificar2" value="Modificar"></input></td>
-	            <td><input type="submit" name="btnEliminar2" value="Eliminar"></input></td>
+	            <td>28256365</td>
+	            <td> <input type="checkbox" id="cbox2" > </td>
             
         	</tr>
             
         
     	</tbody>
 	</table>
+	
+	<!-- DATOS DE EJEMPLO.  -->
+	<input type="submit" name="btnAgregarAlumnosXCurso" value="Agregar alumnos seleccionados"></input>
+	
+	
 </form>
 
 </body>
