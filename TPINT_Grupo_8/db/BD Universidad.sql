@@ -38,6 +38,7 @@ domicilio VARCHAR(250) NOT NULL,
 idLocalidad int NOT NULL,
 email VARCHAR(250) NOT NULL,
 telefono int NOT NULL,
+estado bool NOT NULL,
 
 primary key (dni),
 foreign key (idNacionalidad) references Paises(id),
@@ -55,6 +56,7 @@ domicilio VARCHAR(250) NOT NULL,
 idLocalidad int NOT NULL,
 email VARCHAR(250) NOT NULL,
 telefono int NOT NULL,
+estado bool NOT NULL,
 
 primary key (dni),
 foreign key (idNacionalidad) references Paises(id),
@@ -71,6 +73,7 @@ domicilio VARCHAR(250) NOT NULL,
 idLocalidad int NOT NULL,
 email VARCHAR(250) NOT NULL,
 telefono int NOT NULL,
+estado bool NOT NULL,
 
 primary key (dni),
 foreign key (idNacionalidad) references Paises(id),
@@ -88,7 +91,7 @@ create table Usuarios(
 dni int NOT NULL,
 tipoUsuario int NOT NULL,
 pass VARCHAR(50) not null,
-estado bit NOT NULL,
+estado bool NOT NULL,
 
 primary key(dni),
 foreign key(dni) references Docentes(dni),
@@ -122,7 +125,8 @@ parcial_1 decimal,
 parcial_2 decimal,
 recuperatorio_1 decimal,
 recuperatorio_2 decimal,
-estadoAprobacion bit,
+estadoAprobacion bool,
+
 
 PRIMARY KEY (dniAlumno, idCurso),
 foreign key (dniAlumno) references Alumnos(dni),
@@ -140,7 +144,18 @@ create table MateriasXCarrera(
 idCarrera INT NOT NULL,
 idMateria int not null,
 
+
 primary key (idCarrera, idMateria),
 foreign key (idCarrera) references Carrera(id),
 foreign key (idMateria) references Materias(id)
 );
+
+
+create trigger TR_BajaAdmin after delete on Admins
+for each row update Admins set estado = 0 where dni in (select dni from deleted); 
+
+create trigger TR_BajaDocente after delete on Docentes
+for each row update Docentes set estado = 0 where dni in (select dni from deleted);
+
+create trigger TR_BajaAlumnos after delete on Alumnos
+for each row update Alumnos set estado = 0 where dni in (select dni from deleted);
