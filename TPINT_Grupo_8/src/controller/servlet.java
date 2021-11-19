@@ -10,10 +10,24 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-@WebServlet("/servletSeguro")
+import org.apache.jasper.tagplugins.jstl.core.If;
+
+import com.sun.java.swing.plaf.windows.resources.windows;
+
+import dao.UsuarioDAO;
+import daoImpl.UsuarioDAOImpl;
+import entidades.Usuario;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import negocio.usuarioNeg;
+import negocio.usuarioNegImpl;
+
+@WebServlet("/servlet")
 public class servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	usuarioNeg userNegImp = new usuarioNegImpl(); 
+	
 	public servlet() {
 		super();
 	}
@@ -25,26 +39,44 @@ public class servlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		if (request.getParameter("TiposSeguros_listar") != null) {
+		if (request.getParameter("btnLogin") != null) {
 
-			SeguroDaoImpl sDao = new SeguroDaoImpl();
-			ArrayList<Seguro> lista;
-			int tipoSeguroFiltrar = Integer.parseInt(request.getParameter("TiposSeguros_listar").trim());
-
-			if (tipoSeguroFiltrar <= 0)
-				lista = (ArrayList<Seguro>) sDao.readAll();
-			else
-				lista = (ArrayList<Seguro>) sDao.readAllTipoEspecifico(tipoSeguroFiltrar);
-
-			request.setAttribute("listaSeguros", lista);
-
-			RequestDispatcher rd = request.getRequestDispatcher("/ListarSeguros.jsp");
-
-			rd.forward(request, response);
+			if(!request.getParameter("txtDNI").isEmpty()) {
+				Usuario user = userNegImp.select(Integer.parseInt(request.getParameter("txtDNI"))); 
+				String passU = user.getPassword();
+				String passIN = request.getParameter("txtContraseña");
+				if(passU.equals(passIN)) {
+					request.setAttribute("Usuario", user);
+					JOptionPane.showMessageDialog(null, "Bienvenido DNI: " + user.getDni(), "Login exitoso", JOptionPane.WARNING_MESSAGE);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos.", "Login incorrecto", JOptionPane.WARNING_MESSAGE);
+					System.out.println("usuario o contraseña incorrectos");
+				}
+			}
 		}
-
+		
+/*
 		if (request.getParameter("btnAceptar") != null) {
 			try {
+				
+				SeguroDaoImpl sDao = new SeguroDaoImpl();
+				ArrayList<Seguro> lista;
+				int tipoSeguroFiltrar = Integer.parseInt(request.getParameter("TiposSeguros_listar").trim());
+
+				if (tipoSeguroFiltrar <= 0)
+					lista = (ArrayList<Seguro>) sDao.readAll();
+				else
+					lista = (ArrayList<Seguro>) sDao.readAllTipoEspecifico(tipoSeguroFiltrar);
+
+				request.setAttribute("listaSeguros", lista);
+
+				RequestDispatcher rd = request.getRequestDispatcher("/ListarSeguros.jsp");
+
+				rd.forward(request, response);
+				
+				
+				
 				int idSeguro = Integer.parseInt(request.getParameter("lblID").trim());
 				String descripcion = request.getParameter("txtDescripcion").trim();
 				int tipoSeguro = Integer.parseInt(request.getParameter("tiposSeguros_agregar"));
@@ -90,6 +122,7 @@ public class servlet extends HttpServlet {
 				JOptionPane.showMessageDialog(null, "", "Ingreso de datos erróneo", JOptionPane.ERROR_MESSAGE);
 			}
 		}
+		*/
 	}
 
 }

@@ -22,16 +22,16 @@
 	<br>	
 
 <div class="container d-flex justify-content-center">
-    <form class="card p-3 mt-5 bg-light">
+    <form class="card p-3 mt-5 bg-light" method="post" action="servlet" >
   <div class="mb-3">
     <label for="" class="form-label">DNI</label>
-    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+    <input type="numeric" class="form-control" name="txtDNI" required>
   </div>
   <div class="mb-3">
     <label for="" class="form-label">Contraseña</label>
-    <input type="password" class="form-control" id="inputContraseña">
+    <input type="password" class="form-control" name="txtContraseña" required>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" name="btnLogin" class="btn btn-primary">Login</button>
 </form>
 </div>
 

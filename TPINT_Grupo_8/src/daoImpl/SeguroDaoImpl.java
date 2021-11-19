@@ -7,10 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import dao.SeguroDao;
-import entidades.Seguro;
 
 public class SeguroDaoImpl implements SeguroDao {
-
+/*
 	private static final String insert = "INSERT INTO seguros (idSeguro, descripcion, idTipo, costoContratacion, costoAsegurado) VALUES(?, ?, ?, ?, ?)";
 	private static final String readall = "SELECT * FROM seguros inner join tiposeguros on seguros.idTipo = tiposeguros.idTipo";
 	private static final String readallTipoEspecifico = "SELECT seguros.idSeguro, seguros.descripcion, tiposeguros.idTipo, seguros.costoContratacion, "
@@ -116,4 +115,5 @@ public class SeguroDaoImpl implements SeguroDao {
 		}
 		return 0;
 	}
+*/
 }

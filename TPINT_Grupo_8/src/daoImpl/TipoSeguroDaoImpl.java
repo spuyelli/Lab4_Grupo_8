@@ -7,10 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import dao.TipoSeguroDao;
-import entidades.TipoSeguro;
 
 public class TipoSeguroDaoImpl implements TipoSeguroDao{
-
+/*
 	private static final String readall = "SELECT * FROM tiposeguros";
 	private static final String select = "SELECT * FROM tiposeguros WHERE idTipo = ?";
 	
@@ -56,5 +55,5 @@ public class TipoSeguroDaoImpl implements TipoSeguroDao{
 		String descripcion = resultSet.getString("descripcion");
 		return new TipoSeguro(idTipo, descripcion);
 	}
-	
+	*/
 }
