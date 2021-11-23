@@ -3,22 +3,22 @@ package entidades;
 import java.sql.Date;
 
 public class Persona {
-	private int legajo;
 	private int dni;
 	private String nombre; 
 	private String apellido;
-	private Date nacimiento;
+	private Date fechaNacimiento;
 	private Domicilio domicilio;
 	private Pais nacionalidad;
 	private String email;
 	private int telefono;
+	boolean estado;
 	
 	
-	public int getLegajo() {
-		return legajo;
+	public boolean getEstado() {
+		return estado;
 	}
-	public void setLegajo(int legajo) {
-		this.legajo = legajo;
+	public void setEstado(boolean estado) {
+		this.estado = estado;
 	}
 	public int getDni() {
 		return dni;
@@ -37,12 +37,6 @@ public class Persona {
 	}
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
-	}
-	public Date getNacimiento() {
-		return nacimiento;
-	}
-	public void setNacimiento(Date nacimiento) {
-		this.nacimiento = nacimiento;
 	}
 	public Domicilio getDomicilio() {
 		return domicilio;
@@ -67,6 +61,12 @@ public class Persona {
 	}
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
+	}
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
 }

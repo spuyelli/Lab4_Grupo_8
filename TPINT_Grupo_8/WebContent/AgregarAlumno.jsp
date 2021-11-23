@@ -27,7 +27,7 @@
 	</div>
 	<br>
 	<div class="conteiner d-flex justify-content-center">
-		<form class="card p-3 bg-light w-75 justify-content-center" method="post" action="">
+		<form class="card p-3 bg-light w-75 justify-content-center" method="post" action="servletAgregarAlumno">
 
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
@@ -114,7 +114,7 @@
 			<div class="row mb-4 justify-content-center">
 				<div class="col-4 ml-4">
 					<div class="form-outline">
-						<button type="submit" class="btn btn-primary w-100 mt-4 ml-2">Agregar</button>
+						<button type="submit" class="btn btn-primary w-100 mt-4 ml-2" name="btnAgregarAlumno">Agregar</button>
 					</div>
 				</div>
 			</div>
