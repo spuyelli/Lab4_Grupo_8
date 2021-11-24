@@ -63,8 +63,15 @@
 				<div class="col-3 pr-4">
 					<label for="">País de residencia</label>
 					<select class="form-control" name="inputPais" id="inputPais" required>
-						<option value="value1">Argentina</option>
-						<option value="value1">Uruguay</option>
+						<%
+					         for(Pais pais : paises)
+					         {
+					             %>
+					                <option value=<%=pais.getId()%>><%=pais.getNombre()%></option>
+					             <%
+					         }
+
+     					%>
 					</select>
 				</div>
 			</div>

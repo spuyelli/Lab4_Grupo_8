@@ -8,7 +8,7 @@ public class Conexion {
 	public static Conexion instancia;
 	private Connection connection;
 
-	private Conexion() {
+	public Conexion() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/universidad", "root", "root");
