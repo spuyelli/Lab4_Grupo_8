@@ -14,6 +14,11 @@ public class Persona {
 	boolean estado;
 	
 	
+	
+	public Persona() {
+		super();
+		
+	}
 	public boolean getEstado() {
 		return estado;
 	}
