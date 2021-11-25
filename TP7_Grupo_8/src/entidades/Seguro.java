@@ -1,4 +1,4 @@
-package entidades;
+	package entidades;
 
 import dao.SeguroDao;
 import daoImpl.SeguroDaoImpl;
