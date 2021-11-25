@@ -29,10 +29,10 @@
 		<h1 class="display-4 mt-3 ml-5 ">Agregar Alumno</h1>
 	</div>
 	<%
-         ArrayList<Pais> listaPaises = new ArrayList<Pais>();
+         ArrayList<Pais> Paises = new ArrayList<Pais>();
          if(request.getAttribute("paises")!=null)
          {
-             listaPaises = (ArrayList<Pais>)request.getAttribute("paises"); 
+             Paises = (ArrayList<Pais>)request.getAttribute("paises"); 
          }
      %>
 	<br>
@@ -74,10 +74,10 @@
 					<label for="">País de residencia</label>
 					<select class="form-control" name="inputPais" id="inputPais" required>
 						<%
-					         for(Pais pais : Pais)
+					         for(Pais pais : Paises)
 					         {
 					             %>
-					                <option value=<%=pais.getId()%>><%=pais.getDescripcion()%></option>
+					                <option value=<%=pais.getIdPais()%>><%=pais.getDescripcion()%></option>
 					             <%
 					         }
 

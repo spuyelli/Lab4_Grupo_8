@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,7 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import entidades.Pais;
+import negocio.paisNeg;
+import negocioImpl.paisNegImpl;
 
 /**
  * Servlet implementation class servletAgregarAlumno
@@ -30,10 +34,27 @@ public class servletAgregarAlumno extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		paisNeg PaisNeg = new paisNegImpl();
+		ArrayList<Pais> paises = new ArrayList<Pais>();
+		paises = PaisNeg.listarPaises();
+		request.setAttribute("paises", paises);
+		RequestDispatcher rd = request.getRequestDispatcher("/AgregarAlumno.jsp");  
+        rd.forward(request, response);
+      
+        /**
+         paisNeg NegPais = new paisNegImpl(); 
+		ArrayList<Pais> paises = new ArrayList<Pais>();
+		paises = NegPais.listarPaises(); 
+		request.setAttribute("paises", paises);
+       ----
+       el de abajo es ultimo
+       ----
 		Pais paises = null;
 		request.setAttribute("paises", paises);
 		RequestDispatcher rd = request.getRequestDispatcher("/AgregarAlumno.jsp");  
         rd.forward(request, response);
+		*/
 	}
 
 	/**
