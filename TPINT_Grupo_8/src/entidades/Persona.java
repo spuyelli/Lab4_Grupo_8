@@ -24,7 +24,11 @@ public class Persona {
 		this.email = email2;
 		this.telefono = telefono2;
 	}	
-
+	public Persona() {
+		super();
+		
+	}
+	
 	public boolean getEstado() {
 		return estado;
 	}
