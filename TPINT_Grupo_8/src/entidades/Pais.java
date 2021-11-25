@@ -2,8 +2,17 @@ package entidades;
 
 public class Pais {
 	private int idPais;
-	private int descripcion;
+	private String descripcion;
 	
+	public Pais(int idPais, String descripcion) {
+		super();
+		this.idPais = idPais;
+		this.descripcion = descripcion;
+	}
+	
+	public Pais(int idPais) {
+		this.idPais = idPais;
+	}
 	
 	public int getIdPais() {
 		return idPais;
@@ -11,10 +20,10 @@ public class Pais {
 	public void setIdPais(int idPais) {
 		this.idPais = idPais;
 	}
-	public int getDescripcion() {
+	public String getDescripcion() {
 		return descripcion;
 	}
-	public void setDescripcion(int descripcion) {
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 }

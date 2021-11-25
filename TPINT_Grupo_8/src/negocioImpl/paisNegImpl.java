@@ -2,6 +2,8 @@ package negocioImpl;
 
 import java.util.ArrayList;
 
+import dao.PaisDao;
+import daoImpl.PaisDaoImpl;
 import entidades.Pais;
 import negocio.paisNeg;
 

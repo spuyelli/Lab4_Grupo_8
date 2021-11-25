@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import ="entidades.Alumno" %>
+<%@page import ="entidades.Pais" %>
+<%@page import ="java.util.ArrayList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,6 +28,13 @@
 	<div class="d-flex justify-content-center">
 		<h1 class="display-4 mt-3 ml-5 ">Agregar Alumno</h1>
 	</div>
+	<%
+         ArrayList<Pais> listaPaises = new ArrayList<Pais>();
+         if(request.getAttribute("paises")!=null)
+         {
+             listaPaises = (ArrayList<Pais>)request.getAttribute("paises"); 
+         }
+     %>
 	<br>
 	<div class="conteiner d-flex justify-content-center">
 		<form class="card p-3 bg-light w-75 justify-content-center" method="post" action="servletAgregarAlumno">
@@ -64,10 +74,10 @@
 					<label for="">País de residencia</label>
 					<select class="form-control" name="inputPais" id="inputPais" required>
 						<%
-					         for(Pais pais : paises)
+					         for(Pais pais : Pais)
 					         {
 					             %>
-					                <option value=<%=pais.getId()%>><%=pais.getNombre()%></option>
+					                <option value=<%=pais.getId()%>><%=pais.getDescripcion()%></option>
 					             <%
 					         }
 

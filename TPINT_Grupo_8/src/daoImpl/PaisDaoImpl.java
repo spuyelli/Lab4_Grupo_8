@@ -22,16 +22,13 @@ public class PaisDaoImpl implements PaisDao {
 			
 		try {
 			conexionSql = new Conexion();
-			Connection connection = conexionSql.obtenerConexion();
+			Connection connection = conexionSql.getSQLConexion();
 			PreparedStatement statement = connection.prepareStatement(query);
 			resultSet = statement.executeQuery();
 			while(resultSet.next())
 			{	
 				paises.add(
-				new Pais(
-						resultSet.getInt("id"),
-						resultSet.getString("descripcion")
-				));
+				new Pais(resultSet.getInt("id"), resultSet.getString("descripcion")));
 			}
 			
 			return paises; 
