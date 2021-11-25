@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 //import datosImpl.String;
 
@@ -15,7 +16,23 @@ public class Conexion {
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
 	private String pass = "root";
-	private String dbName = "universidad??profileSQL=true&useSSL=false";
+	private String dbName = "universidad";
+	
+	public Connection Open()
+	{
+		try
+		{
+			Class.forName("com.mysql.jdbc.Driver");
+			this.connection = DriverManager.getConnection(host+dbName, user, pass);
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println("problema abriendo");
+			e.printStackTrace();
+		}
+		return this.connection;
+	}
 	
 	public Conexion() {
 		try {
@@ -23,6 +40,7 @@ public class Conexion {
 			this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/universidad", "root", "root");
 			this.connection.setAutoCommit(false);
 		} catch (Exception e) {
+			System.out.println("problema constructor");
 			e.printStackTrace();
 		}
 	}
@@ -47,21 +65,9 @@ public class Conexion {
 		instancia = null;
 	}
 	
-	public Connection Open()
-	{
-		try
-		{
-			Class.forName("com.mysql.jdbc.Driver");
-			this.connection = DriverManager.getConnection(host+dbName, user, pass);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		return this.connection;
-	}
 	
-	/*public ResultSet query(String query)
+	
+	public ResultSet query(String query)
 	{
 		Statement st;
 		ResultSet rs=null;
@@ -92,7 +98,7 @@ public class Conexion {
 		}
 		return save;
 	}
-	*/
+
 	public boolean close()
 	{
 		boolean ok=true;
