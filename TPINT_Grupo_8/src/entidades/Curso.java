@@ -11,6 +11,11 @@ public class Curso {
 	private ArrayList<Persona> alumnos;
 	
 	
+	public Curso() {//PARA EL BUSCADOR
+
+	}
+	
+	
 	public int getIdCurso() {
 		return idCurso;
 	}
