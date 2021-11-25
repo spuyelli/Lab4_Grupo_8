@@ -1,3 +1,8 @@
+<%@page import="entidades.Curso"%>
+<%@page import="entidades.Materia"%>
+<%@page import="entidades.Persona"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -30,8 +35,16 @@
 <body>
 <jsp:include page="Navbar.html"></jsp:include>
 <h1 class="display-4 mt-3 ml-5">Listado de Cursos</h1>
+
+	<%
+		List<Curso> listaC = new ArrayList<Curso>();
+		if (request.getAttribute("listaCur") != null) {
+			listaC = (List<Curso>) request.getAttribute("listaCur");
+		}
+	%>
+
 <br>		
-	<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="ListaCalificaciones.jsp">
+	<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="servletCurso.java">
 	
 	
 	<table id="ListaCursos" class="display">
@@ -48,33 +61,24 @@
     	<tbody>
     
     		<!-- DATOS DE EJEMPLO. ACA REALIZAMOS LA BUSQUEDA A LA BD  -->
+    		
+    		<%
+			for (Curso c : listaC) {
+			%>
+    		
         <tr>
-            <td>1</td>
-            <td>Laboratorio I</td>
-            <td>2do. Cuatrimestre</td>
-            <td>2021</td>
-            <td>Herrera Tamara</td>
+            <td><%=c.getIdCurso()%></td>
+            <td><%=c.getMateria().getDescripcion()%></td>
+            <td><%=c.getSemestre()%></td>
+            <td><%=c.getAño()%></td>
+            <td><%=c.getDocente().getApellido() %></td>
             <td><input type="submit" name="btnCalificaciones1" value="Calificaciones"></input> </td>
             
         </tr>
-        <tr>
-             <td>2</td>
-            <td>Laboratorio II</td>
-            <td>1er. Cuatrimestre</td>
-            <td>2021</td>
-            <td>Herrera Tamara</td>
-            <td><input type="submit" name="btnCalificaciones2" value="Calificaciones"></input> </td>
-        </tr>
-        <tr>
-             <td>3</td>
-            <td>Laboratorio III</td>
-            <td>2do. Cuatrimestre</td>
-            <td>2021</td>
-            <td>Herrera Tamara</td>
-            <td><input type="submit" name="btnCalificaciones3" value="Calificaciones"></input> </td>
-        </tr>
        
-        
+        <%
+			}
+		%>
     	</tbody>
 	</table>
 	</form>

@@ -15,6 +15,7 @@ public class Persona {
 	
 	
 	
+
 	///Constructor para ListarAlumno
 	public Persona(int dni2, String nombre2, String apellido2, String email2, int telefono2) {
 		this.dni= dni2;
@@ -22,8 +23,8 @@ public class Persona {
 		this.apellido = apellido2;
 		this.email = email2;
 		this.telefono = telefono2;
-	}
-	
+	}	
+
 	public boolean getEstado() {
 		return estado;
 	}
