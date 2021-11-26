@@ -1,12 +1,12 @@
 package negocio;
 
-import entidades.Alumno;
-import daoImpl.AlumnoDaoImp;
-public class AlumnoNeg {
+import java.util.ArrayList;
 
-	boolean actualizarAlumno(Alumno al) {
-		AlumnoDaoImp dao = new AlumnoDaoImp();
-		return	dao.actualizarAlumno(al);
-	}
+import entidades.Alumno;
+
+public interface AlumnoNeg {
 	
+	boolean actualizarAlumno(Alumno al);
+	ArrayList<Alumno> listarAlumnos();
+
 }
