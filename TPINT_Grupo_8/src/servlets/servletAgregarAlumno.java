@@ -60,12 +60,13 @@ public class servletAgregarAlumno extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/**
 		Alumno alumnoNuevo = new Alumno(
 				Integer.parseInt(request.getParameter("dni")),
 				0,
 				request.getParameter("dni")
 				);
-		
+		**/
 	}
 
 }

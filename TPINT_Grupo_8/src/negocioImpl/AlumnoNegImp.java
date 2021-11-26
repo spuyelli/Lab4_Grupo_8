@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import dao.AlumnoDao;
 import daoImpl.AlumnoDaoImp;
 import entidades.Alumno;
-import negocio.alumnoNeg;
+import negocio.AlumnoNeg;
 
-public class alumnoNegImp implements alumnoNeg{
+public class AlumnoNegImp implements AlumnoNeg{
 	
 	AlumnoDao alumnoDao = new AlumnoDaoImp();
 

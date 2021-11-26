@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import negocio.alumnoNeg;
-import negocioImpl.alumnoNegImp;
+import negocio.AlumnoNeg;
+import negocioImpl.AlumnoNegImp;
 
 
 @WebServlet("/servletListarAlumno")
 public class servletListarAlumno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	alumnoNeg aNeg = new alumnoNegImp(); 
+	AlumnoNeg aNeg = new AlumnoNegImp(); 
        
     
     public servletListarAlumno() {
