@@ -1,6 +1,7 @@
 package daoImpl;
 
 import java.util.List;
+import java.util.concurrent.locks.StampedLock;
 
 import dao.AlumnoDao;
 import entidades.Alumno;
@@ -14,7 +15,6 @@ import java.util.Date;
 public class AlumnoDaoImp implements AlumnoDao {
 	
 	private static final String readall = "select * from universidad.alumnos where estado = 1";
-	
 	
 	
 	public List<Alumno> readAll(){
@@ -52,4 +52,36 @@ public class AlumnoDaoImp implements AlumnoDao {
 		return new Alumno(dni, legajo, nombre, apellido, email, telefono);		
 		
 	}
+	
+	public Boolean buscarDni(int dni) {
+		PreparedStatement statement;
+		ResultSet resultSet;	
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		try {
+			
+			statement = conexion.prepareStatement("select  * from alumnos where dni = "+dni+"");
+			resultSet = statement.executeQuery();
+			if(resultSet != null) {return true;}
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
+	}
+	
+	public Boolean actualizarAlumno(Alumno al) {
+		PreparedStatement statement;
+		ResultSet resultSet;	
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		try {
+			statement = conexion.prepareStatement("update alumnos set nombre ='"+al.getNombre()  +" ' , apellido = '"+al.getApellido()+"' , domicilio = '"+al.getDomicilio()+"', fechaNacimiento ='"+al.getFechaNacimiento()+"',idNacionalidad='"+al.getNacionalidad()+"', idLocalidad='"+al.getNacionalidad()+"', email='"+al.getEmail()+"', telefono='"+al.getTelefono()+" where dni = '"+al.getDni()+"'"
+			);
+			resultSet = statement.executeQuery();
+			if(resultSet != null) {return true;}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}return false;
+	}
+	
+	
 }

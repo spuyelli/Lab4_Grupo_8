@@ -12,6 +12,12 @@ public class Alumno extends Persona{
 		
 	}
 
+
+
+	public Alumno() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getLegajo() {
 		return legajo;
 	}

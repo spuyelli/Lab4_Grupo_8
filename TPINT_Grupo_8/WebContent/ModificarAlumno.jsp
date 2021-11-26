@@ -1,5 +1,9 @@
+<%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.Import"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"
+		%>
+	<%@page import=entidades.Alumno %>
+		
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,6 +13,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<% %>
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
@@ -21,6 +26,13 @@
 <title>Agregar alumno</title>
 </head>
 <body>
+
+	<%Alumno al = new Alumno();  
+ // al = request.getParameter("alumno");
+		
+ 
+	%>>
+
 	<jsp:include page="Navbar.html"></jsp:include>
 	<div class="d-flex justify-content-center">
 		<h1 class="display-4 mt-3 ml-5 ">Modificar Alumno</h1>
@@ -39,7 +51,7 @@
 				<div class="col-3 pr-4">
 					<div class="form-outline">
 						<label for="">Dni</label>
-						<input type="number" class="form-control" id="inputDNI" required placeholder="01234567">
+						<input type="number" class="form-control" id="inputDNI" required placeholder="DNI" <%=al.getDni() %>>
 					</div>
 				</div>
 			</div>
@@ -47,22 +59,22 @@
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Nombre</label>
-					<input type="text" class="form-control" id="inputNombre" required placeholder="Juana">
+					<input type="text" class="form-control" id="inputNombre" required placeholder="NOMBRE" value="nombre" <%=al.getNombre() %>>
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">Apellido</label>
-					<input type="text" class="form-control" id="inputApellido" required placeholder="Perez">
+					<input type="text" class="form-control" id="inputApellido" required placeholder="APELLIDO" value="apellido"<%=al.getApellido() %>>
 				</div>
 			</div>
 			
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Dirección</label>
-					<input type="text" class="form-control" id="inputDireccion" required placeholder="Cabildo 1234">
+					<input type="text" class="form-control" id="inputDireccion" required placeholder="DIRECCION" <%=al.getDomicilio() %>>
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">País de residencia</label>
-					<select class="form-control" name="inputPais" id="inputPais" required>
+					<select class="form-control" name="inputPais" id="inputPais" required placeholder="PAIS" <%=al.getNacionalidad().getIdPais() %>>
 						<option value="value1">Argentina</option>
 						<option value="value1">Uruguay</option>
 					</select>
@@ -72,14 +84,14 @@
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Provincia</label>
-					<select class="form-control" name="inputProvincia" id="inputProvincia" required>
+					<select class="form-control" name="inputProvincia" id="inputProvincia" required placeholder="PROVINCIA" >
 						<option value="value1">Buenos Aires</option>
 						<option value="value1">Entre Ríos</option>
 					</select>
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">Localidad</label>
-					<select class="form-control" name="inputLocalidad" id="inputLocalidad" required>
+					<select class="form-control" name="inputLocalidad" id="inputLocalidad" required placeholder="LOCALIDAD" <%= %>>
 						<option value="value1">General Pacheco</option>
 						<option value="value1">Tigre</option>
 					</select>
@@ -89,25 +101,25 @@
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Teléfono</label>
-					<input type="number" class="form-control" id="inputTelefono" required placeholder="1122223333">
+					<input type="number" class="form-control" id="inputTelefono" required placeholder="TELEFONO" <%=al.getTelefono() %>>
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">Email</label>
-					<input type="email" class="form-control" id="inputEmail" required placeholder="juana@perez.com">
+					<input type="email" class="form-control" id="inputEmail" required placeholder="EMAIL" <%=al.getEmail() %>>
 				</div>
 			</div>
 
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Nacionalidad</label>
-					<select class="form-control" name="inputPais" id="inputPais" required>
+					<select class="form-control" name="inputPais" id="inputPais" required <% %>>
 						<option value="value1">Argentina</option>
 						<option value="value1">Uruguay</option>
 					</select>
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">Fecha de Nacimiento</label>
-					<input type="date" class="form-control" required id="inputFechaNacimiento">
+					<input type="date" class="form-control" required id="inputFechaNacimiento" <%=al.getFechaNacimiento() %>>
 				</div>
 
 			</div>
