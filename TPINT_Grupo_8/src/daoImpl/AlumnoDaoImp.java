@@ -14,7 +14,10 @@ import java.util.Date;
 public class AlumnoDaoImp implements AlumnoDao {
 	
 	private static final String readall = "select * from universidad.alumnos where estado = 1";
-	
+	public AlumnoDaoImp()
+	{
+		
+	}
 	
 	
 	public List<Alumno> readAll(){
