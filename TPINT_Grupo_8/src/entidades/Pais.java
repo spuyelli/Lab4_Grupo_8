@@ -14,6 +14,9 @@ public class Pais {
 		this.idPais = idPais;
 	}
 	
+	public Pais() {
+	}
+	
 	public int getIdPais() {
 		return idPais;
 	}

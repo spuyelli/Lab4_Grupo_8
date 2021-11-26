@@ -2,7 +2,7 @@ package negocio;
 
 import entidades.Alumno;
 import daoImpl.AlumnoDaoImp;
-public class alumnoNeg {
+public class AlumnoNeg {
 
 	boolean actualizarAlumno(Alumno al) {
 		AlumnoDaoImp dao = new AlumnoDaoImp();

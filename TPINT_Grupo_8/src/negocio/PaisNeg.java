@@ -6,7 +6,7 @@ import javax.servlet.RequestDispatcher;
 
 import entidades.Pais;
 
-public interface paisNeg {
+public interface PaisNeg {
 
 	public ArrayList<Pais> listarPaises();
 }

@@ -2,9 +2,11 @@ package entidades;
 
 public class Provincia {
 	private int idProvincia;
-	private int descripcion;
-	private Pais pais;
+	private String descripcion;
+	private Pais idPais;
 	
+	public Provincia() {
+	}
 	
 	public int getIdProvincia() {
 		return idProvincia;
@@ -12,16 +14,16 @@ public class Provincia {
 	public void setIdProvincia(int idProvincia) {
 		this.idProvincia = idProvincia;
 	}
-	public int getDescripcion() {
+	public String getDescripcion() {
 		return descripcion;
 	}
-	public void setDescripcion(int descripcion) {
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public Pais getPais() {
-		return pais;
+	public Pais getIdPais() {
+		return idPais;
 	}
-	public void setPais(Pais pais) {
-		this.pais = pais;
+	public void setIdPais(Pais idPais) {
+		this.idPais = idPais;
 	}
 }
