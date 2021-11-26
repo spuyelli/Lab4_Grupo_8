@@ -1,3 +1,7 @@
+<%@page import="entidades.Alumno"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -32,17 +36,23 @@
 	<h1 class="display-4 mt-3 ml-5">Listado de Alumnos</h1>
 	<br>	
 	
-<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="ModificarAlumno.jsp">
+	<%
+		List<Alumno> lista =  new ArrayList<Alumno>();
+		
+		if (request.getAttribute("listaAlumnos") != null) {
+		lista = (List<Alumno>) request.getAttribute("listaAlumnos");
+		}
+	
+	%>
+	
+<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="servletListarAlumno">
 	<table id="ListaAlumnos" class="display">
     	<thead>
         	<tr>
-	            <th>Legajo</th>
 	            <th>Dni</th>
-	            <th>Nombre y Apellido</th>
-	            <th>Fecha de Nacimiento</th>
-	            <th>Dirección</th>
-	            <th>Nacionalidad</th>
-	            <th>Provincia</th>
+	            <th>Legajo</th>
+	            <th>Nombre</th>
+	            <th>Apellido</th>
 	            <th>E-mail</th>
 	            <th>Teléfono</th>
 	            <th></th>
@@ -51,37 +61,25 @@
 	        </tr>
     	</thead>
     	<tbody>
-    
-    		<!-- DATOS DE EJEMPLO. ACA REALIZAMOS LA BUSQUEDA SEGUN LO NECESITADO  -->
+        		
+    		<% if(lista != null) for (Alumno alumno : lista) { %>
         	<tr>
-	            <td>1</td>
-	            <td>30256365</td>
-	            <td>Juan Gonzalez</td>
-	            <td>14/02/2000</td>
-	            <td>El salvador 326</td>
-	            <td>Argentina</td>
-	            <td>Bs. As.</td>
-	            <td>jgonzalez@gmail.com</td>
-	            <td>1125365258</td>
-	            <td><input type="submit" name="btnModificar1" value="Modificar"></input></td>
-	            <td><input type="submit" name="btnEliminar1" value="Eliminar"></input></td>
 	            
+	            <form action="servletListarAlumno" method="post">
+	            
+	            <td><%=alumno.getDni() %> <input type="hidden" name="dniSeleccionado" value="<%=alumno.getDni() %>"></td>
+	            <td><%=alumno.getLegajo() %></td>
+	            <td><%=alumno.getNombre() %></td>
+	            <td><%=alumno.getApellido() %></td>
+	            <td><%=alumno.getEmail() %></td>
+	            <td><%=alumno.getTelefono() %></td>
+            	<td><input type="submit" name="btnModificar" value="Modificar"></input></td>
+	            <td><input type="submit" name="btnEliminar" value="Eliminar"></input></td>	            
+	            
+	            </form>        
             
         	</tr>
-        	<tr>
-	            <td>2</td>
-	            <td>28256365</td>
-	            <td>Luis Miguel</td>
-	            <td>14/02/1980</td>
-	            <td>Miami 256</td>
-	            <td>Puerto Rico</td>
-	            <td>San Juan</td>
-	            <td>lmiguel@gmail.com</td>
-	            <td>1165985698</td>
-	             <td><input type="submit" name="btnModificar2" value="Modificar"></input></td>
-	            <td><input type="submit" name="btnEliminar2" value="Eliminar"></input></td>
-            
-        	</tr>
+        	<% } %>
             
         
     	</tbody>
