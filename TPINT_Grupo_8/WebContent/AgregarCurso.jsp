@@ -25,9 +25,19 @@
 	crossorigin="anonymous"></script>
 	
 	<script type="text/javascript">
+    	
     	$(document).ready( function () {
-        $('#ListaAlumnosXCursos').DataTable();
-    	} );
+    		 var table = $('#ListaAlumnos').DataTable();
+    		 
+    		    $('#ListaAlumnos tbody').on( 'click', 'tr', function () {
+    		        $(this).toggleClass('selected');
+    		    } );
+    		 
+    		    $('#button').click( function () {
+    		        alert( table.rows('.selected').data().length +' row(s) selected' );
+    		    } );
+            //$('#ListaAlumnos').DataTable();
+        	} );
     </script>
     
 <title>Agregar Curso</title>
@@ -45,13 +55,15 @@
 				if (request.getAttribute("listaDoc") != null) {
 					listaD = (List<Docente>) request.getAttribute("listaDoc");
 				}
-				List<Alumno> listaA = new ArrayList<Alumno>();
-				if (request.getAttribute("listaAlu") != null) {
-					listaA = (List<Alumno>) request.getAttribute("listaAlu");
-				}
+		
+				List<Alumno> listaA =  new ArrayList<Alumno>();
 				
+				if (request.getAttribute("listaAlumnos") != null) {
+				listaA = (List<Alumno>) request.getAttribute("listaAlumnos");
+				}
 			
 			%>
+			
 	</div>
 	<br>
 	<div class="conteiner d-flex justify-content-center">
@@ -110,39 +122,37 @@
 						</select>
 				</div>
 			</div>
-
-			<!-- Search form -->
-		        <input class="form-control me-2 w-25 mb-2" type="search" placeholder="Buscar alumno" aria-label="Search">			
-			<table id="ListaAlumnosXCursos" class="table" >
-		    	<thead>
-		        	<tr>
-			            <th>Legajo</th>
-			            <th>Nombre y Apellido</th>
-			            <th>DNI</th>
-			            <th>Selección</th>
-			        </tr>
-		    	</thead>
-		    	<tbody>
-		    
-		    		<!-- DATOS DE EJEMPLO. ACA REALIZAMOS LA BUSQUEDA SEGUN LO NECESITADO  -->
-		        	<tr>
-						<td>1</td>
-			            <td>Juan Gonzalez</td>
-			            <td>30256365</td>
-			            <td>  <input type="checkbox" id="cbox1" > </td>
-		        	</tr>
-		        	
-		        	<tr>
-			            <td>2</td>
-			            <td>Luis Miguel</td>
-			            <td>28256365</td>
-			            <td> <input type="checkbox" id="cbox2" > </td>
-		            
-		        	</tr>
-		            
-		        
-		    	</tbody>
-			</table>
+			<table id="ListaAlumnos" class="display">
+    	<thead>
+        	<tr>
+	            <th>Dni</th>
+	            <th>Legajo</th>
+	            <th>Nombre</th>
+	            <th>Apellido</th>
+	            <th></th>
+	            <th></th>
+	            
+	        </tr>
+    	</thead>
+    	<tbody>
+        		
+    		<% if(listaA != null) for (Alumno alumno : listaA) { %>
+        	<tr>
+	            
+	            <form action="servletListarAlumno" method="post">
+	            
+	            <td><%=alumno.getDni() %> <input type="hidden" name="dniSeleccionado" value="<%=alumno.getDni() %>"></td>
+	            <td><%=alumno.getLegajo() %></td>
+	            <td><%=alumno.getNombre() %></td>
+	            <td><%=alumno.getApellido() %></td>           
+	            </form>        
+            
+        	</tr>
+        	<% } %>
+            
+        
+    	</tbody>
+	</table>
 			<div class="row mb-4 justify-content-center" style="height: 50px;">
 				<div class="col-4 ml-4">
 					<button type="submit" name= "btnAceptar" value= "Aceptar" class="btn btn-primary w-100 mt-4 ml-2">Agregar</button>
