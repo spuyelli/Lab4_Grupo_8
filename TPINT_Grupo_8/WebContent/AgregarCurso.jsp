@@ -43,7 +43,7 @@
 <title>Agregar Curso</title>
 </head>
 <body>
-	<jsp:include page="Navbar.html"></jsp:include>
+	<jsp:include page="Navbar.jsp"></jsp:include>
 	<div class="d-flex justify-content-center">
 		<h1 class="display-4 mt-5 ml-5">Agregar Curso</h1>
 			<%

@@ -1,21 +1,16 @@
 package entidades;
 
-public class Usuario {
-	private int dni;
+public class Usuario extends Persona{
 	private String password;
 	private int tipoUsuario;
 	private boolean estado;
-	public Usuario(int dni, String password, int tipoUsuario, boolean estado) {
-		this.dni = dni;
+	public Usuario(int dni, String password, int tipoUsuario, boolean estado, String nombre, String apellido) {
+		setDni(dni);
 		this.password = password;
 		this.tipoUsuario = tipoUsuario;
 		this.estado = estado;
-	}
-	public int getDni() {
-		return dni;
-	}
-	public void setDni(int dni) {
-		this.dni = dni;
+		setNombre(nombre);
+		setApellido(apellido);
 	}
 	public String getPassword() {
 		return password;
@@ -34,6 +29,14 @@ public class Usuario {
 	}
 	public void setEstado(boolean estado) {
 		this.estado = estado;
+	}
+	
+	public String getNombreApellido() {
+		String nombreApellido = "";
+		nombreApellido += getNombre();
+		nombreApellido += " ";
+		nombreApellido += getApellido();
+		return nombreApellido;
 	}
 	
 }
