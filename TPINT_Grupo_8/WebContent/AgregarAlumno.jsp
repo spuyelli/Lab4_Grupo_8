@@ -79,6 +79,7 @@
 			
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
+				
 					<label for="">Dirección:</label>
 					<input type="text" class="form-control" id="inputDireccion" required placeholder="Cabildo 1234">
 				</div>

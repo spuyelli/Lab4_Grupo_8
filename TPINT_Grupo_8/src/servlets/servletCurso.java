@@ -53,7 +53,7 @@ public class servletCurso extends HttpServlet {
 			{
 				//Se quiere insertar entonces cargo la lista de categorias
 				request.setAttribute("listaMat", negMat.listarMaterias());
-				request.setAttribute("listaAlu", negAlu.listarAlumnos());
+				request.setAttribute("listaAlumnos", negAlu.listarAlumnos());					
 				request.setAttribute("listaDoc", negDoc.listarDocentes());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarCurso.jsp");
 				dispatcher.forward(request, response);

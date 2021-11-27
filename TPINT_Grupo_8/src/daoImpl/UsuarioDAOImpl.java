@@ -11,15 +11,16 @@ import entidades.Usuario;
 public class UsuarioDAOImpl implements UsuarioDAO{
 	
 	private static final String insert = "INSERT INTO `universidad`.`usuarios` (`dni`, `tipoUsuario`, `pass`, `estado`) VALUES (?, ?, ?, ?)";
-	private static final String select = "SELECT * FROM usuarios WHERE dni = ?";
+	private static final String select = "SELECT usuarios.*, admins.nombre, admins.apellido FROM universidad.usuarios inner join universidad.admins on usuarios.dni =  admins.dni where usuarios.dni = ? and usuarios.estado = true";
 	private static final String update = "UPDATE `universidad`.`usuarios` SET `estado` = ? WHERE (`dni` = ?)";
 
 	@Override
 	public boolean insert(Usuario user) {
-		PreparedStatement statement;
-		Connection conexion = Conexion.getConexion().getSQLConexion();
 		boolean isInsertExitoso = false;
 		try {
+			PreparedStatement statement;
+			Connection conexion = Conexion.getConexion().getSQLConexion();
+		
 			statement = conexion.prepareStatement(insert);
 			statement.setInt(1, user.getDni());
 			statement.setInt(2, user.getTipoUsuario());
@@ -37,11 +38,10 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 
 	@Override
 	public Usuario select(int DNI) {
-		PreparedStatement statement;
 		Connection conexion = Conexion.getConexion().getSQLConexion();
 		ResultSet resultSet;
 		try {
-			statement = conexion.prepareStatement(select);
+			PreparedStatement statement = conexion.prepareStatement(select);
 			statement.setInt(1, DNI);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
@@ -78,7 +78,9 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		int tipoUsuario = resultSet.getInt("tipoUsuario");
 		String password = resultSet.getString("pass");
 		boolean estado = resultSet.getBoolean("estado");
-		return new Usuario(DNI, password, tipoUsuario, estado);
+		String nombre = resultSet.getString("nombre");
+		String apellido = resultSet.getString("apellido");
+		return new Usuario(DNI, password, tipoUsuario, estado, nombre, apellido);
 	}
 	
 }

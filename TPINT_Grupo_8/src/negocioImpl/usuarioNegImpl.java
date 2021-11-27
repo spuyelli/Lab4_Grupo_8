@@ -1,15 +1,16 @@
-package negocio;
+package negocioImpl;
 
 import dao.UsuarioDAO;
 import daoImpl.UsuarioDAOImpl;
 import entidades.Usuario;
+import negocio.usuarioNeg;
 
 public class usuarioNegImpl implements usuarioNeg{
 	
-	public UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+	public UsuarioDAO uDAO = new UsuarioDAOImpl();
 
-	public usuarioNegImpl(UsuarioDAO usuarioDAO) {
-		this.usuarioDAO = usuarioDAO;
+	public usuarioNegImpl(UsuarioDAO uDAO) {
+		this.uDAO = uDAO;
 	}
 	
 	public usuarioNegImpl() {
@@ -17,17 +18,17 @@ public class usuarioNegImpl implements usuarioNeg{
 
 	@Override
 	public boolean insert(Usuario user) {
-		return usuarioDAO.insert(user);
+		return uDAO.insert(user);
 	}
 
 	@Override
 	public Usuario select(int DNI) {
-		return usuarioDAO.select(DNI);
+		return uDAO.select(DNI);
 	}
 
 	@Override
 	public boolean update(int DNI, boolean estado) {
-		return usuarioDAO.update(DNI, estado);
+		return uDAO.update(DNI, estado);
 	}
 	
 	

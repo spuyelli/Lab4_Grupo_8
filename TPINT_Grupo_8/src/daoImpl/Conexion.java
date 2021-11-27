@@ -6,9 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-//import datosImpl.String;
-
-
 
 public class Conexion {
 	public static Conexion instancia;
@@ -37,7 +34,7 @@ public class Conexion {
 	public Conexion() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/universidad", "root", "root");
+			this.connection = DriverManager.getConnection(host+dbName, user, pass);
 			this.connection.setAutoCommit(false);
 		} catch (Exception e) {
 			System.out.println("problema constructor");

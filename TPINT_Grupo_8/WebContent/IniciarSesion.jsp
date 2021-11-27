@@ -22,7 +22,7 @@
 	<br>	
 
 <div class="container d-flex justify-content-center">
-    <form class="card p-3 mt-5 bg-light" method="post" action="servlet" >
+    <form class="card p-3 mt-5 bg-light" method="post" action="servletUser" >
   <div class="mb-3">
     <label for="" class="form-label">DNI</label>
     <input type="numeric" class="form-control" name="txtDNI" required>
@@ -32,6 +32,16 @@
     <input type="password" class="form-control" name="txtContraseña" required>
   </div>
   <button type="submit" name="btnLogin" class="btn btn-primary">Login</button>
+  <br>
+  <%
+  	if(session.getAttribute("Login_error") != null){
+  		String error = session.getAttribute("Login_error").toString();
+  		%>
+  		<label for="" class="form-label" style="color: red;"><%= error %></label>
+  		<%
+  	}
+   %>
+  
 </form>
 </div>
 
