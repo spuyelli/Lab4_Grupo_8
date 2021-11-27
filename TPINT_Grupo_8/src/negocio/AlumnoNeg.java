@@ -5,5 +5,8 @@ import java.util.ArrayList;
 import entidades.Alumno;
 
 public interface AlumnoNeg {
-	public ArrayList<Alumno> listarAlumnos();
+	
+	boolean actualizarAlumno(Alumno al);
+	ArrayList<Alumno> listarAlumnos();
+
 }

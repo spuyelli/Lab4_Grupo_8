@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import dao.PaisDao;
 import daoImpl.PaisDaoImpl;
 import entidades.Pais;
-import negocio.paisNeg;
+import negocio.PaisNeg;
 
-public class paisNegImpl implements paisNeg{
+public class PaisNegImpl implements PaisNeg{
 
 	private PaisDao paisDao = new PaisDaoImpl();
 		
