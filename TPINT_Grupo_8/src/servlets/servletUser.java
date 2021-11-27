@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import entidades.Usuario;
-import negocio.usuarioNeg;
-import negocioImpl.usuarioNegImpl;
+import negocio.UsuarioNeg;
+import negocioImpl.UsuarioNegImpl;
 
 @WebServlet("/servletUser")
 public class servletUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	usuarioNeg userNegImp = new usuarioNegImpl(); 
+	UsuarioNeg userNegImp = new UsuarioNegImpl(); 
 	
 	public servletUser() {
 		super();
@@ -27,18 +27,21 @@ public class servletUser extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		
+		HttpSession session = request.getSession();
+		if(session == null) {
+			request.getSession(true);
+		}
 		if (request.getParameter("btnLogin") != null) {
 
 			if(request.getParameter("Usuario") != null) {
-		        session.invalidate();
+				session.invalidate();
 				return;
 			} else {
 				Usuario user = userNegImp.select(Integer.parseInt(request.getParameter("txtDNI")));
 				if(user == null) {
 					session.setAttribute("Login_error", "Usuario incorrecto");
 					System.out.println("Usuario incorrecto");
+					System.out.println(session.getAttribute("Login_error"));
 					response.sendRedirect("IniciarSesion.jsp");
 					return;
 				}
@@ -47,10 +50,11 @@ public class servletUser extends HttpServlet {
 				if(passU.equals(passIN)) {
 					System.out.println("Login correcto");
 					session.setAttribute("Usuario", user);
+					session.setMaxInactiveInterval(60*3);
 					response.sendRedirect("Home.jsp");
 				}
 				else {
-					session.setAttribute("Login_error", "Contraseña incorrecta.");
+					session.setAttribute("Login_error", "Contraseña incorrecta");
 					System.out.println("Contraseña incorrecta");
 					System.out.println(session.getAttribute("Login_error"));
 					response.sendRedirect("IniciarSesion.jsp");

@@ -11,7 +11,8 @@ import entidades.Usuario;
 public class UsuarioDAOImpl implements UsuarioDAO{
 	
 	private static final String insert = "INSERT INTO `universidad`.`usuarios` (`dni`, `tipoUsuario`, `pass`, `estado`) VALUES (?, ?, ?, ?)";
-	private static final String select = "SELECT usuarios.*, admins.nombre, admins.apellido FROM universidad.usuarios inner join universidad.admins on usuarios.dni =  admins.dni where usuarios.dni = ? and usuarios.estado = true";
+	private static final String selectAdmin = "SELECT usuarios.*, admins.nombre, admins.apellido FROM universidad.usuarios inner join universidad.admins on usuarios.dni =  admins.dni where usuarios.dni = ? and usuarios.estado = true";
+	private static final String selectDocente = "SELECT usuarios.*, docentes.nombre, docentes.apellido FROM universidad.usuarios inner join universidad.docentes on usuarios.dni =  docentes.dni where usuarios.dni = ? and usuarios.estado = true";
 	private static final String update = "UPDATE `universidad`.`usuarios` SET `estado` = ? WHERE (`dni` = ?)";
 
 	@Override
@@ -41,7 +42,13 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		Connection conexion = Conexion.getConexion().getSQLConexion();
 		ResultSet resultSet;
 		try {
-			PreparedStatement statement = conexion.prepareStatement(select);
+			PreparedStatement statement = conexion.prepareStatement(selectAdmin);
+			statement.setInt(1, DNI);
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				return getUsuario(resultSet);
+			}
+			statement = conexion.prepareStatement(selectDocente);
 			statement.setInt(1, DNI);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {

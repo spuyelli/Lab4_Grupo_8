@@ -2,7 +2,7 @@ package negocio;
 
 import entidades.Usuario;
 
-public interface usuarioNeg {
+public interface UsuarioNeg {
 	
 	public boolean insert(Usuario user);
 	public Usuario select(int DNI);

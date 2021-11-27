@@ -10,7 +10,7 @@
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light ">
-  <h1 class="ml-3 font-weight-bold"><a class="navbar-brand" href="#">UTN</a></h1>
+  <h1 class="ml-3 font-weight-bold"><a class="navbar-brand" href="Home.jsp">UTN</a></h1>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -59,17 +59,30 @@
     <div class= "d-flex justify-content-end">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item ">
-        <a class="nav-link mr-2 h5" href="#" id="botonUsuario"  >
+        <a class="nav-link mr-2 h5" href="Home.jsp" id="botonUsuario"  >
          <i class="fas fa-user"></i> <!--  @usuario(@tipoUsuario)--> 
          <%
 			if(session.getAttribute("Usuario") != null) {
 				Usuario user = (Usuario)session.getAttribute("Usuario");
-				 String nombreApellido = user.getNombreApellido();
-				 %>
-				 <label for="" class="form-label" style="color: red;"><%= nombreApellido %></label>
-				 <%
-			}
+				String usuarioYtipo = user.getNombreApellido();
+				switch (user.getTipoUsuario()){
+					case 1:
+						usuarioYtipo += " (Administrador)";
+						break;
+					case 2:
+						usuarioYtipo += " (Docente)";
+						break;
+					default:
+						usuarioYtipo += " (ERROR)";
+				}
 				%>
+				<label for="" class="form-label" style="color: red"> <%= usuarioYtipo %> </label>
+				<%
+			}
+			else{
+				request.getRequestDispatcher("IniciarSesion.jsp").forward(request, response);
+			}
+		%>
         </a>
       </li>
             
