@@ -74,10 +74,10 @@
 					<label for="">País de residencia</label>
 					<select class="form-control" name="inputPais" id="inputPais" required>
 						<%
-					         for(Pais pais : Pais)
+					         for(Pais pais : listaPaises)
 					         {
 					             %>
-					                <option value=<%=pais.getId()%>><%=pais.getDescripcion()%></option>
+					                <option value=<%=pais.getIdPais()%>><%=pais.getDescripcion()%></option>
 					             <%
 					         }
 

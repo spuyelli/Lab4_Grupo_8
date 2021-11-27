@@ -1,8 +1,9 @@
-package negocio;
+package negocioImpl;
 
 import dao.UsuarioDAO;
 import daoImpl.UsuarioDAOImpl;
 import entidades.Usuario;
+import negocio.usuarioNeg;
 
 public class usuarioNegImpl implements usuarioNeg{
 	

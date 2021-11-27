@@ -16,10 +16,11 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 
 	@Override
 	public boolean insert(Usuario user) {
-		PreparedStatement statement;
-		Connection conexion = Conexion.getConexion().getSQLConexion();
 		boolean isInsertExitoso = false;
 		try {
+			PreparedStatement statement;
+			Connection conexion = Conexion.getConexion().getSQLConexion();
+		
 			statement = conexion.prepareStatement(insert);
 			statement.setInt(1, user.getDni());
 			statement.setInt(2, user.getTipoUsuario());

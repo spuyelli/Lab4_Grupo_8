@@ -2,7 +2,6 @@ package daoImpl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 //import datosImpl.String;
@@ -15,14 +14,15 @@ public class Conexion {
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
 	private String pass = "root";
-	private String dbName = "bdarticulos??profileSQL=true&useSSL=false";
+	private String dbName = "universidad";
 	
 	public Conexion() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/universidad", "root", "root");
+			this.connection = DriverManager.getConnection(host+dbName, user, pass);
 			this.connection.setAutoCommit(false);
 		} catch (Exception e) {
+			System.out.println("problema constructor");
 			e.printStackTrace();
 		}
 	}

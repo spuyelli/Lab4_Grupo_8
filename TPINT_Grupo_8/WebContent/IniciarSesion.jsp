@@ -22,7 +22,7 @@
 	<br>	
 
 <div class="container d-flex justify-content-center">
-    <form class="card p-3 mt-5 bg-light" method="post" action="servlet" >
+    <form class="card p-3 mt-5 bg-light" method="post" action="servletUser" >
   <div class="mb-3">
     <label for="" class="form-label">DNI</label>
     <input type="numeric" class="form-control" name="txtDNI" required>

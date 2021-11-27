@@ -1,34 +1,23 @@
-package controller;
+package servlets;
 
-import javax.servlet.RequestDispatcher;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
-
-import org.apache.jasper.tagplugins.jstl.core.If;
-
-import com.sun.java.swing.plaf.windows.resources.windows;
-
-import dao.UsuarioDAO;
-import daoImpl.UsuarioDAOImpl;
 import entidades.Usuario;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import negocio.usuarioNeg;
-import negocio.usuarioNegImpl;
+import negocioImpl.usuarioNegImpl;
 
-@WebServlet("/servlet")
-public class servlet extends HttpServlet {
+@WebServlet("/servletUser")
+public class servletUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	usuarioNeg userNegImp = new usuarioNegImpl(); 
 	
-	public servlet() {
+	public servletUser() {
 		super();
 	}
 
@@ -38,11 +27,21 @@ public class servlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//HttpSession session = request.getSession(false);
 		
 		if (request.getParameter("btnLogin") != null) {
 
-			if(!request.getParameter("txtDNI").isEmpty()) {
-				Usuario user = userNegImp.select(Integer.parseInt(request.getParameter("txtDNI"))); 
+			if(request.getParameter("Usuario") != null) {
+				response.sendRedirect("home.jsp");
+				return;
+			} else {
+				Usuario user = userNegImp.select(Integer.parseInt(request.getParameter("txtDNI")));
+				if(user == null) {
+					JOptionPane.showMessageDialog(null, "Usuario incorrecto.", "Login incorrecto", JOptionPane.WARNING_MESSAGE);
+					System.out.println("Usuario incorrecto");
+					response.sendRedirect("IniciarSesion.jsp");
+					return;
+				}
 				String passU = user.getPassword();
 				String passIN = request.getParameter("txtContraseña");
 				if(passU.equals(passIN)) {
@@ -50,8 +49,9 @@ public class servlet extends HttpServlet {
 					JOptionPane.showMessageDialog(null, "Bienvenido DNI: " + user.getDni(), "Login exitoso", JOptionPane.WARNING_MESSAGE);
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos.", "Login incorrecto", JOptionPane.WARNING_MESSAGE);
-					System.out.println("usuario o contraseña incorrectos");
+					JOptionPane.showMessageDialog(null, "Contraseña incorrecta.", "Login incorrecto", JOptionPane.WARNING_MESSAGE);
+					System.out.println("Contraseña incorrecta");
+					response.sendRedirect("IniciarSesion.jsp");
 				}
 			}
 		}
