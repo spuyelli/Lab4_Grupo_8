@@ -20,4 +20,10 @@ public class AlumnoNegImpl implements AlumnoNeg{
 	public ArrayList<Alumno> listarAlumnos() {
 		return (ArrayList<Alumno>) aluDao.readAll();
 	}
+
+	@Override
+	public boolean actualizarAlumno(Alumno al) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

@@ -8,7 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
+import entidades.Curso;
+import entidades.Docente;
+import entidades.Materia;
 import negocio.AlumnoNeg;
 import negocio.CursoNeg;
 import negocio.DocenteNeg;
@@ -73,22 +77,37 @@ public class servletCurso extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		/*
+		
 		if(request.getParameter("btnAceptar")!=null)
 	    {
-	    	Articulo x = new Articulo();
-	    	x.setNombre(request.getParameter("txtNombre"));
-	    	x.setPrecio(Float.parseFloat(request.getParameter("txtPrecio")));
-	    	x.setEstado(Integer.parseInt(request.getParameter("comboEstado")));
-	    	x.setCategoria(new Categoria(Integer.parseInt(request.getParameter("comboCat"))));
-	    	boolean estado=true;
-	    	estado = negArt.insertar(x);
+	    	Curso c = new Curso();
+	    	Materia m = new Materia();
+	    	Docente d = new Docente();
 	    	
-	    	request.setAttribute("listaCat", negCat.obtenerTodos());
-	    	request.setAttribute("estadoArticulo", estado);
-	    	RequestDispatcher dispatcher = request.getRequestDispatcher("/InsertarArticulos.jsp");
+	    	m.setIdMateria(Integer.parseInt(request.getParameter("selectMateria")));
+	    	c.setMateria(m);
+	    	d.setDni(Integer.parseInt(request.getParameter("selectDocente")));
+	    	c.setDocente(d);
+	    	
+	    	c.setAño(Integer.parseInt(request.getParameter("inputAnio")));
+	    	c.setSemestre(Integer.parseInt(request.getParameter("inputSemestre")));
+
+
+	    	boolean estado=true;
+	    	estado = negCur.insertar(c);
+	    	
+	    	request.setAttribute("agregado", estado);
+	    	if(!estado) {
+	    		System.out.println("no pudo agregar");
+	    		JOptionPane.showMessageDialog(null, "Error agregando el curso", null, JOptionPane.WARNING_MESSAGE);
+	    	}else {
+	    		System.out.println("agregado");
+	    		JOptionPane.showMessageDialog(null, "Curso agregado correctamente", null, JOptionPane.WARNING_MESSAGE);
+	    	}
+	    	
+	    	RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarCurso.jsp");
 			dispatcher.forward(request, response);
-	    }*/
+	    }
 	}
 
 }

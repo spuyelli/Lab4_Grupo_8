@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -135,62 +136,32 @@ public class CursoDaoImpl  implements CursoDao{
 	}
 
 	@Override
-	public boolean insertar(Curso curso)//VER
-	{
-		/*PreparedStatement statement;
-		Connection conexion = Conexion.getConexion().getSQLConexion();
-		boolean isInsertExitoso = false;
-		try
-		{
-			statement = conexion.prepareStatement(insert);
-			statement.setInt(1, curso.getIdPersona());
-			statement.setString(2, curso.getNombre());
-			statement.setString(3, curso.getTelefono());
-			if(statement.executeUpdate() > 0)
-			{
-				conexion.commit();
-				isInsertExitoso = true;
-			}
-		} 
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-			try {
-				conexion.rollback();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-		}
-		
-		return isInsertExitoso;
-		*/
-		return false;
-	}
 	
-	public boolean delete(Curso curso_a_eliminar)//VER
-	{
-		/*
-		PreparedStatement statement;
-		Connection conexion = Conexion.getConexion().getSQLConexion();
-		boolean isdeleteExitoso = false;
-		try 
-		{
-			statement = conexion.prepareStatement(delete);
-			statement.setString(1, Integer.toString(curso_a_eliminar.getIdPersona()));
-			if(statement.executeUpdate() > 0)
-			{
-				conexion.commit();
-				isdeleteExitoso = true;
-			}
-		} 
-		catch (SQLException e) 
+	
+public boolean insertar(Curso curso) {
+		
+		boolean estado=true;
+
+		cn = new Conexion();
+		cn.Open();	
+
+		String query = "INSERT INTO cursos (idMateria,dniDocente,semestre,anio) VALUES ('"+curso.getMateria().getIdMateria()+"','"+curso.getDocente().getDni()+"','"+curso.getSemestre()+"', '"+curso.getAño()+"')";
+		try
+		 {
+			estado=cn.execute(query);
+		 }
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		return isdeleteExitoso;*/
-		return false;
+		finally
+		{
+			cn.close();
+		}
+		return estado;
 	}
 
+	
 	@Override
 	public boolean editar(Curso curso) {//VER
 		/*
