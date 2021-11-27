@@ -1,8 +1,10 @@
 package servlets;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,10 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 import entidades.Localidad;
 import entidades.Provincia;
 import entidades.Alumno;
+import entidades.Domicilio;
 import entidades.Pais;
 import negocio.PaisNeg;
 import negocio.ProvinciaNeg;
+import negocio.AlumnoNeg;
 import negocio.LocalidadNeg;
+import negocioImpl.AlumnoNegImpl;
 import negocioImpl.LocalidadNegImpl;
 import negocioImpl.PaisNegImpl;
 import negocioImpl.ProvinciaNegImpl;
@@ -63,28 +68,26 @@ public class servletAgregarAlumno extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+			
 		
 		Alumno alumnoNuevo = new Alumno(
-				Integer.parseInt(request.getParameter("dni")),
-				0,
-				request.getParameter("dni"),
-				request.getParameter("nombre"),
-				request.getParameter("apellido"),
-				request.getParameter("email"),
-				Integer.parseInt(request.getParameter("telefono")),
-				new Pais(Integer.parseInt(request.getParameter("inputPais"))),
+				Integer.parseInt(request.getParameter("inputDNI")),
+				request.getParameter("inputNombre"),
+				request.getParameter("inputApellido"),
+				LocalDate.parse(request.getParameter("inputFechaNacimiento")),
+				new Pais(Integer.parseInt(request.getParameter("inputNacionalidad"))),
+				new Domicilio(request.getParameter("inputDireccion")),
+				new Localidad(Integer.parseInt(request.getParameter("inputLocalidad"))),
 				new Provincia(Integer.parseInt(request.getParameter("inputProvincia"))),
-				new Localidad(Integer.parseInt(request.getParameter("inputLocalidad"))), //q hacer con Localidad? ya q es parte de clase direccion
-				new Nacionalidad(Integer.parseInt(request.getParameter("inputPais2"))),
-				new Domicilio(request.getParameter("inputDireccion"), Integer.parseInt(request.getParameter("inputLocalidad"))),
-				new FechaNacimiento(LocalDate.parse(request.getParameter("inputFechaNacimiento"))),
-				true //ESTADO
+				new Pais(Integer.parseInt(request.getParameter("inputPais"))),
+				request.getParameter("inputEmail"),
+				Integer.parseInt(request.getParameter("inputTelefono"))
 				);
 		
-		 NegocioAlumno negocioAlumno = new NegocioAlumno();
+		AlumnoNeg alumnoNegocio = new AlumnoNegImpl();
 
-         int estado = negocioAlumno.agregarAlumno(AlumnoAdd);
+        boolean estado = alumnoNegocio.agregarAlumno(alumnoNuevo);
+        //TODO: MOSTRAR MENSAJE ERROR O SUCCESS, modificar query del insert.
 	}
 
 }

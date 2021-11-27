@@ -2,7 +2,7 @@ package negocioImpl;
 
 import java.util.ArrayList;
 
-import Dao.DaoAlumno;
+
 import dao.AlumnoDao;
 import dao.CursoDao;
 import daoImpl.AlumnoDaoImpl;
@@ -29,11 +29,13 @@ public class AlumnoNegImpl implements AlumnoNeg{
 	}
 
 	@Override
-	boolean agregarAlumno(Alumno alumno) {
+	public boolean agregarAlumno(Alumno alumno) {
 		//if(validarDNILegajoAlum(alumno)) return -1;
 		//DaoAlumno daoalumno = new DaoAlumno();
-		//boolean estado = daoalumno.agregarAlumno(alumno)? true : false;
-		return estado;
+		//boolean estado = AlumnoDaoImpl //.agregarAlumno(alumno)? true : false;
+		AlumnoDao alumnoDao = new AlumnoDaoImpl();
+		boolean estado = alumnoDao.agregarAlumno(alumno)? true : false;
+		return true;
 	}
 	
 	

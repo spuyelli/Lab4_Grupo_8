@@ -10,6 +10,9 @@ public class Domicilio {
 		this.calle_numero = calle_numero;
 		this.localidad = localidad;
 	}
+	public Domicilio(String calle_numero) {
+		this.calle_numero = calle_numero;
+	}
 	public String getCalle_Numero() {
 		return calle_numero;
 	}

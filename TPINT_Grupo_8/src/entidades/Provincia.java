@@ -8,6 +8,10 @@ public class Provincia {
 	public Provincia() {
 	}
 	
+	public Provincia(int idProvincia) {
+		this.setIdProvincia(idProvincia);
+	}
+	
 	public int getIdProvincia() {
 		return idProvincia;
 	}

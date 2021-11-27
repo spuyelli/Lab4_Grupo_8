@@ -10,11 +10,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 public class AlumnoDaoImpl implements AlumnoDao {
 	
 	private static final String readall = "select * from universidad.alumnos where estado = 1";
+	private static final String insert = "INSERT INTO universidad.alumnos (dni, legajo, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+	
 	public AlumnoDaoImpl()
 	{
 		
@@ -39,8 +42,6 @@ public class AlumnoDaoImpl implements AlumnoDao {
 		return listaAlumnos;
 		
 	}
-
-
 
 	private Alumno getAlumno(ResultSet resultSet) throws SQLException {
 		
@@ -86,19 +87,45 @@ public class AlumnoDaoImpl implements AlumnoDao {
 		}return false;
 	}
 	
-	public boolean agregarAlumno(Alumno alumno) { ///FALTA DESARROLLAR INCOMPLETO)
-		PreparedStatement statement;
-		ResultSet resultSet;	
-		Connection conexion = Conexion.getConexion().getSQLConexion();
+	public boolean agregarAlumno(Alumno alumno) { 
+		 
+		Conexion conexionSql = null; 
+		
+
 		try {
-			statement = conexion.prepareStatement("insert into Alumnos (dni, legajo, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) values " + "(" +al.getNombre()  +" ' , apellido = '"+al.getApellido()+"' , domicilio = '"+al.getDomicilio()+"', fechaNacimiento ='"+al.getFechaNacimiento()+"',idNacionalidad='"+al.getNacionalidad()+"', idLocalidad='"+al.getNacionalidad()+"', email='"+al.getEmail()+"', telefono='"+al.getTelefono()+" where dni = '"+al.getDni()+"'"
-			);
-			resultSet = statement.executeQuery();
-			if(resultSet != null) {return true;}
+			
+		    conexionSql = new Conexion();
+			Connection connection  = Conexion.getConexion().getSQLConexion();
+			
+			PreparedStatement statement = connection.prepareStatement(insert);
+			statement.setInt(1, alumno.getDni());
+			statement.setInt(2, 9999);
+			statement.setString(3, alumno.getNombre());
+			statement.setString(4, alumno.getApellido());
+			statement.setString(5, alumno.getFechaNacimiento().toString());
+			statement.setInt(6, alumno.getNacionalidad().getIdPais());
+			statement.setString(7, alumno.getDomicilio().getCalle_Numero());
+			statement.setInt(8, alumno.getLocalidad().getIdLocalidad());
+			statement.setString(9, alumno.getEmail());
+			statement.setInt(10, alumno.getTelefono());
+			statement.setBoolean(11, true);
+			
+			if(statement.executeUpdate()==1) {
+				connection.commit();
+				return true;
+			}
+				
 		} catch (SQLException e) {
-			e.printStackTrace();
-		}return false;
-	}
+			
+			 e.printStackTrace();
+		} 
+		
+		finally {
+			conexionSql.cerrarConexion();
+		}
+
+		return false;
 	
+	}
 }
 

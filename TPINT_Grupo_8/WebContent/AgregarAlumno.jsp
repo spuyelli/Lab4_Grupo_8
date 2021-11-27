@@ -61,7 +61,7 @@
 				<div class="col-3 pr-4">
 					<div class="form-outline">
 						<label for="">Dni</label>
-						<input type="number" class="form-control" id="inputDNI" required placeholder="01234567">
+						<input type="number" class="form-control" name="inputDNI" id="inputDNI" required placeholder="01234567">
 					</div>
 				</div>
 			</div>
@@ -69,11 +69,11 @@
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Nombre</label>
-					<input type="text" class="form-control" id="inputNombre" required placeholder="Juana">
+					<input type="text" class="form-control" name="inputNombre" id="inputNombre" required placeholder="Juana">
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">Apellido</label>
-					<input type="text" class="form-control" id="inputApellido" required placeholder="Perez">
+					<input type="text" class="form-control" name="inputApellido" id="inputApellido" required placeholder="Perez">
 				</div>
 			</div>
 			
@@ -81,7 +81,7 @@
 				<div class="col-3 ml-4">
 				
 					<label for="">Dirección:</label>
-					<input type="text" class="form-control" id="inputDireccion" required placeholder="Cabildo 1234">
+					<input type="text" class="form-control" name="inputDireccion" id="inputDireccion" required placeholder="Cabildo 1234">
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">País de residencia</label>
@@ -130,18 +130,18 @@
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Teléfono</label>
-					<input type="number" class="form-control" id="inputTelefono" required placeholder="1122223333">
+					<input type="number" class="form-control" name="inputTelefono" id="inputTelefono" required placeholder="1122223333">
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">Email</label>
-					<input type="email" class="form-control" id="inputEmail" required placeholder="juana@perez.com">
+					<input type="email" class="form-control" name="inputEmail" id="inputEmail" required placeholder="juana@perez.com">
 				</div>
 			</div>
 
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Nacionalidad</label>
-					<select class="form-control" name="inputPais2" id="inputPais" required>
+					<select class="form-control" name="inputNacionalidad" id="inputNacionalidad" required>
 						<%
 							for(Pais pais : Paises)
 					         {
@@ -154,7 +154,7 @@
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">Fecha de Nacimiento</label>
-					<input type="date" class="form-control" required id="inputFechaNacimiento">
+					<input type="date" class="form-control" required name="inputFechaNacimiento" id="inputFechaNacimiento">
 				</div>
 
 			</div>

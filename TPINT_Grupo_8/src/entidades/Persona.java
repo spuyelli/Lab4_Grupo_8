@@ -1,14 +1,17 @@
 package entidades;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class Persona {
 	private int dni;
 	private String nombre; 
 	private String apellido;
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	private Domicilio domicilio;
 	private Pais nacionalidad;
+	private Localidad localidad;
+	private Provincia provincia;
+	private Pais pais;
 	private String email;
 	private int telefono;
 	boolean estado;
@@ -29,11 +32,11 @@ public class Persona {
 		
 	}
 	
-	public boolean getEstado() {
-		return estado;
+	public Localidad getLocalidad() {
+		return localidad;
 	}
-	public void setEstado(boolean estado) {
-		this.estado = estado;
+	public void setLocalidad(Localidad localidad) {
+		this.localidad = localidad;
 	}
 	public int getDni() {
 		return dni;
@@ -53,6 +56,12 @@ public class Persona {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
 	public Domicilio getDomicilio() {
 		return domicilio;
 	}
@@ -64,6 +73,18 @@ public class Persona {
 	}
 	public void setNacionalidad(Pais nacionalidad) {
 		this.nacionalidad = nacionalidad;
+	}
+	public Provincia getProvincia() {
+		return provincia;
+	}
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
+	}
+	public Pais getPais() {
+		return pais;
+	}
+	public void setPais(Pais pais) {
+		this.pais = pais;
 	}
 	public String getEmail() {
 		return email;
@@ -77,11 +98,13 @@ public class Persona {
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
+	public boolean isEstado() {
+		return estado;
 	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	public void setEstado(boolean estado) {
+		this.estado = estado;
 	}
+	
+	
 
 }
