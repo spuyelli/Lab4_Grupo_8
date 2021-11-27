@@ -204,8 +204,12 @@ INSERT INTO `universidad`.`tiposusuario` (`descripcion`) VALUES ('Docente');
 
 INSERT INTO `universidad`.`admins` (`dni`, `nombre`, `apellido`, `fechaNacimiento`, `idNacionalidad`, `domicilio`, `idLocalidad`, `email`, `telefono`, `estado`) VALUES ('66666666', 'Tamara', 'Herrera', '1997-05-23', '1', 'Hipolito Yrigoyen 1452', '1', 'therrera@hotmail.com', '1132456856', '1');
 INSERT INTO `universidad`.`admins` (`dni`, `nombre`, `apellido`, `fechaNacimiento`, `idNacionalidad`, `domicilio`, `idLocalidad`, `email`, `telefono`, `estado`) VALUES ('77777777', 'Claudio', 'Fernandez', '1965-06-01', '1', 'Av. Delosprofesores 666', '5', 'cfernandez@gmail.com', '1135698741', '1');
+INSERT INTO `universidad`.`admins` (`dni`, `nombre`, `apellido`, `fechaNacimiento`, `idNacionalidad`, `domicilio`, `idLocalidad`, `email`, `telefono`, `estado`) VALUES ('123', 'Admin', 'Fernandez', '1965-06-01', '1', 'Av. Delosprofesores 666', '5', 'cfernandez@gmail.com', '1135698741', '1');
+
 
 INSERT INTO `universidad`.`usuarios` (`dni`, `tipoUsuario`, `pass`, `estado`) VALUES ('66666666', '1', '6666', '1');
 INSERT INTO `universidad`.`usuarios` (`dni`, `tipoUsuario`, `pass`, `estado`) VALUES ('77777777', '2', '7777', '1');
+INSERT INTO `universidad`.`usuarios` (`dni`, `tipoUsuario`, `pass`, `estado`) VALUES ('123', '1', '123', '1');
+
 
 

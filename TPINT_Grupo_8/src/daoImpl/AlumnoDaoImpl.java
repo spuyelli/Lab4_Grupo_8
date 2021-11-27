@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class AlumnoDaoImpl implements AlumnoDao {
 	
 	private static final String readall = "select * from universidad.alumnos where estado = 1";
-	private static final String insert = "INSERT INTO universidad.alumnos (dni, legajo, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String insert = "INSERT INTO universidad.alumnos (dni, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	
 	public AlumnoDaoImpl()
@@ -99,16 +99,15 @@ public class AlumnoDaoImpl implements AlumnoDao {
 			
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setInt(1, alumno.getDni());
-			statement.setInt(2, 9999);
-			statement.setString(3, alumno.getNombre());
-			statement.setString(4, alumno.getApellido());
-			statement.setString(5, alumno.getFechaNacimiento().toString());
-			statement.setInt(6, alumno.getNacionalidad().getIdPais());
-			statement.setString(7, alumno.getDomicilio().getCalle_Numero());
-			statement.setInt(8, alumno.getLocalidad().getIdLocalidad());
-			statement.setString(9, alumno.getEmail());
-			statement.setInt(10, alumno.getTelefono());
-			statement.setBoolean(11, true);
+			statement.setString(2, alumno.getNombre());
+			statement.setString(3, alumno.getApellido());
+			statement.setString(4, alumno.getFechaNacimiento().toString());
+			statement.setInt(5, alumno.getNacionalidad().getIdPais());
+			statement.setString(6, alumno.getDomicilio().getCalle_Numero());
+			statement.setInt(7, alumno.getLocalidad().getIdLocalidad());
+			statement.setString(8, alumno.getEmail());
+			statement.setInt(9, alumno.getTelefono());
+			statement.setBoolean(10, true);
 			
 			if(statement.executeUpdate()==1) {
 				connection.commit();

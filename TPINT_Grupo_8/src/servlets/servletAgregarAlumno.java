@@ -87,7 +87,10 @@ public class servletAgregarAlumno extends HttpServlet {
 		AlumnoNeg alumnoNegocio = new AlumnoNegImpl();
 
         boolean estado = alumnoNegocio.agregarAlumno(alumnoNuevo);
+        
         //TODO: MOSTRAR MENSAJE ERROR O SUCCESS, modificar query del insert.
+        
+        response.sendRedirect("ListaAlumnos.jsp");
 	}
 
 }

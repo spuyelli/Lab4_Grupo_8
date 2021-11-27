@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `universidad`.`paises` (
   `descripcion` VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `universidad`.`provincias` (
     FOREIGN KEY (`idPais`)
     REFERENCES `universidad`.`paises` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 26
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `universidad`.`localidades` (
     FOREIGN KEY (`idProvincia`)
     REFERENCES `universidad`.`provincias` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 126
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -79,6 +79,7 @@ CREATE TABLE IF NOT EXISTS `universidad`.`admins` (
   `idLocalidad` INT NOT NULL,
   `email` VARCHAR(250) NOT NULL,
   `telefono` INT NOT NULL,
+  `estado` TINYINT NOT NULL,
   PRIMARY KEY (`dni`),
   INDEX `idNacionalidad` (`idNacionalidad` ASC) VISIBLE,
   INDEX `idLocalidad` (`idLocalidad` ASC) VISIBLE,
@@ -98,7 +99,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `universidad`.`alumnos` (
   `dni` INT NOT NULL,
-  `legajo` INT NOT NULL,
+  `legajo` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(50) NOT NULL,
   `apellido` VARCHAR(50) NOT NULL,
   `fechaNacimiento` DATE NOT NULL,
@@ -119,6 +120,7 @@ CREATE TABLE IF NOT EXISTS `universidad`.`alumnos` (
     FOREIGN KEY (`idLocalidad`)
     REFERENCES `universidad`.`localidades` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2007
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -131,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `universidad`.`materias` (
   `descripcion` VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -141,7 +143,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `universidad`.`docentes` (
   `dni` INT NOT NULL,
-  `legajo` INT NOT NULL,
+  `legajo` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(50) NOT NULL,
   `apellido` VARCHAR(50) NOT NULL,
   `fechaNacimiento` DATE NOT NULL,
@@ -162,6 +164,7 @@ CREATE TABLE IF NOT EXISTS `universidad`.`docentes` (
     FOREIGN KEY (`idLocalidad`)
     REFERENCES `universidad`.`localidades` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2000
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -185,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `universidad`.`cursos` (
     FOREIGN KEY (`dniDocente`)
     REFERENCES `universidad`.`docentes` (`dni`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 100
+AUTO_INCREMENT = 103
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -222,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `universidad`.`carrera` (
   `descripcion` VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -303,5 +306,3 @@ DELIMITER ;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
-
