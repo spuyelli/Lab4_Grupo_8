@@ -3,17 +3,17 @@ package negocioImpl;
 import dao.UsuarioDAO;
 import daoImpl.UsuarioDAOImpl;
 import entidades.Usuario;
-import negocio.usuarioNeg;
+import negocio.UsuarioNeg;
 
-public class usuarioNegImpl implements usuarioNeg{
+public class UsuarioNegImpl implements UsuarioNeg{
 	
 	public UsuarioDAO uDAO = new UsuarioDAOImpl();
 
-	public usuarioNegImpl(UsuarioDAO uDAO) {
+	public UsuarioNegImpl(UsuarioDAO uDAO) {
 		this.uDAO = uDAO;
 	}
 	
-	public usuarioNegImpl() {
+	public UsuarioNegImpl() {
 	}
 
 	@Override

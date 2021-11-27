@@ -40,6 +40,9 @@
   		<label for="" class="form-label" style="color: red;"><%= error %></label>
   		<%
   	}
+  	if(session.getAttribute("Usuario") != null){
+  		session.invalidate();
+  	}
    %>
   
 </form>

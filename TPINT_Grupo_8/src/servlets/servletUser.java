@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import entidades.Usuario;
-import negocio.usuarioNeg;
-import negocioImpl.usuarioNegImpl;
+import negocio.UsuarioNeg;
+import negocioImpl.UsuarioNegImpl;
 
 @WebServlet("/servletUser")
 public class servletUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	usuarioNeg userNegImp = new usuarioNegImpl(); 
+	UsuarioNeg userNegImp = new UsuarioNegImpl(); 
 	
 	public servletUser() {
 		super();
@@ -28,6 +28,7 @@ public class servletUser extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
+		session.setMaxInactiveInterval(60*3);
 		
 		if (request.getParameter("btnLogin") != null) {
 
