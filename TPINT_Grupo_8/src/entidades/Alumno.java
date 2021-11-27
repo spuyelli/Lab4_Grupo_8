@@ -3,6 +3,20 @@ package entidades;
 public class Alumno extends Persona{
 	
 	private int legajo;
+	private boolean estado;
+	
+	///Constructor para ListarAlumno
+	public Alumno(int dni, int legajo2, String nombre, String apellido, String email, int telefono) {
+		super(dni, nombre, apellido, email, telefono);
+		this.legajo = legajo2;
+		
+	}
+
+
+
+	public Alumno() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getLegajo() {
 		return legajo;
@@ -12,6 +26,14 @@ public class Alumno extends Persona{
 		this.legajo = legajo;
 	}
 
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+	
 	@Override
 	public String toString() {
 		return "Alumno [legajo=" + legajo + ", estado=" + estado + ", getLegajo()=" + getLegajo() + ", getEstado()="

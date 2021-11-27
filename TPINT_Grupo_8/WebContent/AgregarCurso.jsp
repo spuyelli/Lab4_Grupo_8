@@ -1,3 +1,8 @@
+<%@page import="entidades.Materia"%>
+<%@page import="entidades.Alumno"%>
+<%@page import="entidades.Docente"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -31,10 +36,24 @@
 	<jsp:include page="Navbar.html"></jsp:include>
 	<div class="d-flex justify-content-center">
 		<h1 class="display-4 mt-5 ml-5">Agregar Curso</h1>
+			<%
+				List<Materia> listaM = new ArrayList<Materia>();
+				if (request.getAttribute("listaMat") != null) {
+					listaM = (List<Materia>) request.getAttribute("listaMat");
+				}
+				List<Docente> listaD = new ArrayList<Docente>();
+				if (request.getAttribute("listaDoc") != null) {
+					listaD = (List<Docente>) request.getAttribute("listaDoc");
+				}
+				List<Alumno> listaA = new ArrayList<Alumno>();
+				if (request.getAttribute("listaAlu") != null) {
+					listaA = (List<Alumno>) request.getAttribute("listaAlu");
+				}
+			%>
 	</div>
 	<br>
 	<div class="conteiner d-flex justify-content-center">
-		<form class="card p-3 bg-light  h-100 w-75 justify-content-center" style="height: 350px;" method="post" action="servlet.java">
+		<form class="card p-3 bg-light  h-100 w-75 justify-content-center" style="height: 350px;" method="post" action="ServletArticulos.java">
 
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
@@ -48,7 +67,15 @@
 				<div class="col-3 ml-4">
 					<div class="form-outline">
 						<label for="">Nombre de la Materia: </label>
-						<input type="text" class="form-control" id="inputNombreMateria" required>
+						<select type="text" class="form-control" id="selectMateria" required placeholder="-">
+							<%
+							for (Materia m : listaM) {
+						%>
+						<option value="<%=m.getIdMateria()%>"><%=m.getDescripcion()%></option>
+						<%
+							}
+						%>
+						</select>
 					</div>
 				</div>
 			</div>
@@ -70,10 +97,15 @@
 				</div>
 				<div class="col-3 ml-4">
 					<label for="">Nombre del Docente: </label>
-					<select type="text" class="form-control" id="inputDocente" required placeholder="Perez">
-						<option value="value1">Herrera, Tamara</option>
-						<option value="value2">Casa, Pepe</option>
-					</select>
+					<select type="text" class="form-control" id="selectDocente" required placeholder="-">
+							<%
+							for (Docente d : listaD) {
+						%>
+						<option value="<%=d.getDni()%>"><%=d.getNombre()%> <%=d.getApellido()%></option>
+						<%
+							}
+						%>
+						</select>
 				</div>
 			</div>
 

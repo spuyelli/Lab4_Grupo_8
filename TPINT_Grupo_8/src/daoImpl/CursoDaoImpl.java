@@ -16,42 +16,39 @@ import entidades.Materia;
 import entidades.Persona;
 
 public class CursoDaoImpl  implements CursoDao{
-	private Conexion conexion;
+	private Conexion cn;
 	private static final String readall = "select cursos.anio, cursos.id, cursos.semestre, docentes.apellido, materias.descripcion from docentes join cursos on docentes.dni = cursos.dniDocente join materias on cursos.idMateria = materias.id ";
 	private static final String test = "select * from cursos";
 	public CursoDaoImpl()
 	{
 		
 	}
-	
 	@Override
 	public List<Curso> readAll()
 	{
-		PreparedStatement statement = null;
-		ResultSet resultSet; //Guarda el resultado de la query
+		cn = new Conexion();
+		cn.Open();
 		ArrayList<Curso> cursos = new ArrayList<Curso>();
-		Connection conexion = Conexion.getConexion().getSQLConexion();
-		//Connection connection = conexion.getConexion();
-		
+			
+		System.out.println(readall);
+
 		try 
 		{
-			statement = conexion.prepareStatement(test);
-			
-			resultSet = statement.executeQuery();
-			while(resultSet.next())
+			ResultSet rs= cn.query(readall);
+			while(rs.next())
 			 {
 				 Curso cur = new Curso();
-				 cur.setIdCurso(resultSet.getInt("cursos.id"));
-				 cur.setSemestre(resultSet.getInt("cursos.semestre"));
-				 cur.setAño(resultSet.getInt("cursos.precio"));
+				 cur.setIdCurso(rs.getInt("cursos.id"));
+				 cur.setSemestre(rs.getInt("cursos.semestre"));
+				 cur.setAño(rs.getInt("cursos.anio"));
 				 
 				 Materia mat = new Materia();
-				 mat.setDescripcion(resultSet.getString("materias.descripcion"));
+				 mat.setDescripcion(rs.getString("materias.descripcion"));
 				 cur.setMateria(mat);
 
 				 
 				Persona per = new Persona();
-				per.setApellido(resultSet.getString("docentes.apellido"));
+				per.setApellido(rs.getString("docentes.apellido"));
 				cur.setDocente(per);
 				cursos.add(cur);
 			 }

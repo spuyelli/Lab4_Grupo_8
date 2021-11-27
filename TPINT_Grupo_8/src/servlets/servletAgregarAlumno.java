@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,7 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entidades.Alumno;
 import entidades.Pais;
+import negocio.PaisNeg;
+import negocio.ProvinciaNeg;
+import negocio.LocalidadNeg;
+import negocioImpl.LocalidadNegImpl;
+import negocioImpl.PaisNegImpl;
+import negocioImpl.ProvinciaNegImpl;
+
 
 /**
  * Servlet implementation class servletAgregarAlumno
@@ -17,7 +26,9 @@ import entidades.Pais;
 @WebServlet("/servletAgregarAlumno")
 public class servletAgregarAlumno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	PaisNeg paisNeg = new PaisNegImpl();
+	ProvinciaNeg provinciaNeg = new ProvinciaNegImpl();
+	LocalidadNeg localidadesNeg = new LocalidadNegImpl();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,10 +41,18 @@ public class servletAgregarAlumno extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Pais paises = null;
-		request.setAttribute("paises", paises);
-		RequestDispatcher rd = request.getRequestDispatcher("/AgregarAlumno.jsp");  
-        rd.forward(request, response);
+		
+		//DROPDOWN PAISES
+		request.setAttribute("paises", paisNeg.listarPaises());	
+		
+		//DROPDOWN PROVINCIAS
+		request.setAttribute("provincias", provinciaNeg.listarProvincias());	
+		
+		//DROPDOWN LOCALIDADES
+		request.setAttribute("localidades", localidadesNeg.listarLocalidades());	
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarAlumno.jsp");
+		dispatcher.forward(request, response);
+		
 	}
 
 	/**
@@ -41,10 +60,13 @@ public class servletAgregarAlumno extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int filas = 0;
-		if(request.getParameter("btnAceptar")!=null) {
-			
-		}
+		/**
+		Alumno alumnoNuevo = new Alumno(
+				Integer.parseInt(request.getParameter("dni")),
+				0,
+				request.getParameter("dni")
+				);
+		**/
 	}
 
 }
