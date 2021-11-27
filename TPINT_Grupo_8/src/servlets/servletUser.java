@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 import entidades.Usuario;
 import negocio.usuarioNeg;
@@ -27,17 +28,17 @@ public class servletUser extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(false);
 		
 		if (request.getParameter("btnLogin") != null) {
 
 			if(request.getParameter("Usuario") != null) {
-				response.sendRedirect("home.jsp");
+				//response.sendRedirect("home.jsp");
 				return;
 			} else {
 				Usuario user = userNegImp.select(Integer.parseInt(request.getParameter("txtDNI")));
 				if(user == null) {
-					JOptionPane.showMessageDialog(null, "Usuario incorrecto.", "Login incorrecto", JOptionPane.WARNING_MESSAGE);
+					session.setAttribute("Login_error", "Usuario incorrecto");
 					System.out.println("Usuario incorrecto");
 					response.sendRedirect("IniciarSesion.jsp");
 					return;
@@ -45,12 +46,13 @@ public class servletUser extends HttpServlet {
 				String passU = user.getPassword();
 				String passIN = request.getParameter("txtContraseña");
 				if(passU.equals(passIN)) {
-					request.setAttribute("Usuario", user);
-					JOptionPane.showMessageDialog(null, "Bienvenido DNI: " + user.getDni(), "Login exitoso", JOptionPane.WARNING_MESSAGE);
+					System.out.println("Login correcto");
+					session.setAttribute("Usuario", user);
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Contraseña incorrecta.", "Login incorrecto", JOptionPane.WARNING_MESSAGE);
+					session.setAttribute("Login_error", "Contraseña incorrecta.");
 					System.out.println("Contraseña incorrecta");
+					System.out.println(session.getAttribute("Login_error"));
 					response.sendRedirect("IniciarSesion.jsp");
 				}
 			}

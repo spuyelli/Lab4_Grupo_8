@@ -38,11 +38,10 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 
 	@Override
 	public Usuario select(int DNI) {
-		PreparedStatement statement;
 		Connection conexion = Conexion.getConexion().getSQLConexion();
 		ResultSet resultSet;
 		try {
-			statement = conexion.prepareStatement(select);
+			PreparedStatement statement = conexion.prepareStatement(select);
 			statement.setInt(1, DNI);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
