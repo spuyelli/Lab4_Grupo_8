@@ -64,9 +64,19 @@
          <%
 			if(session.getAttribute("Usuario") != null) {
 				Usuario user = (Usuario)session.getAttribute("Usuario");
-				String nombreApellido = user.getNombreApellido();
+				String usuarioYtipo = user.getNombreApellido();
+				switch (user.getTipoUsuario()){
+					case 1:
+						usuarioYtipo += " (Administrador)";
+						break;
+					case 2:
+						usuarioYtipo += " (Docente)";
+						break;
+					default:
+						usuarioYtipo += " (ERROR)";
+				}
 				%>
-				<label for="" class="form-label" style="color: red"> <%= nombreApellido %> </label>
+				<label for="" class="form-label" style="color: red"> <%= usuarioYtipo %> </label>
 				<%
 			}
 			else{
