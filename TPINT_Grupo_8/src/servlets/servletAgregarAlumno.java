@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+import entidades.Localidad;
+import entidades.Provincia;
 import entidades.Alumno;
 import entidades.Pais;
 import negocio.PaisNeg;
@@ -60,13 +64,27 @@ public class servletAgregarAlumno extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		/**
+		
 		Alumno alumnoNuevo = new Alumno(
 				Integer.parseInt(request.getParameter("dni")),
 				0,
-				request.getParameter("dni")
+				request.getParameter("dni"),
+				request.getParameter("nombre"),
+				request.getParameter("apellido"),
+				request.getParameter("email"),
+				Integer.parseInt(request.getParameter("telefono")),
+				new Pais(Integer.parseInt(request.getParameter("inputPais"))),
+				new Provincia(Integer.parseInt(request.getParameter("inputProvincia"))),
+				new Localidad(Integer.parseInt(request.getParameter("inputLocalidad"))), //q hacer con Localidad? ya q es parte de clase direccion
+				new Nacionalidad(Integer.parseInt(request.getParameter("inputPais2"))),
+				new Domicilio(request.getParameter("inputDireccion"), Integer.parseInt(request.getParameter("inputLocalidad"))),
+				new FechaNacimiento(LocalDate.parse(request.getParameter("inputFechaNacimiento"))),
+				true //ESTADO
 				);
-		**/
+		
+		 NegocioAlumno negocioAlumno = new NegocioAlumno();
+
+         int estado = negocioAlumno.agregarAlumno(AlumnoAdd);
 	}
 
 }

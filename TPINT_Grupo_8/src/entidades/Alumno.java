@@ -11,7 +11,8 @@ public class Alumno extends Persona{
 		this.legajo = legajo2;
 		
 	}
-
+	///Constructor para AgregarAlumno
+		
 
 
 	public Alumno() {

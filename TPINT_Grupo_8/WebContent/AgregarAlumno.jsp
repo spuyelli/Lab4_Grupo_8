@@ -79,7 +79,7 @@
 			
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
-					<label for="">Dirección</label>
+					<label for="">Dirección:</label>
 					<input type="text" class="form-control" id="inputDireccion" required placeholder="Cabildo 1234">
 				</div>
 				<div class="col-3 pr-4">
@@ -140,7 +140,7 @@
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Nacionalidad</label>
-					<select class="form-control" name="inputPais" id="inputPais" required>
+					<select class="form-control" name="inputPais2" id="inputPais" required>
 						<%
 							for(Pais pais : Paises)
 					         {

@@ -8,5 +8,6 @@ public interface AlumnoNeg {
 	
 	boolean actualizarAlumno(Alumno al);
 	ArrayList<Alumno> listarAlumnos();
+	boolean agregarAlumno(Alumno alumno);
 
 }

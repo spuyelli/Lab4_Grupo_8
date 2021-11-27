@@ -3,12 +3,12 @@ package negocioImpl;
 import java.util.ArrayList;
 
 import dao.DocenteDao;
-import daoImpl.DocenteDaoImp;
+import daoImpl.DocenteDaoImpl;
 import entidades.Docente;
 import negocio.DocenteNeg;
 
 public class DocenteNegImpl implements DocenteNeg{
-	private DocenteDao docDao = new DocenteDaoImp();
+	private DocenteDao docDao = new DocenteDaoImpl();
 	
 	public DocenteNegImpl() {
 		

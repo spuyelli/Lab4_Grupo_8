@@ -12,10 +12,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class AlumnoDaoImp implements AlumnoDao {
+public class AlumnoDaoImpl implements AlumnoDao {
 	
 	private static final String readall = "select * from universidad.alumnos where estado = 1";
-	public AlumnoDaoImp()
+	public AlumnoDaoImpl()
 	{
 		
 	}
@@ -86,5 +86,19 @@ public class AlumnoDaoImp implements AlumnoDao {
 		}return false;
 	}
 	
+	public boolean agregarAlumno(Alumno alumno) { ///FALTA DESARROLLAR INCOMPLETO)
+		PreparedStatement statement;
+		ResultSet resultSet;	
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		try {
+			statement = conexion.prepareStatement("insert into Alumnos (dni, legajo, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) values " + "(" +al.getNombre()  +" ' , apellido = '"+al.getApellido()+"' , domicilio = '"+al.getDomicilio()+"', fechaNacimiento ='"+al.getFechaNacimiento()+"',idNacionalidad='"+al.getNacionalidad()+"', idLocalidad='"+al.getNacionalidad()+"', email='"+al.getEmail()+"', telefono='"+al.getTelefono()+" where dni = '"+al.getDni()+"'"
+			);
+			resultSet = statement.executeQuery();
+			if(resultSet != null) {return true;}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}return false;
+	}
 	
 }
+

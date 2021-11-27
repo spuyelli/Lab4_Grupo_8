@@ -11,10 +11,10 @@ import entidades.Docente;
 import entidades.Materia;
 import entidades.Persona;
 
-public class DocenteDaoImp implements DocenteDao {
+public class DocenteDaoImpl implements DocenteDao {
 	private Conexion cn;
 	private static final String readall = "select * from docentes";
-	public DocenteDaoImp()
+	public DocenteDaoImpl()
 	{
 		
 	}

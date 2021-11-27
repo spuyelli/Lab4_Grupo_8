@@ -10,14 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import negocio.AlumnoNeg;
-import negocioImpl.AlumnoNegImp;
+import negocioImpl.AlumnoNegImpl;
+
 
 
 @WebServlet("/servletListarAlumno")
 public class servletListarAlumno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	AlumnoNeg aNeg = new AlumnoNegImp(); 
+	AlumnoNeg aNeg = new AlumnoNegImpl(); 
        
     
     public servletListarAlumno() {
