@@ -49,11 +49,13 @@
 				if (request.getAttribute("listaAlu") != null) {
 					listaA = (List<Alumno>) request.getAttribute("listaAlu");
 				}
+				
+			
 			%>
 	</div>
 	<br>
 	<div class="conteiner d-flex justify-content-center">
-		<form class="card p-3 bg-light  h-100 w-75 justify-content-center" style="height: 350px;" method="post" action="ServletArticulos.java">
+		<form class="card p-3 bg-light  h-100 w-75 justify-content-center" style="height: 350px;" method="post" action="servletCurso">
 
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
@@ -67,7 +69,7 @@
 				<div class="col-3 ml-4">
 					<div class="form-outline">
 						<label for="">Nombre de la Materia: </label>
-						<select type="text" class="form-control" id="selectMateria" required placeholder="-">
+						<select type="text" class="form-control" name = "selectMateria" id="selectMateria" required placeholder="-">
 							<%
 							for (Materia m : listaM) {
 						%>
@@ -85,7 +87,7 @@
 					<div class="row justify-content-center">
 						<div class="col">
 							<label for="">Año: </label>
-							<input type="number" class="form-control" id="inputAnio">
+							<input type="number" name = "inputAnio" class="form-control" id="inputAnio">
 						</div>
 						<div class="col" style="text-align: center;">
 							<label for="">Semestre: </label>
@@ -97,7 +99,7 @@
 				</div>
 				<div class="col-3 ml-4">
 					<label for="">Nombre del Docente: </label>
-					<select type="text" class="form-control" id="selectDocente" required placeholder="-">
+					<select type="text" class="form-control" name="selectDocente" id="selectDocente" required placeholder="-">
 							<%
 							for (Docente d : listaD) {
 						%>
@@ -143,7 +145,7 @@
 			</table>
 			<div class="row mb-4 justify-content-center" style="height: 50px;">
 				<div class="col-4 ml-4">
-					<button type="submit" class="btn btn-primary w-100 mt-4 ml-2">Agregar</button>
+					<button type="submit" name= "btnAceptar" value= "Aceptar" class="btn btn-primary w-100 mt-4 ml-2">Agregar</button>
 				</div>
 			</div>
 		</form>
