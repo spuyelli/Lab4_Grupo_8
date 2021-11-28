@@ -198,8 +198,9 @@ public class AlumnoDaoImpl implements AlumnoDao {
 				statement.setString(8, alumno.getEmail());
 				statement.setInt(9, alumno.getTelefono());
 				statement.setBoolean(10, true);
-				
-				
+			
+				ResultSet resultSet = statement.executeQuery();
+				return true;
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -209,7 +210,7 @@ public class AlumnoDaoImpl implements AlumnoDao {
 			
 			
 		
-		 return true;
+		 return false;
 	
 	}
 
