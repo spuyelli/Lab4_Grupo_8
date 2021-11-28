@@ -31,9 +31,10 @@ public class servletListarAlumno extends HttpServlet {
 		
 		RequestDispatcher dispatcherListar = request.getRequestDispatcher("/ListaAlumnos.jsp");
 		
-		if(request.getSession().getAttribute("mensaje")!=null && request.getSession().getAttribute("mensaje").toString().equalsIgnoreCase("success")){
-			request.setAttribute("alumnoAgregado", true);
-			request.getSession().removeAttribute("mensaje");
+		//IF PARA MOSTRAR MENSAJE DE AGREGADO a la BD correctamente
+		if(request.getSession().getAttribute("mensaje")!=null && request.getSession().getAttribute("mensaje").toString().equalsIgnoreCase("success")){ //pregunta si la session tiene un atributo llamado mensaje y cuyo contenido es success que viene del servletAgregarAlumno
+			request.setAttribute("alumnoAgregado", true); //entonces agregamos un atributo a una variable en el request para leerlo en el listarAlumno.jsp 
+			request.getSession().removeAttribute("mensaje"); //elimina la variable mensaje pq sino cada vez q cargue el listado mostrara el mensaje de agregado con exito
 		}
 			
 		if(request.getParameter("Param")!=null)
