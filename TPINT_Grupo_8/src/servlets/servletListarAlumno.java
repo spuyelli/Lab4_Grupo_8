@@ -29,10 +29,16 @@ public class servletListarAlumno extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		RequestDispatcher dispatcherListar = request.getRequestDispatcher("/ListaAlumnos.jsp");
+		
+		if(request.getSession().getAttribute("mensaje")!=null && request.getSession().getAttribute("mensaje").toString().equalsIgnoreCase("success")){
+			request.setAttribute("alumnoAgregado", true);
+			request.getSession().removeAttribute("mensaje");
+		}
+			
 		if(request.getParameter("Param")!=null)
 		{
 			request.setAttribute("listaAlumnos", aNeg.listarAlumnos());
-			RequestDispatcher dispatcherListar = request.getRequestDispatcher("/ListaAlumnos.jsp");
 			dispatcherListar.forward(request, response);					
 			
 		}
