@@ -25,6 +25,7 @@ public class AlumnoNegImpl implements AlumnoNeg{
 	@Override
 	public boolean actualizarAlumno(Alumno al) {
 		// TODO Auto-generated method stub
+		aluDao.ModificarAlumno(al);
 		return false;
 	}
 
@@ -36,6 +37,12 @@ public class AlumnoNegImpl implements AlumnoNeg{
 		AlumnoDao alumnoDao = new AlumnoDaoImpl();
 		boolean estado = alumnoDao.agregarAlumno(alumno)? true : false;
 		return true;
+	}
+	
+	public Alumno buscarAlumno(int dni) {
+		System.out.print("esto es negocio buscar alumno:" + dni);
+	return aluDao.BuscarAlumno(dni);
+		
 	}
 	
 	

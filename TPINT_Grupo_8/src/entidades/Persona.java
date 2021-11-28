@@ -1,5 +1,6 @@
 package entidades;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Persona {
@@ -104,7 +105,7 @@ public class Persona {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
-	
+
 	
 
 }

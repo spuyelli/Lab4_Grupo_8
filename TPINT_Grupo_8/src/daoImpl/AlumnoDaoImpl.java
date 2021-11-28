@@ -5,7 +5,14 @@ import java.util.concurrent.locks.StampedLock;
 
 import dao.AlumnoDao;
 import entidades.Alumno;
+import entidades.Domicilio;
+import entidades.Localidad;
+import entidades.Pais;
+import entidades.Persona;
+import entidades.Provincia;
+
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +23,8 @@ public class AlumnoDaoImpl implements AlumnoDao {
 	
 	private static final String readall = "select * from universidad.alumnos where estado = 1";
 	private static final String insert = "INSERT INTO universidad.alumnos (dni, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+    private static final String buscar ="select * from universidad.alumnos where dni=?";
+    private static final String modificar ="update alumno set dni= ?,nombre = ?, apellido= ?,fechaNacimiento= ?,idNacionalidad= ?,domicilio = ?,idLocalidad = ?,email = ?,telefono = ?,estado = ? where dni = ?";
 	
 	public AlumnoDaoImpl()
 	{
@@ -73,19 +81,6 @@ public class AlumnoDaoImpl implements AlumnoDao {
 		return false;
 	}
 	
-	public Boolean actualizarAlumno(Alumno al) {
-		PreparedStatement statement;
-		ResultSet resultSet;	
-		Connection conexion = Conexion.getConexion().getSQLConexion();
-		try {
-			statement = conexion.prepareStatement("update alumnos set nombre ='"+al.getNombre()  +" ' , apellido = '"+al.getApellido()+"' , domicilio = '"+al.getDomicilio()+"', fechaNacimiento ='"+al.getFechaNacimiento()+"',idNacionalidad='"+al.getNacionalidad()+"', idLocalidad='"+al.getNacionalidad()+"', email='"+al.getEmail()+"', telefono='"+al.getTelefono()+" where dni = '"+al.getDni()+"'"
-			);
-			resultSet = statement.executeQuery();
-			if(resultSet != null) {return true;}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}return false;
-	}
 	
 	public boolean agregarAlumno(Alumno alumno) { 
 		 
@@ -126,5 +121,97 @@ public class AlumnoDaoImpl implements AlumnoDao {
 		return false;
 	
 	}
+	
+	
+	
+
+
+	@Override
+	public Alumno BuscarAlumno(int dni){
+		Alumno al = new Alumno();
+		Conexion conexionSql = null;
+		
+		try {
+			
+			conexionSql = new Conexion();
+			Connection connection  = Conexion.getConexion().getSQLConexion();
+			PreparedStatement statement = connection.prepareStatement(buscar);
+			statement.setInt(1, dni);
+				
+			ResultSet resultSet = statement.executeQuery();
+			while(resultSet.next()) {
+			 System.out.print(resultSet.getInt("legajo"));
+		   	 al.setDni(resultSet.getInt("dni"));
+		   	 al.setLegajo(resultSet.getInt("legajo"));
+		   	 al.setNombre(resultSet.getString("nombre"));
+		   	 al.setApellido(resultSet.getString("apellido"));
+		   	 al.setEmail(resultSet.getString("email"));
+		   	 al.setTelefono(resultSet.getInt("telefono"));
+		   	 
+		    Domicilio dom = new Domicilio();
+		   	dom.setCalle_Numero(resultSet.getString("domicilio"));
+			al.setDomicilio(dom);
+				
+			Pais pais = new Pais();
+			pais.setIdPais(resultSet.getInt("idNacionalidad"));
+			al.setNacionalidad(pais);
+				
+			Localidad loc = new Localidad();
+			loc.setIdLocalidad(resultSet.getInt("idLocalidad"));
+			al.setLocalidad(loc);
+				
+			Persona pers = new Persona();
+			pers.setFechaNacimiento(resultSet.getDate("fechaNacimiento").toLocalDate());
+			al.setFechaNacimiento(pers.getFechaNacimiento());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return al;
+		
+	}
+	
+	
+	//1	2	3	
+	@Override// dni ant //1
+	public boolean ModificarAlumno(Alumno alumno){ //dni actual //3
+		// TODO Auto-generated method stub
+		
+	Conexion conexionSql = null; 
+		
+
+				
+		    conexionSql = new Conexion();
+			Connection connection  = Conexion.getConexion().getSQLConexion();
+
+			try {
+				PreparedStatement statement = connection.prepareStatement(modificar);
+				
+				statement.setInt(1, alumno.getDni());
+				statement.setString(2, alumno.getNombre());
+				statement.setString(3, alumno.getApellido());
+				statement.setString(4, alumno.getFechaNacimiento().toString());
+				statement.setInt(5, alumno.getNacionalidad().getIdPais());
+				statement.setString(6, alumno.getDomicilio().getCalle_Numero());
+				statement.setInt(7, alumno.getLocalidad().getIdLocalidad());
+				statement.setString(8, alumno.getEmail());
+				statement.setInt(9, alumno.getTelefono());
+				statement.setBoolean(10, true);
+				
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			
+		
+		 return true;
+	
+	}
+
 }
 

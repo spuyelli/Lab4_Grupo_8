@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entidades.Alumno;
 import negocio.AlumnoNeg;
 import negocioImpl.AlumnoNegImpl;
 
@@ -38,8 +39,14 @@ public class servletListarAlumno extends HttpServlet {
 		}
 		
 		if (request.getParameter("btnModificar") != null) {
-			RequestDispatcher dispatcherModificar = request.getRequestDispatcher("/ModificarAlumno.jsp");
-			dispatcherModificar.forward(request, response);
+			
+			Alumno al = new Alumno();
+			AlumnoNegImpl alNeg = new AlumnoNegImpl();
+			System.out.println(request.getParameter("dniSeleccionado"));
+			al = alNeg.buscarAlumno(Integer.parseInt(request.getParameter("dniSeleccionado")));
+			request.setAttribute("Alumno", al);
+			request.getRequestDispatcher("ModificarAlumno.jsp").forward(request, response);
+			
 		}
 	
 	}
