@@ -18,7 +18,9 @@ public class UsuarioNegImpl implements UsuarioNeg{
 
 	@Override
 	public boolean insert(Usuario user) {
-		return uDAO.insert(user);
+		UsuarioDAO usuarioDao = new UsuarioDAOImpl();
+		boolean estado = usuarioDao.insert(user)? true : false;
+		return estado;
 	}
 
 	@Override
@@ -30,7 +32,5 @@ public class UsuarioNegImpl implements UsuarioNeg{
 	public boolean update(int DNI, boolean estado) {
 		return uDAO.update(DNI, estado);
 	}
-	
-	
 
 }

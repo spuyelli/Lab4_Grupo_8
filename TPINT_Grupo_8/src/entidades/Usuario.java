@@ -4,6 +4,7 @@ public class Usuario extends Persona{
 	private String password;
 	private int tipoUsuario;
 	private boolean estado;
+	
 	public Usuario(int dni, String password, int tipoUsuario, boolean estado, String nombre, String apellido) {
 		setDni(dni);
 		this.password = password;

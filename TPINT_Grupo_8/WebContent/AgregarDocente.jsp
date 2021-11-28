@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import ="entidades.Docente" %>
+<%@page import ="entidades.Pais" %>
+<%@page import ="entidades.Provincia" %>
+<%@page import ="entidades.Localidad" %>
+<%@page import ="java.util.ArrayList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,16 +22,33 @@
 <!-- FONTAWESOME -->
 <script src="https://kit.fontawesome.com/a076d05399.js"
 	crossorigin="anonymous"></script>
-<title>Agregar profesor</title>
+<title>Agregar Docente</title>
 </head>
 <body>
 	<jsp:include page="Navbar.jsp"></jsp:include>
 	<div class="d-flex justify-content-center">
 		<h1 class="display-4 mt-3 ml-5">Agregar Docente</h1>
 	</div>
+	<%
+         ArrayList<Pais> Paises = new ArrayList<Pais>();
+         if(request.getAttribute("paises")!=null)
+         {
+             Paises = (ArrayList<Pais>)request.getAttribute("paises"); 
+         }
+         ArrayList<Provincia> Provincias = new ArrayList<Provincia>();
+         if(request.getAttribute("provincias")!=null)
+         {
+             Provincias = (ArrayList<Provincia>)request.getAttribute("provincias"); 
+         }
+         ArrayList<Localidad> Localidades = new ArrayList<Localidad>();
+         if(request.getAttribute("localidades")!=null)
+         {
+             Localidades = (ArrayList<Localidad>)request.getAttribute("localidades"); 
+         }
+     %>
 	<br>
 	<div class="conteiner d-flex justify-content-center">
-		<form class="card p-3 bg-light w-75 justify-content-center">
+		<form class="card p-3 bg-light w-75 justify-content-center" method="post" action="servletAgregarDocente">
 
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
@@ -36,28 +58,34 @@
 				</div>
 				<div class="col-3 pr-4">
 					<div class="form-outline">
-						<label for="">Dni</label> <input type="number" class="form-control" id="inputDNI" required placeholder="01234567">
+						<label for="">Dni</label> <input type="number" class="form-control" name="inputDNI" id="inputDNI" required placeholder="01234567">
 					</div>
 				</div>
 			</div>
 			
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
-					<label for="">Nombre</label> <input type="text" class="form-control" id="inputNombre" required placeholder="Juana">
+					<label for="">Nombre</label> <input type="text" class="form-control" name="inputNombre" id="inputNombre" required placeholder="Juana">
 				</div>
 				<div class="col-3 pr-4">
-					<label for="">Apellido</label> <input type="text" class="form-control" id="inputApellido" required placeholder="Perez">
+					<label for="">Apellido</label> <input type="text" class="form-control" name="inputApellido" id="inputApellido" required placeholder="Perez">
 				</div>
 			</div>
 			
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
-					<label for="">Dirección</label> <input type="text" class="form-control" id="inputDireccion" required placeholder="Cabildo 1234">
+					<label for="">Dirección</label> <input type="text" class="form-control" name="inputDireccion" id="inputDireccion" required placeholder="Cabildo 1234">
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">País de residencia</label> <select class="form-control" name="inputPais" id="inputPais" required>
-						<option value="value1">Argentina</option>
-						<option value="value1">Uruguay</option>
+						<%
+							for(Pais pais : Paises)
+					         {
+					             %>
+					                <option value=<%=pais.getIdPais()%>><%=pais.getDescripcion()%></option>
+					             <%
+					         }
+     					%>
 					</select>
 				</div>
 			</div>
@@ -65,52 +93,70 @@
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Provincia</label> <select class="form-control" name="inputProvincia" id="inputProvincia" required>
-						<option value="value1">Buenos Aires</option>
-						<option value="value1">Entre Ríos</option>
+						<%
+							for(Provincia provincia : Provincias)
+					         {
+					             %>
+					                <option value=<%=provincia.getIdProvincia()%>><%=provincia.getDescripcion()%></option>
+					             <%
+					         }
+     					%>
 					</select>
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">Localidad</label> <select class="form-control" name="inputLocalidad" id="inputLocalidad" required>
-						<option value="value1">General Pacheco</option>
-						<option value="value1">Tigre</option>
+						<%
+							for(Localidad localidad : Localidades)
+					         {
+					             %>
+					                <option value=<%=localidad.getIdLocalidad()%>><%=localidad.getDescripcion()%></option>
+					             <%
+					         }
+     					%>
 					</select>
 				</div>
 			</div>
 
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
-					<label for="">Teléfono</label> <input type="number" class="form-control" id="inputTelefono" required placeholder="1122223333">
+					<label for="">Teléfono</label> <input type="number" class="form-control" name="inputTelefono" id="inputTelefono" required placeholder="1122223333">
 				</div>
 
 				<div class="col-3 pr-4">
-					<label for="">Email</label> <input type="email" class="form-control" id="inputEmail" required placeholder="juana@perez.com">
+					<label for="">Email</label> <input type="email" class="form-control" name="inputEmail" id="inputEmail" required placeholder="juana@perez.com">
 				</div>
 			</div>
 
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
-					<label for="">Nacionalidad</label> <select class="form-control" name="inputPais" id="inputPais" required>
-						<option value="value1">Argentina</option>
-						<option value="value1">Uruguay</option>
+					<label for="">Nacionalidad</label> <select class="form-control" name="inputNacionalidad" id="inputNacionalidad" required>
+						<%
+							for(Pais pais : Paises)
+					         {
+					             %>
+					                <option value=<%=pais.getIdPais()%>><%=pais.getDescripcion()%></option>
+					             <%
+					         }
+     					%>
 					</select>
 				</div>
 				<div class="col-3 pr-4">
-					<label for="">Fecha de Nacimiento</label> <input type="date" class="form-control" required id="inputFechaNacimiento">
+					<label for="">Fecha de Nacimiento</label> <input type="date" class="form-control" required name="inputFechaNacimiento" id="inputFechaNacimiento">
 				</div>
 
 			</div>
 			<div class="row  justify-content-center">
 				<div class="col-3 ml-4">
-					<label for="">Contraseña</label> <input type="password" class="form-control" id="inputPass" required>
+					<label for="">Contraseña</label> <input type="password" class="form-control" name="inputPass" id="inputPass" required>
 				</div>
 				<div class="col-3 pr-4">
-					<label for="">Repetir Contraseña</label> <input type="password" class="form-control" required id="inputCfmPass">
+					<label for="">Repetir Contraseña</label> <input type="password" class="form-control" required name="inputRepetirPass" id="inputRepetirPass">
 				</div>
 
 			</div>
 			<div class="row mb-1 justify-content-center">
 				<div class="col-4 ml-4">
-					<button type="submit" class="btn btn-primary w-100 mt-4 ml-2">Agregar</button>
+					<button type="submit" class="btn btn-primary w-100 mt-4 ml-2" name="btnAgregarDocente">Agregar</button>
 				</div>
 			</div>
 

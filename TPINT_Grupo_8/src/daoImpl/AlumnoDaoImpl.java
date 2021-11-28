@@ -91,9 +91,7 @@ public class AlumnoDaoImpl implements AlumnoDao {
 		 
 		Conexion conexionSql = null; 
 		
-
-		try {
-			
+		try {	
 		    conexionSql = new Conexion();
 			Connection connection  = Conexion.getConexion().getSQLConexion();
 			

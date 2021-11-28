@@ -35,7 +35,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownDocentes">
           <a class="dropdown-item" href="ListaDocentes.jsp">Listado Docentes</a>
-          <a class="dropdown-item" href="AgregarDocente.jsp">Agregar Docente</a>
+          <a class="dropdown-item" href="servletAgregarDocente?Param=list">Agregar Docente</a>
         </div>
       </li>
       <li class="nav-item dropdown">

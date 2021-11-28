@@ -26,12 +26,9 @@ public class Alumno extends Persona{
 		this.setPais(pais);
 	}
 
-
-
 	public Alumno() {
 		// TODO Auto-generated constructor stub
 	}
-
 	
 	public int getLegajo() {
 		return legajo;
@@ -58,8 +55,5 @@ public class Alumno extends Persona{
 				+ ", getTelefono()=" + getTelefono() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
 				+ ", toString()=" + super.toString() + "]";
 	}
-	
-	
-
 
 }

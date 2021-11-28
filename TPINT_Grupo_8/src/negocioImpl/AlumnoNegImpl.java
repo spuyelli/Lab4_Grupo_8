@@ -35,7 +35,7 @@ public class AlumnoNegImpl implements AlumnoNeg{
 		//boolean estado = AlumnoDaoImpl //.agregarAlumno(alumno)? true : false;
 		AlumnoDao alumnoDao = new AlumnoDaoImpl();
 		boolean estado = alumnoDao.agregarAlumno(alumno)? true : false;
-		return true;
+		return estado;
 	}
 	
 	
