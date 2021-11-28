@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `universidad`.`paises` (
   `descripcion` VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `universidad`.`provincias` (
     FOREIGN KEY (`idPais`)
     REFERENCES `universidad`.`paises` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 26
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `universidad`.`localidades` (
     FOREIGN KEY (`idProvincia`)
     REFERENCES `universidad`.`provincias` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 126
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `universidad`.`alumnos` (
     FOREIGN KEY (`idLocalidad`)
     REFERENCES `universidad`.`localidades` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2007
+AUTO_INCREMENT = 2000
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `universidad`.`materias` (
   `descripcion` VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `universidad`.`cursos` (
     FOREIGN KEY (`dniDocente`)
     REFERENCES `universidad`.`docentes` (`dni`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 103
+AUTO_INCREMENT = 100
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -225,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `universidad`.`carrera` (
   `descripcion` VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -257,7 +257,7 @@ CREATE TABLE IF NOT EXISTS `universidad`.`tiposusuario` (
   `descripcion` VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (`idTipo`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -290,7 +290,7 @@ TRIGGER `universidad`.`usuarios_BEFORE_INSERT`
 BEFORE INSERT ON `universidad`.`usuarios`
 FOR EACH ROW
 BEGIN
-	if (new.dni not in (select a.dni from admins a where (new.dni = a.dni)) && new.tipoUsuario = 1)
+	if (new.dni not in (select a.dni from admins a where (new.dni = a.dni)) and new.tipoUsuario = 1)
 		then
 			call `error en insert usuario - trigger - docente en admin`;
 		if new.dni not in (select d.dni from docentes d where (new.dni = d.dni))
