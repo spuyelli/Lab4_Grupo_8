@@ -25,7 +25,7 @@ public class AlumnoDaoImpl implements AlumnoDao {
 	private static final String insert = "INSERT INTO universidad.alumnos (dni, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String buscar ="select * from universidad.alumnos where dni=?";
     private static final String modificar ="update alumno set dni= ?,nombre = ?, apellido= ?,fechaNacimiento= ?,idNacionalidad= ?,domicilio = ?,idLocalidad = ?,email = ?,telefono = ?,estado = ? where dni = ?";
-	
+	private static final String modificarEjemplo = "update alumnos set nombre=?,apellido=?,FechaNacimiento= ?,domicilio= ?,email=?,telefono=? where dni=?";
 	public AlumnoDaoImpl()
 	{
 		
@@ -179,37 +179,45 @@ public class AlumnoDaoImpl implements AlumnoDao {
 		// TODO Auto-generated method stub
 		
 	Conexion conexionSql = null; 
-		
-
 				
 		    conexionSql = new Conexion();
 			Connection connection  = Conexion.getConexion().getSQLConexion();
 
 			try {
-				PreparedStatement statement = connection.prepareStatement(modificar);
+				PreparedStatement statement = connection.prepareStatement(modificarEjemplo);
+				System.out.println("llamada a modificar");
 				
-				statement.setInt(1, alumno.getDni());
-				statement.setString(2, alumno.getNombre());
-				statement.setString(3, alumno.getApellido());
-				statement.setString(4, alumno.getFechaNacimiento().toString());
-				statement.setInt(5, alumno.getNacionalidad().getIdPais());
-				statement.setString(6, alumno.getDomicilio().getCalle_Numero());
-				statement.setInt(7, alumno.getLocalidad().getIdLocalidad());
-				statement.setString(8, alumno.getEmail());
-				statement.setInt(9, alumno.getTelefono());
-				statement.setBoolean(10, true);
+				
+				
+				statement.setString(1, alumno.getNombre());
+				statement.setString(2, alumno.getApellido());
+				
+				statement.setString(3, alumno.getFechaNacimiento().toString());
 			
-				ResultSet resultSet = statement.executeQuery();
-				return true;
+			//	statement.setInt(5, alumno.getNacionalidad().getIdPais());
+				statement.setString(4, alumno.getDomicilio().getCalle_Numero());
+
+			//	statement.setInt(7, alumno.getLocalidad().getIdLocalidad());
+				statement.setString(5, alumno.getEmail());
+		
+				statement.setInt(6, alumno.getTelefono());
+				
+				
+				
+				statement.setInt(7, alumno.getDni());
+				
+				System.out.println(alumno.getNombre()+ alumno.getApellido() + alumno.getDni());
+				
+				if(statement.executeUpdate()==1) {
+					connection.commit();
+					return true;
+				}
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
-			
-		
+				
 		 return false;
 	
 	}

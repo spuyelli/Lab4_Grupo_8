@@ -52,7 +52,7 @@
 				<div class="col-3 pr-4">
 					<div class="form-outline">
 						<label for="">Dni</label>
-						<input type="number" class="form-control" id="inputDNI" required placeholder="DNI" value="<%=al.getDni() %>" readonly>
+						<input type="number" class="form-control" id="inputDNI" name="Dni" required placeholder="DNI" value="<%=al.getDni() %>" readonly>
 					</div>
 				</div>
 			</div>
@@ -60,22 +60,22 @@
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Nombre</label>
-					<input type="text" class="form-control" id="inputNombre" required placeholder="NOMBRE" value="<%=al.getNombre() %>">
+					<input type="text" class="form-control" id="inputNombre" name="Nombre" required placeholder="NOMBRE" value="<%=al.getNombre() %>">
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">Apellido</label>
-					<input type="text" class="form-control" id="inputApellido" required placeholder="APELLIDO" value="<%=al.getApellido() %>">
+					<input type="text" class="form-control" id="inputApellido" name="Apellido" required placeholder="APELLIDO" value="<%=al.getApellido() %>">
 				</div>
 			</div>
 			
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Dirección</label>
-					<input type="text" class="form-control" id="inputDireccion" required placeholder="DIRECCION" value="<%=al.getDomicilio() %>">
+					<input type="text" class="form-control" id="inputDireccion" name="Domicilio" required placeholder="DIRECCION" value="<%=al.getDomicilio() %>">
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">País de residencia</label>
-					<select class="form-control" name="inputPais" id="inputPais" required placeholder="PAIS">
+					<select class="form-control" name="inputPais" id="inputPais" name="Nacionalidad" required placeholder="PAIS">
 						<option value="value1">Argentina</option>
 						<option value="value1">Uruguay</option>
 					</select>
@@ -85,14 +85,14 @@
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Provincia</label>
-					<select class="form-control" name="inputProvincia" id="inputProvincia" required placeholder="PROVINCIA" >
+					<select class="form-control" name="inputProvincia" id="inputProvincia" name="Provincia" required placeholder="PROVINCIA" >
 						<option value="value1">Buenos Aires</option>
 						<option value="value1">Entre Ríos</option>
 					</select>
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">Localidad</label>
-					<select class="form-control" name="inputLocalidad" id="inputLocalidad" required placeholder="LOCALIDAD" >
+					<select class="form-control" name="inputLocalidad" id="inputLocalidad" name="Localidad" required placeholder="LOCALIDAD" >
 						<option value="value1">General Pacheco</option>
 						<option value="value1">Tigre</option>
 					</select>
@@ -102,25 +102,25 @@
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Teléfono</label>
-					<input type="number" class="form-control" id="inputTelefono" required placeholder="TELEFONO" value="<%=al.getTelefono() %>">
+					<input type="number" class="form-control" id="inputTelefono" name="Telefono" required placeholder="TELEFONO" value="<%=al.getTelefono() %>">
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">Email</label>
-					<input type="email" class="form-control" id="inputEmail" required placeholder="EMAIL" value="<%=al.getEmail() %>">
+					<input type="email" class="form-control" id="inputEmail" name="Email" required placeholder="EMAIL" value="<%=al.getEmail() %>">
 				</div>
 			</div>
 
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Nacionalidad</label>
-					<select class="form-control" name="inputPais" id="inputPais" required >
+					<select class="form-control" name="inputPais" name="Pais" id="inputPais" required >
 						<option value="value1">Argentina</option>
 						<option value="value1">Uruguay</option>
 					</select>
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">Fecha de Nacimiento</label>
-					<input type="date" class="form-control" required id="inputFechaNacimiento" value="<%=al.getFechaNacimiento() %>">
+					<input type="date" class="form-control" name="FechaNacimiento" required id="inputFechaNacimiento" value="<%=al.getFechaNacimiento() %>">
 				</div>
 
 			</div>
