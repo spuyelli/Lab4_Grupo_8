@@ -6,6 +6,7 @@ import daoImpl.AlumnoDaoImpl;
 import daoImpl.Conexion;
 import daoImpl.CursoDaoImpl;
 import entidades.Alumno;
+import entidades.Curso;
 import negocio.AlumnoNeg;
 
 public class AlumnoNegImpl implements AlumnoNeg{

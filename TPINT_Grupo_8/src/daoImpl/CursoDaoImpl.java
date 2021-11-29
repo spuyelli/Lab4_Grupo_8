@@ -47,7 +47,7 @@ public class CursoDaoImpl  implements CursoDao{
 				 Curso cur = new Curso();
 				 cur.setIdCurso(rs.getInt("cursos.id"));
 				 cur.setSemestre(rs.getInt("cursos.semestre"));
-				 cur.setAï¿½o(rs.getInt("cursos.anio"));
+				 cur.setAño(rs.getInt("cursos.anio"));
 
 				 Materia mat = new Materia();
 				 mat.setDescripcion(rs.getString("materias.descripcion"));
@@ -108,7 +108,7 @@ public boolean insertar(Curso curso) {
 		cn = new Conexion();
 		cn.Open();
 
-		String query = "INSERT INTO cursos (idMateria,dniDocente,semestre,anio) VALUES ('"+curso.getMateria().getIdMateria()+"','"+curso.getDocente().getDni()+"','"+curso.getSemestre()+"', '"+curso.getAï¿½o()+"')";
+		String query = "INSERT INTO cursos (idMateria,dniDocente,semestre,anio) VALUES ('"+curso.getMateria().getIdMateria()+"','"+curso.getDocente().getDni()+"','"+curso.getSemestre()+"', '"+curso.getAño()+"')";
 
 		try
 		 {
@@ -197,7 +197,7 @@ public boolean insertar(Curso curso) {
 		Curso cur = new Curso();
 		cur.setIdCurso(resultSet.getInt("cursos.id"));
 		cur.setSemestre(resultSet.getInt("cursos.semestre"));
-		cur.setAï¿½o(resultSet.getInt("cursos.anio"));
+		cur.setAño(resultSet.getInt("cursos.anio"));
 
 		Materia mat = new Materia();
 		mat.setDescripcion(resultSet.getString("materias.descripcion"));
@@ -207,5 +207,15 @@ public boolean insertar(Curso curso) {
 		per.setApellido(resultSet.getString("docentes.apellido"));
 		cur.setDocente(per);
 		return cur;
+	}
+	@Override
+	public List<Curso> readAllUser(Usuario user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Curso obtenerUno(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

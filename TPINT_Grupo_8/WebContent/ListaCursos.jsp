@@ -68,7 +68,7 @@
             <td><%=c.getIdCurso()%></td>
             <td><%=c.getMateria().getDescripcion()%></td>
             <td><%=c.getSemestre()%></td>
-            <td><%=c.getAï¿½o()%></td>
+            <td><%=c.getAño()%></td>
             <td><%=c.getDocente().getApellido() %> <%=c.getDocente().getNombre() %></td>
             <td><input type="submit" name="btnCalificaciones" value="Calificar: <%=c.getIdCurso() %>"></input> </td>
 

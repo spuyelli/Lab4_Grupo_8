@@ -149,7 +149,6 @@ public class AlumnoDaoImpl implements AlumnoDao {
 		return estado;
 	}
 
-}
 
 	public Alumno select(int dni) {
 		PreparedStatement statement;

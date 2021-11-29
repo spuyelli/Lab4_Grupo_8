@@ -132,9 +132,6 @@
         		
     		<% if(listaA != null) for (Alumno alumno : listaA) { %>
         	<tr>
-	            
-	            
-	            
 	            <td><%=alumno.getDni() %>></td>
 	            <td><%=alumno.getLegajo() %></td>
 	            <td><%=alumno.getNombre() %></td>
