@@ -185,8 +185,7 @@ public class AlumnoDaoImpl implements AlumnoDao {
 		   	 al.setEmail(resultSet.getString("email"));
 		   	 al.setTelefono(resultSet.getInt("telefono"));
 		   	 
-		    Domicilio dom = new Domicilio();
-		   	dom.setCalle_Numero(resultSet.getString("domicilio"));
+		   	Domicilio dom = new Domicilio(resultSet.getString("domicilio"));
 			al.setDomicilio(dom);
 				
 			Pais pais = new Pais();
@@ -259,7 +258,6 @@ public class AlumnoDaoImpl implements AlumnoDao {
 	
 	}
 
-}
 
 	public Alumno select(int dni) {
 		PreparedStatement statement;

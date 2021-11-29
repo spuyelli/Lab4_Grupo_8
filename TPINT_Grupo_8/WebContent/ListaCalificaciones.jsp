@@ -45,7 +45,7 @@
 		if (request.getAttribute("ListaCalificaciones") != null) {
 			lista = (List<Calificacion>) request.getAttribute("ListaCalificaciones");
 		}else{
-			lista = new CalificacionNegImpl().readAll();
+			lista = new CalificacionNegImpl().readAll(((Curso) session.getAttribute("Curso")).getIdCurso());
 		}
 	
 	%>

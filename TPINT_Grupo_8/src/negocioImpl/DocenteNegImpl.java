@@ -30,7 +30,6 @@ public class DocenteNegImpl implements DocenteNeg{
 	}
 	
 	
-}
 	public Docente BuscarDocente(int dni) {
 
 		return docDao.BuscarDocente(dni);
