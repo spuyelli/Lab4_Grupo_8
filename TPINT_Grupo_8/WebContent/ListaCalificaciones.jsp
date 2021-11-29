@@ -1,3 +1,10 @@
+<%@page import="entidades.Calificacion"%>
+<%@page import="negocioImpl.CalificacionNegImpl"%>
+<%@page import="entidades.Curso"%>
+<%@page import="entidades.Alumno"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -30,15 +37,25 @@
 <body>
 	<jsp:include page="Navbar.jsp"></jsp:include>
 	
-<h1 class="display-4 mt-3 ml-5">Listado de Calificaciones del Curso X</h1>
-<br>		
-	<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="Servlet.jsp">
+<h1 class="display-4 mt-3 ml-5">Listado de Calificaciones del Curso <label for="" class="form-label"><%= ((Curso)session.getAttribute("Curso")).getMateria().getDescripcion()%> - Semestre <%= ((Curso)session.getAttribute("Curso")).getSemestre() %>, Año <%= ((Curso)session.getAttribute("Curso")).getAño() %></label> </h1>
+<br>
+	<%
+		List<Calificacion> lista =  new ArrayList<Calificacion>();
+		
+		if (request.getAttribute("ListaCalificaciones") != null) {
+			lista = (List<Calificacion>) request.getAttribute("ListaCalificaciones");
+		}else{
+			lista = new CalificacionNegImpl().readAll();
+		}
+	
+	%>
+	<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="servletCalificaciones">
 
 	<table id="ListaCalificaciones" class="display">
     	<thead>
         	<tr>
-	            <th>Legajo</th>
-	            <th>Nombre y Apellido</th>
+	            <th>Nombre</th>
+	            <th>Apellido</th>
 	            <th>Parcial 1</th>
 	            <th>Parcial 2</th>
 	            <th>Recuperatorio 1</th>
@@ -51,33 +68,20 @@
     	</thead>
     	<tbody>
     
-    		<!-- DATOS DE EJEMPLO. ACA REALIZAMOS LA BUSQUEDA SEGUN LO NECESITADO  -->
+    		<% if(lista != null ) for (Calificacion cal : lista) {%>
         	<tr>
-	            <td>1</td>
-	            <td>Juan Gonzalez</td>
-	            <td>6</td>
-	            <td>8</td>
-	            <td>8</td>
-	            <td></td>
-	            <td>7,33</td>
-	            <td>Regular</td>
-	            <td>  <input type="checkbox" id="cbox1" > </td>
-	            
-            
+	            <td><%=cal.getNombre() %></td>
+	            <td><%=cal.getApellido() %></td>
+	            <td><%=cal.getParcial1() %></td>
+	            <td><%=cal.getParcial2() %></td>
+	            <td><%=cal.getRecuperatorio1() %></td>
+	            <td><%=cal.getRecuperatorio2() %></td>
+	            <% int prom = ((cal.getParcial1() + cal.getParcial2() + cal.getRecuperatorio1() + cal.getRecuperatorio2())/4); %>
+	            <td><%=prom %></td>
+	            <td><%=cal.isestadoAprobacion()%></td>
+	            <td>  <input type="checkbox" id="cbox1" value=""> </td>
         	</tr>
-        	<tr>
-	            <td>2</td>
-	            <td>Luis Miguel</td>
-	            <td>4</td>
-	            <td>5</td>
-	            <td>10</td>
-	            <td>10</td>
-	            <td>7,25</td>
-	            <td>Regular</td>
-	            <td> <input type="checkbox" id="cbox2" > </td>
-            
-        	</tr>
-            
+            <% } %>
         
     	</tbody>
 	</table>

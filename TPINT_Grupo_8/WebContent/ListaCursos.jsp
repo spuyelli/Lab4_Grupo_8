@@ -44,7 +44,7 @@
 	%>
 
 <br>		
-	<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="servletCurso.java">
+	<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="servletCurso">
 	
 	
 	<table id="ListaCursos" class="display">
@@ -60,19 +60,17 @@
     	</thead>
     	<tbody>
     
-    		<!-- DATOS DE EJEMPLO. ACA REALIZAMOS LA BUSQUEDA A LA BD  -->
-    		
     		<%
 			for (Curso c : listaC) {
 			%>
     		
         <tr>
-            <td><%=c.getIdCurso()%></td>
+            <td><%=c.getIdCurso()%><input type="hidden" name="cursoSeleccionado" value="<%=c.getIdCurso() %>"></td>
             <td><%=c.getMateria().getDescripcion()%></td>
             <td><%=c.getSemestre()%></td>
             <td><%=c.getAño()%></td>
             <td><%=c.getDocente().getApellido() %> <%=c.getDocente().getNombre() %></td>
-            <td><input type="submit" name="btnCalificaciones1" value="Calificaciones"></input> </td>
+            <td><input type="submit" name="btnCalificaciones" value="Calificar: <%=c.getIdCurso() %>"></input> </td>
             
         </tr>
        
@@ -82,8 +80,5 @@
     	</tbody>
 	</table>
 	</form>
-	</div>
-	</div>
-	
 	</body>
 </html>

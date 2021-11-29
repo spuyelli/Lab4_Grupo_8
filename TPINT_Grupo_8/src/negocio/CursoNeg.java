@@ -9,4 +9,5 @@ public interface CursoNeg {
 	public boolean insertar(Curso articulo);
 	public boolean editar(Curso articulo);
 	public boolean borrar(int id);
+	public Curso select(int id);
 }

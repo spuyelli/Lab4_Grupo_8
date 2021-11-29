@@ -7,5 +7,6 @@ public interface AlumnoDao {
 	
 	public List<Alumno> readAll();
 	public boolean agregarAlumno(Alumno alumno);
+	public Alumno select(int dni);
 
 }

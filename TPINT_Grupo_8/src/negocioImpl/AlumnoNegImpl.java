@@ -1,16 +1,10 @@
 package negocioImpl;
 
 import java.util.ArrayList;
-
-
 import dao.AlumnoDao;
-import dao.CursoDao;
 import daoImpl.AlumnoDaoImpl;
-import daoImpl.CursoDaoImpl;
 import entidades.Alumno;
-import entidades.Curso;
 import negocio.AlumnoNeg;
-import negocio.CursoNeg;
 
 public class AlumnoNegImpl implements AlumnoNeg{
 	private AlumnoDao aluDao = new AlumnoDaoImpl();
@@ -36,6 +30,11 @@ public class AlumnoNegImpl implements AlumnoNeg{
 		AlumnoDao alumnoDao = new AlumnoDaoImpl();
 		boolean estado = alumnoDao.agregarAlumno(alumno)? true : false;
 		return estado;
+	}
+
+	@Override
+	public Alumno select(int dni) {
+		return aluDao.select(dni);
 	}
 	
 	

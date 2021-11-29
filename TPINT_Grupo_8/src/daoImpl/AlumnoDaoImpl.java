@@ -1,8 +1,6 @@
 package daoImpl;
 
 import java.util.List;
-import java.util.concurrent.locks.StampedLock;
-
 import dao.AlumnoDao;
 import entidades.Alumno;
 import java.sql.SQLException;
@@ -16,7 +14,7 @@ public class AlumnoDaoImpl implements AlumnoDao {
 	
 	private static final String readall = "select * from universidad.alumnos where estado = 1";
 	private static final String insert = "INSERT INTO universidad.alumnos (dni, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+	private static final String select = "select * from universidad.alumnos where estado = 1 and dni = ?";
 	
 	public AlumnoDaoImpl()
 	{
@@ -124,5 +122,21 @@ public class AlumnoDaoImpl implements AlumnoDao {
 		return false;
 	
 	}
-}
 
+	public Alumno select(int dni) {
+		PreparedStatement statement;
+		ResultSet resultSet;		
+		Conexion conexion = Conexion.getConexion();
+		try {
+			statement = conexion.getSQLConexion().prepareStatement(select);
+			statement.setInt(1, dni);
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				return getAlumno(resultSet);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+}

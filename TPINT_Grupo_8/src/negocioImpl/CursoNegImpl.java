@@ -47,5 +47,10 @@ public class CursoNegImpl implements CursoNeg{
 		return curDao.borrar(id);
 	}
 
+	@Override
+	public Curso select(int id) {
+		return curDao.select(id);
+	}
+
 	
 }
