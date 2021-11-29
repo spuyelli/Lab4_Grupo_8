@@ -11,5 +11,6 @@ public interface CursoNeg {
 	public boolean insertar(Curso articulo);
 	public boolean editar(Curso articulo);
 	public boolean borrar(int id);
-	Curso obtenerUltimo();
+	public Curso select(int id);
+	public Curso obtenerUltimo();
 }

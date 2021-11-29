@@ -9,19 +9,19 @@ import entidades.Usuario;
 import negocio.CursoNeg;
 
 public class CursoNegImpl implements CursoNeg{
-	
+
 	private CursoDao curDao = new CursoDaoImpl();
-	
+
 	//Se puede recibir por constructor
 	public CursoNegImpl(CursoDao curDao)
 	{
 		this.curDao = curDao;
 	}
-	
+
 	public CursoNegImpl()
 	{
 	}
-	
+
 	@Override
 	public ArrayList<Curso> listarCursos() {
 		return (ArrayList<Curso>) curDao.readAll();
@@ -31,8 +31,8 @@ public class CursoNegImpl implements CursoNeg{
 	public Curso obtenerUltimo() {
 		return curDao.obtenerUltimo();
 	}
-	
-	
+
+
 	@Override
 	public boolean insertar(Curso curso) {
 		return curDao.insertar(curso);
@@ -45,11 +45,15 @@ public class CursoNegImpl implements CursoNeg{
 
 	@Override
 	public boolean borrar(int id) {
-		
+
 		return curDao.borrar(id);
 	}
 
 	@Override
+	public Curso select(int id) {
+		return curDao.select(id);
+	}
+
 	public Curso obtenerUno(int id) {
 		// TODO Auto-generated method stub
 		return null;
@@ -61,5 +65,5 @@ public class CursoNegImpl implements CursoNeg{
 	}
 
 
-	
+
 }

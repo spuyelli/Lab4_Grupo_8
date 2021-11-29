@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 import com.mysql.cj.Session;
@@ -87,7 +88,6 @@ public class servletCurso extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
 		if(request.getParameter("btnAceptar")!=null)
 	    {
@@ -143,10 +143,21 @@ public class servletCurso extends HttpServlet {
 	    		System.out.println("agregado");
 	    		request.setAttribute("agreagdo", est);
 	    		JOptionPane.showMessageDialog(null, "Curso agregado correctamente", null, JOptionPane.WARNING_MESSAGE);
+	    		
 	    	}
 	    	request.setAttribute("agreagdo", est);
 	    	RequestDispatcher dispatcher = request.getRequestDispatcher("/ListaCursos.jsp");
 			dispatcher.forward(request, response);
+	    }
+		
+		if(request.getParameter("btnCalificaciones")!=null){
+			HttpSession session = request.getSession();
+			Curso c = new Curso();
+			c = negCur.select(Integer.parseInt(request.getParameter("btnCalificaciones").replace("Calificar: ", "")));
+			session.setAttribute("Redirect", "true");
+			session.setAttribute("Curso", c);
+			response.sendRedirect("servletCalificaciones");
+			//request.getRequestDispatcher("/servletCalificaciones?").forward(request, response);
 	    }
 	}
 

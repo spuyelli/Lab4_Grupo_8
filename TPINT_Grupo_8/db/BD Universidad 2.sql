@@ -267,7 +267,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `universidad`.`usuarios` (
   `dni` INT NOT NULL,
-  `tipoUsuario` INT NOT NULL,
+  `tipoUsuario` INT NULL,
   `pass` VARCHAR(50) NOT NULL,
   `estado` TINYINT NULL DEFAULT '1',
   PRIMARY KEY (`dni`),
@@ -290,14 +290,16 @@ TRIGGER `universidad`.`usuarios_BEFORE_INSERT`
 BEFORE INSERT ON `universidad`.`usuarios`
 FOR EACH ROW
 BEGIN
-	if (new.dni not in (select a.dni from admins a where (new.dni = a.dni)) and new.tipoUsuario = 1)
+	if (new.dni in (select a.dni from admins a where (new.dni = a.dni)))
 		then
-			call `error en insert usuario - trigger - docente en admin`;
-		if new.dni not in (select d.dni from docentes d where (new.dni = d.dni))
+			set new.tipoUsuario = 1;
+		elseif new.dni in (select d.dni from docentes d where (new.dni = d.dni))
 			then
-			call `error en insert usuario - trigger - no admin, no docente`;
-		end if;
-    end if;
+            set new.tipoUsuario = 2;
+		else
+			SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'Error en trigger insert_usuario: no admin, no docente';
+        end if;
+--    end if;
 END$$
 
 

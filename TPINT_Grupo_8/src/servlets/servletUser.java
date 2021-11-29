@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.tomcat.jni.User;
+
 import entidades.Usuario;
 import negocio.UsuarioNeg;
 import negocioImpl.UsuarioNegImpl;
@@ -49,6 +52,16 @@ public class servletUser extends HttpServlet {
 				String passIN = request.getParameter("txtContraseña");
 				if(passU.equals(passIN)) {
 					System.out.println("Login correcto");
+					user.setDni(0);
+					user.setDomicilio(null);
+					user.setEmail("");
+					user.setFechaNacimiento(null);
+					user.setLocalidad(null);
+					user.setNacionalidad(null);;
+					user.setPais(null);
+					user.setPassword("");
+					user.setProvincia(null);
+					user.setTelefono(0);
 					session.setAttribute("Usuario", user);
 					session.setMaxInactiveInterval(60*3);
 					response.sendRedirect("Home.jsp");

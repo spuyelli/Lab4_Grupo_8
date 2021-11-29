@@ -10,7 +10,7 @@ import entidades.Usuario;
 
 public class UsuarioDAOImpl implements UsuarioDAO{
 	
-	private static final String insert = "INSERT INTO universidad.usuarios (dni, tipoUsuario, pass, estado) VALUES (?, ?, ?, ?)";
+	private static final String insert = "INSERT INTO universidad.usuarios (dni, pass) VALUES (?, ?)";
 	private static final String selectAdmin = "SELECT usuarios.*, admins.nombre, admins.apellido FROM universidad.usuarios inner join universidad.admins on usuarios.dni =  admins.dni where usuarios.dni = ? and usuarios.estado = true";
 	private static final String selectDocente = "SELECT usuarios.*, docentes.nombre, docentes.apellido FROM universidad.usuarios inner join universidad.docentes on usuarios.dni =  docentes.dni where usuarios.dni = ? and usuarios.estado = true";
 	private static final String update = "UPDATE `universidad`.`usuarios` SET `estado` = ? WHERE (`dni` = ?)";
@@ -25,9 +25,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 			
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setInt(1, user.getDni());
-			statement.setInt(2, user.getTipoUsuario());
-			statement.setString(3, user.getPassword());
-			statement.setBoolean(4, true);
+			statement.setString(2, user.getPassword());
 			
 			if(statement.executeUpdate()==1) {
 				connection.commit();

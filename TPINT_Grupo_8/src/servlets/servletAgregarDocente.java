@@ -86,7 +86,6 @@ public class servletAgregarDocente extends HttpServlet {
         boolean estadoDocenteNuevo = docenteNegocio.agregarDocente(docenteNuevo);
         
         //AGREGO USUARIO
-        //public Usuario(int dni, String password, int tipoUsuario, boolean estado, String nombre, String apellido)
         
         Usuario usuarioNuevo = new Usuario(
         		Integer.parseInt(request.getParameter("inputDNI")), 

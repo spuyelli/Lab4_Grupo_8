@@ -87,10 +87,19 @@ public class servletAgregarAlumno extends HttpServlet {
 		AlumnoNeg alumnoNegocio = new AlumnoNegImpl();
 
         boolean estado = alumnoNegocio.agregarAlumno(alumnoNuevo);
+   
         
-        //TODO: MOSTRAR MENSAJE ERROR O SUCCESS, modificar query del insert.
+        //VALIDACIONES de DNI 
         
-        response.sendRedirect("ListaAlumnos.jsp");
+        if (estado) {
+        	request.getSession().setAttribute("mensaje", "success");
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/servletListarAlumno?Param=list");
+			dispatcher.forward(request, response);
+        }
+        else {
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarAlumnoError.jsp");
+        	dispatcher.forward(request, response);
+        }
 	}
 
 }

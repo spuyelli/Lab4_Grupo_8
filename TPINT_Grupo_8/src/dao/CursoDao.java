@@ -11,5 +11,6 @@ public interface CursoDao {
 	public boolean insertar(Curso curso);
 	public boolean editar(Curso curso);
 	public boolean borrar(int id);
+	public Curso select(int id);
 	Curso obtenerUltimo();
 }

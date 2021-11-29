@@ -15,7 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	
+
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
@@ -25,8 +25,8 @@
         $('#ListaCursos').DataTable();
     	} );
     </script>
-    
-    
+
+
 	<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- FONTAWESOME -->
@@ -43,47 +43,42 @@
 		}
 	%>
 
-<br>		
-	<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="servletCurso.java">
-	
-	
+<br>
+	<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="servletCurso">
+
+
 	<table id="ListaCursos" class="display">
     	<thead>
         	<tr>
 	            <th>ID Curso</th>
 	            <th>Materia</th>
 	            <th>Semestre</th>
-	            <th>Año</th>
+	            <th>Aï¿½o</th>
 	            <th>Docente</th>
 	            <th></th>
 	        </tr>
     	</thead>
     	<tbody>
-    
-    		<!-- DATOS DE EJEMPLO. ACA REALIZAMOS LA BUSQUEDA A LA BD  -->
-    		
+
     		<%
 			for (Curso c : listaC) {
 			%>
-    		
+
         <tr>
             <td><%=c.getIdCurso()%></td>
             <td><%=c.getMateria().getDescripcion()%></td>
             <td><%=c.getSemestre()%></td>
-            <td><%=c.getAño()%></td>
-            <td><%=c.getDocente().getApellido() %> <%=c.getDocente().getNombre() %>  </td>
-            <td><input type="submit" name="btnCalificaciones1" value="Calificaciones"></input> </td>
-            
+            <td><%=c.getAï¿½o()%></td>
+            <td><%=c.getDocente().getApellido() %> <%=c.getDocente().getNombre() %></td>
+            <td><input type="submit" name="btnCalificaciones" value="Calificar: <%=c.getIdCurso() %>"></input> </td>
+
         </tr>
-       
+
         <%
 			}
 		%>
     	</tbody>
 	</table>
 	</form>
-	</div>
-	</div>
-	
 	</body>
 </html>
