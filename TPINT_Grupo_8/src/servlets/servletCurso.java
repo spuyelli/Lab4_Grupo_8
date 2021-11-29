@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 import com.mysql.cj.Session;
 
@@ -17,6 +16,7 @@ import entidades.Alumno;
 import entidades.Curso;
 import entidades.Docente;
 import entidades.Materia;
+import entidades.Persona;
 import entidades.Usuario;
 import negocio.AlumnoNeg;
 import negocio.CursoNeg;
@@ -37,8 +37,8 @@ public class servletCurso extends HttpServlet {
 	AlumnoNeg negAlu = new AlumnoNegImpl();
 	MateriaNeg negMat = new MateriaNegImpl();
 	DocenteNeg negDoc = new DocenteNegImpl();
-	
-	
+	Usuario user = new Usuario();
+	Persona per;
     public servletCurso() {
         super();
         // TODO Auto-generated constructor stub
@@ -66,12 +66,13 @@ public class servletCurso extends HttpServlet {
 			}
 			case "list":
 			{	
-				Usuario user = (Usuario)request.getSession().getAttribute("Usuario");
-				System.out.println(user.getApellido()+ " " + user.getTipoUsuario());
+				Usuario user = new Usuario();
+				user = (Usuario)request.getSession().getAttribute("Usuario");
+				
 				if(user.getTipoUsuario()== 1) {//SI ES ADMIN TRAIGO TODO
 					request.setAttribute("listaCur", negCur.listarCursos());		
 				}else {
-					request.setAttribute("listaCur", negCur.listarCursosUsuario(user));
+					request.setAttribute("listaCur", negCur.listarCursosUsuario(user.getDni()));
 				}
 				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListaCursos.jsp");
@@ -118,6 +119,7 @@ public class servletCurso extends HttpServlet {
 		    	c.setSemestre(Integer.parseInt(request.getParameter("inputSemestre")));
 		    	
 		    	estado = negCur.insertar(c);
+		    	if(!estado)request.setAttribute("error_curso", "ok");
 		    	
 		    	//DESPUES AGREGO LOS ALUMNOS AL CURSO
 		    	for (String dni : request.getParameterValues("dniSeleccionado")){
@@ -130,23 +132,25 @@ public class servletCurso extends HttpServlet {
 		    	
 		    	
 	    	}else {
+	    		request.setAttribute("error_dni", "ok");
 	    		estado = false;
 	    	}
 	    	
 	    	
 	    	if(!estado) {
-	    		est= "error";
+	    		//est= "error";
 	    		System.out.println("no pudo agregar");
-	    		JOptionPane.showMessageDialog(null, "Error agregando el curso", null, JOptionPane.WARNING_MESSAGE);
-	    	}else {
-	    		est= "ok";
-	    		System.out.println("agregado");
-	    		request.setAttribute("agreagdo", est);
-	    		JOptionPane.showMessageDialog(null, "Curso agregado correctamente", null, JOptionPane.WARNING_MESSAGE);
 	    		
+	    	}else {
+	    		//est= "ok";
+	    		System.out.println("agregado");
+	    		request.setAttribute("ok", "ok");
 	    	}
-	    	request.setAttribute("agreagdo", est);
-	    	RequestDispatcher dispatcher = request.getRequestDispatcher("/ListaCursos.jsp");
+
+	    	request.setAttribute("listaMat", negMat.listarMaterias());
+			request.setAttribute("listaAlumnos", negAlu.listarAlumnos());					
+			request.setAttribute("listaDoc", negDoc.listarDocentes());
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarCurso.jsp");
 			dispatcher.forward(request, response);
 	    }
 		

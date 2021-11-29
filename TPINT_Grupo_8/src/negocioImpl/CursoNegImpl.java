@@ -38,16 +38,6 @@ public class CursoNegImpl implements CursoNeg{
 		return curDao.insertar(curso);
 	}
 
-	@Override
-	public boolean editar(Curso curso) {
-		return curDao.editar(curso);
-	}
-
-	@Override
-	public boolean borrar(int id) {
-
-		return curDao.borrar(id);
-	}
 
 	@Override
 	public Curso select(int id) {
@@ -60,8 +50,8 @@ public class CursoNegImpl implements CursoNeg{
 	}
 
 	@Override
-	public ArrayList<Curso> listarCursosUsuario(Usuario user) {
-		return (ArrayList<Curso>) curDao.readAllUser(user);
+	public ArrayList<Curso> listarCursosUsuario(int dniUser) {
+		return (ArrayList<Curso>) curDao.readAllUser(dniUser);
 	}
 
 

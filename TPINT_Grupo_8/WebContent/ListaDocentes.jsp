@@ -40,7 +40,7 @@
 	
 	<% 
 		boolean eliminado = (boolean)request.getAttribute("docenteEliminado");
-		if (eliminado == true) {%>	<div class="alert alert-success">Se eliminó el Docente correctamente!</div>	<%}%>
+		if (eliminado == true) {%>	<div class="alert alert-success">Se eliminï¿½ el Docente correctamente!</div>	<%}%>
 	
 	<%
 		
@@ -60,7 +60,7 @@
 	            <th>Nombre</th>
 	            <th>Apellido</th>
 	            <th>E-mail</th>
-	            <th>Teléfono</th>
+	            <th>Telï¿½fono</th>
 	            <th></th>
 	            <th></th>
 	            

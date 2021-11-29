@@ -13,6 +13,11 @@ public class Domicilio {
 	public Domicilio(String calle_numero) {
 		this.calle_numero = calle_numero;
 	}
+	public Domicilio() {
+		// TODO Auto-generated constructor stub
+	}
+	
+
 	public String getCalle_Numero() {
 		return calle_numero;
 	}

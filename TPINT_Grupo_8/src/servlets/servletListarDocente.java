@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import negocio.DocenteNeg;
+import entidades.Alumno;
+import entidades.Docente;
+import negocioImpl.AlumnoNegImpl;
 import negocioImpl.DocenteNegImpl;
 
 
@@ -59,6 +62,11 @@ public class servletListarDocente extends HttpServlet {
 			
 		}
 		
+		Docente doc = new Docente();
+		DocenteNegImpl docNeg = new DocenteNegImpl();
+		doc = docNeg.BuscarDocente(Integer.parseInt(request.getParameter("dniSeleccionado")));
+		request.setAttribute("Docente", doc);
+		request.getRequestDispatcher("ModificarAlumno.jsp").forward(request, response);
 		
 	}
 

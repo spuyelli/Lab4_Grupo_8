@@ -12,4 +12,6 @@ public interface AlumnoDao {
 	public boolean agregarAlumnoACurso(Alumno alumno, Curso curso);
 	public boolean eliminarAlumno(int dni);
 
+	public Alumno BuscarAlumno(int dni);
+	public boolean ModificarAlumno(Alumno alumno);
 }

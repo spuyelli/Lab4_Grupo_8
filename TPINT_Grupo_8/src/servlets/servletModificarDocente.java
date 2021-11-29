@@ -2,7 +2,6 @@ package servlets;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,20 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entidades.Alumno;
+import entidades.Docente;
 import entidades.Domicilio;
 import negocioImpl.AlumnoNegImpl;
+import negocioImpl.DocenteNegImpl;
 
 /**
- * Servlet implementation class servletModificarAlumno
+ * Servlet implementation class servletModificarDocente
  */
-@WebServlet("/servletModificarAlumno")
-public class servletModificarAlumno extends HttpServlet {
+@WebServlet("/servletModificarDocente")
+public class servletModificarDocente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public servletModificarAlumno() {
+    public servletModificarDocente() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,6 +37,7 @@ public class servletModificarAlumno extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -47,24 +49,23 @@ public class servletModificarAlumno extends HttpServlet {
 		Domicilio dom = new Domicilio();
 		dom.setCalle_Numero(request.getParameter("Domicilio"));
 		
-		AlumnoNegImpl AlumNeg = new AlumnoNegImpl();
-		Alumno al = new Alumno();
-		al.setDni(Integer.parseInt(request.getParameter("Dni")));
-		al.setNombre(request.getParameter("Nombre"));
-		al.setEmail(request.getParameter("Email"));
-		al.setApellido(request.getParameter("Apellido"));
-		al.setDomicilio(dom);
-		al.setFechaNacimiento(LocalDate.parse(request.getParameter("FechaNacimiento")));
-		al.setTelefono(Integer.parseInt(request.getParameter("Telefono")));
+		DocenteNegImpl DocNeg = new DocenteNegImpl();
+		Docente doc = new Docente();
+		doc.setDni(Integer.parseInt(request.getParameter("Dni")));
+		doc.setNombre(request.getParameter("Nombre"));
+		doc.setEmail(request.getParameter("Email"));
+		doc.setApellido(request.getParameter("Apellido"));
+		doc.setDomicilio(dom);
+		doc.setFechaNacimiento(LocalDate.parse(request.getParameter("FechaNacimiento")));
+		doc.setTelefono(Integer.parseInt(request.getParameter("Telefono")));
 	
 		
-		AlumNeg.actualizarAlumno(al);
+		DocNeg.ModificaDocente(doc);
 				
+				//la domada es ahi
 		
 		
-        response.sendRedirect("ListaAlumnos.jsp");
-		
-		// doGet(request, response);
+		doGet(request, response);
 	}
 
 }
