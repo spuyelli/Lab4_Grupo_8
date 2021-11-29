@@ -14,6 +14,10 @@ public class Alumno extends Persona{
 		this.legajo = legajo2;
 		
 	}
+	public Alumno(int dni) {
+		this.setDni(dni);
+	}
+	
 	///Constructor para AgregarAlumno
 	public Alumno(int dni, String nombre, String apellido, LocalDate fechaNacimiento, Pais nacionalidad, Domicilio domicilio, Localidad localidad, Provincia provincia, Pais pais, String email, int telefono) {
 		super(dni, nombre, apellido, email, telefono);

@@ -10,9 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
+import com.mysql.cj.Session;
+
+import entidades.Alumno;
 import entidades.Curso;
 import entidades.Docente;
 import entidades.Materia;
+import entidades.Usuario;
 import negocio.AlumnoNeg;
 import negocio.CursoNeg;
 import negocio.DocenteNeg;
@@ -51,7 +55,7 @@ public class servletCurso extends HttpServlet {
 			switch (opcion) {
 			case "previoAgregar":
 			{
-				//Se quiere insertar entonces cargo la lista de categorias
+				
 				request.setAttribute("listaMat", negMat.listarMaterias());
 				request.setAttribute("listaAlumnos", negAlu.listarAlumnos());					
 				request.setAttribute("listaDoc", negDoc.listarDocentes());
@@ -60,8 +64,15 @@ public class servletCurso extends HttpServlet {
 				break;
 			}
 			case "list":
-			{
-				request.setAttribute("listaCur", negCur.listarCursos());	
+			{	
+				Usuario user = (Usuario)request.getSession().getAttribute("Usuario");
+				System.out.println(user.getApellido()+ " " + user.getTipoUsuario());
+				if(user.getTipoUsuario()== 1) {//SI ES ADMIN TRAIGO TODO
+					request.setAttribute("listaCur", negCur.listarCursos());		
+				}else {
+					request.setAttribute("listaCur", negCur.listarCursosUsuario(user));
+				}
+				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListaCursos.jsp");
 				dispatcher.forward(request, response);
 				break;
@@ -83,29 +94,58 @@ public class servletCurso extends HttpServlet {
 	    	Curso c = new Curso();
 	    	Materia m = new Materia();
 	    	Docente d = new Docente();
+	    	Alumno a = new Alumno();
 	    	
-	    	m.setIdMateria(Integer.parseInt(request.getParameter("selectMateria")));
-	    	c.setMateria(m);
-	    	d.setDni(Integer.parseInt(request.getParameter("selectDocente")));
-	    	c.setDocente(d);
+	    	Curso ultimoCurso;
+	    	int nuevoIdCurso;
 	    	
-	    	c.setAño(Integer.parseInt(request.getParameter("inputAnio")));
-	    	c.setSemestre(Integer.parseInt(request.getParameter("inputSemestre")));
-
-
 	    	boolean estado=true;
-	    	estado = negCur.insertar(c);
+	    	String est="";
+
+	    	if(request.getParameter("dniSeleccionado")!=null) {
+	    		
+	    		ultimoCurso = negCur.obtenerUltimo();
+	    		nuevoIdCurso = ultimoCurso.getIdCurso() + 1;
+	    		c.setIdCurso(nuevoIdCurso);	    
+	    		
+	    		//PRIMERO CREO EL CURSO
+	    		m.setIdMateria(Integer.parseInt(request.getParameter("selectMateria")));
+		    	c.setMateria(m);
+		    	d.setDni(Integer.parseInt(request.getParameter("selectDocente")));
+		    	c.setDocente(d);
+		    	
+		    	c.setAño(Integer.parseInt(request.getParameter("inputAnio")));
+		    	c.setSemestre(Integer.parseInt(request.getParameter("inputSemestre")));
+		    	
+		    	estado = negCur.insertar(c);
+		    	
+		    	//DESPUES AGREGO LOS ALUMNOS AL CURSO
+		    	for (String dni : request.getParameterValues("dniSeleccionado")){
+		    		Alumno alu = new Alumno(Integer.parseInt(dni));
+		    		negAlu.agregarAlumnoACurso(alu, c);
+		    	}
+		    	
+		    	
+		    	request.setAttribute("agregado", estado);
+		    	
+		    	
+	    	}else {
+	    		estado = false;
+	    	}
 	    	
-	    	request.setAttribute("agregado", estado);
+	    	
 	    	if(!estado) {
+	    		est= "error";
 	    		System.out.println("no pudo agregar");
 	    		JOptionPane.showMessageDialog(null, "Error agregando el curso", null, JOptionPane.WARNING_MESSAGE);
 	    	}else {
+	    		est= "ok";
 	    		System.out.println("agregado");
+	    		request.setAttribute("agreagdo", est);
 	    		JOptionPane.showMessageDialog(null, "Curso agregado correctamente", null, JOptionPane.WARNING_MESSAGE);
 	    	}
-	    	
-	    	RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarCurso.jsp");
+	    	request.setAttribute("agreagdo", est);
+	    	RequestDispatcher dispatcher = request.getRequestDispatcher("/ListaCursos.jsp");
 			dispatcher.forward(request, response);
 	    }
 	}

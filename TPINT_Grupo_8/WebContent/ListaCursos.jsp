@@ -71,7 +71,7 @@
             <td><%=c.getMateria().getDescripcion()%></td>
             <td><%=c.getSemestre()%></td>
             <td><%=c.getAño()%></td>
-            <td><%=c.getDocente().getApellido() %> <%=c.getDocente().getNombre() %></td>
+            <td><%=c.getDocente().getApellido() %> <%=c.getDocente().getNombre() %>  </td>
             <td><input type="submit" name="btnCalificaciones1" value="Calificaciones"></input> </td>
             
         </tr>

@@ -62,11 +62,13 @@
         <a class="nav-link mr-2 h5" href="Home.jsp" id="botonUsuario"  >
          <i class="fas fa-user"></i> <!--  @usuario(@tipoUsuario)--> 
          <%
+         	
 			if(session.getAttribute("Usuario") != null) {
 				Usuario user = (Usuario)session.getAttribute("Usuario");
 				String usuarioYtipo = user.getNombreApellido();
 				switch (user.getTipoUsuario()){
 					case 1:
+						session.setAttribute("dniDocente", user.getDni());
 						usuarioYtipo += " (Administrador)";
 						break;
 					case 2:

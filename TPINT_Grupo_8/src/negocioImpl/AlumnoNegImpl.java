@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import dao.AlumnoDao;
 import dao.CursoDao;
 import daoImpl.AlumnoDaoImpl;
+import daoImpl.Conexion;
 import daoImpl.CursoDaoImpl;
 import entidades.Alumno;
 import entidades.Curso;
@@ -38,5 +39,13 @@ public class AlumnoNegImpl implements AlumnoNeg{
 		return estado;
 	}
 	
+	public boolean agregarAlumnoACurso(Alumno alumno, Curso curso) {
+
+		AlumnoDao alumnoDao = new AlumnoDaoImpl();
+		boolean estado = alumnoDao.agregarAlumnoACurso(alumno, curso)? true : false;
+		return false;
+	}
 	
+
+
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import dao.CursoDao;
 import daoImpl.CursoDaoImpl;
 import entidades.Curso;
+import entidades.Usuario;
 import negocio.CursoNeg;
 
 public class CursoNegImpl implements CursoNeg{
@@ -27,10 +28,11 @@ public class CursoNegImpl implements CursoNeg{
 	}
 
 	@Override
-	public Curso obtenerUno(int id) {
-		return curDao.obtenerUno(id);
+	public Curso obtenerUltimo() {
+		return curDao.obtenerUltimo();
 	}
-
+	
+	
 	@Override
 	public boolean insertar(Curso curso) {
 		return curDao.insertar(curso);
@@ -46,6 +48,18 @@ public class CursoNegImpl implements CursoNeg{
 		
 		return curDao.borrar(id);
 	}
+
+	@Override
+	public Curso obtenerUno(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Curso> listarCursosUsuario(Usuario user) {
+		return (ArrayList<Curso>) curDao.readAllUser(user);
+	}
+
 
 	
 }

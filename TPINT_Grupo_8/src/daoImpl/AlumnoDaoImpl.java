@@ -5,6 +5,8 @@ import java.util.concurrent.locks.StampedLock;
 
 import dao.AlumnoDao;
 import entidades.Alumno;
+import entidades.Curso;
+
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 
 
 public class AlumnoDaoImpl implements AlumnoDao {
-	
+	private Conexion cn;
 	private static final String readall = "select * from universidad.alumnos where estado = 1";
 	private static final String insert = "INSERT INTO universidad.alumnos (dni, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -124,5 +126,30 @@ public class AlumnoDaoImpl implements AlumnoDao {
 		return false;
 	
 	}
+	public boolean agregarAlumnoACurso(Alumno alumno, Curso curso) { 
+		 
+		
+		boolean estado=true;
+
+		cn = new Conexion();
+		cn.Open();	
+		
+		
+		String query = "INSERT INTO alumnosxcursos (dniAlumno,idCurso) VALUES ("+alumno.getDni()+","+curso.getIdCurso()+")";
+		try
+		 {
+			estado=cn.execute(query);
+		 }
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			cn.close();
+		}
+		return estado;
+	}
+	
 }
 
