@@ -28,6 +28,26 @@ public class DocenteNegImpl implements DocenteNeg{
 		boolean estado = docenteDao.agregarDocente(docente)? true : false;
 		return estado;
 	}
+
+	@Override
+	public boolean eliminarDocente(int dni) {
+		boolean eliminado =false;
+		
+		eliminado= docDao.eliminarDocente(dni);
+		
+		return eliminado;
+	}
 	
 	
-}
+	public Docente BuscarDocente(int dni) {
+
+		return docDao.BuscarDocente(dni);
+	}
+	
+	public boolean ModificaDocente(Docente doc) {
+		docDao.ModificaDocente(doc);
+		return false;
+	}
+
+	}
+

@@ -3,6 +3,8 @@
 <%@page import="entidades.Docente"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="javax.swing.*"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,37 +12,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
-<!-- FONTAWESOME -->
-	<script src="https://kit.fontawesome.com/a076d05399.js"
-	crossorigin="anonymous"></script>
+<title>Agregar Curso</title>
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	
-	<script type="text/javascript">
-    	
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js" defer></script>
+
+  	<script type="text/javascript">
     	$(document).ready( function () {
-    		 var table = $('#ListaAlumnos').DataTable();
-    		 
-    		    $('#ListaAlumnos tbody').on( 'click', 'tr', function () {
-    		        $(this).toggleClass('selected');
-    		    } );
-    		 
-    		    $('#button').click( function () {
-    		        alert( table.rows('.selected').data().length +' row(s) selected' );
-    		    } );
-            //$('#ListaAlumnos').DataTable();
-        	} );
+        $('#ListaAlumnos').DataTable();
+    	} );
     </script>
     
-<title>Agregar Curso</title>
+	  
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- FONTAWESOME -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 	<jsp:include page="Navbar.jsp"></jsp:include>
@@ -61,13 +54,35 @@
 				if (request.getAttribute("listaAlumnos") != null) {
 				listaA = (List<Alumno>) request.getAttribute("listaAlumnos");
 				}
-			
+				
+				if(request.getAttribute("ok")!=null){
+					%>
+					<script type="text/javascript">
+                      alert('AGREGADO CORRECTAMENTE.');
+                    </script>
+					<%
+				}
+				else if (request.getAttribute("error_curso")!=null){
+					%>
+					<script type="text/javascript">
+						alert('ERROR CREANDO EL CURSO');
+                    </script>
+					<%
+				}else if (request.getAttribute("error_dni")!=null){
+					
+					%>
+					<script type="text/javascript">
+                      alert('ERROR: El curso debe tener al menos un alumno.');
+                    </script>
+					<%
+				}
+				
 			%>
 			
 	</div>
 	<br>
 	<div class="conteiner d-flex justify-content-center">
-		<form class="card p-3 bg-light  h-100 w-75 justify-content-center" style="height: 350px;" method="post" action="servletCurso">
+		<form class="card p-3 bg-light  h-100 w-75 justify-content-center" id="form-agregar" style="height: 350px;" method="post" action="servletCurso">
 
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
@@ -82,6 +97,7 @@
 					<div class="form-outline">
 						<label for="">Nombre de la Materia: </label>
 						<select type="text" class="form-control" name = "selectMateria" id="selectMateria" required placeholder="-">
+						<option selected="true" disabled="disabled" value="">-</option>
 							<%
 							for (Materia m : listaM) {
 						%>
@@ -99,12 +115,12 @@
 					<div class="row justify-content-center">
 						<div class="col">
 							<label for="">Año: </label>
-							<input type="number" name = "inputAnio" class="form-control" id="inputAnio">
+							<input type="number" name = "inputAnio" min= "2021" class="form-control" required id="inputAnio">
 						</div>
 						<div class="col" style="text-align: center;">
 							<label for="">Semestre: </label>
 							<br>
-							<input type="radio" name="inputSemestre" value=1> 1
+							<input type="radio" name="inputSemestre" required value=1> 1
 							<input type="radio" name="inputSemestre" value=2> 2
 						</div>
 					</div>
@@ -112,6 +128,7 @@
 				<div class="col-3 ml-4">
 					<label for="">Nombre del Docente: </label>
 					<select type="text" class="form-control" name="selectDocente" id="selectDocente" required placeholder="-">
+					<option selected="true" disabled="disabled" value="">-</option>
 							<%
 							for (Docente d : listaD) {
 						%>
@@ -122,15 +139,17 @@
 						</select>
 				</div>
 			</div>
-			<table id="ListaAlumnos" class="display">
+			<hr>
+			<table id="ListaAlumnos" class="display" >
     	<thead>
         	<tr>
 	            <th>Dni</th>
 	            <th>Legajo</th>
 	            <th>Nombre</th>
 	            <th>Apellido</th>
-	            <th></th>
-	            <th></th>
+	            <th>E-mail</th>
+	            <th>Teléfono</th>
+	            <th>Agregar</th>
 	            
 	        </tr>
     	</thead>
@@ -138,15 +157,13 @@
         		
     		<% if(listaA != null) for (Alumno alumno : listaA) { %>
         	<tr>
-	            
-	            <form action="servletListarAlumno" method="post">
-	            
-	            <td><%=alumno.getDni() %> <input type="hidden" name="dniSeleccionado" value="<%=alumno.getDni() %>"></td>
+	            <td><%=alumno.getDni() %></td>
 	            <td><%=alumno.getLegajo() %></td>
 	            <td><%=alumno.getNombre() %></td>
-	            <td><%=alumno.getApellido() %></td>           
-	            </form>        
-            
+	            <td><%=alumno.getApellido() %></td>
+	            <td><%=alumno.getEmail() %></td>
+	            <td><%=alumno.getTelefono() %></td>
+            	    <td><input type=checkbox name="dniSeleccionado" value=<%=alumno.getDni()%>></input></td>           
         	</tr>
         	<% } %>
             

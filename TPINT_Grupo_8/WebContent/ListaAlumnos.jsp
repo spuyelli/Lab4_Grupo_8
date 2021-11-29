@@ -38,6 +38,10 @@
 	<% if (request.getAttribute("alumnoAgregado") != null) {%>
 	<div class="alert alert-success">Se agregó un alumno correctamente!</div>
 	<%}%>
+		
+	<% boolean eliminado = (boolean)request.getAttribute("alumnoEliminado");
+ 			if (eliminado == true) {%>	<div class="alert alert-success">Se eliminó el Alumno correctamente!</div>	<%}%>
+			
 	
 	<%
 		List<Alumno> lista =  new ArrayList<Alumno>();

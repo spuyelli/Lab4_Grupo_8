@@ -13,6 +13,9 @@ public class Usuario extends Persona{
 		setNombre(nombre);
 		setApellido(apellido);
 	}
+	public Usuario() {
+		
+	}
 	public String getPassword() {
 		return password;
 	}

@@ -52,7 +52,7 @@ public class servletUser extends HttpServlet {
 				String passIN = request.getParameter("txtContraseña");
 				if(passU.equals(passIN)) {
 					System.out.println("Login correcto");
-					user.setDni(0);
+					user.setDni(Integer.parseInt(request.getParameter("txtDNI")));
 					user.setDomicilio(null);
 					user.setEmail("");
 					user.setFechaNacimiento(null);

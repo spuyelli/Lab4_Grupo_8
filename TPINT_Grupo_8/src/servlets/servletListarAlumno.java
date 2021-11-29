@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entidades.Alumno;
 import negocio.AlumnoNeg;
 import negocioImpl.AlumnoNegImpl;
 
@@ -29,7 +30,7 @@ public class servletListarAlumno extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher dispatcherListar = request.getRequestDispatcher("/ListaAlumnos.jsp");
+		
 		
 		//IF PARA MOSTRAR MENSAJE DE AGREGADO a la BD correctamente
 		if(request.getSession().getAttribute("mensaje")!=null && request.getSession().getAttribute("mensaje").toString().equalsIgnoreCase("success")){ //pregunta si la session tiene un atributo llamado mensaje y cuyo contenido es success que viene del servletAgregarAlumno
@@ -40,13 +41,35 @@ public class servletListarAlumno extends HttpServlet {
 		if(request.getParameter("Param")!=null)
 		{
 			request.setAttribute("listaAlumnos", aNeg.listarAlumnos());
+			request.setAttribute("alumnoEliminado", false);
+			RequestDispatcher dispatcherListar = request.getRequestDispatcher("/ListaAlumnos.jsp");
 			dispatcherListar.forward(request, response);					
 			
 		}
 		
 		if (request.getParameter("btnModificar") != null) {
-			RequestDispatcher dispatcherModificar = request.getRequestDispatcher("/ModificarAlumno.jsp");
-			dispatcherModificar.forward(request, response);
+			
+			Alumno al = new Alumno();
+			AlumnoNegImpl alNeg = new AlumnoNegImpl();
+			System.out.println(request.getParameter("dniSeleccionado"));
+			al = alNeg.buscarAlumno(Integer.parseInt(request.getParameter("dniSeleccionado")));
+			request.setAttribute("Alumno", al);
+			request.getRequestDispatcher("ModificarAlumno.jsp").forward(request, response);
+			
+		}
+		
+		if (request.getParameter("btnEliminar") != null) {
+			
+			int dni = Integer.parseInt(request.getParameter("dniSeleccionado").toString());
+			boolean eliminado = aNeg.eliminarAlumno(dni);
+			request.setAttribute("alumnoEliminado", eliminado);
+			request.setAttribute("listaAlumnos", null);
+			
+			request.setAttribute("listaAlumnos", aNeg.listarAlumnos());
+			RequestDispatcher dispatcherListar = request.getRequestDispatcher("/ListaAlumnos.jsp");
+			dispatcherListar.forward(request, response);
+				
+			
 		}
 	
 	}
