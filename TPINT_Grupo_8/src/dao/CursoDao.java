@@ -6,11 +6,9 @@ import entidades.Usuario;
 
 public interface CursoDao {
 	public List<Curso> readAll();
-	public List<Curso> readAllUser(Usuario user);
+	public List<Curso> readAllUser(int dniUser);
 	public Curso obtenerUno(int id);
 	public boolean insertar(Curso curso);
-	public boolean editar(Curso curso);
-	public boolean borrar(int id);
 	public Curso select(int id);
 	Curso obtenerUltimo();
 }

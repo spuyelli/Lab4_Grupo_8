@@ -65,10 +65,12 @@
          	
 			if(session.getAttribute("Usuario") != null) {
 				Usuario user = (Usuario)session.getAttribute("Usuario");
+				
 				String usuarioYtipo = user.getNombreApellido();
 				switch (user.getTipoUsuario()){
 					case 1:
 						session.setAttribute("dniDocente", user.getDni());
+						
 						usuarioYtipo += " (Administrador)";
 						break;
 					case 2:
@@ -102,6 +104,10 @@
 <%
 	if(session.getAttribute("Usuario") != null) {
 		Usuario user = (Usuario)session.getAttribute("Usuario"); 
+		int dni = user.getDni();
+		System.out.println("DNI USER: "+dni);
+		
+		session.setAttribute("dniDocente", dni);
 		int tipoU = user.getTipoUsuario();
     	if(tipoU != 1){
     	%>

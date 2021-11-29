@@ -3,6 +3,8 @@
 <%@page import="entidades.Docente"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="javax.swing.*"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -53,6 +55,27 @@
 				listaA = (List<Alumno>) request.getAttribute("listaAlumnos");
 				}
 				
+				if(request.getAttribute("ok")!=null){
+					%>
+					<script type="text/javascript">
+                      alert('AGREGADO CORRECTAMENTE.');
+                    </script>
+					<%
+				}
+				else if (request.getAttribute("error_curso")!=null){
+					%>
+					<script type="text/javascript">
+						alert('ERROR CREANDO EL CURSO');
+                    </script>
+					<%
+				}else if (request.getAttribute("error_dni")!=null){
+					
+					%>
+					<script type="text/javascript">
+                      alert('ERROR: El curso debe tener al menos un alumno.');
+                    </script>
+					<%
+				}
 				
 			%>
 			
@@ -74,6 +97,7 @@
 					<div class="form-outline">
 						<label for="">Nombre de la Materia: </label>
 						<select type="text" class="form-control" name = "selectMateria" id="selectMateria" required placeholder="-">
+						<option selected="true" disabled="disabled" value="">-</option>
 							<%
 							for (Materia m : listaM) {
 						%>
@@ -104,6 +128,7 @@
 				<div class="col-3 ml-4">
 					<label for="">Nombre del Docente: </label>
 					<select type="text" class="form-control" name="selectDocente" id="selectDocente" required placeholder="-">
+					<option selected="true" disabled="disabled" value="">-</option>
 							<%
 							for (Docente d : listaD) {
 						%>
@@ -132,7 +157,7 @@
         		
     		<% if(listaA != null) for (Alumno alumno : listaA) { %>
         	<tr>
-	            <td><%=alumno.getDni() %>></td>
+	            <td><%=alumno.getDni() %></td>
 	            <td><%=alumno.getLegajo() %></td>
 	            <td><%=alumno.getNombre() %></td>
 	            <td><%=alumno.getApellido() %></td>

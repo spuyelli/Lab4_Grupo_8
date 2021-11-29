@@ -32,6 +32,10 @@ public class Persona {
 		
 	}
 	
+	public Persona (int dni) {
+		this.dni= dni;
+	}
+	
 	public Localidad getLocalidad() {
 		return localidad;
 	}

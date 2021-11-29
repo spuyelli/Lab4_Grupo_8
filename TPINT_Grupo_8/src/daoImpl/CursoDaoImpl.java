@@ -44,7 +44,7 @@ public class CursoDaoImpl  implements CursoDao{
 			ResultSet rs= cn.query(readall);
 			while(rs.next())
 			 {
-
+				/*
 				 Curso cur = new Curso();
 				 cur.setIdCurso(rs.getInt("cursos.id"));
 				 cur.setSemestre(rs.getInt("cursos.semestre"));
@@ -60,7 +60,7 @@ public class CursoDaoImpl  implements CursoDao{
 				per.setNombre(rs.getString("docentes.nombre"));
 				cur.setDocente(per);
 				cursos.add(cur);
-
+*/
 				cursos.add(getCurso(rs));
 
 			 }
@@ -127,55 +127,7 @@ public boolean insertar(Curso curso) {
 	}
 
 
-	@Override
-	public boolean editar(Curso curso) {//VER
-		/*
-		boolean estado=true;
 
-		cn = new Conexion();
-		cn.Open();
-
-		String query = "UPDATE  articulos SET nombre='"+articulo.getNombre()+"', precio='"+articulo.getPrecio()+"', idCategoria='"+articulo.getCategoria().getIdCategoria()+"', estado='"+articulo.getEstado()+"' WHERE idArticulo='"+articulo.getIdArticulo()+"'";
-		try
-		 {
-			estado=cn.execute(query);
-		 }
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			cn.close();
-		}
-		return estado;
-		*/
-		return false;
-	}
-
-	@Override
-	public boolean borrar(int id) {//VER
-		/*boolean estado=true;
-		cn = new Conexion();
-		cn.Open();
-		String query = "UPDATE articulos SET estado=0 WHERE idArticulo="+id;
-		try
-		 {
-			estado=cn.execute(query);
-		 }
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			cn.close();
-		}
-		return estado;
-	}
-	*/
-		return false;
-	}
 
 	public Curso select(int id) {
 		cn.Open();
@@ -206,13 +158,50 @@ public boolean insertar(Curso curso) {
 
 		Persona per = new Persona();
 		per.setApellido(resultSet.getString("docentes.apellido"));
+		per.setNombre(resultSet.getString("docentes.nombre"));
 		cur.setDocente(per);
 		return cur;
 	}
+	
 	@Override
-	public List<Curso> readAllUser(Usuario user) {
 		// TODO Auto-generated method stub
 		return null;
+		cn.Open();
+		ArrayList<Curso> cursos = new ArrayList<Curso>();
+	
+		String query = "select cursos.anio, cursos.id, cursos.semestre, docentes.apellido, docentes.nombre, materias.descripcion from docentes join cursos on docentes.dni = cursos.dniDocente join materias on cursos.idMateria = materias.id where cursos.dniDocente = '"+user+"'";
+		//String query = "select cursos.anio, cursos.id, cursos.semestre, docentes.apellido, docentes.nombre, materias.descripcion from docentes join cursos on docentes.dni = cursos.dniDocente join materias on cursos.idMateria = materias.id where cursos.dniDocente = 77777777";
+		try
+		{
+			ResultSet rs= cn.query(query);
+			while(rs.next())
+			 {
+				
+				 Curso cur = new Curso();
+				 cur.setIdCurso(rs.getInt("cursos.id"));
+				 cur.setSemestre(rs.getInt("cursos.semestre"));
+				 cur.setA�o(rs.getInt("cursos.anio"));
+
+				 Materia mat = new Materia();
+				 mat.setDescripcion(rs.getString("materias.descripcion"));
+				 cur.setMateria(mat);
+
+
+				Persona per = new Persona();
+				per.setApellido(rs.getString("docentes.apellido"));
+				per.setNombre(rs.getString("docentes.nombre"));
+				cur.setDocente(per);
+				cursos.add(cur);
+
+				//cursos.add(getCurso(rs));
+
+			 }
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return cursos;
 	}
 	@Override
 	public Curso obtenerUno(int id) {

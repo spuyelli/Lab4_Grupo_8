@@ -53,7 +53,7 @@
 	            <th>ID Curso</th>
 	            <th>Materia</th>
 	            <th>Semestre</th>
-	            <th>Aï¿½o</th>
+	            <th>Año</th>
 	            <th>Docente</th>
 	            <th></th>
 	        </tr>
