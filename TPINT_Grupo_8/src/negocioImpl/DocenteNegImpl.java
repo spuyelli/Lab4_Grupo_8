@@ -19,4 +19,17 @@ public class DocenteNegImpl implements DocenteNeg{
 		return (ArrayList<Docente>) docDao.readAll();
 
 	}
-}
+
+	@Override
+	public Docente BuscarDocente(int dni) {
+
+		return docDao.BuscarDocente(dni);
+	}
+	
+	public boolean ModificaDocente(Docente doc) {
+		docDao.ModificaDocente(doc);
+		return false;
+	}
+
+	}
+
