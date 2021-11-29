@@ -11,6 +11,7 @@ import negocio.AlumnoNeg;
 
 public class AlumnoNegImpl implements AlumnoNeg{
 	private AlumnoDao aluDao = new AlumnoDaoImpl();
+	
 	public AlumnoNegImpl(){
 
 	}
@@ -41,6 +42,15 @@ public class AlumnoNegImpl implements AlumnoNeg{
 		AlumnoDao alumnoDao = new AlumnoDaoImpl();
 		boolean estado = alumnoDao.agregarAlumnoACurso(alumno, curso)? true : false;
 		return false;
+	}
+
+	@Override
+	public boolean eliminarAlumno(int dni) {
+		boolean eliminado =false;
+		
+		eliminado= aluDao.eliminarAlumno(dni);
+		
+		return eliminado;
 	}
 
 

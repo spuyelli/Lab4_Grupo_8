@@ -11,4 +11,5 @@ public interface AlumnoNeg {
 	public boolean agregarAlumno(Alumno alumno);
 	public Alumno select(int dni);
 	boolean agregarAlumnoACurso(Alumno alumno, Curso curso);
+	public boolean eliminarAlumno(int dni);
 }

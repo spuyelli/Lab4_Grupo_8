@@ -1,3 +1,7 @@
+<%@page import="entidades.Docente"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -34,17 +38,27 @@
 	<h1 class="display-4 mt-3 ml-5">Listado de Docentes</h1>
 	<br>	
 	
+	<% 
+		boolean eliminado = (boolean)request.getAttribute("docenteEliminado");
+		if (eliminado == true) {%>	<div class="alert alert-success">Se eliminó el Docente correctamente!</div>	<%}%>
+	
+	<%
+		
+		List<Docente> lista = new ArrayList<Docente>();
+	
+		if (request.getAttribute("listaDocentes") != null) {
+		lista = (List<Docente>) request.getAttribute("listaDocentes");
+		}
+	%>
+	
 <form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="ModificarDocente.jsp">
 	<table id="ListaDocentes" class="display">
     	<thead>
         	<tr>
-	            <th>Legajo</th>
 	            <th>Dni</th>
-	            <th>Nombre y Apellido</th>
-	            <th>Fecha de Nacimiento</th>
-	            <th>Dirección</th>
-	            <th>Nacionalidad</th>
-	            <th>Provincia</th>
+	            <th>Legajo</th>
+	            <th>Nombre</th>
+	            <th>Apellido</th>
 	            <th>E-mail</th>
 	            <th>Teléfono</th>
 	            <th></th>
@@ -54,36 +68,25 @@
     	</thead>
     	<tbody>
     
-    		<!-- DATOS DE EJEMPLO. ACA REALIZAMOS LA BUSQUEDA SEGUN LO NECESITADO  -->
+    			<% if(lista != null) for (Docente docente : lista) { %>
         	<tr>
-	            <td>100</td>
-	            <td>30256365</td>
-	            <td>Tamara Herrera</td>
-	            <td>14/02/2000</td>
-	            <td>El salvador 256</td>
-	            <td>Argentina</td>
-	            <td>Bs. As.</td>
-	            <td>THerrera@gmail.com</td>
-	            <td>1165326986</td>
-	            <td><input type="submit" name="btnModificar1" value="Modificar"></input></td>
-	            <td><input type="submit" name="btnEliminar1" value="Eliminar"></input></td>
 	            
+	            <form action="servletListarDocente" method="post">
+	            
+	            <td><%=docente.getDni() %> <input type="hidden" name="dniSeleccionado" value="<%=docente.getDni() %>"></td>
+	            <td><%=docente.getLegajo() %></td>
+	            <td><%=docente.getNombre() %></td>
+	            <td><%=docente.getApellido() %></td>
+	            <td><%=docente.getEmail() %></td>
+	            <td><%=docente.getTelefono() %></td>
+            	<td><input type="submit" name="btnModificar" value="Modificar"></input></td>
+	            <td><input type="submit" name="btnEliminar" value="Eliminar"></input></td>	            
+	            
+	            </form>        
             
         	</tr>
-        	<tr>
-	            <td>102</td>
-	            <td>28256365</td>
-	            <td>Pedro Elescamoso</td>
-	            <td>14/02/1980</td>
-	            <td>Av. SiempreViva 125</td>
-	            <td>Venezuela</td>
-	            <td>Caracas</td>
-	            <td>PElescamoso@hotmail.com</td>
-	            <td>1125365245</td>
-	            <td><input type="submit" name="btnModificar2" value="Modificar"></input></td>
-	            <td><input type="submit" name="btnEliminar2" value="Eliminar"></input></td>
-            
-        	</tr>
+        	<% } %>
+        
             
         
     	</tbody>

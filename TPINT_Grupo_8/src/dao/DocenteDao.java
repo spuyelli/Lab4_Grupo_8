@@ -10,5 +10,6 @@ public interface DocenteDao {
 	public boolean insert ();
 	public List<Docente> readAll();
 	public boolean agregarDocente(Docente docente);
+	public boolean eliminarDocente(int dni);
 
 }

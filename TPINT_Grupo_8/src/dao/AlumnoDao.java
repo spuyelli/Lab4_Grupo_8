@@ -10,5 +10,6 @@ public interface AlumnoDao {
 	public boolean agregarAlumno(Alumno alumno);
 	public Alumno select(int dni);
 	public boolean agregarAlumnoACurso(Alumno alumno, Curso curso);
+	public boolean eliminarAlumno(int dni);
 
 }

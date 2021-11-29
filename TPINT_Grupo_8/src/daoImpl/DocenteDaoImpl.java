@@ -13,9 +13,10 @@ import entidades.Docente;
 
 public class DocenteDaoImpl implements DocenteDao {
 	private Conexion cn;
-	private static final String readall = "select * from docentes";
+	private static final String readall = "select * from docentes where estado = 1";
 	private static final String insert = "INSERT INTO universidad.docentes (dni, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+	private static final String delete = "delete from universidad.docentes where dni= ?";
+	
 	public DocenteDaoImpl()
 	{
 		
@@ -39,6 +40,8 @@ public class DocenteDaoImpl implements DocenteDao {
 				 doc.setDni(rs.getInt("docentes.dni"));
 				 doc.setLegajo(rs.getInt("docentes.legajo"));
 				 doc.setNombre(rs.getString("docentes.nombre"));
+				 doc.setTelefono(rs.getInt("docentes.telefono"));
+				 doc.setEmail(rs.getString("docentes.email"));
 				
 				docentes.add(doc);
 			 }
@@ -90,6 +93,24 @@ public class DocenteDaoImpl implements DocenteDao {
 
 		return false;
 
+	}
+	@Override
+	public boolean eliminarDocente(int dni) {
+	boolean eliminado = false;
+		
+		PreparedStatement statement;
+		ResultSet resultSet;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		try {
+
+			statement = conexion.prepareStatement(delete + dni);
+			resultSet = statement.executeQuery();
+			if(resultSet != null) {return eliminado=true;}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return eliminado;
 	}
 
 }

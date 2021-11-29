@@ -14,9 +14,10 @@ import java.util.ArrayList;
 
 public class AlumnoDaoImpl implements AlumnoDao {
 	private Conexion cn;
-	private static final String readall = "select * from universidad.alumnos where estado = 1";
+	private static final String readall = "select * from universidad.alumnos where estado = '1'";
 	private static final String insert = "INSERT INTO universidad.alumnos (dni, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String select = "select * from universidad.alumnos where estado = 1 and dni = ?";
+	private static final String delete = "delete from universidad.alumnos where dni = ?";
 
 	public AlumnoDaoImpl()
 	{
@@ -165,5 +166,50 @@ public class AlumnoDaoImpl implements AlumnoDao {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public boolean eliminarAlumno(int dni) {
+/**		boolean eliminado = false;
+		
+		PreparedStatement statement;
+		ResultSet resultSet;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		try {
+
+			statement = conexion.prepareStatement(delete);
+			statement.setInt(1, dni);
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				return eliminado=true;
+			}
+//			if(resultSet != null) {return eliminado=true;}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return eliminado;
+		
+	**/	
+		
+		
+			boolean estado=true;
+			cn = new Conexion();
+			cn.Open();		 
+			String query = "UPDATE universidad.alumnos SET estado=0 WHERE dni="+dni;
+			try
+			 {
+				estado=cn.execute(query);
+			 }
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			finally
+			{
+				cn.close();
+			}
+			return estado;
+		
 	}
 }
