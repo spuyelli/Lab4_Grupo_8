@@ -24,18 +24,13 @@ public class AlumnoNegImpl implements AlumnoNeg{
 
 	@Override
 	public boolean agregarAlumno(Alumno alumno) {
-		//if(validarDNILegajoAlum(alumno)) return -1;
-		//DaoAlumno daoalumno = new DaoAlumno();
-		//boolean estado = AlumnoDaoImpl //.agregarAlumno(alumno)? true : false;
 		AlumnoDao alumnoDao = new AlumnoDaoImpl();
-		boolean estado = alumnoDao.agregarAlumno(alumno)? true : false;
-		return estado;
+		return alumnoDao.agregarAlumno(alumno);
 	}
 
 	@Override
 	public Alumno select(int dni) {
 		return aluDao.select(dni);
 	}
-	
 	
 }

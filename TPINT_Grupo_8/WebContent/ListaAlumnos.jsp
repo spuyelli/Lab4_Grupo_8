@@ -35,6 +35,9 @@
 	<jsp:include page="Navbar.jsp"></jsp:include>
 	<h1 class="display-4 mt-3 ml-5">Listado de Alumnos</h1>
 	<br>	
+	<% if (request.getAttribute("alumnoAgregado") != null) {%>
+	<div class="alert alert-success">Se agregó un alumno correctamente!</div>
+	<%}%>
 	
 	<%
 		List<Alumno> lista =  new ArrayList<Alumno>();
