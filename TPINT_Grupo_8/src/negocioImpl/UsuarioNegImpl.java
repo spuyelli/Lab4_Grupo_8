@@ -18,9 +18,7 @@ public class UsuarioNegImpl implements UsuarioNeg{
 
 	@Override
 	public boolean insert(Usuario user) {
-		UsuarioDAO usuarioDao = new UsuarioDAOImpl();
-		boolean estado = usuarioDao.insert(user)? true : false;
-		return estado;
+		return uDAO.insert(user);
 	}
 
 	@Override

@@ -65,7 +65,7 @@
 			%>
     		
         <tr>
-            <td><%=c.getIdCurso()%><input type="hidden" name="cursoSeleccionado" value="<%=c.getIdCurso() %>"></td>
+            <td><%=c.getIdCurso()%></td>
             <td><%=c.getMateria().getDescripcion()%></td>
             <td><%=c.getSemestre()%></td>
             <td><%=c.getAño()%></td>
