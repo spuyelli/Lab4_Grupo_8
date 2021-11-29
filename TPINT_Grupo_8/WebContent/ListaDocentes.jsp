@@ -1,3 +1,4 @@
+<%@page import="entidades.Docente"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -56,7 +57,9 @@
     
     		<!-- DATOS DE EJEMPLO. ACA REALIZAMOS LA BUSQUEDA SEGUN LO NECESITADO  -->
         	<tr>
+        		
 	            <td>100</td>
+	            <td>5<input type="hidden" name="dniSeleccionado" value="<%=5%>"></td>
 	            <td>30256365</td>
 	            <td>Tamara Herrera</td>
 	            <td>14/02/2000</td>
@@ -65,6 +68,8 @@
 	            <td>Bs. As.</td>
 	            <td>THerrera@gmail.com</td>
 	            <td>1165326986</td>
+	            <td><a href="CambiarClave.jsp">CambiarClave</a></td>
+	            <td><input type="submit" name="btnCambiar1" value="CambiarClave"></input></td>
 	            <td><input type="submit" name="btnModificar1" value="Modificar"></input></td>
 	            <td><input type="submit" name="btnEliminar1" value="Eliminar"></input></td>
 	            

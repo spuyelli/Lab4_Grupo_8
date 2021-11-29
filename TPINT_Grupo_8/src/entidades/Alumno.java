@@ -59,5 +59,12 @@ public class Alumno extends Persona{
 				+ ", getTelefono()=" + getTelefono() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
 				+ ", toString()=" + super.toString() + "]";
 	}
+	public void setFechaNacimiento(Persona pers) {
+		this.setFechaNacimiento(pers);
+		
+	}
+	
+	
+
 
 }
