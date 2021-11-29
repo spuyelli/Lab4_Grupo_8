@@ -20,23 +20,32 @@ import negocioImpl.CalificacionNegImpl;
 @WebServlet("/servletCalificaciones")
 public class servletCalificaciones extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public servletCalificaciones() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public servletCalificaciones() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if(session.getAttribute("Redirect") == "true") {
-			request.setAttribute("ListaCalificaciones", new CalificacionNegImpl().readAll( ((Curso)session.getAttribute("Curso")).getIdCurso() ));
+		if (session.getAttribute("Redirect") == "true") {
+			request.setAttribute("ListaCalificaciones",
+					new CalificacionNegImpl().readAll(((Curso) session.getAttribute("Curso")).getIdCurso()));
 			request.getRequestDispatcher("ListaCalificaciones.jsp").forward(request, response);
 			session.setAttribute("Redirect", null);
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
-		
+		if (request.getParameter("btnAplicarSeleccion") != null) {
+			if (request.getParameter("btnAplicarSeleccion") != null) {
+				for (int i = 0; i < (Integer.parseInt(request.getParameter("iter"))); i++) {
+					
+				}
+			}
+		}
 	}
 
 }

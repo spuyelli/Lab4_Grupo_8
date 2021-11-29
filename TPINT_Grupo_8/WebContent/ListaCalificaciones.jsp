@@ -45,7 +45,7 @@
 		if (request.getAttribute("ListaCalificaciones") != null) {
 			lista = (List<Calificacion>) request.getAttribute("ListaCalificaciones");
 		}else{
-			lista = new CalificacionNegImpl().readAll();
+			lista = new CalificacionNegImpl().readAll(((Curso)session.getAttribute("Curso")).getIdCurso());
 		}
 	
 	%>
@@ -68,7 +68,10 @@
     	</thead>
     	<tbody>
     
-    		<% if(lista != null ) for (Calificacion cal : lista) {%>
+    		<%	int iter = 0;
+    			if(lista != null ) for (Calificacion cal : lista) {
+    			iter++;
+    			%>
         	<tr>
 	            <td><%=cal.getNombre() %></td>
 	            <td><%=cal.getApellido() %></td>
@@ -79,12 +82,13 @@
 	            <% int prom = ((cal.getParcial1() + cal.getParcial2() + cal.getRecuperatorio1() + cal.getRecuperatorio2())/4); %>
 	            <td><%=prom %></td>
 	            <td><%=cal.isestadoAprobacion()%></td>
-	            <td>  <input type="checkbox" id="cbox1" value=""> </td>
+	            <td>  <input type="checkbox" name="chk" id="cbox<%=iter%>" value="<%=cal.getDniAlumno()%>"> </td>
         	</tr>
             <% } %>
         
     	</tbody>
 	</table>
+	<input type="hidden" name="iter" value="<%=iter%>">
 	
 	<!-- DATOS DE EJEMPLO.  -->
 	<select name="Notas">
