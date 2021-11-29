@@ -164,8 +164,8 @@ public boolean insertar(Curso curso) {
 	}
 	
 	@Override
-		// TODO Auto-generated method stub
-		return null;
+	public List<Curso> readAllUser(int user) {
+		cn = new Conexion();
 		cn.Open();
 		ArrayList<Curso> cursos = new ArrayList<Curso>();
 	
@@ -180,7 +180,7 @@ public boolean insertar(Curso curso) {
 				 Curso cur = new Curso();
 				 cur.setIdCurso(rs.getInt("cursos.id"));
 				 cur.setSemestre(rs.getInt("cursos.semestre"));
-				 cur.setAï¿½o(rs.getInt("cursos.anio"));
+				 cur.setAño(rs.getInt("cursos.anio"));
 
 				 Materia mat = new Materia();
 				 mat.setDescripcion(rs.getString("materias.descripcion"));
