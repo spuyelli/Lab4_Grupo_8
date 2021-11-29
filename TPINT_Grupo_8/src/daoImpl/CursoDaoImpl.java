@@ -34,6 +34,7 @@ public class CursoDaoImpl  implements CursoDao{
 	@Override
 	public List<Curso> readAll()
 	{
+		cn = new Conexion();
 		cn.Open();
 		ArrayList<Curso> cursos = new ArrayList<Curso>();
 
