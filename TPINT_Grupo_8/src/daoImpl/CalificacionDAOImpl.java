@@ -6,9 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
-
 import dao.CalificacionDAO;
 import entidades.Calificacion;
 
@@ -21,7 +18,6 @@ public class CalificacionDAOImpl implements CalificacionDAO {
 	@Override
 	public boolean update(Calificacion cal, int test) {
 		PreparedStatement statement;
-		ResultSet resultSet;
 		Connection conexion = Conexion.getConexion().getSQLConexion();
 		try {
 			switch (test) {
@@ -48,12 +44,14 @@ public class CalificacionDAOImpl implements CalificacionDAO {
 				update += ", estadoAprobacion='0'";
 			}
 
-			update += " where dniAlumno = '" + cal.getDniAlumno() + "' and " + "idCurso = '" + cal.getIdCurso() + "'";
+			update += " where (dniAlumno = '" + cal.getDniAlumno() + "') and (idCurso = '" + cal.getIdCurso() + "')";
 			statement = conexion.prepareStatement(update);
-			resultSet = statement.executeQuery();
-			if (resultSet != null) {
-				return true;
-			}
+			System.out.println(statement);
+			statement.executeUpdate();
+			conexion.commit();
+			System.out.println("exito con la nota");
+			return true;
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

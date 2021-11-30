@@ -74,7 +74,7 @@
 	            <td><%=cal.getParcial2() %></td>
 	            <td><%=cal.getRecuperatorio1() %></td>
 	            <td><%=cal.getRecuperatorio2() %></td>
-	            <% int prom = ((cal.getParcial1() + cal.getParcial2() + cal.getRecuperatorio1() + cal.getRecuperatorio2())/4); %>
+	            <% float prom = ((cal.getParcial1() + cal.getParcial2() + cal.getRecuperatorio1() + cal.getRecuperatorio2())/4); %>
 	            <td><%=prom %></td>
 	            <td><%=cal.isestadoAprobacion()%></td>
 	            <td><input type="checkbox" name="chk" value="<%=cal.getDniAlumno()%>"> </td>
@@ -92,7 +92,7 @@
 	<option value="Recuperatorio1">Recuperatorio 1</option>	
 	<option value="Recuperatorio2">Recuperatorio 2</option>
 	</select>
-	<input type="number" max="10" min ="1" placeholder="Nota"></input>
+	<input type="number" step="0.01" name="nota" max="10" min ="1" placeholder="10.00"></input>
 	<input type="submit" name="btnAplicarSeleccion" value="Aplicar"></input>
 	
 	

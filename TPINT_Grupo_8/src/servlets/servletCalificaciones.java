@@ -28,8 +28,8 @@ public class servletCalificaciones extends HttpServlet {
 			request.setAttribute("ListaCalificaciones", 
 					cNeg.readAll
 					( ((Curso)request.getSession().getAttribute("Curso")).getIdCurso() ));
-			request.getRequestDispatcher("ListaCalificaciones.jsp").forward(request, response);
 			request.getSession().setAttribute("Redirect", null);
+			request.getRequestDispatcher("ListaCalificaciones.jsp").forward(request, response);
 		}
 	}
 
@@ -44,20 +44,26 @@ public class servletCalificaciones extends HttpServlet {
 						Integer.parseInt(dni));
 				switch (request.getParameter("Notas")) {
 				case "Parcial1":
+					cal.setParcial1(Integer.parseInt(request.getParameter("nota")));
 					cNeg.update(cal, 1);
 					break;
 				case "Parcial2":
+					cal.setParcial2(Integer.parseInt(request.getParameter("nota")));
 					cNeg.update(cal, 2);
 					break;
 				case "Recuperatorio1":
+					cal.setRecuperatorio1(Integer.parseInt(request.getParameter("nota")));
 					cNeg.update(cal, 3);
 					break;
 				case "Recuperatorio2":
+					cal.setRecuperatorio2(Integer.parseInt(request.getParameter("nota")));
 					cNeg.update(cal, 4);
 					break;
 				default:
 					break;
 				}
+				request.getSession().setAttribute("Redirect", "true");
+				request.getRequestDispatcher("servletCalificaciones").forward(request, response);
 			}
 		}
 
