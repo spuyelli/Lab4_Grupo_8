@@ -22,7 +22,8 @@ public class AlumnoDaoImpl implements AlumnoDao {
 	private Conexion cn;
 	private static final String readall = "select * from universidad.alumnos where estado = '1'";
 	private static final String insert = "INSERT INTO universidad.alumnos (dni, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	private static final String select = "select * from universidad.alumnos where estado = 1 and dni = ?";
+	private static final String select = "select * from universidad.alumnos where estado = '1' and dni = ?";
+	private static final String select_all = "select * from universidad.alumnos where dni = ?";
 	private static final String delete = "delete from universidad.alumnos where dni = ?";
 
     private static final String buscar ="select * from universidad.alumnos where dni=?";
@@ -266,6 +267,23 @@ public class AlumnoDaoImpl implements AlumnoDao {
 		Conexion conexion = Conexion.getConexion();
 		try {
 			statement = conexion.getSQLConexion().prepareStatement(select);
+			statement.setInt(1, dni);
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				return getAlumno(resultSet);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public Alumno select_all(int dni) {
+		PreparedStatement statement;
+		ResultSet resultSet;
+		Conexion conexion = Conexion.getConexion();
+		try {
+			statement = conexion.getSQLConexion().prepareStatement(select_all);
 			statement.setInt(1, dni);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {

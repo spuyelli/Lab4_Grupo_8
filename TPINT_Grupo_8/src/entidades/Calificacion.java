@@ -103,7 +103,7 @@ public class Calificacion {
 	}
 
 	public Alumno getAlumno() {
-		return new AlumnoNegImpl().select(this.dniAlumno);
+		return new AlumnoNegImpl().select_all(this.dniAlumno);
 	}
 
 

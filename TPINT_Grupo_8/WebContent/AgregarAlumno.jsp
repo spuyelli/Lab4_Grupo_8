@@ -61,7 +61,7 @@
 				<div class="col-3 pr-4">
 					<div class="form-outline">
 						<label for="">Dni</label>
-						<input type="number" class="form-control" name="inputDNI" id="inputDNI" required placeholder="01234567">
+						<input type="number" class="form-control" name="inputDNI" id="inputDNI" min="999999" max="99999999" required placeholder="01234567">
 					</div>
 				</div>
 			</div>

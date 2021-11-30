@@ -95,13 +95,11 @@ public class servletCurso extends HttpServlet {
 	    	Curso c = new Curso();
 	    	Materia m = new Materia();
 	    	Docente d = new Docente();
-	    	Alumno a = new Alumno();
+	    	Alumno alu = new Alumno();
 	    	
 	    	Curso ultimoCurso;
 	    	int nuevoIdCurso;
-	    	
 	    	boolean estado=true;
-	    	String est="";
 
 	    	if(request.getParameter("dniSeleccionado")!=null) {
 	    		
@@ -123,7 +121,7 @@ public class servletCurso extends HttpServlet {
 		    	
 		    	//DESPUES AGREGO LOS ALUMNOS AL CURSO
 		    	for (String dni : request.getParameterValues("dniSeleccionado")){
-		    		Alumno alu = new Alumno(Integer.parseInt(dni));
+		    		alu = new Alumno(Integer.parseInt(dni));
 		    		negAlu.agregarAlumnoACurso(alu, c);
 		    	}
 		    	
@@ -156,12 +154,10 @@ public class servletCurso extends HttpServlet {
 		
 		if(request.getParameter("btnCalificaciones")!=null){
 			HttpSession session = request.getSession();
-			Curso c = new Curso();
-			c = negCur.select(Integer.parseInt(request.getParameter("btnCalificaciones").replace("Calificar: ", "")));
+			Curso c = negCur.select(Integer.parseInt(request.getParameter("btnCalificaciones").replace("Calificar: ", "")));
 			session.setAttribute("Redirect", "true");
 			session.setAttribute("Curso", c);
 			response.sendRedirect("servletCalificaciones");
-			//request.getRequestDispatcher("/servletCalificaciones?").forward(request, response);
 	    }
 	}
 

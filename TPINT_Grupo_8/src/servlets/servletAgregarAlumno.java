@@ -93,7 +93,7 @@ public class servletAgregarAlumno extends HttpServlet {
         
         if (estado) {
         	request.getSession().setAttribute("mensaje", "success");
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("/servletListarAlumno?Param=list");
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarAlumno.jsp");
 			dispatcher.forward(request, response);
         }
         else {
