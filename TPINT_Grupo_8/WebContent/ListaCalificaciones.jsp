@@ -37,7 +37,7 @@
 <body>
 	<jsp:include page="Navbar.jsp"></jsp:include>
 	
-<h1 class="display-4 mt-3 ml-5">Listado de Calificaciones del Curso <label for="" class="form-label"><%= ((Curso)session.getAttribute("Curso")).getMateria().getDescripcion()%> - Semestre <%= ((Curso)session.getAttribute("Curso")).getSemestre() %>, Aï¿½o <%= ((Curso)session.getAttribute("Curso")).getAï¿½o() %></label> </h1>
+<h1 class="display-4 mt-3 ml-5">Listado de Calificaciones del Curso <label for="" class="form-label"><%= ((Curso)session.getAttribute("Curso")).getMateria().getDescripcion()%> - Semestre <%= ((Curso)session.getAttribute("Curso")).getSemestre() %>, Aï¿½o <%= ((Curso)session.getAttribute("Curso")).getAño() %></label> </h1>
 <br>
 	<%
 		List<Calificacion> lista =  new ArrayList<Calificacion>();
@@ -82,7 +82,7 @@
 	            <% int prom = ((cal.getParcial1() + cal.getParcial2() + cal.getRecuperatorio1() + cal.getRecuperatorio2())/4); %>
 	            <td><%=prom %></td>
 	            <td><%=cal.isestadoAprobacion()%></td>
-	            <td>  <input type="checkbox" name="chk" id="cbox<%=iter%>" value="<%=cal.getDniAlumno()%>"> </td>
+	            <td>  <input type="checkbox" name="chk" value="<%=cal%>"> </td>
         	</tr>
             <% } %>
         

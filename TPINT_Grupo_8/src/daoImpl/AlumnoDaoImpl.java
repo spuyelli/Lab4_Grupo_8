@@ -143,7 +143,7 @@ public class AlumnoDaoImpl implements AlumnoDao {
 		cn.Open();
 
 
-		String query = "INSERT INTO alumnosxcursos (dniAlumno,idCurso) VALUES ("+alumno.getDni()+","+curso.getIdCurso()+")";
+		String query = "INSERT INTO alumnosxcursos (dniAlumno,idCurso, parcial_1, parcial_2, recuperatorio_1, recuperatorio_2, estadoAprobacion) VALUES ("+alumno.getDni()+","+curso.getIdCurso()+", '0', '0', '0', '0', '0')";
 		try
 		 {
 			estado=cn.execute(query);

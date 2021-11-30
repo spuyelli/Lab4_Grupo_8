@@ -11,8 +11,9 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Agregar Curso</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -163,7 +164,7 @@
 	            <td><%=alumno.getApellido() %></td>
 	            <td><%=alumno.getEmail() %></td>
 	            <td><%=alumno.getTelefono() %></td>
-            	    <td><input type=checkbox name="dniSeleccionado" value=<%=alumno.getDni()%>></input></td>           
+            	<td><input type=checkbox name="dniSeleccionado" value=<%=alumno.getDni()%>></input></td>           
         	</tr>
         	<% } %>
             
