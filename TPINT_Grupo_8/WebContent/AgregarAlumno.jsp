@@ -48,6 +48,20 @@
          }
      %>
 	<br>
+	<% if (request.getAttribute("alumnoAgregado") != null) {%>
+	<div class="alert alert-success">¡Se agregó un alumno correctamente!</div>
+	
+		<script type="text/javascript">
+        	alert('ALUMNO AGREGADO CORRECTAMENTE.');
+        </script>
+  		<%}%>
+  	<% if (request.getAttribute("alumnoError") != null) {%>
+  	<div class="alert alert-danger">ERROR: NO SE PUDO AGREGAR UN ALUMNO!</div>
+			<script type="text/javascript">
+        	alert('ERROR: NO SE PUDO AGREGAR UN ALUMNO');
+        	</script>	
+	<%}%>
+	
 	<div class="conteiner d-flex justify-content-center">
 		<form class="card p-3 bg-light w-75 justify-content-center" method="post" action="servletAgregarAlumno">
 
