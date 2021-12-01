@@ -25,8 +25,7 @@ public class DocenteNegImpl implements DocenteNeg{
 	@Override
 	public boolean agregarDocente(Docente docente) {
 		DocenteDao docenteDao = new DocenteDaoImpl();
-		boolean estado = docenteDao.agregarDocente(docente)? true : false;
-		return estado;
+		return docenteDao.agregarDocente(docente);
 	}
 
 	@Override

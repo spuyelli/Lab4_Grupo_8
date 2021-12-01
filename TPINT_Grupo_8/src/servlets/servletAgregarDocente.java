@@ -51,22 +51,29 @@ public class servletAgregarDocente extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
-				//DROPDOWN PAISES
-				request.setAttribute("paises", paisNeg.listarPaises());	
-				
-				//DROPDOWN PROVINCIAS
-				request.setAttribute("provincias", provinciaNeg.listarProvincias());	
-				
-				//DROPDOWN LOCALIDADES
-				request.setAttribute("localidades", localidadesNeg.listarLocalidades());	
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarDocente.jsp");
-				dispatcher.forward(request, response);
+		//DROPDOWN PAISES
+		request.setAttribute("paises", paisNeg.listarPaises());	
+			
+		//DROPDOWN PROVINCIAS
+		request.setAttribute("provincias", provinciaNeg.listarProvincias());	
+			
+		//DROPDOWN LOCALIDADES
+		request.setAttribute("localidades", localidadesNeg.listarLocalidades());	
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarDocente.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String inputPass = request.getParameter("inputPass").toString();
+		String inputRepetirPass = request.getParameter("inputRepetirPass").toString();
+		boolean estadoDocenteNuevo = false;
+		
+		if (inputPass.equals(inputRepetirPass)) {
+		
 		Docente docenteNuevo = new Docente(
 				Integer.parseInt(request.getParameter("inputDNI")),
 				request.getParameter("inputNombre"),
@@ -83,22 +90,40 @@ public class servletAgregarDocente extends HttpServlet {
 		
 		DocenteNeg docenteNegocio = new DocenteNegImpl();
 
-        boolean estadoDocenteNuevo = docenteNegocio.agregarDocente(docenteNuevo);
+        estadoDocenteNuevo = docenteNegocio.agregarDocente(docenteNuevo);
         
+		}
+		else {
+			request.setAttribute("PassError", true);
+		}
+		
         //VALIDO DOCENTE
+        
+        //DROPDOWN PAISES
+		request.setAttribute("paises", paisNeg.listarPaises());	
+		
+		//DROPDOWN PROVINCIAS
+		request.setAttribute("provincias", provinciaNeg.listarProvincias());	
+		
+		//DROPDOWN LOCALIDADES
+		request.setAttribute("localidades", localidadesNeg.listarLocalidades());	
+		
+        
         if (estadoDocenteNuevo) {
         	request.setAttribute("docenteAgregado", true);
         	
         }
         else {
         	request.setAttribute("docenteError", true);
-        	
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarDocente.jsp");
+        	dispatcher.forward(request, response);
+        	return;
         }
         //AGREGO USUARIO
         
         Usuario usuarioNuevo = new Usuario(
         		Integer.parseInt(request.getParameter("inputDNI")), 
-        		request.getParameter("inputPass"), ///SE DEBE VALIDAR Q LAS 2 contraseñas escritas coincidan
+        		request.getParameter("inputPass"), 
         		2, //TIPO USUARIO EN DOCENTE ES: 2
         		true, 
         		request.getParameter("inputNombre"), 
@@ -121,7 +146,6 @@ public class servletAgregarDocente extends HttpServlet {
         	dispatcher.forward(request, response);
         }
 
-        response.sendRedirect("ListaDocentes.jsp");
 	}
 
 }
