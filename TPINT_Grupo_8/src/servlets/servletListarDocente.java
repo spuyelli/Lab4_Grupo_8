@@ -44,7 +44,7 @@ public class servletListarDocente extends HttpServlet {
 		
 				
 		
-		
+		/**
 		if(request.getParameter("btn").equals("modificar") ) {
 		Docente doc = new Docente();
 		DocenteNegImpl docNeg = new DocenteNegImpl();
@@ -52,7 +52,7 @@ public class servletListarDocente extends HttpServlet {
 		request.setAttribute("Docente", doc);
 		request.getRequestDispatcher("ModificarDocente.jsp").forward(request, response);
 		}
-		
+		**/
 		
 		
 	}
@@ -74,8 +74,21 @@ public class servletListarDocente extends HttpServlet {
 			
 		}
 		
+		if (request.getParameter("btnModificar") != null) {
+			
+	
+			int dni = Integer.parseInt(request.getParameter("dniSeleccionado").toString());			
+			request.setAttribute("dniSeleccionado", dni);
+			request.setAttribute("listaDocentes", dNeg.listarDocentes());
+			RequestDispatcher dispatcherListar = request.getRequestDispatcher("/ModificarDocente.jsp");
+			dispatcherListar.forward(request, response);
+				
+			
+			
+		}
+				
 	}
+}
 
 	
 
-}
