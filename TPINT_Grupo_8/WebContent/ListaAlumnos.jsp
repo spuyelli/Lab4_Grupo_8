@@ -68,11 +68,11 @@
 	        </tr>
     	</thead>
     	<tbody>
-        		
+        	<% int i=0;%>	
     		<% if(lista != null) for (Alumno alumno : lista) { %>
         	<tr>
+	            <%i++;%>
 	            
-	            <form action="servletListarAlumno" method="post">
 	            
 	            <td><%=alumno.getDni() %> <input type="hidden" name="dniSeleccionado" value="<%=alumno.getDni() %>"></td>
 	            <td><%=alumno.getLegajo() %></td>
@@ -80,14 +80,14 @@
 	            <td><%=alumno.getApellido() %></td>
 	            <td><%=alumno.getEmail() %></td>
 	            <td><%=alumno.getTelefono() %></td>
-            	<td><input type="submit" name="btnModificar" value="Modificar"></input></td>
+            	<td><a class="btn btn-primary"   href="servletModificarAlumno?dni=<%=alumno.getDni() %>" type="" name="btnModificar" value="Modificar:">modificar</a></td>
 	            <td><input type="submit" name="btnEliminar" value="Eliminar"></input></td>	            
 	            
-	            </form>        
+	         
             
         	</tr>
         	<% } %>
-            
+            <%request.getSession().setAttribute("iterador", i); %>
         
     	</tbody>
 	</table>

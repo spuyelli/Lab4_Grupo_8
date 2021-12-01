@@ -76,8 +76,28 @@ public class servletListarAlumno extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);		
 	
+	
+if (request.getParameter("btnModificar") != null) {
+			
+			Alumno al = new Alumno();
+			AlumnoNegImpl alNeg = new AlumnoNegImpl();
+			System.out.println(request.getParameter("Estas acá"));
+			al = alNeg.buscarAlumno(Integer.parseInt(request.getParameter("dniSeleccionado")));
+			request.setAttribute("Alumno", al);
+			request.getRequestDispatcher("ModificarAlumno.jsp").forward(request, response);
+			
+		}
+		
+		
+		for(int i=0;i<=Integer.parseInt((request.getSession().getAttribute("iterador")).toString());i++) {
+			if(request.getSession().getAttribute("btnModificar"+Integer.toString(i))!=null){
+				System.out.println(request.getParameter("dniSeleccionado"+Integer.toString(i)));
+			}
+			
+			
+		}
+		
 	}
 
 }

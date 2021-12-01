@@ -32,7 +32,7 @@
   al = (Alumno)request.getAttribute("Alumno");
 	
  
-	%>>
+	%>
 
 	<jsp:include page="Navbar.jsp"></jsp:include>
 	<div class="d-flex justify-content-center">
