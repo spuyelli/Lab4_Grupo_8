@@ -17,12 +17,12 @@ public class CalificacionDAOImpl implements CalificacionDAO {
 
 	private static final String readAll = "SELECT * FROM universidad.alumnosxcursos where idCurso = ?";
 	private static final String readAll_Alumno = "SELECT * FROM universidad.alumnosxcursos where idCurso = ? and dniAlumno = ?";
-	private static String update = "update universidad.alumnosxcursos set ";
 
 	@Override
 	public boolean update(Calificacion cal, int test) {
 		PreparedStatement statement;
 		Connection conexion = Conexion.getConexion().getSQLConexion();
+		String update = "update universidad.alumnosxcursos set ";
 		try {
 			switch (test) {
 			case 1:

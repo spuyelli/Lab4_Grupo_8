@@ -25,9 +25,9 @@ public class servletCalificaciones extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("Redirect") == "true") {
+			request.setAttribute("ListaCalificaciones",null);
 			request.setAttribute("ListaCalificaciones", 
-					cNeg.readAll
-					( ((Curso)request.getSession().getAttribute("Curso")).getIdCurso() ));
+					cNeg.readAll(((Curso)request.getSession().getAttribute("Curso")).getIdCurso() ));
 			request.getSession().setAttribute("Redirect", null);
 			request.getRequestDispatcher("ListaCalificaciones.jsp").forward(request, response);
 		}
@@ -40,6 +40,7 @@ public class servletCalificaciones extends HttpServlet {
 		if (request.getParameter("btnAplicarSeleccion") != null) {
 			Calificacion cal;
 			for (String dni : request.getParameterValues("chk")) {
+				cNeg = new CalificacionNegImpl();
 				cal = cNeg.readAll_Alumno((((Curso) request.getSession().getAttribute("Curso")).getIdCurso()),
 						Integer.parseInt(dni));
 				switch (request.getParameter("Notas")) {
@@ -62,9 +63,10 @@ public class servletCalificaciones extends HttpServlet {
 				default:
 					break;
 				}
-				request.getSession().setAttribute("Redirect", "true");
-				request.getRequestDispatcher("servletCalificaciones").forward(request, response);
 			}
+			request.getSession().setAttribute("Redirect", "true");
+			//request.getRequestDispatcher("servletCalificaciones").forward(request, response);
+			doGet(request, response);
 		}
 
 	}
