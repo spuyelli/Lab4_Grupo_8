@@ -27,7 +27,7 @@ public class AlumnoDaoImpl implements AlumnoDao {
 	private static final String delete = "delete from universidad.alumnos where dni = ?";
 
     private static final String buscar ="select * from universidad.alumnos where dni=?";
-    private static final String modificar ="update alumno set dni= ?,nombre = ?, apellido= ?,fechaNacimiento= ?,idNacionalidad= ?,domicilio = ?,idLocalidad = ?,email = ?,telefono = ?,estado = ? where dni = ?";
+    private static final String modificar ="update alumnos set dni= ?,nombre = ?, apellido= ?,fechaNacimiento= ?,idNacionalidad= ?,domicilio = ?,idLocalidad = ?,email = ?,telefono = ?,estado = ? where dni = ?";
 	private static final String modificarEjemplo = "update alumnos set nombre=?,apellido=?,FechaNacimiento= ?,domicilio= ?,email=?,telefono=? where dni=?";
 	public AlumnoDaoImpl()
 	{
@@ -211,10 +211,10 @@ public class AlumnoDaoImpl implements AlumnoDao {
 	}
 	
 	
-	//1	2	3	
-	@Override// dni ant //1
-	public boolean ModificarAlumno(Alumno alumno){ //dni actual //3
-		// TODO Auto-generated method stub
+	
+	@Override
+	public boolean ModificarAlumno(Alumno alumno){ 
+
 		
 	Conexion conexionSql = null; 
 				
@@ -223,28 +223,19 @@ public class AlumnoDaoImpl implements AlumnoDao {
 
 			try {
 				PreparedStatement statement = connection.prepareStatement(modificarEjemplo);
-				System.out.println("llamada a modificar");
-				
+		
 				
 				
 				statement.setString(1, alumno.getNombre());
 				statement.setString(2, alumno.getApellido());
-				
 				statement.setString(3, alumno.getFechaNacimiento().toString());
-			
-			//	statement.setInt(5, alumno.getNacionalidad().getIdPais());
 				statement.setString(4, alumno.getDomicilio().getCalle_Numero());
-
-			//	statement.setInt(7, alumno.getLocalidad().getIdLocalidad());
 				statement.setString(5, alumno.getEmail());
-		
 				statement.setInt(6, alumno.getTelefono());
-				
-				
-				
+			
 				statement.setInt(7, alumno.getDni());
 				
-				System.out.println(alumno.getNombre()+ alumno.getApellido() + alumno.getDni());
+				
 				
 				if(statement.executeUpdate()==1) {
 					connection.commit();

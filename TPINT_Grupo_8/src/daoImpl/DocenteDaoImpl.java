@@ -22,6 +22,7 @@ public class DocenteDaoImpl implements DocenteDao {
 	private static final String readall = "select * from docentes where estado = 1";
 	private static final String insert = "INSERT INTO universidad.docentes (dni, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String buscar ="select * from universidad.docentes where dni=?";
+	private static final String modificarEjemplo = "update docentes set nombre=?,apellido=?,FechaNacimiento= ?,domicilio= ?,email=?,telefono=? where dni=?";
 
 	public DocenteDaoImpl()
 	{
@@ -135,8 +136,7 @@ public class DocenteDaoImpl implements DocenteDao {
 				
 			ResultSet resultSet = statement.executeQuery();
 			while(resultSet.next()) {
-			 System.out.print(resultSet.getInt("legajo"));
-		   	 doc.setDni(resultSet.getInt("dni"));
+		   	doc.setDni(resultSet.getInt("dni"));
 		   	doc.setLegajo(resultSet.getInt("legajo"));
 		   	doc.setNombre(resultSet.getString("nombre"));
 		   	doc.setApellido(resultSet.getString("apellido"));
@@ -177,30 +177,17 @@ public class DocenteDaoImpl implements DocenteDao {
 			Connection connection  = Conexion.getConexion().getSQLConexion();
 
 			try {
-				PreparedStatement statement = connection.prepareStatement(buscar);
-				System.out.println("llamada a modificar");
-				
-				
+				PreparedStatement statement = connection.prepareStatement(modificarEjemplo);
+			
 				
 				statement.setString(1, doc.getNombre());
 				statement.setString(2, doc.getApellido());
-				
 				statement.setString(3, doc.getFechaNacimiento().toString());
-			
-			//	statement.setInt(5, alumno.getNacionalidad().getIdPais());
 				statement.setString(4, doc.getDomicilio().getCalle_Numero());
-
-			//	statement.setInt(7, alumno.getLocalidad().getIdLocalidad());
 				statement.setString(5, doc.getEmail());
-		
 				statement.setInt(6, doc.getTelefono());
-				
-				
-				
 				statement.setInt(7, doc.getDni());
-				
-				System.out.println(doc.getNombre()+ doc.getApellido() + doc.getDni());
-				
+
 				if(statement.executeUpdate()==1) {
 					connection.commit();
 					return true;

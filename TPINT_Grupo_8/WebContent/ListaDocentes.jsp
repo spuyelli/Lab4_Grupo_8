@@ -73,14 +73,17 @@
 	            
 	            <form action="servletListarDocente" method="post">
 	            
-	            <td><%=docente.getDni() %> <input type="hidden" name="dniSeleccionado" value="<%=docente.getDni() %>"></td>
+	            <td><%=docente.getDni() %></td>
 	            <td><%=docente.getLegajo() %></td>
 	            <td><%=docente.getNombre() %></td>
 	            <td><%=docente.getApellido() %></td>
 	            <td><%=docente.getEmail() %></td>
 	            <td><%=docente.getTelefono() %></td>
-            	<td><input type="submit" name="btnModificar" value="Modificar"></input></td>
-	            <td><input type="submit" name="btnEliminar" value="Eliminar"></input></td>	            
+            	
+            	<td><a class="btn btn-warning"
+						href="servletListarDocente?dni=<%=docente.getDni()%>&btn=modificar"
+						name="Modificar">modificar</a></td>
+	            <td><input class="btn btn-danger" type="submit" name="btnEliminar" value="Eliminar"></input></td>	            
 	            
 	            </form>        
             

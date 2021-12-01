@@ -55,7 +55,6 @@ public class AlumnoNegImpl implements AlumnoNeg{
 
 	
 	public Alumno buscarAlumno(int dni) {
-		System.out.print("esto es negocio buscar alumno:" + dni);
 	return aluDao.BuscarAlumno(dni);
 		
 	}

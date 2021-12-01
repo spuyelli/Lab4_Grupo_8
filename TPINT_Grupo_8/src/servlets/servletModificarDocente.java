@@ -57,6 +57,7 @@ public class servletModificarDocente extends HttpServlet {
 		doc.setNombre(request.getParameter("Nombre"));
 		doc.setEmail(request.getParameter("Email"));
 		doc.setApellido(request.getParameter("Apellido"));
+		//en el doc set domicilio se rompe el domicilio 
 		doc.setDomicilio(dom);
 		doc.setFechaNacimiento(LocalDate.parse(request.getParameter("FechaNacimiento")));
 		doc.setTelefono(Integer.parseInt(request.getParameter("Telefono")));
@@ -66,7 +67,8 @@ public class servletModificarDocente extends HttpServlet {
 				
 				//la domada es ahi
 		
-		
+		response.sendRedirect("servletListarDocente?Param=list");
+			
 		doGet(request, response);
 	}
 
