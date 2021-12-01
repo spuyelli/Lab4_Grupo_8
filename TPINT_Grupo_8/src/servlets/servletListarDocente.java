@@ -24,7 +24,7 @@ public class servletListarDocente extends HttpServlet {
        
    
     public servletListarDocente() {
-        super();
+        
        
     }
 
@@ -41,6 +41,21 @@ public class servletListarDocente extends HttpServlet {
 			dispatcherListar.forward(request, response);					
 			
 		}
+		
+		
+		
+		/**
+		Docente doc = new Docente();
+		DocenteNegImpl docNeg = new DocenteNegImpl();
+		doc = docNeg.BuscarDocente(Integer.parseInt(request.getParameter("dniSeleccionado")));
+		request.setAttribute("Docente", doc);
+		request.getRequestDispatcher("ModificarAlumno.jsp").forward(request, response);
+		**/
+		
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		if (request.getParameter("btnModificar") != null) {
 			
@@ -61,19 +76,6 @@ public class servletListarDocente extends HttpServlet {
 				
 			
 		}
-		
-		Docente doc = new Docente();
-		DocenteNegImpl docNeg = new DocenteNegImpl();
-		doc = docNeg.BuscarDocente(Integer.parseInt(request.getParameter("dniSeleccionado")));
-		request.setAttribute("Docente", doc);
-		request.getRequestDispatcher("ModificarAlumno.jsp").forward(request, response);
-		
-	}
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		doGet(request, response);	
 	}
 
 }

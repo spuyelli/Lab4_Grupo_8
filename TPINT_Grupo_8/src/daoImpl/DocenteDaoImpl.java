@@ -21,9 +21,7 @@ public class DocenteDaoImpl implements DocenteDao {
 	private Conexion cn;
 	private static final String readall = "select * from docentes where estado = 1";
 	private static final String insert = "INSERT INTO universidad.docentes (dni, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	private static final String delete = "delete from universidad.docentes where dni= ?";
-	
-	 private static final String buscar ="select * from universidad.docentes where dni=?";
+	private static final String buscar ="select * from universidad.docentes where dni=?";
 
 	public DocenteDaoImpl()
 	{
@@ -104,21 +102,23 @@ public class DocenteDaoImpl implements DocenteDao {
 	}
 	@Override
 	public boolean eliminarDocente(int dni) {
-	boolean eliminado = false;
-		
-		PreparedStatement statement;
-		ResultSet resultSet;
-		Connection conexion = Conexion.getConexion().getSQLConexion();
-		try {
-
-			statement = conexion.prepareStatement(delete + dni);
-			resultSet = statement.executeQuery();
-			if(resultSet != null) {return eliminado=true;}
-		}
-		catch (Exception e) {
+		boolean estado=false;
+		cn = new Conexion();
+		cn.Open();		 
+		String query = "UPDATE universidad.docentes SET estado=0 WHERE dni="+dni;
+		try
+		 {
+			estado=cn.execute(query);
+		 }
+		catch(Exception e)
+		{
 			e.printStackTrace();
 		}
-		return eliminado;
+		finally
+		{
+			cn.close();
+		}
+		return estado;
 	}
 
 	

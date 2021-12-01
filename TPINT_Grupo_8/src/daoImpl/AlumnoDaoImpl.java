@@ -23,8 +23,7 @@ public class AlumnoDaoImpl implements AlumnoDao {
 	private static final String readall = "select * from universidad.alumnos where estado = '1'";
 	private static final String insert = "INSERT INTO universidad.alumnos (dni, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String select = "select * from universidad.alumnos where estado = 1 and dni = ?";
-	private static final String delete = "delete from universidad.alumnos where dni = ?";
-
+	
     private static final String buscar ="select * from universidad.alumnos where dni=?";
     private static final String modificar ="update alumno set dni= ?,nombre = ?, apellido= ?,fechaNacimiento= ?,idNacionalidad= ?,domicilio = ?,idLocalidad = ?,email = ?,telefono = ?,estado = ? where dni = ?";
 	private static final String modificarEjemplo = "update alumnos set nombre=?,apellido=?,FechaNacimiento= ?,domicilio= ?,email=?,telefono=? where dni=?";
@@ -279,30 +278,8 @@ public class AlumnoDaoImpl implements AlumnoDao {
 
 	@Override
 	public boolean eliminarAlumno(int dni) {
-/**		boolean eliminado = false;
-		
-		PreparedStatement statement;
-		ResultSet resultSet;
-		Connection conexion = Conexion.getConexion().getSQLConexion();
-		try {
 
-			statement = conexion.prepareStatement(delete);
-			statement.setInt(1, dni);
-			resultSet = statement.executeQuery();
-			while (resultSet.next()) {
-				return eliminado=true;
-			}
-//			if(resultSet != null) {return eliminado=true;}
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		return eliminado;
-		
-	**/	
-		
-		
-			boolean estado=true;
+			boolean estado=false;
 			cn = new Conexion();
 			cn.Open();		 
 			String query = "UPDATE universidad.alumnos SET estado=0 WHERE dni="+dni;

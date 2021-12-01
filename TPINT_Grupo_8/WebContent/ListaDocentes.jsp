@@ -40,7 +40,7 @@
 	
 	<% 
 		boolean eliminado = (boolean)request.getAttribute("docenteEliminado");
-		if (eliminado == true) {%>	<div class="alert alert-success">Se eliminï¿½ el Docente correctamente!</div>	<%}%>
+		if (eliminado == true) {%>	<div class="alert alert-success">Se eliminó el Docente correctamente!</div>	<%}%>
 	
 	<%
 		
@@ -51,7 +51,7 @@
 		}
 	%>
 	
-<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="ModificarDocente.jsp">
+<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="servletListarDocente">
 	<table id="ListaDocentes" class="display">
     	<thead>
         	<tr>

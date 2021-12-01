@@ -23,7 +23,7 @@ public class servletListarAlumno extends HttpServlet {
        
     
     public servletListarAlumno() {
-        super();
+       
         
     }
 
@@ -42,10 +42,16 @@ public class servletListarAlumno extends HttpServlet {
 		{
 			request.setAttribute("listaAlumnos", aNeg.listarAlumnos());
 			request.setAttribute("alumnoEliminado", false);
-			RequestDispatcher dispatcherListar = request.getRequestDispatcher("/ListaAlumnos.jsp");
-			dispatcherListar.forward(request, response);					
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/ListaAlumnos.jsp");
+			dispatcher.forward(request, response);					
 			
 		}
+	
+	
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		if (request.getParameter("btnModificar") != null) {
 			
@@ -62,21 +68,13 @@ public class servletListarAlumno extends HttpServlet {
 			
 			int dni = Integer.parseInt(request.getParameter("dniSeleccionado").toString());
 			boolean eliminado = aNeg.eliminarAlumno(dni);
-			request.setAttribute("alumnoEliminado", eliminado);
-			request.setAttribute("listaAlumnos", null);
-			
+			request.setAttribute("alumnoEliminado", eliminado);		
 			request.setAttribute("listaAlumnos", aNeg.listarAlumnos());
-			RequestDispatcher dispatcherListar = request.getRequestDispatcher("/ListaAlumnos.jsp");
-			dispatcherListar.forward(request, response);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/ListaAlumnos.jsp");
+			dispatcher.forward(request, response);	
 				
 			
-		}
-	
-	}
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);		
+		}		
 	
 	}
 
