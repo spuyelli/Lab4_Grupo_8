@@ -86,18 +86,21 @@ public class servletAgregarAlumno extends HttpServlet {
 		
 		AlumnoNeg alumnoNegocio = new AlumnoNegImpl();
 
-        boolean estado = alumnoNegocio.agregarAlumno(alumnoNuevo);
+        boolean estadoAlumnoNuevo = alumnoNegocio.agregarAlumno(alumnoNuevo);
    
         
-        //VALIDACIONES de DNI 
+        //VALIDACIONES 
         
-        if (estado) {
-        	request.getSession().setAttribute("mensaje", "success");
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("/servletListarAlumno?Param=list");
+        if (estadoAlumnoNuevo) {
+        	//request.getSession().setAttribute("mensaje", "success");
+        	request.setAttribute("alumnoAgregado", true);
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarAlumno.jsp");
 			dispatcher.forward(request, response);
         }
         else {
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarAlumnoError.jsp");
+        	//RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarAlumnoError.jsp");
+        	request.setAttribute("alumnoError", true);
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarAlumno.jsp");
         	dispatcher.forward(request, response);
         }
 	}

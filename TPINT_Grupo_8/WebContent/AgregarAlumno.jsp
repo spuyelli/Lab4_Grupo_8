@@ -48,6 +48,20 @@
          }
      %>
 	<br>
+	<% if (request.getAttribute("alumnoAgregado") != null) {%>
+	<div class="alert alert-success">¡Se agregó un alumno correctamente!</div>
+	
+		<script type="text/javascript">
+        	alert('ALUMNO AGREGADO CORRECTAMENTE.');
+        </script>
+  		<%}%>
+  	<% if (request.getAttribute("alumnoError") != null) {%>
+  	<div class="alert alert-danger">ERROR: NO SE PUDO AGREGAR UN ALUMNO!</div>
+			<script type="text/javascript">
+        	alert('ERROR: NO SE PUDO AGREGAR UN ALUMNO');
+        	</script>	
+	<%}%>
+	
 	<div class="conteiner d-flex justify-content-center">
 		<form class="card p-3 bg-light w-75 justify-content-center" method="post" action="servletAgregarAlumno">
 
@@ -61,7 +75,7 @@
 				<div class="col-3 pr-4">
 					<div class="form-outline">
 						<label for="">Dni</label>
-						<input type="number" class="form-control" name="inputDNI" id="inputDNI" required placeholder="01234567">
+						<input type="number" class="form-control" name="inputDNI" id="inputDNI" min="999999" max="99999999" required placeholder="01234567">
 					</div>
 				</div>
 			</div>

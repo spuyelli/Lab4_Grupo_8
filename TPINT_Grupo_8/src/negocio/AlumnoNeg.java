@@ -10,6 +10,7 @@ public interface AlumnoNeg {
 	public ArrayList<Alumno> listarAlumnos();
 	public boolean agregarAlumno(Alumno alumno);
 	public Alumno select(int dni);
+	public Alumno select_all(int dni);
 	boolean agregarAlumnoACurso(Alumno alumno, Curso curso);
 	public boolean eliminarAlumno(int dni);
 }

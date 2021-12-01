@@ -47,6 +47,33 @@
          }
      %>
 	<br>
+	<% if (request.getAttribute("docenteAgregado") != null) {%>
+	<div class="alert alert-success">¡Se agregó un Docente correctamente!</div>
+	
+		<script type="text/javascript">
+        	alert('DOCENTE AGREGADO CORRECTAMENTE.');
+        </script>
+  		<%}%>
+  	<% if (request.getAttribute("docenteError") != null) {%>
+			<script type="text/javascript">
+        	alert('ERROR: NO SE PUDO AGREGAR UN DOCENTE');
+        	</script>	
+	<%}%>
+	<br>
+	<% if (request.getAttribute("usuarioAgregado") != null) {%>
+	<div class="alert alert-success">¡Se agregó un USUARIO correctamente!</div>
+	
+		<script type="text/javascript">
+        	alert('USUARIO AGREGADO CORRECTAMENTE.');
+        </script>
+  		<%}%>
+  	<% if (request.getAttribute("usuarioError") != null) {%>
+			<div class="alert alert-danger">ERROR: NO SE PUDO AGREGAR UN USUARIO</div>
+			<script type="text/javascript">
+        	alert('ERROR: NO SE PUDO AGREGAR UN USUARIO');
+        	</script>	
+	<%}%>
+	<br>
 	<div class="conteiner d-flex justify-content-center">
 		<form class="card p-3 bg-light w-75 justify-content-center" method="post" action="servletAgregarDocente">
 

@@ -85,6 +85,15 @@ public class servletAgregarDocente extends HttpServlet {
 
         boolean estadoDocenteNuevo = docenteNegocio.agregarDocente(docenteNuevo);
         
+        //VALIDO DOCENTE
+        if (estadoDocenteNuevo) {
+        	request.setAttribute("docenteAgregado", true);
+        	
+        }
+        else {
+        	request.setAttribute("docenteError", true);
+        	
+        }
         //AGREGO USUARIO
         
         Usuario usuarioNuevo = new Usuario(
@@ -100,8 +109,18 @@ public class servletAgregarDocente extends HttpServlet {
         
         boolean estadoUsuarioNuevo = usuarioNegocio.insert(usuarioNuevo);
         
-        //TODO: MOSTRAR MENSAJE ERROR O SUCCESS, modificar query del insert.
-        
+        //VALIDO USUARIO DOCENTE 
+        if (estadoUsuarioNuevo) {
+        	request.setAttribute("usuarioAgregado", true);
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarDocente.jsp");
+			dispatcher.forward(request, response);
+        }
+        else{
+        	request.setAttribute("usuarioError", true);
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarDocente.jsp");
+        	dispatcher.forward(request, response);
+        }
+
         response.sendRedirect("ListaDocentes.jsp");
 	}
 

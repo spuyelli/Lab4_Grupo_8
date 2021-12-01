@@ -21,9 +21,9 @@ import entidades.Usuario;
 public class CursoDaoImpl  implements CursoDao{
 
 	private Conexion cn;
-	private static final String readall = "select cursos.anio, cursos.id, cursos.semestre, docentes.apellido, docentes.nombre, materias.descripcion from docentes join cursos on docentes.dni = cursos.dniDocente join materias on cursos.idMateria = materias.id ";
+	private static final String readall = "select cursos.anio, cursos.id, cursos.semestre, docentes.apellido, docentes.nombre, materias.descripcion from docentes inner join cursos on docentes.dni = cursos.dniDocente inner join materias on cursos.idMateria = materias.id ";
 
-	private static final String select = "select cursos.anio, cursos.id, cursos.semestre, docentes.apellido, materias.descripcion from docentes join cursos on docentes.dni = cursos.dniDocente join materias on cursos.idMateria = materias.id where cursos.id = ?";
+	private static final String select = "select cursos.anio, cursos.id, cursos.semestre, docentes.apellido, docentes.nombre, materias.descripcion from docentes inner join cursos on docentes.dni = cursos.dniDocente inner join materias on cursos.idMateria = materias.id where cursos.id = ?";
 
 
 	private static final String test = "select * from cursos";
@@ -130,6 +130,7 @@ public boolean insertar(Curso curso) {
 
 
 	public Curso select(int id) {
+		cn = new Conexion();
 		cn.Open();
 		ResultSet resultSet;
 		try {

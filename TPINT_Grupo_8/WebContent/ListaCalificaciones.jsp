@@ -5,12 +5,12 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Calificaciones</title>
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -37,15 +37,13 @@
 <body>
 	<jsp:include page="Navbar.jsp"></jsp:include>
 	
-<h1 class="display-4 mt-3 ml-5">Listado de Calificaciones del Curso <label for="" class="form-label"><%= ((Curso)session.getAttribute("Curso")).getMateria().getDescripcion()%> - Semestre <%= ((Curso)session.getAttribute("Curso")).getSemestre() %>, A�o <%= ((Curso)session.getAttribute("Curso")).getA�o() %></label> </h1>
+<h1 class="display-4 mt-3 ml-5">Listado de Calificaciones del Curso <label for="" class="form-label"><%= ((Curso)session.getAttribute("Curso")).getMateria().getDescripcion()%> - Semestre <%= ((Curso)session.getAttribute("Curso")).getSemestre() %>, Año <%= ((Curso)session.getAttribute("Curso")).getAño() %></label> </h1>
 <br>
 	<%
 		List<Calificacion> lista =  new ArrayList<Calificacion>();
 		
 		if (request.getAttribute("ListaCalificaciones") != null) {
 			lista = (List<Calificacion>) request.getAttribute("ListaCalificaciones");
-		}else{
-			lista = new CalificacionNegImpl().readAll(((Curso)session.getAttribute("Curso")).getIdCurso());
 		}
 	
 	%>
@@ -68,10 +66,7 @@
     	</thead>
     	<tbody>
     
-    		<%	int iter = 0;
-    			if(lista != null ) for (Calificacion cal : lista) {
-    			iter++;
-    			%>
+    		<%	if(lista != null ) for (Calificacion cal : lista) {%>
         	<tr>
 	            <td><%=cal.getNombre() %></td>
 	            <td><%=cal.getApellido() %></td>
@@ -79,16 +74,15 @@
 	            <td><%=cal.getParcial2() %></td>
 	            <td><%=cal.getRecuperatorio1() %></td>
 	            <td><%=cal.getRecuperatorio2() %></td>
-	            <% int prom = ((cal.getParcial1() + cal.getParcial2() + cal.getRecuperatorio1() + cal.getRecuperatorio2())/4); %>
+	            <% float prom = ((cal.getParcial1() + cal.getParcial2() + cal.getRecuperatorio1() + cal.getRecuperatorio2())/4); %>
 	            <td><%=prom %></td>
 	            <td><%=cal.isestadoAprobacion()%></td>
-	            <td>  <input type="checkbox" name="chk" value="<%=cal%>"> </td>
+	            <td><input type="checkbox" name="chk" value="<%=cal.getDniAlumno()%>"> </td>
         	</tr>
             <% } %>
         
     	</tbody>
 	</table>
-	<input type="hidden" name="iter" value="<%=iter%>">
 	
 	<!-- DATOS DE EJEMPLO.  -->
 	<select name="Notas">
@@ -98,7 +92,7 @@
 	<option value="Recuperatorio1">Recuperatorio 1</option>	
 	<option value="Recuperatorio2">Recuperatorio 2</option>
 	</select>
-	<input type="number" max="10" min ="1" placeholder="Nota"></input>
+	<input type="number" step="0.01" name="nota" max="10" min ="1" placeholder="10.00"></input>
 	<input type="submit" name="btnAplicarSeleccion" value="Aplicar"></input>
 	
 	

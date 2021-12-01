@@ -69,11 +69,10 @@
 				String usuarioYtipo = user.getNombreApellido();
 				switch (user.getTipoUsuario()){
 					case 1:
-						session.setAttribute("dniDocente", user.getDni());
-						
 						usuarioYtipo += " (Administrador)";
 						break;
 					case 2:
+						//session.setAttribute("dniDocente", user.getDni());
 						usuarioYtipo += " (Docente)";
 						break;
 					default:
