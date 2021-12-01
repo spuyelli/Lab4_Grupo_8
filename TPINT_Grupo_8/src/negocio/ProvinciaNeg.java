@@ -7,4 +7,5 @@ import entidades.Provincia;
 public interface ProvinciaNeg {
 
 	public ArrayList<Provincia> listarProvincias();
+	public Provincia select(int id);
 }

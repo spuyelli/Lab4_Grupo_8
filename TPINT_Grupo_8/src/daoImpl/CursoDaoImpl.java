@@ -1,32 +1,22 @@
 package daoImpl;
-import java.net.ConnectException;
-import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import dao.CursoDao;
 import daoImpl.Conexion;
-//import datosImpl.Exception;
-//import datosImpl.Override;
-//import datosImpl.String;
 import entidades.Curso;
 import entidades.Materia;
 import entidades.Persona;
-import entidades.Usuario;
 
 public class CursoDaoImpl  implements CursoDao{
 
 	private Conexion cn;
 	private static final String readall = "select cursos.anio, cursos.id, cursos.semestre, docentes.apellido, docentes.nombre, materias.descripcion from docentes inner join cursos on docentes.dni = cursos.dniDocente inner join materias on cursos.idMateria = materias.id ";
-
 	private static final String select = "select cursos.anio, cursos.id, cursos.semestre, docentes.apellido, docentes.nombre, materias.descripcion from docentes inner join cursos on docentes.dni = cursos.dniDocente inner join materias on cursos.idMateria = materias.id where cursos.id = ?";
 
-
-	private static final String test = "select * from cursos";
 	public CursoDaoImpl()
 	{
 

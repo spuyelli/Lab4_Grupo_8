@@ -6,14 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import dao.DocenteDao;
-import entidades.Alumno;
-import entidades.Curso;
 import entidades.Docente;
 import entidades.Domicilio;
 import entidades.Localidad;
-import entidades.Materia;
 import entidades.Pais;
 import entidades.Persona;
 

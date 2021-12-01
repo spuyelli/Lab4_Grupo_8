@@ -1,10 +1,7 @@
 package negocioImpl;
 
 import java.util.ArrayList;
-
-import dao.AlumnoDao;
 import dao.DocenteDao;
-import daoImpl.AlumnoDaoImpl;
 import daoImpl.DocenteDaoImpl;
 import entidades.Docente;
 import negocio.DocenteNeg;

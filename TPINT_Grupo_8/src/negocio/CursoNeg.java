@@ -1,8 +1,7 @@
 package negocio;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import entidades.Curso;
-import entidades.Usuario;
 
 public interface CursoNeg {
 	public ArrayList<Curso> listarCursos();

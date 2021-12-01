@@ -8,4 +8,5 @@ import entidades.Localidad;
 public interface LocalidadDao {
 
 	public ArrayList<Localidad> listarLocalidades();
+	public Localidad select(int id);
 }

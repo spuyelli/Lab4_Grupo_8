@@ -16,6 +16,10 @@ public class LocalidadNegImpl implements LocalidadNeg {
 		
 		return (ArrayList<Localidad>) localidadDao.listarLocalidades();
 	}
-	
+
+	@Override
+	public Localidad select(int id) {
+		return localidadDao.select(id);
+	}
 	
 }
