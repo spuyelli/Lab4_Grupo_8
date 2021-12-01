@@ -53,7 +53,7 @@
 	<%
 		if (request.getAttribute("alumnoAgregado") != null) {
 	%>
-	<div class="alert alert-success">Se agregó un alumno
+	<div class="alert alert-success">Se agregï¿½ un alumno
 		correctamente!</div>
 	<script type="text/javascript">
 		alert('AGREGADO CORRECTAMENTE.');
@@ -65,7 +65,7 @@
 			boolean eliminado = (boolean) request.getAttribute("alumnoEliminado");
 			if (eliminado == true) {
 	%>
-	<div class="alert alert-success">Se eliminó el Alumno
+	<div class="alert alert-success">Se eliminï¿½ el Alumno
 		correctamente!</div>
 	<%
 		}
@@ -73,12 +73,10 @@
 		}
 	
 		List<Alumno> lista = new ArrayList<Alumno>();
-
 		if (request.getAttribute("listaAlumnos") != null) {
 			lista = (List<Alumno>) request.getAttribute("listaAlumnos");
 		}
 	%>
-
 	<form class="w-100 justify-content-center pl-3 pr-3" method="post"
 		action="servletListarAlumno">
 		<table id="ListaAlumnos" class="display">
@@ -89,10 +87,9 @@
 					<th>Nombre</th>
 					<th>Apellido</th>
 					<th>E-mail</th>
-					<th>Teléfono</th>
+					<th>Telï¿½fono</th>
 					<th></th>
 					<th></th>
-
 				</tr>
 			</thead>
 			<tbody>
@@ -105,8 +102,6 @@
 					<%
 						i++;
 					%>
-
-
 					<td><%=alumno.getDni()%> <input type="hidden"
 						name="dniSeleccionado" value="<%=alumno.getDni()%>"></td>
 					<td><%=alumno.getLegajo()%></td>
@@ -118,14 +113,10 @@
 						href="servletListarAlumno?dni=<%=alumno.getDni()%>&btn=modificar"
 						name="Modificar">modificar</a></td>
 					<td><input class="btn btn-danger" type="submit" name="btnEliminar" value="Eliminar"></input></td>
-
-
-
 				</tr>
 				<%
 					}
-				%>
-				
+				%>	
 			</tbody>
 		</table>
 	</form>

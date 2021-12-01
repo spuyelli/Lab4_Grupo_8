@@ -43,15 +43,12 @@ public class servletUser extends HttpServlet {
 				Usuario user = userNegImp.select(Integer.parseInt(request.getParameter("txtDNI")));
 				if(user == null) {
 					session.setAttribute("Login_error", "Usuario incorrecto");
-					System.out.println("Usuario incorrecto");
-					System.out.println(session.getAttribute("Login_error"));
 					response.sendRedirect("IniciarSesion.jsp");
 					return;
 				}
 				String passU = user.getPassword();
 				String passIN = request.getParameter("txtContraseña");
 				if(passU.equals(passIN)) {
-					System.out.println("Login correcto");
 					user.setDomicilio(null);
 					user.setEmail("");
 					user.setFechaNacimiento(null);
@@ -67,8 +64,6 @@ public class servletUser extends HttpServlet {
 				}
 				else {
 					session.setAttribute("Login_error", "Contraseña incorrecta");
-					System.out.println("Contraseña incorrecta");
-					System.out.println(session.getAttribute("Login_error"));
 					response.sendRedirect("IniciarSesion.jsp");
 				}
 			}
