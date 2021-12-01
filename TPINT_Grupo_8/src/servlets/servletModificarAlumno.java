@@ -78,6 +78,7 @@ public class servletModificarAlumno extends HttpServlet {
 		al.setTelefono(Integer.parseInt(request.getParameter("Telefono")));
 		Domicilio dom = new Domicilio();
 		dom.setCalle_Numero(request.getParameter("Domicilio"));
+		dom.setLocalidad(new LocalidadNegImpl().select((Integer.parseInt(request.getParameter("inputLocalidad")))));
 		al.setDomicilio(dom);
 		Pais n = new Pais(Integer.parseInt(request.getParameter("inputNacionalidad")));
 		Localidad l = new Localidad(Integer.parseInt(request.getParameter("inputLocalidad")));
@@ -91,15 +92,8 @@ public class servletModificarAlumno extends HttpServlet {
 		
 		AlumNeg.actualizarAlumno(al);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarAlumno.jsp");
-		dispatcher.forward(request, response);
-	
-		
-		
-	
-				
-		
-		
+
+
         response.sendRedirect("servletListarAlumno?Param=list");
 		
 		// doGet(request, response);

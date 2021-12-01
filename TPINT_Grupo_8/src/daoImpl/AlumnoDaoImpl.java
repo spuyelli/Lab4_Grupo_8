@@ -23,8 +23,9 @@ public class AlumnoDaoImpl implements AlumnoDao {
 	private static final String select_all = "select * from universidad.alumnos where dni = ?";
 	private static final String delete = "delete from universidad.alumnos where dni = ?";
 
-    private static final String buscar ="select * from universidad.alumnos inner join paises on paises.id = alumnos.idPais inner join paises on paises.id = alumnos.nacionalidad inner join provincias on provincias.id = alumnos.idProvincia inner join localidades on localidades.id = alumnos.idLocalidad where dni=?";
-    private static final String modificar ="update alumnos set dni= ?,nombre = ?, apellido= ?,fechaNacimiento= ?,idNacionalidad= ?,domicilio = ?,idLocalidad = ?,email = ?,telefono = ?,estado = ? where dni = ?";
+    private static final String buscar ="select * from universidad.alumnos  where dni=?";
+    private static final String modificar ="update alumnos set nombre = ?, apellido= ?,fechaNacimiento= ?,idNacionalidad= ?,domicilio = ?,idLocalidad = ?,email = ?,telefono = ? where dni = ?";
+    		
 	private static final String modificarEjemplo = "update alumnos set nombre=?,apellido=?,FechaNacimiento= ?,domicilio= ?,email=?,telefono=? where dni=?";
 	public AlumnoDaoImpl()
 	{
@@ -208,33 +209,30 @@ public class AlumnoDaoImpl implements AlumnoDao {
 	
 	@Override
 	public boolean ModificarAlumno(Alumno alumno){ 
-
-		
+	
 	Conexion conexionSql = null; 
 				
 		    conexionSql = new Conexion();
 			Connection connection  = Conexion.getConexion().getSQLConexion();
 
 			try {
-				PreparedStatement statement = connection.prepareStatement(modificarEjemplo);
+				PreparedStatement statement = connection.prepareStatement(modificar);
 		
-//update alumnos set dni= ?,nombre = ?, apellido= ?,fechaNacimiento= ?,idNacionalidad= ?,domicilio = ?,idLocalidad = ?,email = ?,telefono = ?,estado = ? where dni = ?"
+//update alumnos set nombre = ?, apellido= ?,fechaNacimiento= ?,idNacionalidad= ?,domicilio = ?,idLocalidad = ?,email = ?,telefono = ? where dni = ?"
 				
 				
-				statement.setInt(1, alumno.getDni());
-				statement.setString(2, alumno.getNombre());
-				statement.setString(3, alumno.getApellido());
-				statement.setString(4, alumno.getFechaNacimiento().toString());
-									   
+				
+				statement.setString(1, alumno.getNombre());
+				statement.setString(2, alumno.getApellido());
+				statement.setString(3, alumno.getFechaNacimiento().toString());
+				statement.setInt(4, alumno.getNacionalidad().getIdPais());					   
 				statement.setString(5, alumno.getDomicilio().getCalle_Numero());
-										alumno.getLocalidad();
-										alumno.getEmail()
-				statement.setString(8, alumno.getEmail());
-				statement.setInt(9, alumno.getTelefono());
-			
-			
+				statement.setInt(6, alumno.getLocalidad().getIdLocalidad());						
+				statement.setString(7, alumno.getEmail());
+				statement.setInt(8, alumno.getTelefono());
+				statement.setInt(9, alumno.getDni());
 				
-				
+				System.out.println(statement);
 				
 				if(statement.executeUpdate()==1) {
 					connection.commit();
@@ -247,8 +245,8 @@ public class AlumnoDaoImpl implements AlumnoDao {
 			}
 				
 		 return false;
-	
-	}
+
+	} 
 
 
 	public Alumno select(int dni) {

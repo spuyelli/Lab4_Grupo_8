@@ -59,7 +59,7 @@ public class servletListarAlumno extends HttpServlet {
 			Alumno al = new Alumno();
 			AlumnoNegImpl alNeg = new AlumnoNegImpl();
 			al = alNeg.buscarAlumno(Integer.parseInt(request.getParameter("dni")));
-			System.out.println(al.getNacionalidad().getIdPais());
+			
 			//DROPDOWN PAISES
 			request.setAttribute("paises", paisNeg.listarPaises());	
 			
