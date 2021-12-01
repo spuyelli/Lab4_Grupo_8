@@ -179,7 +179,7 @@ public class AlumnoDaoImpl implements AlumnoDao {
 				
 			ResultSet resultSet = statement.executeQuery();
 			while(resultSet.next()) {
-			 System.out.print(resultSet.getInt("legajo"));
+				
 		   	 al.setDni(resultSet.getInt("dni"));
 		   	 al.setLegajo(resultSet.getInt("legajo"));
 		   	 al.setNombre(resultSet.getString("nombre"));
@@ -224,16 +224,21 @@ public class AlumnoDaoImpl implements AlumnoDao {
 			try {
 				PreparedStatement statement = connection.prepareStatement(modificarEjemplo);
 		
+//update alumnos set dni= ?,nombre = ?, apellido= ?,fechaNacimiento= ?,idNacionalidad= ?,domicilio = ?,idLocalidad = ?,email = ?,telefono = ?,estado = ? where dni = ?"
 				
 				
-				statement.setString(1, alumno.getNombre());
-				statement.setString(2, alumno.getApellido());
-				statement.setString(3, alumno.getFechaNacimiento().toString());
-				statement.setString(4, alumno.getDomicilio().getCalle_Numero());
-				statement.setString(5, alumno.getEmail());
-				statement.setInt(6, alumno.getTelefono());
+				statement.setInt(1, alumno.getDni());
+				statement.setString(2, alumno.getNombre());
+				statement.setString(3, alumno.getApellido());
+				statement.setString(4, alumno.getFechaNacimiento().toString());
+									   
+				statement.setString(5, alumno.getDomicilio().getCalle_Numero());
+										alumno.getLocalidad();
+										alumno.getEmail()
+				statement.setString(8, alumno.getEmail());
+				statement.setInt(9, alumno.getTelefono());
 			
-				statement.setInt(7, alumno.getDni());
+			
 				
 				
 				

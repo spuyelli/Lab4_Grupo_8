@@ -16,6 +16,7 @@ public class PaisDaoImpl implements PaisDao {
 	private Conexion cn;
 	//private static final String readall = "select cursos.anio, cursos.id, cursos.semestre, docentes.apellido, materias.descripcion from docentes join cursos on docentes.dni = cursos.dniDocente join materias on cursos.idMateria = materias.id ";
 	private static final String test = "select paises.id, paises.descripcion from paises";
+	
 	public PaisDaoImpl()
 	{
 		

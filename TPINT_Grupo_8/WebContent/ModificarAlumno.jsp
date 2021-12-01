@@ -2,8 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
 		%>
-
-	<%@page import="entidades.Alumno "%>
+<%@page import ="entidades.Alumno" %>
+<%@page import ="entidades.Pais" %>
+<%@page import ="entidades.Provincia" %>
+<%@page import ="entidades.Localidad" %>
+<%@page import ="java.util.ArrayList" %>
 		
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -29,6 +32,39 @@
 <body>
 
 	<%Alumno al = new Alumno();   al = (Alumno)request.getAttribute("Alumno");%>
+	
+	
+	<%
+         ArrayList<Pais> Paises = new ArrayList<Pais>();
+         if(request.getAttribute("paises")!=null)
+         {
+             Paises = (ArrayList<Pais>)request.getAttribute("paises"); 
+         }
+         ArrayList<Provincia> Provincias = new ArrayList<Provincia>();
+         if(request.getAttribute("provincias")!=null)
+         {
+             Provincias = (ArrayList<Provincia>)request.getAttribute("provincias"); 
+         }
+         ArrayList<Localidad> Localidades = new ArrayList<Localidad>();
+         if(request.getAttribute("localidades")!=null)
+         {
+             Localidades = (ArrayList<Localidad>)request.getAttribute("localidades"); 
+         }
+          %>
+
+		<% if (request.getAttribute("alumnoModificado") != null) {%>
+	<div class="alert alert-success">¡Se modifico correctamente!</div>
+	
+		<script type="text/javascript">
+        	alert('ALUMNO MODIFICADO CORRECTAMENTE.');
+        </script>
+  		<%}%>
+  	<% if (request.getAttribute("alumnoError") != null) {%>
+  	<div class="alert alert-danger">ERROR: NO SE PUDO MODIFICAR UN ALUMNO!</div>
+			<script type="text/javascript">
+        	alert('ERROR: NO SE PUDO MODIFICAR UN ALUMNO');
+        	</script>	
+	<%}%>
 
 	<jsp:include page="Navbar.jsp"></jsp:include>
 	<div class="d-flex justify-content-center">
@@ -72,8 +108,15 @@
 				<div class="col-3 pr-4">
 					<label for="">País de residencia</label>
 					<select class="form-control" name="inputPais" id="inputPais" name="Nacionalidad" required placeholder="PAIS">
-						<option value="value1">Argentina</option>
-						<option value="value1">Uruguay</option>
+			<%--  	<option value=<%=(request.getAttribute("Alumno")).getNacionalidad().getIdPais()%>><%=((Alumno)request.getAttribute("Alumno")).getNacionalidad().getDescripcion()%></option>   --%>
+				<%
+							for(Pais pais : Paises)
+					         {
+					             %>
+					                <option value=<%=pais.getIdPais()%>><%=pais.getDescripcion()%></option>
+					             <%
+					         }
+     					%>
 					</select>
 				</div>
 			</div>
@@ -82,15 +125,29 @@
 				<div class="col-3 ml-4">
 					<label for="">Provincia</label>
 					<select class="form-control" name="inputProvincia" id="inputProvincia" name="Provincia" required placeholder="PROVINCIA" >
-						<option value="value1">Buenos Aires</option>
-						<option value="value1">Entre Ríos</option>
+							<%-- <option value=<%=((Alumno)request.getAttribute("Alumno")).getProvincia().getIdProvincia()%>><%=((Alumno)request.getAttribute("Alumno")).getProvincia().getDescripcion()%></option> --%>
+						  	<%
+							for(Provincia provincia : Provincias)
+					         {
+					             %>
+					                <option value=<%=provincia.getIdProvincia()%>><%=provincia.getDescripcion()%></option>
+					             <%
+					         }
+     					%>
 					</select>
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">Localidad</label>
 					<select class="form-control" name="inputLocalidad" id="inputLocalidad" name="Localidad" required placeholder="LOCALIDAD" >
-						<option value="value1">General Pacheco</option>
-						<option value="value1">Tigre</option>
+					<%-- <option value=<%=((Alumno)request.getAttribute("Alumno")).getLocalidad().getIdLocalidad()%>><%=((Alumno)request.getAttribute("Alumno")).getLocalidad().getDescripcion()%></option>  --%>
+						<%
+							for(Localidad localidad : Localidades)
+					         {
+					             %>
+					                <option value=<%=localidad.getIdLocalidad()%>><%=localidad.getDescripcion()%></option>
+					             <%
+					         }
+     					%>
 					</select>
 				</div>
 			</div>
@@ -109,9 +166,15 @@
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Nacionalidad</label>
-					<select class="form-control" name="inputPais" name="Pais" id="inputPais" required >
-						<option value="value1">Argentina</option>
-						<option value="value1">Uruguay</option>
+					<select class="form-control" name="inputNacionalidad" name="Pais" id="inputNacionalidad" required >
+				<%--	<option value=<%=((Alumno)request.getAttribute("Alumno")).getNacionalidad().getIdPais()%>><%=((Alumno)request.getAttribute("Alumno")).getNacionalidad().getDescripcion()%></option><%  --%>
+						 <%	for(Pais pais : Paises)
+					         {
+					             %>
+					                <option value=<%=pais.getIdPais()%>><%=pais.getDescripcion()%></option>
+					             <%
+					         }
+     					%> 
 					</select>
 				</div>
 				<div class="col-3 pr-4">
