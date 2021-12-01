@@ -61,7 +61,7 @@ public class servletListarDocente extends HttpServlet {
 
 		if (request.getParameter("btnEliminar") != null) {
 			
-			int dni = Integer.parseInt(request.getParameter("dniSeleccionado").toString());
+			int dni = Integer.parseInt(request.getParameter("btnEliminar").toString());
 			boolean eliminado = dNeg.eliminarDocente(dni);
 			request.setAttribute("docenteEliminado", eliminado);
 			request.setAttribute("listaDocentes", dNeg.listarDocentes());

@@ -51,11 +51,10 @@
 		}
 	%>
 	
-<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="servletListarDocente">
+<form class = "w-100 justify-content-center pl-3 pr-3" action="servletListarDocente" method="post">
 	<table id="ListaDocentes" class="display">
     	<thead>
         	<tr>
-	            <th>Dni</th>
 	            <th>Legajo</th>
 	            <th>Nombre</th>
 	            <th>Apellido</th>
@@ -64,6 +63,7 @@
 	            <th></th>
 	            <th></th>
 	            
+	            
 	        </tr>
     	</thead>
     	<tbody>
@@ -71,17 +71,16 @@
     			<% if(lista != null) for (Docente docente : lista) { %>
         	<tr>
 	            
-	            <form action="servletListarDocente" method="post">
+	            <form action="servletListarDocente" method="post">	            
 	            
-	            <td><%=docente.getDni() %> <input type="hidden" name="dniSeleccionado" value="<%=docente.getDni() %>"></td>
 	            <td><%=docente.getLegajo() %></td>
 	            <td><%=docente.getNombre() %></td>
 	            <td><%=docente.getApellido() %></td>
 	            <td><%=docente.getEmail() %></td>
 	            <td><%=docente.getTelefono() %></td>
             	<td><input type="submit" name="btnModificar" value="Modificar"></input></td>
-	            <td><input type="submit" name="btnEliminar" onclick="return confirm('seguro que desea eliminar?')" value="Eliminar"></input></td>	            
-	            
+	            <td><input type="submit" name="btnEliminar" onclick="return confirm('seguro que desea eliminar?')" value="<%=docente.getDni() %>"> Click aquí para Eliminar</input></td>       
+	                       
 	            </form>        
             
         	</tr>
