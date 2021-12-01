@@ -34,9 +34,7 @@ public class servletModificarAlumno extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println(("DOGET SRV MODIFICAR"));
-			Integer.parseInt(request.getParameter("dni").toString());
-			System.out.println(request.getParameter("dni"));
+		
 		
 		
 	}
@@ -65,7 +63,7 @@ public class servletModificarAlumno extends HttpServlet {
 				
 		
 		
-        response.sendRedirect("ListaAlumnos.jsp");
+        response.sendRedirect("servletListarAlumno?Param=list");
 		
 		// doGet(request, response);
 	}

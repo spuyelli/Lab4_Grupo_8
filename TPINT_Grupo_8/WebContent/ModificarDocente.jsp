@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
+<%@page import="entidades.Docente "%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,39 +22,41 @@
 <title>Agregar profesor</title>
 </head>
 <body>
+
+<% Docente doc = new Docente();   doc = (Docente)request.getAttribute("Docente");%>
 	<jsp:include page="Navbar.jsp"></jsp:include>
 	<div class="d-flex justify-content-center">
 		<h1 class="display-4 mt-3 ml-5">Modificar Docente</h1>
 	</div>
 	<br>
 	<div class="conteiner d-flex justify-content-center">
-		<form class="card p-3 bg-light w-75 justify-content-center">
+		<form class="card p-3 bg-light w-75 justify-content-center"  action="servletModificarDocente" method="post">
 
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<div class="form-outline">
-						<label for="">Legajo</label> <input type="text" class="form-control" id="Legajo" name="Legajo" value="123456" readonly>
+						<label for="">Legajo</label> <input type="text" class="form-control" id="Legajo" name="Legajo" value="<%=doc.getLegajo() %>" readonly>
 					</div>
 				</div>
 				<div class="col-3 pr-4">
 					<div class="form-outline">
-						<label for="">Dni</label> <input type="number" class="form-control" id="inputDNI" required placeholder="01234567">
+						<label for="">Dni</label> <input type="number" class="form-control" id="inputDNI" required placeholder="Dni" name="Dni" value="<%=doc.getDni() %>"  readonly>
 					</div>
 				</div>
 			</div>
 			
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
-					<label for="">Nombre</label> <input type="text" class="form-control" id="inputNombre" required placeholder="Juana">
+					<label for="">Nombre</label> <input type="text" class="form-control" id="inputNombre" required placeholder="Nombre" name="Nombre" value="<%=doc.getNombre() %>" >
 				</div>
 				<div class="col-3 pr-4">
-					<label for="">Apellido</label> <input type="text" class="form-control" id="inputApellido" required placeholder="Perez">
+					<label for="">Apellido</label> <input type="text" class="form-control" id="inputApellido" required placeholder="Apellido" name="Apellido" value="<%=doc.getApellido() %>">
 				</div>
 			</div>
 			
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
-					<label for="">Dirección</label> <input type="text" class="form-control" id="inputDireccion" required placeholder="Cabildo 1234">
+					<label for="">Dirección</label> <input type="text" class="form-control" id="inputDireccion" required placeholder="Domicilio" name="Domicilio" value="<%=doc.getDomicilio().getCalle_Numero() %>">
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">País de residencia</label> <select class="form-control" name="inputPais" id="inputPais" required>
@@ -79,11 +83,11 @@
 
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
-					<label for="">Teléfono</label> <input type="number" class="form-control" id="inputTelefono" required placeholder="1122223333">
+					<label for="">Teléfono</label> <input type="number" class="form-control" id="inputTelefono" required placeholder="Telefono" name="Telefono" value="<%=doc.getTelefono()%>">
 				</div>
 
 				<div class="col-3 pr-4">
-					<label for="">Email</label> <input type="email" class="form-control" id="inputEmail" required placeholder="juana@perez.com">
+					<label for="">Email</label> <input type="email" class="form-control" id="inputEmail" required placeholder="Email" name="Email" value="<%=doc.getEmail()%>">
 				</div>
 			</div>
 
@@ -95,16 +99,7 @@
 					</select>
 				</div>
 				<div class="col-3 pr-4">
-					<label for="">Fecha de Nacimiento</label> <input type="date" class="form-control" required id="inputFechaNacimiento">
-				</div>
-
-			</div>
-			<div class="row  justify-content-center">
-				<div class="col-3 ml-4">
-					<label for="">Contraseña</label> <input type="password" class="form-control" id="inputPass" required>
-				</div>
-				<div class="col-3 pr-4">
-					<label for="">Repetir Contraseña</label> <input type="password" class="form-control" required id="inputCfmPass">
+					<label for="">Fecha de Nacimiento</label> <input type="date" class="form-control" required id="inputFechaNacimiento" name="FechaNacimiento" value="<%=doc.getFechaNacimiento()%>">
 				</div>
 
 			</div>

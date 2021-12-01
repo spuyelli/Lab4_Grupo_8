@@ -45,19 +45,22 @@ public class servletListarDocente extends HttpServlet {
 				
 		
 		
+		if(request.getParameter("btn").equals("modificar") ) {
+		Docente doc = new Docente();
+		DocenteNegImpl docNeg = new DocenteNegImpl();
+		doc = docNeg.BuscarDocente(Integer.parseInt(request.getParameter("dni")));
+		request.setAttribute("Docente", doc);
+		request.getRequestDispatcher("ModificarDocente.jsp").forward(request, response);
+		}
+		
+		
+		
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if (request.getParameter("btnModificar") != null) {
-			
-			int dni = Integer.parseInt(request.getParameter("dniSeleccionado").toString());
-			System.out.println("EL DNI SELECCIONADO ES "+dni);
-			request.setAttribute("dniSeleccionado", dni);
-			RequestDispatcher dispatcherModificar = request.getRequestDispatcher("/ModificarDocente.jsp");
-			dispatcherModificar.forward(request, response);
-		}
+		
 
 		if (request.getParameter("btnEliminar") != null) {
 			
@@ -69,10 +72,8 @@ public class servletListarDocente extends HttpServlet {
 			dispatcherListar.forward(request, response);
 				
 			
-		}	
+		}
 		
-		
-	
 	}
 
 	

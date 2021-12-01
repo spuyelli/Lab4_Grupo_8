@@ -40,7 +40,7 @@
 	
 	<% 
 		boolean eliminado = (boolean)request.getAttribute("docenteEliminado");
-		if (eliminado == true) {%>	<div class="alert alert-success">Se eliminó el Docente correctamente!</div>	<%}%>
+		if (eliminado == true) {%>	<div class="alert alert-success">Se eliminï¿½ el Docente correctamente!</div>	<%}%>
 	
 	<%
 		
@@ -61,14 +61,35 @@
 	            <th>Nombre</th>
 	            <th>Apellido</th>
 	            <th>E-mail</th>
-	            <th>Teléfono</th>	                    	            
+	            <th>Telï¿½fono</th>
+	            <th></th>
+	            <th></th>
 	            
 	            
 	        </tr>
     	</thead>
     	<tbody>
     
-    			<% if(lista != null) for (Docente docente : lista) { %>        		            
+    			<% if(lista != null) for (Docente docente : lista) { %>
+        	<tr>
+	            
+	            <form action="servletListarDocente" method="post">	            
+	            
+	            <td><%=docente.getDni() %></td>
+	            <td><%=docente.getLegajo() %></td>
+	            <td><%=docente.getNombre() %></td>
+	            <td><%=docente.getApellido() %></td>
+	            <td><%=docente.getEmail() %></td>
+	            <td><%=docente.getTelefono() %></td>
+            	
+            	<td><a class="btn btn-warning"
+						href="servletListarDocente?dni=<%=docente.getDni()%>&btn=modificar"
+						name="Modificar">modificar</a></td>
+	           
+            	
+	            <td><input type="submit" name="btnEliminar" onclick="return confirm('seguro que desea eliminar?')" value="<%=docente.getDni() %>"> Click aquï¿½ para Eliminar</input></td>       
+	                       
+	            </form>        
             
             <tr>
 	            <form action="servletListarDocente" method="post">
