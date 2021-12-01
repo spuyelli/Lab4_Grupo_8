@@ -22,8 +22,10 @@ public class DocenteNegImpl implements DocenteNeg{
 	@Override
 	public boolean agregarDocente(Docente docente) {
 		DocenteDao docenteDao = new DocenteDaoImpl();
-		boolean estado = docenteDao.agregarDocente(docente)? true : false;
-		return estado;
+		return docenteDao.agregarDocente(docente);
+		//si quisiera validar q no se pueda agregar un docente y alumno al mismo tiempo
+		//entonces crearia una funcion validarDNI y retornaria false si el dni se repite en tablas
+		//alumnos o admins
 	}
 
 	@Override

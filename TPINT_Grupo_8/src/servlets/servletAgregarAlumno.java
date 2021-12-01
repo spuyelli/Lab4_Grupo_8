@@ -68,7 +68,7 @@ public class servletAgregarAlumno extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+		
 		
 		Alumno alumnoNuevo = new Alumno(
 				Integer.parseInt(request.getParameter("inputDNI")),
@@ -85,24 +85,28 @@ public class servletAgregarAlumno extends HttpServlet {
 				);
 		
 		AlumnoNeg alumnoNegocio = new AlumnoNegImpl();
-
-        boolean estadoAlumnoNuevo = alumnoNegocio.agregarAlumno(alumnoNuevo);
-   
+		
+		boolean estadoAlumnoNuevo = alumnoNegocio.agregarAlumno(alumnoNuevo);
         
+		
         //VALIDACIONES 
         
+        //DROPDOWN PAISES
+      	request.setAttribute("paises", paisNeg.listarPaises());	
+      	//DROPDOWN PROVINCIAS
+      	request.setAttribute("provincias", provinciaNeg.listarProvincias());	
+      	//DROPDOWN LOCALIDADES
+      	request.setAttribute("localidades", localidadesNeg.listarLocalidades());	
+      	RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarAlumno.jsp");
+      		
         if (estadoAlumnoNuevo) {
-        	//request.getSession().setAttribute("mensaje", "success");
+        	
         	request.setAttribute("alumnoAgregado", true);
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarAlumno.jsp");
-			dispatcher.forward(request, response);
         }
         else {
-        	//RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarAlumnoError.jsp");
         	request.setAttribute("alumnoError", true);
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarAlumno.jsp");
-        	dispatcher.forward(request, response);
         }
+        dispatcher.forward(request, response);
 	}
 
 }
