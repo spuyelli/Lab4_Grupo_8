@@ -47,14 +47,6 @@
           <a class="dropdown-item" href="servletCurso?Param=previoAgregar" id="agregarCursos" style="display: none;">Agregar Cursos</a>     
         </div>
       </li>
-<!-- 
-      <li class="nav-item mr-2 h5">
-        <a class="nav-link " href="ListaCursos.jsp" id="listaCurso" >
-          Mis Cursos
-        </a>
-        
-      </li>
- -->
     </ul>
     <div class= "d-flex justify-content-end">
     <ul class="navbar-nav mr-auto">
@@ -72,7 +64,6 @@
 						usuarioYtipo += " (Administrador)";
 						break;
 					case 2:
-						//session.setAttribute("dniDocente", user.getDni());
 						usuarioYtipo += " (Docente)";
 						break;
 					default:
@@ -102,13 +93,7 @@
 </nav>
 <%
 	if(session.getAttribute("Usuario") != null) {
-		Usuario user = (Usuario)session.getAttribute("Usuario"); 
-		int dni = user.getDni();
-		System.out.println("DNI USER: "+dni);
-		
-		session.setAttribute("dniDocente", dni);
-		int tipoU = user.getTipoUsuario();
-    	if(tipoU != 1){
+		if( ((Usuario)session.getAttribute("Usuario")).getTipoUsuario() != 1){
     	%>
 		    	<script type="text/javascript">
 		        document.getElementById("dropdownAlumnos").onclick = function() {

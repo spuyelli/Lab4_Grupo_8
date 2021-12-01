@@ -37,6 +37,9 @@
   	if(session.getAttribute("Login_error") != null){
   		String error = session.getAttribute("Login_error").toString();
   		%>
+  		<script type="text/javascript">
+        	alert(' <%= error %>');
+        </script>
   		<label for="" class="form-label" style="color: red;"><%= error %></label>
   		<%
   	}
