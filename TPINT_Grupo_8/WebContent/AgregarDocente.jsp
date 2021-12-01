@@ -55,6 +55,7 @@
         </script>
   		<%}%>
   	<% if (request.getAttribute("docenteError") != null) {%>
+			<div class="alert alert-danger">ERROR: NO SE PUDO AGREGAR UN DOCENTE</div>
 			<script type="text/javascript">
         	alert('ERROR: NO SE PUDO AGREGAR UN DOCENTE');
         	</script>	
@@ -71,6 +72,13 @@
 			<div class="alert alert-danger">ERROR: NO SE PUDO AGREGAR UN USUARIO</div>
 			<script type="text/javascript">
         	alert('ERROR: NO SE PUDO AGREGAR UN USUARIO');
+        	</script>	
+	<%}%>
+	<br>
+	<% if (request.getAttribute("PassError") != null) {%>
+			<div class="alert alert-danger">ERROR: LAS CONTRASEÑAS DEBEN COINCIDIR</div>
+			<script type="text/javascript">
+        	alert('ERROR: LAS CONTRASEÑAS DEBEN COINCIDIR');
         	</script>	
 	<%}%>
 	<br>

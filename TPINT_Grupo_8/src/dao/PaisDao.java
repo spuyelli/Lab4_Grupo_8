@@ -7,5 +7,5 @@ import entidades.Pais;
 public interface PaisDao {
 
 	public ArrayList<Pais> listarPaises();
-	
+	public Pais select(int id);	
 }

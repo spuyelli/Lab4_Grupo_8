@@ -5,13 +5,10 @@ import dao.AlumnoDao;
 import entidades.Alumno;
 import entidades.Curso;
 import entidades.Domicilio;
-import entidades.Localidad;
-import entidades.Pais;
 import entidades.Persona;
-import entidades.Provincia;
-
+import negocioImpl.LocalidadNegImpl;
+import negocioImpl.PaisNegImpl;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +23,7 @@ public class AlumnoDaoImpl implements AlumnoDao {
 	private static final String select_all = "select * from universidad.alumnos where dni = ?";
 	private static final String delete = "delete from universidad.alumnos where dni = ?";
 
-    private static final String buscar ="select * from universidad.alumnos where dni=?";
+    private static final String buscar ="select * from universidad.alumnos inner join paises on paises.id = alumnos.idPais inner join paises on paises.id = alumnos.nacionalidad inner join provincias on provincias.id = alumnos.idProvincia inner join localidades on localidades.id = alumnos.idLocalidad where dni=?";
     private static final String modificar ="update alumnos set dni= ?,nombre = ?, apellido= ?,fechaNacimiento= ?,idNacionalidad= ?,domicilio = ?,idLocalidad = ?,email = ?,telefono = ?,estado = ? where dni = ?";
 	private static final String modificarEjemplo = "update alumnos set nombre=?,apellido=?,FechaNacimiento= ?,domicilio= ?,email=?,telefono=? where dni=?";
 	public AlumnoDaoImpl()
@@ -79,7 +76,6 @@ public class AlumnoDaoImpl implements AlumnoDao {
 			if(resultSet != null) {return true;}
 		}
 		catch (Exception e) {
-			// TODO: handle exception
 		}
 		return false;
 	}
@@ -190,13 +186,11 @@ public class AlumnoDaoImpl implements AlumnoDao {
 		   	Domicilio dom = new Domicilio(resultSet.getString("domicilio"));
 			al.setDomicilio(dom);
 				
-			Pais pais = new Pais();
-			pais.setIdPais(resultSet.getInt("idNacionalidad"));
-			al.setNacionalidad(pais);
-				
-			Localidad loc = new Localidad();
-			loc.setIdLocalidad(resultSet.getInt("idLocalidad"));
-			al.setLocalidad(loc);
+			al.setNacionalidad(new PaisNegImpl().select(resultSet.getInt("idNacionalidad")));
+			
+			al.setLocalidad(new LocalidadNegImpl().select(resultSet.getInt("idLocalidad")));
+			al.setProvincia(al.getLocalidad().getIdProvincia());
+			al.setPais(al.getProvincia().getIdPais());
 				
 			Persona pers = new Persona();
 			pers.setFechaNacimiento(resultSet.getDate("fechaNacimiento").toLocalDate());

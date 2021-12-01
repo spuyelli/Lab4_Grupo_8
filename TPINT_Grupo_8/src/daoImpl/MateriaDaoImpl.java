@@ -4,11 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import dao.MateriaDao;
-import entidades.Curso;
 import entidades.Materia;
-import entidades.Persona;
 
 public class MateriaDaoImpl implements MateriaDao {
 	private Conexion cn;

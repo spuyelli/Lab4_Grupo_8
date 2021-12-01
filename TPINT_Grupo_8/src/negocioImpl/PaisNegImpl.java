@@ -10,12 +10,16 @@ import negocio.PaisNeg;
 public class PaisNegImpl implements PaisNeg{
 
 	private PaisDao paisDao = new PaisDaoImpl();
-		
-	@Override
-	public ArrayList<Pais> listarPaises() {
-		
-		return (ArrayList<Pais>) paisDao.listarPaises();
 	
+	public PaisNegImpl() {
 	}
 
+	@Override
+	public ArrayList<Pais> listarPaises() {
+		return (ArrayList<Pais>) paisDao.listarPaises();
+	}
+	
+	public Pais select(int id) {
+		return paisDao.select(id);
+	}
 }

@@ -14,10 +14,11 @@ public class ProvinciaNegImpl implements ProvinciaNeg{
 
 	@Override
 	public ArrayList<Provincia> listarProvincias() {
-		
 		return (ArrayList<Provincia>) provinciaDao.listarProvincias();
 	}
 	
-	
+	public Provincia select(int id) {
+		return provinciaDao.select(id);
+	}
 	
 }

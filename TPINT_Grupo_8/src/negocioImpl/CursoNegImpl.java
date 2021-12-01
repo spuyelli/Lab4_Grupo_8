@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import dao.CursoDao;
 import daoImpl.CursoDaoImpl;
 import entidades.Curso;
-import entidades.Usuario;
 import negocio.CursoNeg;
 
 public class CursoNegImpl implements CursoNeg{
