@@ -37,6 +37,9 @@
 	<br>	
 	<% if (request.getAttribute("alumnoAgregado") != null) {%>
 	<div class="alert alert-success">Se agregó un alumno correctamente!</div>
+		<script type="text/javascript">
+	                alert('AGREGADO CORRECTAMENTE.');
+	    </script>
 	<%}%>
 		
 	<% boolean eliminado = (boolean)request.getAttribute("alumnoEliminado");
