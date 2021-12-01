@@ -79,11 +79,11 @@ public class servletListarAlumno extends HttpServlet {
 	
 	}
 
-	
+	/**
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 	
-if (request.getParameter("btnModificar") != null) {
+		if (request.getParameter("btnModificar") != null) {
 			
 			Alumno al = new Alumno();
 			AlumnoNegImpl alNeg = new AlumnoNegImpl();
@@ -103,6 +103,6 @@ if (request.getParameter("btnModificar") != null) {
 			
 		}
 		
-	}
+	} **/
 
 }

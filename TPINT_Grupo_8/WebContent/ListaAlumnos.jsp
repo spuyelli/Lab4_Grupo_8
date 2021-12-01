@@ -84,7 +84,7 @@
 	            <td><%=alumno.getEmail() %></td>
 	            <td><%=alumno.getTelefono() %></td>
             	<td><a class="btn btn-primary"   href="servletModificarAlumno?dni=<%=alumno.getDni() %>" type="" name="btnModificar" value="Modificar:">modificar</a></td>
-	            <td><input type="submit" name="btnEliminar" value="Eliminar"></input></td>	            
+	            <td><input type="submit" name="btnEliminar" onclick="return confirm('seguro que desea eliminar?')" value="Eliminar"></input></td>	            
 	            
 	         
             

@@ -60,7 +60,7 @@
 	            <th>Nombre</th>
 	            <th>Apellido</th>
 	            <th>E-mail</th>
-	            <th>Telï¿½fono</th>
+	            <th>Teléfono</th>
 	            <th></th>
 	            <th></th>
 	            
@@ -80,7 +80,7 @@
 	            <td><%=docente.getEmail() %></td>
 	            <td><%=docente.getTelefono() %></td>
             	<td><input type="submit" name="btnModificar" value="Modificar"></input></td>
-	            <td><input type="submit" name="btnEliminar" value="Eliminar"></input></td>	            
+	            <td><input type="submit" name="btnEliminar" onclick="return confirm('seguro que desea eliminar?')" value="Eliminar"></input></td>	            
 	            
 	            </form>        
             

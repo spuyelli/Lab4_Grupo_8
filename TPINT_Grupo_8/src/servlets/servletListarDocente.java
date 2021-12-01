@@ -44,13 +44,6 @@ public class servletListarDocente extends HttpServlet {
 		
 		
 		
-		/**
-		Docente doc = new Docente();
-		DocenteNegImpl docNeg = new DocenteNegImpl();
-		doc = docNeg.BuscarDocente(Integer.parseInt(request.getParameter("dniSeleccionado")));
-		request.setAttribute("Docente", doc);
-		request.getRequestDispatcher("ModificarAlumno.jsp").forward(request, response);
-		**/
 		
 	}
 
@@ -76,16 +69,10 @@ public class servletListarDocente extends HttpServlet {
 			dispatcherListar.forward(request, response);
 				
 			
-		}
+		}	
 		
 		
-		
-	/*	Docente doc = new Docente();
-		DocenteNegImpl docNeg = new DocenteNegImpl();
-		doc = docNeg.BuscarDocente(Integer.parseInt(request.getParameter("dniSeleccionado")));
-		request.setAttribute("Docente", doc);
-		request.getRequestDispatcher("ModificarAlumno.jsp").forward(request, response);
-	*/
+	
 	}
 
 	
