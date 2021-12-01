@@ -44,19 +44,19 @@ public class servletCalificaciones extends HttpServlet {
 						Integer.parseInt(dni));
 				switch (request.getParameter("Notas")) {
 				case "Parcial1":
-					cal.setParcial1(Integer.parseInt(request.getParameter("nota")));
+					cal.setParcial1(Float.parseFloat(request.getParameter("nota")));
 					cNeg.update(cal, 1);
 					break;
 				case "Parcial2":
-					cal.setParcial2(Integer.parseInt(request.getParameter("nota")));
+					cal.setParcial2(Float.parseFloat(request.getParameter("nota")));
 					cNeg.update(cal, 2);
 					break;
 				case "Recuperatorio1":
-					cal.setRecuperatorio1(Integer.parseInt(request.getParameter("nota")));
+					cal.setRecuperatorio1(Float.parseFloat(request.getParameter("nota")));
 					cNeg.update(cal, 3);
 					break;
 				case "Recuperatorio2":
-					cal.setRecuperatorio2(Integer.parseInt(request.getParameter("nota")));
+					cal.setRecuperatorio2(Float.parseFloat(request.getParameter("nota")));
 					cNeg.update(cal, 4);
 					break;
 				default:

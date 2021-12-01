@@ -6,8 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.sun.corba.se.impl.protocol.InfoOnlyServantCacheLocalCRDImpl;
+
 import dao.CalificacionDAO;
 import entidades.Calificacion;
+import sun.nio.cs.ext.ISCII91;
 
 public class CalificacionDAOImpl implements CalificacionDAO {
 
@@ -31,25 +35,28 @@ public class CalificacionDAOImpl implements CalificacionDAO {
 				update += "recuperatorio_1 = '" + cal.getRecuperatorio1() + "'";
 				break;
 			case 4:
-				update += "recuperatorio_2 ='" + cal.getRecuperatorio2() + "'";
+				update += "recuperatorio_2 = '" + cal.getRecuperatorio2() + "'";
 				break;
 			default:
 				break;
 			}
-			if ((cal.getParcial1() > 6 && cal.getParcial2() > 6)
-					|| (cal.getParcial1() < 6 && cal.getRecuperatorio1() < 6)
-					|| (cal.getParcial2() < 6 && cal.getRecuperatorio2() < 6)) {
+			
+			if (cal.getParcial1() > 6 && cal.getParcial2() > 6) {
+				update += ", estadoAprobacion='1'";
+			} else if ((cal.getParcial1() < 6) && (cal.getRecuperatorio1() > 6) && (cal.getParcial2() > 6)) {
+				update += ", estadoAprobacion='1'";
+			} else if (cal.getParcial1() > 6 && cal.getParcial2() < 6 && cal.getRecuperatorio2() > 6) {
+				update += ", estadoAprobacion='1'";
+			} else if (cal.getRecuperatorio1() > 6 && cal.getRecuperatorio2() > 6) {
 				update += ", estadoAprobacion='1'";
 			} else {
 				update += ", estadoAprobacion='0'";
 			}
-
+			
 			update += " where (dniAlumno = '" + cal.getDniAlumno() + "') and (idCurso = '" + cal.getIdCurso() + "')";
 			statement = conexion.prepareStatement(update);
-			System.out.println(statement);
 			statement.executeUpdate();
 			conexion.commit();
-			System.out.println("exito con la nota");
 			return true;
 
 		} catch (SQLException e) {

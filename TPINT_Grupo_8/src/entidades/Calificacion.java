@@ -73,7 +73,7 @@ public class Calificacion {
 		return recuperatorio2;
 	}
 
-	public void setRecuperatorio2(int recuperatorio2) {
+	public void setRecuperatorio2(float recuperatorio2) {
 		this.recuperatorio2 = recuperatorio2;
 	}
 
