@@ -55,41 +55,54 @@
 	<table id="ListaDocentes" class="display">
     	<thead>
         	<tr>
+	            <th></th>
+	            <th>Dni</th>
 	            <th>Legajo</th>
 	            <th>Nombre</th>
 	            <th>Apellido</th>
 	            <th>E-mail</th>
-	            <th>Teléfono</th>
-	            <th></th>
-	            <th></th>
+	            <th>Teléfono</th>	                    	            
 	            
 	            
 	        </tr>
     	</thead>
     	<tbody>
     
-    			<% if(lista != null) for (Docente docente : lista) { %>
-        	<tr>
-	            
-	            <form action="servletListarDocente" method="post">	            
-	            
-	            <td><%=docente.getLegajo() %></td>
-	            <td><%=docente.getNombre() %></td>
-	            <td><%=docente.getApellido() %></td>
-	            <td><%=docente.getEmail() %></td>
-	            <td><%=docente.getTelefono() %></td>
-            	<td><input type="submit" name="btnModificar" value="Modificar"></input></td>
-	            <td><input type="submit" name="btnEliminar" onclick="return confirm('seguro que desea eliminar?')" value="<%=docente.getDni() %>"> Click aquí para Eliminar</input></td>       
-	                       
-	            </form>        
+    			<% if(lista != null) for (Docente docente : lista) { %>        		            
             
-        	</tr>
-        	<% } %>
-        
+            <tr>
+	            <form action="servletListarDocente" method="post">
+	           	
+	           		<td><input type="radio" name="dniSeleccionado" required value="<%=docente.getDni() %>"></td>
+	           		<td><%=docente.getDni() %></td>	             
+		            <td><%=docente.getLegajo() %></td>
+		            <td><%=docente.getNombre() %></td>
+		            <td><%=docente.getApellido() %></td>
+		            <td><%=docente.getEmail() %></td>
+		            <td><%=docente.getTelefono() %></td>
+	            			            
+		                
+	         	</form> 
+         	</tr>         	     
+            
+        	<% } %>       
             
         
     	</tbody>
 	</table>
+			<div class="row mb-4 justify-content-center" style="height: 50px;">
+				<div class="col-4 ml-4">
+					<button type="submit" name= "btnModificar" value= "Modificar" class="btn btn-primary w-100 mt-4 ml-2">Modificar</button>
+				</div>
+			</div>
+			<div class="row mb-4 justify-content-center" style="height: 50px;">
+				<div class="col-4 ml-4">
+					<button type="submit" name= "btnEliminar" onclick="return confirm('seguro que desea eliminar?')" value= "Eliminar" class="btn btn-primary w-100 mt-4 ml-2">Eliminar</button>
+				</div>
+			</div>
+
+	
+	
 </form>
 
 
