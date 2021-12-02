@@ -9,11 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import negocio.AlumnoNeg;
 import negocio.DocenteNeg;
+import negocio.LocalidadNeg;
+import negocio.PaisNeg;
+import negocio.ProvinciaNeg;
 import entidades.Alumno;
 import entidades.Docente;
 import negocioImpl.AlumnoNegImpl;
 import negocioImpl.DocenteNegImpl;
+import negocioImpl.LocalidadNegImpl;
+import negocioImpl.PaisNegImpl;
+import negocioImpl.ProvinciaNegImpl;
 
 
 @WebServlet("/servletListarDocente")
@@ -21,6 +28,10 @@ public class servletListarDocente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	DocenteNeg dNeg = new DocenteNegImpl();	
+	AlumnoNeg aNeg = new AlumnoNegImpl();
+	PaisNeg paisNeg = new PaisNegImpl();
+	ProvinciaNeg provinciaNeg = new ProvinciaNegImpl();
+	LocalidadNeg localidadesNeg = new LocalidadNegImpl();
        
    
     public servletListarDocente() {
@@ -42,7 +53,24 @@ public class servletListarDocente extends HttpServlet {
 			
 		}
 		
-				
+		if (request.getParameter("btn").equals("modificar")) {
+			Docente doc = new Docente();
+			DocenteNegImpl alNeg = new DocenteNegImpl();
+			doc = dNeg.buscarAlumno(Integer.parseInt(request.getParameter("dni")));
+			
+			//DROPDOWN PAISES
+			request.setAttribute("paises", paisNeg.listarPaises());	
+			
+			//DROPDOWN PROVINCIAS
+			request.setAttribute("provincias", provinciaNeg.listarProvincias());	
+			
+			//DROPDOWN LOCALIDADES
+			request.setAttribute("localidades", localidadesNeg.listarLocalidades());	
+			
+			request.setAttribute("Alumno", doc);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("ModificarDocente.jsp");
+			dispatcher.forward(request, response);
+		}
 		
 		/**
 		if(request.getParameter("btn").equals("modificar") ) {

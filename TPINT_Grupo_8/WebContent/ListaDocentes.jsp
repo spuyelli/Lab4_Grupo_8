@@ -55,13 +55,15 @@
 	<table id="ListaDocentes" class="display">
     	<thead>
         	<tr>
-	            <th></th>
+
 	            <th>Dni</th>
 	            <th>Legajo</th>
 	            <th>Nombre</th>
 	            <th>Apellido</th>
 	            <th>E-mail</th>
 	            <th>Teléfono</th>
+	            <th></th>
+				<th></th>
 	            
 	            
 	            
@@ -70,40 +72,19 @@
     	<tbody>
     
     			<% if(lista != null) for (Docente docente : lista) { %>
-        	<%-- <tr>
-	            
-	            <form action="servletListarDocente" method="post">	            
-	            
-	            <td><%=docente.getDni() %></td>
-	            <td><%=docente.getLegajo() %></td>
-	            <td><%=docente.getNombre() %></td>
-	            <td><%=docente.getApellido() %></td>
-	            <td><%=docente.getEmail() %></td>
-	            <td><%=docente.getTelefono() %></td>
-            	
-            	
-            	<td><a class="btn btn-warning"
-						href="servletListarDocente?dni=<%=docente.getDni()%>&btn=modificar"
-						name="Modificar">modificar</a></td>
-	           
-            	
-	            <td><input type="submit" name="btnEliminar" onclick="return confirm('seguro que desea eliminar?')" value="<%=docente.getDni() %>"> Click aquï¿½ para Eliminar</input></td>       
-	                   
-	            </form>     --%>   
             
             <tr>
-	            <form action="servletListarDocente" method="post">
 	           	
-	           		<td><input type="radio" name="dniSeleccionado" required value="<%=docente.getDni() %>"></td>
 	           		<td><%=docente.getDni() %></td>	             
 		            <td><%=docente.getLegajo() %></td>
 		            <td><%=docente.getNombre() %></td>
 		            <td><%=docente.getApellido() %></td>
 		            <td><%=docente.getEmail() %></td>
 		            <td><%=docente.getTelefono() %></td>
-	            			            
+	            	<td><a class="btn btn-warning" href="servletListarDocente?dni=<%=docente.getDni()%>&btn=modificar"
+						name="Modificar">Modificar</a></td>
+					<td><input class="btn btn-danger" type="submit" name="btnEliminar" value="Eliminar"></input></td>
 		                
-	         	</form> 
          	</tr>         	     
             
         	<% } %>       
