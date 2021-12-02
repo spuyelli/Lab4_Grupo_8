@@ -108,6 +108,7 @@
 				<div class="col-3 pr-4">
 					<label for="">País de residencia</label>
 					<select class="form-control" name="inputPais" id="inputPais" name="Pais" required placeholder="PAIS">
+				 	<option value="<%=al.getNacionalidad().getIdPais()%>"><%=al.getNacionalidad().getDescripcion()%></option>
 				 	<!-- Pais -->
 				<%
 						for(Pais pais : Paises)
@@ -127,6 +128,7 @@
 				<div class="col-3 ml-4">
 					<label for="">Provincia</label>
 					<select class="form-control" name="inputProvincia" id="inputProvincia" name="Provincia" required placeholder="PROVINCIA" >
+					 <option value="<%=al.getProvincia().getIdProvincia()%>"><%=al.getProvincia().getDescripcion()%></option> 
 						 <!-- Provincias --> 
 						  	<%
 							for(Provincia provincia : Provincias)
@@ -141,6 +143,7 @@
 				<div class="col-3 pr-4">
 					<label for="">Localidad</label>
 					<select class="form-control" name="inputLocalidad" id="inputLocalidad" name="Localidad" required placeholder="LOCALIDAD" >
+					<option value="<%=al.getLocalidad().getIdLocalidad()%>"><%=al.getLocalidad().getDescripcion()%></option>
 					<!-- localidad -->
 						<%
 							for(Localidad localidad : Localidades)
@@ -169,6 +172,7 @@
 				<div class="col-3 ml-4">
 					<label for="">Nacionalidad</label>
 					<select class="form-control" name="inputNacionalidad" name="Nacionalidad" id="inputNacionalidad" required >
+					<option value="<%=al.getNacionalidad().getIdPais()%>"><%=al.getNacionalidad().getDescripcion()%></option>
 				<!--Nacionalidad -->
 						 <%	for(Pais pais : Paises)
 					         {

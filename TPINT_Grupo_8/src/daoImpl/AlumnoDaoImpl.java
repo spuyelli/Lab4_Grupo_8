@@ -26,7 +26,7 @@ public class AlumnoDaoImpl implements AlumnoDao {
     private static final String buscar ="select * from universidad.alumnos inner join universidad.localidades on alumnos.idLocalidad=localidades.id  where dni=? and estado = 1";
     private static final String modificar ="update universidad.alumnos set nombre = ?, apellido= ?,fechaNacimiento= ?,idNacionalidad= ?,domicilio = ?,idLocalidad = ?,email = ?,telefono = ? where dni = ?";
     		
-	private static final String modificarEjemplo = "update alumnos set nombre=?,apellido=?,FechaNacimiento= ?,domicilio= ?,email=?,telefono=? where dni=?";
+	private static final String modificarEjemplo = "update universidad.alumnos set nombre=?,apellido=?,FechaNacimiento= ?,domicilio= ?,email=?,telefono=? where dni=?";
 	public AlumnoDaoImpl()
 	{
 

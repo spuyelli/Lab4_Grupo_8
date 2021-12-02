@@ -56,7 +56,7 @@ public class servletListarDocente extends HttpServlet {
 		if (request.getParameter("btn").equals("modificar")) {
 			Docente doc = new Docente();
 			DocenteNegImpl alNeg = new DocenteNegImpl();
-			doc = dNeg.buscarAlumno(Integer.parseInt(request.getParameter("dni")));
+			doc = dNeg.BuscarDocente(Integer.parseInt(request.getParameter("dni")));
 			
 			//DROPDOWN PAISES
 			request.setAttribute("paises", paisNeg.listarPaises());	
