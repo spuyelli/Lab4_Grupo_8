@@ -67,20 +67,19 @@ public class servletListarDocente extends HttpServlet {
 			//DROPDOWN LOCALIDADES
 			request.setAttribute("localidades", localidadesNeg.listarLocalidades());	
 			
-			request.setAttribute("Alumno", doc);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("ModificarDocente.jsp");
-			dispatcher.forward(request, response);
+			request.setAttribute("Docente", doc);
+			request.getRequestDispatcher("ModificarDocente.jsp").forward(request, response);
 		}
 		
-		/**
-		if(request.getParameter("btn").equals("modificar") ) {
-		Docente doc = new Docente();
-		DocenteNegImpl docNeg = new DocenteNegImpl();
-		doc = docNeg.BuscarDocente(Integer.parseInt(request.getParameter("dni")));
-		request.setAttribute("Docente", doc);
-		request.getRequestDispatcher("ModificarDocente.jsp").forward(request, response);
+		if(request.getParameter("btn").equals("modificar")) {
+			
+			
+			//ACA SE ELIMINA EL DOCENTE ;3
+		
 		}
-		**/
+	
+		
+	
 		
 		
 	}
@@ -89,7 +88,7 @@ public class servletListarDocente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-
+/*
 		if (request.getParameter("btnEliminar") != null) {
 			
 			int dni = Integer.parseInt(request.getParameter("dniSeleccionado").toString());
@@ -114,7 +113,7 @@ public class servletListarDocente extends HttpServlet {
 			
 			
 		}
-				
+				*/
 	}
 }
 

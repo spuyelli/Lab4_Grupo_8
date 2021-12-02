@@ -59,30 +59,8 @@ public class servletModificarAlumno extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		//DROPDOWN PAISES
-		request.setAttribute("paises", paisNeg.listarPaises());	
+	
 		
-		//DROPDOWN PROVINCIAS
-		request.setAttribute("provincias", provinciaNeg.listarProvincias());	
-		
-		//DROPDOWN LOCALIDADES
-		/*Docente docenteNuevo = new Docente(
-				Integer.parseInt(request.getParameter("inputDNI")),
-				request.getParameter("inputNombre"),
-				request.getParameter("inputApellido"),
-				LocalDate.parse(request.getParameter("inputFechaNacimiento")),
-				new Pais(Integer.parseInt(request.getParameter("inputNacionalidad"))),
-				new Domicilio(request.getParameter("inputDireccion")),
-				new Localidad(Integer.parseInt(request.getParameter("inputLocalidad"))),
-				new Provincia(Integer.parseInt(request.getParameter("inputProvincia"))),
-				new Pais(Integer.parseInt(request.getParameter("inputPais"))),
-				request.getParameter("inputEmail"),
-				Integer.parseInt(request.getParameter("inputTelefono"))
-				);
-		*/
-		
-		
-		request.setAttribute("localidades", localidadesNeg.listarLocalidades());	
 		AlumnoNegImpl AlumNeg = new AlumnoNegImpl();
 		Alumno al = new Alumno();
 		al.setDni(Integer.parseInt(request.getParameter("Dni")));
@@ -109,7 +87,7 @@ public class servletModificarAlumno extends HttpServlet {
 		al.setLocalidad(l);
 		al.setProvincia(prov);
 		al.setPais(p);
-		System.out.println(al.getLocalidad().getIdLocalidad());
+		
 		AlumNeg.actualizarAlumno(al);
 		
 

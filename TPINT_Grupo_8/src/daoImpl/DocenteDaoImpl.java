@@ -12,13 +12,15 @@ import entidades.Domicilio;
 import entidades.Localidad;
 import entidades.Pais;
 import entidades.Persona;
+import negocioImpl.LocalidadNegImpl;
+import negocioImpl.PaisNegImpl;
 
 public class DocenteDaoImpl implements DocenteDao {
 	private Conexion cn;
 	private static final String readall = "select * from docentes where estado = 1";
 	private static final String insert = "INSERT INTO universidad.docentes (dni, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	private static final String buscar ="select * from universidad.docentes where dni=?";
-	private static final String modificarEjemplo = "update docentes set nombre=?,apellido=?,FechaNacimiento= ?,domicilio= ?,email=?,telefono=? where dni=?";
+	private static final String find ="select * from universidad.docentes where dni=?";
+	private static final String update = "update docentes set nombre=?,apellido=?,FechaNacimiento= ?,idNacionalidad = ?,domicilio= ?,idLocalidad=?,email=?,telefono=? where dni=?";
 
 	public DocenteDaoImpl()
 	{
@@ -127,7 +129,7 @@ public class DocenteDaoImpl implements DocenteDao {
 			
 			conexionSql = new Conexion();
 			Connection connection  = Conexion.getConexion().getSQLConexion();
-			PreparedStatement statement = connection.prepareStatement(buscar);
+			PreparedStatement statement = connection.prepareStatement(find);
 			statement.setInt(1, dni);
 				
 			ResultSet resultSet = statement.executeQuery();
@@ -150,6 +152,18 @@ public class DocenteDaoImpl implements DocenteDao {
 			Localidad loc = new Localidad();
 			loc.setIdLocalidad(resultSet.getInt("idLocalidad"));
 			doc.setLocalidad(loc);
+			
+			doc.setNacionalidad(new PaisNegImpl().select(resultSet.getInt("idNacionalidad")));
+			
+			
+			doc.setLocalidad(new LocalidadNegImpl().select(resultSet.getInt("idLocalidad")));
+			
+			doc.setProvincia(doc.getLocalidad().getIdProvincia());
+			
+			
+			
+			
+			doc.setPais(doc.getProvincia().getIdPais());
 				
 			Persona pers = new Persona();
 			pers.setFechaNacimiento(resultSet.getDate("fechaNacimiento").toLocalDate());
@@ -163,7 +177,7 @@ public class DocenteDaoImpl implements DocenteDao {
 		
 	}
 	
-	public boolean ModificaDocente(Docente doc){
+	public boolean ModificarDocente(Docente doc){
 		//dni actual //3
 		// TODO Auto-generated method stub
 		
@@ -173,16 +187,18 @@ public class DocenteDaoImpl implements DocenteDao {
 			Connection connection  = Conexion.getConexion().getSQLConexion();
 
 			try {
-				PreparedStatement statement = connection.prepareStatement(modificarEjemplo);
+				PreparedStatement statement = connection.prepareStatement(update);
 			
-				
+				System.out.print("LLEGUE VIEJO");
 				statement.setString(1, doc.getNombre());
 				statement.setString(2, doc.getApellido());
 				statement.setString(3, doc.getFechaNacimiento().toString());
-				statement.setString(4, doc.getDomicilio().getCalle_Numero());
-				statement.setString(5, doc.getEmail());
-				statement.setInt(6, doc.getTelefono());
-				statement.setInt(7, doc.getDni());
+				statement.setInt(4, doc.getPais().getIdPais());
+				statement.setString(5, doc.getDomicilio().getCalle_Numero());
+				statement.setInt(6, doc.getLocalidad().getIdLocalidad());	
+				statement.setString(7, doc.getEmail());
+				statement.setInt(8, doc.getTelefono());
+				statement.setInt(9, doc.getDni());
 
 				if(statement.executeUpdate()==1) {
 					connection.commit();

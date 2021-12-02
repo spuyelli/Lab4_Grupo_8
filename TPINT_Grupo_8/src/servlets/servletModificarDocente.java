@@ -12,8 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import entidades.Alumno;
 import entidades.Docente;
 import entidades.Domicilio;
+import entidades.Localidad;
+import entidades.Pais;
+import entidades.Provincia;
 import negocioImpl.AlumnoNegImpl;
 import negocioImpl.DocenteNegImpl;
+import negocioImpl.LocalidadNegImpl;
+import negocioImpl.PaisNegImpl;
 
 /**
  * Servlet implementation class servletModificarDocente
@@ -48,28 +53,39 @@ public class servletModificarDocente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		if (request.getParameter("btn").equals("modificar")) {
-			Alumno al = new Alumno();
-			AlumnoNegImpl alNeg = new AlumnoNegImpl();
-			al = alNeg.buscarAlumno(Integer.parseInt(request.getParameter("dni")));
-			request.removeAttribute("btn");
+		
+			Docente doc = new Docente();
+			DocenteNegImpl docNeg = new DocenteNegImpl();
+			doc.setDni(Integer.parseInt(request.getParameter("Dni")));
+			doc.setNombre(request.getParameter("Nombre"));
+			doc.setEmail(request.getParameter("Email"));
+			doc.setApellido(request.getParameter("Apellido"));
+			doc.setFechaNacimiento(LocalDate.parse(request.getParameter("FechaNacimiento")));
+			doc.setTelefono(Integer.parseInt(request.getParameter("Telefono")));
+			Domicilio dom = new Domicilio();
+			dom.setCalle_Numero(request.getParameter("Domicilio"));
+			dom.setLocalidad(new LocalidadNegImpl().select((Integer.parseInt(request.getParameter("inputLocalidad")))));
+			doc.setDomicilio(dom);
 			
-			//DROPDOWN PAISES
-			request.setAttribute("paises", paisNeg.listarPaises());	
 			
-			//DROPDOWN PROVINCIAS
-			request.setAttribute("provincias", provinciaNeg.listarProvincias());	
+			Localidad l = new Localidad(Integer.parseInt(request.getParameter("inputLocalidad")));
+
+		
+			Pais p = new Pais(Integer.parseInt(request.getParameter("inputPais")));
 			
-			//DROPDOWN LOCALIDADES
-			request.setAttribute("localidades", localidadesNeg.listarLocalidades());	
 			
-			request.setAttribute("Alumno", al);
+			Pais n = new Pais(Integer.parseInt(request.getParameter("inputNacionalidad")));
+			doc.setNacionalidad(n);
+			doc.setLocalidad(l);
+			doc.setPais(p);
 			
-			System.out.println("Estamos en el btn modificar, servlet modificar");
+			docNeg.ModificarDocente(doc);
 			
-			request.getRequestDispatcher("/ModificarAlumno.jsp").forward(request, response);
 			
+			
+			response.sendRedirect("servletListarDocente?Param=list");
+						
 		}
 	}
 
-}
+

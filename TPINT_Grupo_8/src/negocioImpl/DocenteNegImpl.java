@@ -43,8 +43,9 @@ public class DocenteNegImpl implements DocenteNeg{
 		return docDao.BuscarDocente(dni);
 	}
 	
-	public boolean ModificaDocente(Docente doc) {
-		return docDao.ModificaDocente(doc);
+	public boolean ModificarDocente(Docente doc) {
+		
+		return docDao.ModificarDocente(doc);
 		
 	}
 

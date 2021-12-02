@@ -73,6 +73,11 @@ public class servletListarAlumno extends HttpServlet {
 			request.setAttribute("Alumno", al);
 			request.getRequestDispatcher("ModificarAlumno.jsp").forward(request, response);
 		}
+		
+		if(request.getParameter("btn").equals("eliminar")){
+			
+			//AGREGAR PARA ELIMINAR ACA :3
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
