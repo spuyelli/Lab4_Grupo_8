@@ -82,7 +82,7 @@
 			lista = (List<Alumno>) request.getAttribute("listaAlumnos");
 		}
 	%>
-	<form class="w-100 justify-content-center pl-3 pr-3" method="post"
+	<form class="w-100 justify-content-center pl-3 pr-3" method="get"
 		action="servletListarAlumno">
 		<table id="ListaAlumnos" class="display">
 			<thead>

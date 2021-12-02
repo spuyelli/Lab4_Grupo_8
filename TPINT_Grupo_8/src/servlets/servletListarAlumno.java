@@ -67,7 +67,7 @@ public class servletListarAlumno extends HttpServlet {
 			boolean eliminado = aNeg.eliminarAlumno(dni);
 			
 			request.setAttribute("listaAlumnos", aNeg.listarAlumnos());
-			request.setAttribute("alumnoEliminado", false);
+			request.setAttribute("alumnoEliminado", eliminado);
 			
 			RequestDispatcher dispatcherListar = request.getRequestDispatcher("ListaAlumnos.jsp");
 			dispatcherListar.forward(request, response);	
@@ -78,7 +78,7 @@ public class servletListarAlumno extends HttpServlet {
 			throws ServletException, IOException {
 
 		
-
+		/*
 		if (request.getParameter("btnEliminar") != null) {
 
 			int dni = Integer.parseInt(request.getParameter("dniSeleccionado").toString());
@@ -89,6 +89,6 @@ public class servletListarAlumno extends HttpServlet {
 			dispatcher.forward(request, response);
 
 		}
-
+		 */
 	}
 }
