@@ -83,10 +83,8 @@
 		            <td><%=docente.getTelefono() %></td>
 	            	<td><a class="btn btn-warning" href="servletListarDocente?dni=<%=docente.getDni()%>&btn=modificar"
 						name="Modificar">Modificar</a></td>
-					<td><a class="btn btn-danger" href="servletListarDocente?dni=<%=docente.getDni()%>&btn=Eliminar"
-						name="Eliminar">Eliminar</a></td>
+					<td><a class="btn btn-danger" 	href="servletListarDocente?dni=<%=docente.getDni()%>&btn=eliminar" name="Eliminar">Eliminar</a></td>
 					
-
          	</tr>
 
         	<% } %>
@@ -94,7 +92,6 @@
 
     	</tbody>
 	</table>
-			
 
 
 

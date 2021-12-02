@@ -34,18 +34,6 @@ public class servletListarAlumno extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		/**
-		 * //IF PARA MOSTRAR MENSAJE DE AGREGADO a la BD correctamente
-		 * if(request.getSession().getAttribute("mensaje")!=null &&
-		 * request.getSession().getAttribute("mensaje").toString().equalsIgnoreCase("success")){
-		 * //pregunta si la session tiene un atributo llamado mensaje y cuyo contenido
-		 * es success que viene del servletAgregarAlumno
-		 * request.setAttribute("alumnoAgregado", true); //entonces agregamos un
-		 * atributo a una variable en el request para leerlo en el listarAlumno.jsp
-		 * request.getSession().removeAttribute("mensaje"); //elimina la variable
-		 * mensaje pq sino cada vez q cargue el listado mostrara el mensaje de agregado
-		 * con exito }
-		 **/
 
 		if (request.getParameter("Param") != null) {
 			request.setAttribute("listaAlumnos", aNeg.listarAlumnos());
@@ -73,10 +61,16 @@ public class servletListarAlumno extends HttpServlet {
 			request.setAttribute("Alumno", al);
 			request.getRequestDispatcher("ModificarAlumno.jsp").forward(request, response);
 		}
-		
-		if(request.getParameter("btn").equals("eliminar")){
+		if (request.getParameter("btn").equals("eliminar")) {
+			int dni = Integer.parseInt(request.getParameter("dni"));
 			
-			//AGREGAR PARA ELIMINAR ACA :3
+			boolean eliminado = aNeg.eliminarAlumno(dni);
+			
+			request.setAttribute("listaAlumnos", aNeg.listarAlumnos());
+			request.setAttribute("alumnoEliminado", false);
+			
+			RequestDispatcher dispatcherListar = request.getRequestDispatcher("ListaAlumnos.jsp");
+			dispatcherListar.forward(request, response);	
 		}
 	}
 

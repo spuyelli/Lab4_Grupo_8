@@ -55,7 +55,6 @@ public class servletListarDocente extends HttpServlet {
 		
 		if (request.getParameter("btn").equals("modificar")) {
 			Docente doc = new Docente();
-			DocenteNegImpl alNeg = new DocenteNegImpl();
 			doc = dNeg.BuscarDocente(Integer.parseInt(request.getParameter("dni")));
 			
 			//DROPDOWN PAISES
@@ -69,6 +68,18 @@ public class servletListarDocente extends HttpServlet {
 			
 			request.setAttribute("Docente", doc);
 			request.getRequestDispatcher("ModificarDocente.jsp").forward(request, response);
+		}
+		if (request.getParameter("btn").equals("eliminar")) {
+			int dni = Integer.parseInt(request.getParameter("dni"));
+			
+			boolean eliminado = dNeg.eliminarDocente(dni);
+			
+			request.setAttribute("listaDocentes", dNeg.listarDocentes());
+			request.setAttribute("docenteEliminado", false);
+			
+			RequestDispatcher dispatcherListar = request.getRequestDispatcher("ListaDocentes.jsp");
+			dispatcherListar.forward(request, response);	
+
 		}
 		
 		if(request.getParameter("btn").equals("modificar")) {

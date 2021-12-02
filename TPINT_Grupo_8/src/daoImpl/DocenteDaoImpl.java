@@ -104,6 +104,7 @@ public class DocenteDaoImpl implements DocenteDao {
 		boolean estado=false;
 		cn = new Conexion();
 		cn.Open();		 
+		System.out.println(Integer.toString(dni));
 		String query = "UPDATE universidad.docentes SET estado=0 WHERE dni="+dni;
 		try
 		 {
