@@ -48,28 +48,28 @@ public class servletModificarDocente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		Domicilio dom = new Domicilio();
-		dom.setCalle_Numero(request.getParameter("Domicilio"));
-		
-		DocenteNegImpl DocNeg = new DocenteNegImpl();
-		Docente doc = new Docente();
-		doc.setDni(Integer.parseInt(request.getParameter("Dni")));
-		doc.setNombre(request.getParameter("Nombre"));
-		doc.setEmail(request.getParameter("Email"));
-		doc.setApellido(request.getParameter("Apellido"));
-		//en el doc set domicilio se rompe el domicilio 
-		doc.setDomicilio(dom);
-		doc.setFechaNacimiento(LocalDate.parse(request.getParameter("FechaNacimiento")));
-		doc.setTelefono(Integer.parseInt(request.getParameter("Telefono")));
-	
-		
-		DocNeg.ModificaDocente(doc);
-				
-				//la domada es ahi
-		
-		response.sendRedirect("servletListarDocente?Param=list");
+		if (request.getParameter("btn").equals("modificar")) {
+			Alumno al = new Alumno();
+			AlumnoNegImpl alNeg = new AlumnoNegImpl();
+			al = alNeg.buscarAlumno(Integer.parseInt(request.getParameter("dni")));
+			request.removeAttribute("btn");
 			
-		doGet(request, response);
+			//DROPDOWN PAISES
+			request.setAttribute("paises", paisNeg.listarPaises());	
+			
+			//DROPDOWN PROVINCIAS
+			request.setAttribute("provincias", provinciaNeg.listarProvincias());	
+			
+			//DROPDOWN LOCALIDADES
+			request.setAttribute("localidades", localidadesNeg.listarLocalidades());	
+			
+			request.setAttribute("Alumno", al);
+			
+			System.out.println("Estamos en el btn modificar, servlet modificar");
+			
+			request.getRequestDispatcher("/ModificarAlumno.jsp").forward(request, response);
+			
+		}
 	}
 
 }
