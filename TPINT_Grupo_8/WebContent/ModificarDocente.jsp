@@ -81,7 +81,8 @@
 					<label for="">Dirección</label> <input type="text" class="form-control" id="inputDireccion" required placeholder="Domicilio" name="Domicilio" value="<%=doc.getDomicilio().getCalle_Numero() %>">
 				</div>
 				<div class="col-3 pr-4">
-					<label for="">País de residencia</label> <select class="form-control" name="inputPais" id="inputPais" required>
+					<label for="">País de residencia</label> 
+					<select class="form-control" name="inputPais" id="inputPais" required>
 						<option value="<%=doc.getPais().getIdPais()%>" ><%=doc.getPais().getDescripcion() %></option>
 						<%
 						for(Pais pais : Paises)
@@ -107,6 +108,7 @@
 				<div class="col-3 pr-4">
 					<label for="">Localidad</label> 
 					<select class="form-control" name="inputLocalidad" id="inputLocalidad" required>
+					<option value="<%=doc.getLocalidad().getIdLocalidad()%>"><%=doc.getLocalidad().getDescripcion()%></option>
 						<%
 							for(Localidad localidad : Localidades)
 					         {
@@ -133,6 +135,7 @@
 				<div class="col-3 ml-4">
 					<label for="">Nacionalidad</label>
 					 <select class="form-control" name="inputNacionalidad" id="inputPais" required>
+					 <option value="<%=doc.getNacionalidad().getIdPais()%>"><%=doc.getNacionalidad().getDescripcion()%></option>
 						 <%	for(Pais pais : Paises)
 					         {
 					             %>
