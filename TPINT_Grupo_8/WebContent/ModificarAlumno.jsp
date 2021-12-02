@@ -103,16 +103,17 @@
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Dirección</label>
-					<input type="text" class="form-control" id="inputDireccion" name="Domicilio" required placeholder="DIRECCION" value="<%=al.getDomicilio() %>">
+					<input type="text" class="form-control" id="inputDireccion" name="Domicilio" required placeholder="DIRECCION" value="<%=al.getDomicilio().getCalle_Numero() %>">
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">País de residencia</label>
 					<select class="form-control" name="inputPais" id="inputPais" name="Nacionalidad" required placeholder="PAIS">
-			<%--  	<option value=<%=(request.getAttribute("Alumno")).getNacionalidad().getIdPais()%>><%=((Alumno)request.getAttribute("Alumno")).getNacionalidad().getDescripcion()%></option>   --%>
+				 	<option value=<%=al.getNacionalidad().getIdPais()%>><%=al.getNacionalidad().getDescripcion()%></option>  
 				<%
 							for(Pais pais : Paises)
 					         {
 					             %>
+					             
 					                <option value=<%=pais.getIdPais()%>><%=pais.getDescripcion()%></option>
 					             <%
 					         }
@@ -125,7 +126,7 @@
 				<div class="col-3 ml-4">
 					<label for="">Provincia</label>
 					<select class="form-control" name="inputProvincia" id="inputProvincia" name="Provincia" required placeholder="PROVINCIA" >
-							<%-- <option value=<%=((Alumno)request.getAttribute("Alumno")).getProvincia().getIdProvincia()%>><%=((Alumno)request.getAttribute("Alumno")).getProvincia().getDescripcion()%></option> --%>
+						 <option value=<%=al.getProvincia().getIdProvincia()%>><%=al.getProvincia().getDescripcion()%></option> 
 						  	<%
 							for(Provincia provincia : Provincias)
 					         {
@@ -139,7 +140,7 @@
 				<div class="col-3 pr-4">
 					<label for="">Localidad</label>
 					<select class="form-control" name="inputLocalidad" id="inputLocalidad" name="Localidad" required placeholder="LOCALIDAD" >
-					<%-- <option value=<%=((Alumno)request.getAttribute("Alumno")).getLocalidad().getIdLocalidad()%>><%=((Alumno)request.getAttribute("Alumno")).getLocalidad().getDescripcion()%></option>  --%>
+					<option value=<%=al.getLocalidad().getIdLocalidad()%>><%=al.getLocalidad().getDescripcion()%></option> 
 						<%
 							for(Localidad localidad : Localidades)
 					         {
@@ -155,7 +156,7 @@
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Teléfono</label>
-					<input type="number" class="form-control" id="inputTelefono" name="Telefono" required placeholder="TELEFONO" value="<%=al.getTelefono() %>">
+					<input type="number" class="form-control" id="inputTelefono" min="1111111111" max= "1199999999" name="Telefono" required placeholder="TELEFONO" value="<%=al.getTelefono() %>">
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">Email</label>
@@ -167,7 +168,7 @@
 				<div class="col-3 ml-4">
 					<label for="">Nacionalidad</label>
 					<select class="form-control" name="inputNacionalidad" name="Pais" id="inputNacionalidad" required >
-				<%--	<option value=<%=((Alumno)request.getAttribute("Alumno")).getNacionalidad().getIdPais()%>><%=((Alumno)request.getAttribute("Alumno")).getNacionalidad().getDescripcion()%></option><%  --%>
+				<option value=<%=al.getNacionalidad().getIdPais()%>><%=al.getNacionalidad().getDescripcion()%></option>
 						 <%	for(Pais pais : Paises)
 					         {
 					             %>

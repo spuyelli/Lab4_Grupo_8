@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entidades.Alumno;
+import entidades.Docente;
 import entidades.Domicilio;
 import entidades.Localidad;
 import entidades.Pais;
@@ -65,6 +66,20 @@ public class servletModificarAlumno extends HttpServlet {
 		request.setAttribute("provincias", provinciaNeg.listarProvincias());	
 		
 		//DROPDOWN LOCALIDADES
+		/*Docente docenteNuevo = new Docente(
+				Integer.parseInt(request.getParameter("inputDNI")),
+				request.getParameter("inputNombre"),
+				request.getParameter("inputApellido"),
+				LocalDate.parse(request.getParameter("inputFechaNacimiento")),
+				new Pais(Integer.parseInt(request.getParameter("inputNacionalidad"))),
+				new Domicilio(request.getParameter("inputDireccion")),
+				new Localidad(Integer.parseInt(request.getParameter("inputLocalidad"))),
+				new Provincia(Integer.parseInt(request.getParameter("inputProvincia"))),
+				new Pais(Integer.parseInt(request.getParameter("inputPais"))),
+				request.getParameter("inputEmail"),
+				Integer.parseInt(request.getParameter("inputTelefono"))
+				);
+		*/
 		
 		
 		request.setAttribute("localidades", localidadesNeg.listarLocalidades());	
@@ -80,16 +95,21 @@ public class servletModificarAlumno extends HttpServlet {
 		dom.setCalle_Numero(request.getParameter("Domicilio"));
 		dom.setLocalidad(new LocalidadNegImpl().select((Integer.parseInt(request.getParameter("inputLocalidad")))));
 		al.setDomicilio(dom);
-		Pais n = new Pais(Integer.parseInt(request.getParameter("inputNacionalidad")));
-		Localidad l = new Localidad(Integer.parseInt(request.getParameter("inputLocalidad")));
-		Provincia prov = new Provincia(Integer.parseInt(request.getParameter("inputProvincia")));
-		Pais p = new Pais(Integer.parseInt(request.getParameter("inputPais")));
 		
+		
+		Localidad l = new Localidad(Integer.parseInt(request.getParameter("inputLocalidad")));
+
+		Provincia prov = new Provincia(Integer.parseInt(request.getParameter("inputProvincia")));
+		System.out.println(prov.getIdProvincia());
+		Pais p = new Pais(Integer.parseInt(request.getParameter("inputPais")));
+		System.out.println(p.getIdPais());
+		
+		Pais n = new Pais(Integer.parseInt(request.getParameter("inputNacionalidad")));
 		al.setNacionalidad(n);
 		al.setLocalidad(l);
 		al.setProvincia(prov);
 		al.setPais(p);
-		
+		System.out.println(al.getLocalidad().getIdLocalidad());
 		AlumNeg.actualizarAlumno(al);
 		
 
