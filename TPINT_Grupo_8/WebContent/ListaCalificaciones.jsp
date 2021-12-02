@@ -45,7 +45,21 @@
 		if (request.getAttribute("ListaCalificaciones") != null) {
 			lista = (List<Calificacion>) request.getAttribute("ListaCalificaciones");
 		}
-	
+		
+		if(request.getAttribute("error")!=null){
+			%>
+			<script type="text/javascript">
+              alert('ERROR: Debe seleccionar al menos un alumno, y la nota no puede estar vacía.');
+            </script>
+			<%
+		}else if(request.getAttribute("agregado")!= null){
+			%>
+			<script type="text/javascript">
+              alert('Notas asignadas correctamente.');
+            </script>
+			<%
+		
+		}
 	%>
 	<form class = "w-100 justify-content-center pl-3 pr-3"  method="post" action="servletCalificaciones">
 

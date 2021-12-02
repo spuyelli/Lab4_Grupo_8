@@ -41,6 +41,8 @@
 		if (request.getAttribute("listaCur") != null) {
 			listaC = (List<Curso>) request.getAttribute("listaCur");
 		}
+		
+		request.setAttribute("error_dni", "ok");
 	%>
 
 <br>

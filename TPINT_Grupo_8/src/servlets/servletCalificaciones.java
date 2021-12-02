@@ -37,38 +37,50 @@ public class servletCalificaciones extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
-		if (request.getParameter("btnAplicarSeleccion") != null) {
+		if (request.getParameter("btnAplicarSeleccion") != null ) {
 			Calificacion cal;
-			for (String dni : request.getParameterValues("chk")) {
-				cNeg = new CalificacionNegImpl();
-				cal = cNeg.readAll_Alumno((((Curso) request.getSession().getAttribute("Curso")).getIdCurso()),
-						Integer.parseInt(dni));
-				switch (request.getParameter("Notas")) {
-				case "Parcial1":
-					cal.setParcial1(Float.parseFloat(request.getParameter("nota")));
-					cNeg.update(cal, 1);
-					break;
-				case "Parcial2":
-					cal.setParcial2(Float.parseFloat(request.getParameter("nota")));
-					cNeg.update(cal, 2);
-					break;
-				case "Recuperatorio1":
-					cal.setRecuperatorio1(Float.parseFloat(request.getParameter("nota")));
-					cNeg.update(cal, 3);
-					break;
-				case "Recuperatorio2":
-					cal.setRecuperatorio2(Float.parseFloat(request.getParameter("nota")));
-					cNeg.update(cal, 4);
-					break;
-				default:
-					break;
+			
+			if(request.getParameterValues("chk") !=null && request.getParameter("nota")!= null && request.getParameter("nota")!= "") {
+				
+					for (String dni : request.getParameterValues("chk")) {
+						cNeg = new CalificacionNegImpl();
+						cal = cNeg.readAll_Alumno((((Curso) request.getSession().getAttribute("Curso")).getIdCurso()),
+								Integer.parseInt(dni));
+						switch (request.getParameter("Notas")) {
+						case "Parcial1":
+							cal.setParcial1(Float.parseFloat(request.getParameter("nota")));
+							cNeg.update(cal, 1);
+							break;
+						case "Parcial2":
+							cal.setParcial2(Float.parseFloat(request.getParameter("nota")));
+							cNeg.update(cal, 2);
+							break;
+						case "Recuperatorio1":
+							cal.setRecuperatorio1(Float.parseFloat(request.getParameter("nota")));
+							cNeg.update(cal, 3);
+							break;
+						case "Recuperatorio2":
+							cal.setRecuperatorio2(Float.parseFloat(request.getParameter("nota")));
+							cNeg.update(cal, 4);
+							break;
+						default:
+							break;
+						}
+					}
+					request.setAttribute("agregado", "ok");
+				}else {
+					request.setAttribute("error", "ok");
+				
 				}
+				
+			}else {
+				request.setAttribute("error", "ok");
+				
 			}
 			request.getSession().setAttribute("Redirect", "true");
 			//request.getRequestDispatcher("servletCalificaciones").forward(request, response);
 			doGet(request, response);
 		}
 
-	}
 
 }
