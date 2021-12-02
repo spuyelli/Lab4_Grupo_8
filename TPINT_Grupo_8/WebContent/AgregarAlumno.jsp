@@ -66,12 +66,7 @@
 		<form class="card p-3 bg-light w-75 justify-content-center" method="post" action="servletAgregarAlumno">
 
 			<div class="row mb-4 justify-content-center">
-				<div class="col-3 ml-4">
-					<div class="form-outline">
-						<label for="">Legajo</label>
-						<input type="text" class="form-control" id="Legajo" name="Legajo" value="123456" readonly>
-					</div>
-				</div>
+				
 				<div class="col-3 pr-4">
 					<div class="form-outline">
 						<label for="">Dni</label>
