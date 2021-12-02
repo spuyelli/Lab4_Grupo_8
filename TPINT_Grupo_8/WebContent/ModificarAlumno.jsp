@@ -108,7 +108,7 @@
 				<div class="col-3 pr-4">
 					<label for="">País de residencia</label>
 					<select class="form-control" name="inputPais" id="inputPais" name="Pais" required placeholder="PAIS">
-				 	<option value="<%=al.getNacionalidad().getIdPais()%>"><%=al.getNacionalidad().getDescripcion()%></option>
+				 	<option value="<%=al.getPais().getIdPais()%>"><%=al.getPais().getDescripcion()%></option>
 				 	<!-- Pais -->
 				<%
 						for(Pais pais : Paises)

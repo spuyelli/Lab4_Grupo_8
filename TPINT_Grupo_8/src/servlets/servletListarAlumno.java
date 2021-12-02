@@ -63,7 +63,6 @@ public class servletListarAlumno extends HttpServlet {
 			//DROPDOWN PAISES
 			request.setAttribute("paises", paisNeg.listarPaises());
 			
-			
 			 
 			//DROPDOWN PROVINCIAS
 			request.setAttribute("provincias", provinciaNeg.listarProvincias());	
