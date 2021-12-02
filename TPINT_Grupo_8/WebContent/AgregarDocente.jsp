@@ -89,23 +89,23 @@
 				
 				<div class="col-3 pr-4">
 					<div class="form-outline">
-						<label for="">Dni</label> <input type="number" class="form-control" name="inputDNI" id="inputDNI" required placeholder="01234567">
+						<label for="">Dni</label> <input type="number" class="form-control" name="inputDNI" id="inputDNI" required placeholder="Dni">
 					</div>
 				</div>
 			</div>
 			
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
-					<label for="">Nombre</label> <input type="text" class="form-control" name="inputNombre" id="inputNombre" required placeholder="Juana">
+					<label for="">Nombre</label> <input type="text" class="form-control" name="inputNombre" id="inputNombre" required placeholder="Nombre">
 				</div>
 				<div class="col-3 pr-4">
-					<label for="">Apellido</label> <input type="text" class="form-control" name="inputApellido" id="inputApellido" required placeholder="Perez">
+					<label for="">Apellido</label> <input type="text" class="form-control" name="inputApellido" id="inputApellido" required placeholder="Apellido">
 				</div>
 			</div>
 			
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
-					<label for="">Dirección</label> <input type="text" class="form-control" name="inputDireccion" id="inputDireccion" required placeholder="Cabildo 1234">
+					<label for="">Dirección</label> <input type="text" class="form-control" name="inputDireccion" id="inputDireccion" required placeholder="Dirección">
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">País de residencia</label> <select class="form-control" name="inputPais" id="inputPais" required>
@@ -150,11 +150,11 @@
 
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
-					<label for="">Teléfono</label> <input type="number" class="form-control" name="inputTelefono" id="inputTelefono" required placeholder="1122223333">
+					<label for="">Teléfono</label> <input type="number" class="form-control" name="inputTelefono" id="inputTelefono" required placeholder="Teléfono">
 				</div>
 
 				<div class="col-3 pr-4">
-					<label for="">Email</label> <input type="email" class="form-control" name="inputEmail" id="inputEmail" required placeholder="juana@perez.com">
+					<label for="">Email</label> <input type="email" class="form-control" name="inputEmail" id="inputEmail" required placeholder="ejemplo@ejemplo.com">
 				</div>
 			</div>
 
