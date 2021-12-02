@@ -75,7 +75,7 @@ public class servletListarDocente extends HttpServlet {
 			boolean eliminado = dNeg.eliminarDocente(dni);
 			
 			request.setAttribute("listaDocentes", dNeg.listarDocentes());
-			request.setAttribute("docenteEliminado", false);
+			request.setAttribute("docenteEliminado", eliminado);
 			
 			RequestDispatcher dispatcherListar = request.getRequestDispatcher("ListaDocentes.jsp");
 			dispatcherListar.forward(request, response);	
@@ -86,6 +86,7 @@ public class servletListarDocente extends HttpServlet {
 			
 			
 			//ACA SE ELIMINA EL DOCENTE ;3
+			
 		
 		}
 	

@@ -40,7 +40,7 @@
 
 	<%
 		boolean eliminado = (boolean)request.getAttribute("docenteEliminado");
-		if (eliminado == true) {%>	<div class="alert alert-success">Se elimininï¿½ el Docente correctamente!</div>	<%}%>
+		if (eliminado == true) {%>	<div class="alert alert-success">¡Se elimininó el Docente correctamente!</div>	<%}%>
 
 	<%
 
@@ -83,7 +83,7 @@
 		            <td><%=docente.getTelefono() %></td>
 	            	<td><a class="btn btn-warning" href="servletListarDocente?dni=<%=docente.getDni()%>&btn=modificar"
 						name="Modificar">Modificar</a></td>
-					<td><a class="btn btn-danger" 	href="servletListarDocente?dni=<%=docente.getDni()%>&btn=eliminar" name="Eliminar">Eliminar</a></td>
+					<td><a class="btn btn-danger" 	onclick="return confirm('¿Realmente quiere Eliminar este ítem?');" href="servletListarDocente?dni=<%=docente.getDni()%>&btn=eliminar" name="Eliminar">Eliminar</a></td>
 					
          	</tr>
 

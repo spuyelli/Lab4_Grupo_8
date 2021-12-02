@@ -73,7 +73,11 @@
 
 		}
 	
-		List<Alumno> lista = new ArrayList<Alumno>();
+		
+	%>
+	
+	<%
+	List<Alumno> lista = new ArrayList<Alumno>();
 		if (request.getAttribute("listaAlumnos") != null) {
 			lista = (List<Alumno>) request.getAttribute("listaAlumnos");
 		}
@@ -95,23 +99,20 @@
 			</thead>
 			<tbody>
 				<%
-					int i = 0;
+					
 					if (lista != null)
 						for (Alumno alumno : lista) {
 				%>
 				<tr>
-					<%
-						i++;
-					%>
-					<td><%=alumno.getDni()%> <input type="hidden"
-						name="dniSeleccionado" value="<%=alumno.getDni()%>"></td>
+					
+					<td><%=alumno.getDni()%></td>
 					<td><%=alumno.getLegajo()%></td>
 					<td><%=alumno.getNombre()%></td>
 					<td><%=alumno.getApellido()%></td>
 					<td><%=alumno.getEmail()%></td>
 					<td><%=alumno.getTelefono()%></td>
 					<td><a class="btn btn-warning" 	href="servletListarAlumno?dni=<%=alumno.getDni()%>&btn=modificar" name="Modificar">Modificar</a></td>
-					<td><a class="btn btn-danger" 	href="servletListarAlumno?dni=<%=alumno.getDni()%>&btn=eliminar" name="Eliminar">Eliminar</a></td>
+					<td><a class="btn btn-danger" 	onclick="return confirm('¿Realmente quiere Eliminar este ítem?');" href="servletListarAlumno?dni=<%=alumno.getDni()%>&btn=eliminar" name="Eliminar">Eliminar</a></td>
 					
 				</tr>
 				<%

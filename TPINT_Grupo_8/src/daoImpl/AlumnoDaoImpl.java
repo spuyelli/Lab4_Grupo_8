@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class AlumnoDaoImpl implements AlumnoDao {
 	private Conexion cn;
-	private static final String readall = "select * from universidad.alumnos where estado = '1'";
+	private static final String readall = "select * from alumnos where estado = 1";
 	private static final String insert = "INSERT INTO universidad.alumnos (dni, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String select = "select * from universidad.alumnos where estado = '1' and dni = ?";
 	private static final String select_all = "select * from universidad.alumnos where dni = ?";
