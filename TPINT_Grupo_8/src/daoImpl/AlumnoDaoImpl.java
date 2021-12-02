@@ -21,8 +21,7 @@ public class AlumnoDaoImpl implements AlumnoDao {
 	private static final String insert = "INSERT INTO universidad.alumnos (dni, nombre, apellido, fechaNacimiento, idNacionalidad, domicilio, idLocalidad, email, telefono, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String select = "select * from universidad.alumnos where estado = '1' and dni = ?";
 	private static final String select_all = "select * from universidad.alumnos where dni = ?";
-	private static final String delete = "delete from universidad.alumnos where dni = ?";
-
+	
     private static final String buscar ="select * from universidad.alumnos inner join universidad.localidades on alumnos.idLocalidad=localidades.id  where dni=? and estado = 1";
     private static final String modificar ="update universidad.alumnos set nombre = ?, apellido= ?,fechaNacimiento= ?,idNacionalidad= ?,domicilio = ?,idLocalidad = ?,email = ?,telefono = ? where dni = ?";
     		
@@ -32,26 +31,7 @@ public class AlumnoDaoImpl implements AlumnoDao {
 
 	}
 
-	public List<Alumno> readAll(){
-
-		ArrayList<Alumno> listaAlumnos = new ArrayList<Alumno>();
-
-		PreparedStatement statement;
-		ResultSet resultSet;
-		Conexion conexion = Conexion.getConexion();
-		try {
-			statement = conexion.getSQLConexion().prepareStatement(readall);
-			resultSet = statement.executeQuery();
-			while (resultSet.next()) {
-				listaAlumnos.add(getAlumno(resultSet));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return listaAlumnos;
-
-	}
-
+	
 	private Alumno getAlumno(ResultSet resultSet) throws SQLException {
 
 		int dni = resultSet.getInt("dni");
@@ -65,7 +45,39 @@ public class AlumnoDaoImpl implements AlumnoDao {
 		return new Alumno(dni, legajo, nombre, apellido, email, telefono);
 
 	}
+	
+	
+	public List<Alumno> readAll()
+	{
+		cn = new Conexion();
+		cn.Open();
+		ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
+			
+		System.out.println(readall);
 
+		try 
+		{
+			ResultSet rs= cn.query(readall);
+			while(rs.next())
+			 {
+				 Alumno alu = new Alumno();
+				 alu.setApellido(rs.getString("alumnos.apellido"));
+				 alu.setDni(rs.getInt("alumnos.dni"));
+				 alu.setLegajo(rs.getInt("alumnos.legajo"));
+				 alu.setNombre(rs.getString("alumnos.nombre"));
+				 alu.setTelefono(rs.getInt("alumnos.telefono"));
+				 alu.setEmail(rs.getString("alumnos.email"));
+				
+				alumnos.add(alu);
+			 }
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		return alumnos;
+	} 
+	
 	public Boolean buscarDni(int dni) {
 		PreparedStatement statement;
 		ResultSet resultSet;
