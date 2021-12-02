@@ -70,7 +70,7 @@
     	<tbody>
     
     			<% if(lista != null) for (Docente docente : lista) { %>
-        	<%-- <tr>
+        	 <tr>
 	            
 	            <form action="servletListarDocente" method="post">	            
 	            
@@ -87,25 +87,12 @@
 						name="Modificar">modificar</a></td>
 	           
             	
-	            <td><input type="submit" name="btnEliminar" onclick="return confirm('seguro que desea eliminar?')" value="<%=docente.getDni() %>"> Click aquï¿½ para Eliminar</input></td>       
+	            <td><input type="submit" name="btnEliminar"
+	             onclick="return confirm('seguro que desea eliminar?')"
+	             value="<%=docente.getDni() %>"> Click aquï para Eliminar</input></td>       
 	                   
-	            </form>     --%>   
-            
-            <tr>
-	            <form action="servletListarDocente" method="post">
-	           	
-	           		<td><input type="radio" name="dniSeleccionado" required value="<%=docente.getDni() %>"></td>
-	           		<td><%=docente.getDni() %></td>	             
-		            <td><%=docente.getLegajo() %></td>
-		            <td><%=docente.getNombre() %></td>
-		            <td><%=docente.getApellido() %></td>
-		            <td><%=docente.getEmail() %></td>
-		            <td><%=docente.getTelefono() %></td>
-	            			            
-		                
-	         	</form> 
-         	</tr>         	     
-            
+	            </form>     
+          
         	<% } %>       
             
         
@@ -118,7 +105,7 @@
 			</div>
 			<div class="row mb-4 justify-content-center" style="height: 50px;">
 				<div class="col-4 ml-4">
-					<button type="submit" name= "btnEliminar" onclick="return confirm('seguro que desea eliminar?')" value= "Eliminar" class="btn btn-primary w-100 mt-4 ml-2">Eliminar</button>
+					<button type="submit" name= "btnEliminar" onclick="return confirm('seguro que desea eliminar?')" value="Eliminar" class="btn btn-primary w-100 mt-4 ml-2">Eliminar</button>
 				</div>
 			</div>
 
