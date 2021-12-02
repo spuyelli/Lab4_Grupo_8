@@ -25,7 +25,7 @@
     <form class="card p-3 mt-5 bg-light" method="post" action="servletUser" >
   <div class="mb-3">
     <label for="" class="form-label">DNI</label>
-    <input type="numeric" class="form-control" name="txtDNI" required>
+    <input type="number" max="99000000" class="form-control" name="txtDNI" required>
   </div>
   <div class="mb-3">
     <label for="" class="form-label">Contraseña</label>
