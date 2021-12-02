@@ -37,11 +37,36 @@
 	<jsp:include page="Navbar.jsp"></jsp:include>
 	<h1 class="display-4 mt-3 ml-5">Listado de Docentes</h1>
 	<br>
+	<%
+		if (request.getAttribute("docenteAgregado") != null) {
+	%>
+	<div class="alert alert-success">Se agregó un Docente
+		correctamente!</div>
+	<script type="text/javascript">
+		alert('AGREGADO CORRECTAMENTE.');
+	</script>
+ 	<% 
+		}
+	
+		if (request.getAttribute("docenteEliminado") != null) {
+			boolean eliminado = (boolean) request.getAttribute("docenteEliminado");
+			if (eliminado == true) {
+	%>
+	<script type="text/javascript">
+		alert('ELIMINADO CORRECTAMENTE.');
+	</script>
+	<%
+		}
 
+		}
+	
+		
+	%>
+<%-- 
 	<%
 		boolean eliminado = (boolean)request.getAttribute("docenteEliminado");
 		if (eliminado == true) {%>	<div class="alert alert-success">¡Se elimininó el Docente correctamente!</div>	<%}%>
-
+--%>
 	<%
 
 		List<Docente> lista = new ArrayList<Docente>();
