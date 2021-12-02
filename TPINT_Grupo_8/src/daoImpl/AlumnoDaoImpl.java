@@ -23,7 +23,7 @@ public class AlumnoDaoImpl implements AlumnoDao {
 	private static final String select_all = "select * from universidad.alumnos where dni = ?";
 	private static final String delete = "delete from universidad.alumnos where dni = ?";
 
-    private static final String buscar ="select * from universidad.alumnos inner join universidad.localidades on alumnos.idLocalidad=localidades.id  where dni=? where estado = 1";
+    private static final String buscar ="select * from universidad.alumnos inner join universidad.localidades on alumnos.idLocalidad=localidades.id  where dni=? and estado = 1";
     private static final String modificar ="update universidad.alumnos set nombre = ?, apellido= ?,fechaNacimiento= ?,idNacionalidad= ?,domicilio = ?,idLocalidad = ?,email = ?,telefono = ? where dni = ?";
     		
 	private static final String modificarEjemplo = "update alumnos set nombre=?,apellido=?,FechaNacimiento= ?,domicilio= ?,email=?,telefono=? where dni=?";
@@ -173,11 +173,13 @@ public class AlumnoDaoImpl implements AlumnoDao {
 			Connection connection  = Conexion.getConexion().getSQLConexion();
 			PreparedStatement statement = connection.prepareStatement(buscar);
 			statement.setInt(1, dni);
-				
+			
 			ResultSet resultSet = statement.executeQuery();
 			while(resultSet.next()) {
-				
+			
 		   	 al.setDni(resultSet.getInt("dni"));
+		   	 
+		   	 
 		   	 al.setLegajo(resultSet.getInt("legajo"));
 		   	 al.setNombre(resultSet.getString("nombre"));
 		   	 al.setApellido(resultSet.getString("apellido"));
@@ -186,16 +188,26 @@ public class AlumnoDaoImpl implements AlumnoDao {
 		   	 
 		   	Domicilio dom = new Domicilio(resultSet.getString("domicilio"));
 			al.setDomicilio(dom);
-				
+			
 			al.setNacionalidad(new PaisNegImpl().select(resultSet.getInt("idNacionalidad")));
 			
+			
 			al.setLocalidad(new LocalidadNegImpl().select(resultSet.getInt("idLocalidad")));
+			
 			al.setProvincia(al.getLocalidad().getIdProvincia());
+			
+			
+			
+			
 			al.setPais(al.getProvincia().getIdPais());
-				
+			
+			
+			
+			
 			Persona pers = new Persona();
 			pers.setFechaNacimiento(resultSet.getDate("fechaNacimiento").toLocalDate());
 			al.setFechaNacimiento(pers.getFechaNacimiento());
+			
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

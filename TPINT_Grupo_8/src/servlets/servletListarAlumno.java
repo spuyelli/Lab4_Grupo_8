@@ -61,13 +61,15 @@ public class servletListarAlumno extends HttpServlet {
 			al = alNeg.buscarAlumno(Integer.parseInt(request.getParameter("dni")));
 			
 			//DROPDOWN PAISES
-			request.setAttribute("paises", paisNeg.listarPaises());	
+			request.setAttribute("paises", paisNeg.listarPaises());
 			
+			
+			 
 			//DROPDOWN PROVINCIAS
 			request.setAttribute("provincias", provinciaNeg.listarProvincias());	
 			
 			//DROPDOWN LOCALIDADES
-			request.setAttribute("localidades", localidadesNeg.listarLocalidades());	
+			request.setAttribute("localidades", localidadesNeg.listarLocalidades());
 			
 			request.setAttribute("Alumno", al);
 			request.getRequestDispatcher("ModificarAlumno.jsp").forward(request, response);

@@ -14,7 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	
+
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
@@ -24,8 +24,8 @@
         $('#ListaDocentes').DataTable();
     	} );
     </script>
-    
-	  
+
+
 	<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- FONTAWESOME -->
@@ -36,21 +36,21 @@
 
 	<jsp:include page="Navbar.jsp"></jsp:include>
 	<h1 class="display-4 mt-3 ml-5">Listado de Docentes</h1>
-	<br>	
-	
-	<% 
-		boolean eliminado = (boolean)request.getAttribute("docenteEliminado");
-		if (eliminado == true) {%>	<div class="alert alert-success">Se elimininó el Docente correctamente!</div>	<%}%>
-	
+	<br>
+
 	<%
-		
+		boolean eliminado = (boolean)request.getAttribute("docenteEliminado");
+		if (eliminado == true) {%>	<div class="alert alert-success">Se elimininï¿½ el Docente correctamente!</div>	<%}%>
+
+	<%
+
 		List<Docente> lista = new ArrayList<Docente>();
-	
+
 		if (request.getAttribute("listaDocentes") != null) {
 		lista = (List<Docente>) request.getAttribute("listaDocentes");
 		}
 	%>
-	
+
 <form class = "w-100 justify-content-center pl-3 pr-3" action="servletListarDocente" method="post">
 	<table id="ListaDocentes" class="display">
     	<thead>
@@ -61,21 +61,21 @@
 	            <th>Nombre</th>
 	            <th>Apellido</th>
 	            <th>E-mail</th>
-	            <th>Teléfono</th>
+	            <th>Telï¿½fono</th>
 	            <th></th>
 				<th></th>
-	            
-	            
-	            
+
+
+
 	        </tr>
     	</thead>
     	<tbody>
-    
+
     			<% if(lista != null) for (Docente docente : lista) { %>
-            
+
             <tr>
-	           	
-	           		<td><%=docente.getDni() %></td>	             
+
+	           		<td><%=docente.getDni() %></td>
 		            <td><%=docente.getLegajo() %></td>
 		            <td><%=docente.getNombre() %></td>
 		            <td><%=docente.getApellido() %></td>
@@ -84,12 +84,12 @@
 	            	<td><a class="btn btn-warning" href="servletListarDocente?dni=<%=docente.getDni()%>&btn=modificar"
 						name="Modificar">Modificar</a></td>
 					<td><input class="btn btn-danger" type="submit" name="btnEliminar" value="Eliminar"></input></td>
-		                
-         	</tr>         	     
-            
-        	<% } %>       
-            
-        
+
+         	</tr>
+
+        	<% } %>
+
+
     	</tbody>
 	</table>
 			<div class="row mb-4 justify-content-center" style="height: 50px;">
@@ -99,12 +99,12 @@
 			</div>
 			<div class="row mb-4 justify-content-center" style="height: 50px;">
 				<div class="col-4 ml-4">
-					<button type="submit" name= "btnEliminar" onclick="return confirm('seguro que desea eliminar?')" value= "Eliminar" class="btn btn-primary w-100 mt-4 ml-2">Eliminar</button>
+					<button type="submit" name= "btnEliminar" onclick="return confirm('seguro que desea eliminar?')" value="Eliminar" class="btn btn-primary w-100 mt-4 ml-2">Eliminar</button>
 				</div>
 			</div>
 
-	
-	
+
+
 </form>
 
 

@@ -107,16 +107,17 @@
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">País de residencia</label>
-					<select class="form-control" name="inputPais" id="inputPais" name="Nacionalidad" required placeholder="PAIS">
-				 	<option value=<%=al.getNacionalidad().getIdPais()%>><%=al.getNacionalidad().getDescripcion()%></option>  
+					<select class="form-control" name="inputPais" id="inputPais" name="Pais" required placeholder="PAIS">
+				 	<!-- Pais -->
 				<%
-							for(Pais pais : Paises)
+						for(Pais pais : Paises)
 					         {
+					       
 					             %>
 					             
-					                <option value=<%=pais.getIdPais()%>><%=pais.getDescripcion()%></option>
+					                <option value="<%=pais.getIdPais()%>"><%=pais.getDescripcion() %></option>
 					             <%
-					         }
+					        }
      					%>
 					</select>
 				</div>
@@ -126,12 +127,12 @@
 				<div class="col-3 ml-4">
 					<label for="">Provincia</label>
 					<select class="form-control" name="inputProvincia" id="inputProvincia" name="Provincia" required placeholder="PROVINCIA" >
-						 <option value=<%=al.getProvincia().getIdProvincia()%>><%=al.getProvincia().getDescripcion()%></option> 
+						 <!-- Provincias --> 
 						  	<%
 							for(Provincia provincia : Provincias)
 					         {
 					             %>
-					                <option value=<%=provincia.getIdProvincia()%>><%=provincia.getDescripcion()%></option>
+					                <option value="<%=provincia.getIdProvincia()%>"><%=provincia.getDescripcion()%></option>
 					             <%
 					         }
      					%>
@@ -140,12 +141,12 @@
 				<div class="col-3 pr-4">
 					<label for="">Localidad</label>
 					<select class="form-control" name="inputLocalidad" id="inputLocalidad" name="Localidad" required placeholder="LOCALIDAD" >
-					<option value=<%=al.getLocalidad().getIdLocalidad()%>><%=al.getLocalidad().getDescripcion()%></option> 
+					<!-- localidad -->
 						<%
 							for(Localidad localidad : Localidades)
 					         {
 					             %>
-					                <option value=<%=localidad.getIdLocalidad()%>><%=localidad.getDescripcion()%></option>
+					                <option value="<%=localidad.getIdLocalidad()%>"><%=localidad.getDescripcion()%></option>
 					             <%
 					         }
      					%>
@@ -167,12 +168,12 @@
 			<div class="row mb-4 justify-content-center">
 				<div class="col-3 ml-4">
 					<label for="">Nacionalidad</label>
-					<select class="form-control" name="inputNacionalidad" name="Pais" id="inputNacionalidad" required >
-				<option value=<%=al.getNacionalidad().getIdPais()%>><%=al.getNacionalidad().getDescripcion()%></option>
+					<select class="form-control" name="inputNacionalidad" name="Nacionalidad" id="inputNacionalidad" required >
+				<!--Nacionalidad -->
 						 <%	for(Pais pais : Paises)
 					         {
 					             %>
-					                <option value=<%=pais.getIdPais()%>><%=pais.getDescripcion()%></option>
+					                <option value="<%=pais.getIdPais()%>"><%=pais.getDescripcion()%></option>
 					             <%
 					         }
      					%> 
@@ -180,7 +181,7 @@
 				</div>
 				<div class="col-3 pr-4">
 					<label for="">Fecha de Nacimiento</label>
-					<input type="date" class="form-control" name="FechaNacimiento" required id="inputFechaNacimiento" value="<%=al.getFechaNacimiento() %>">
+					<input type="date" class="form-control" name="FechaNacimiento" required placeholder="FechaNacimiento" id="inputFechaNacimiento" value="<%=al.getFechaNacimiento() %>">
 				</div>
 
 			</div>
