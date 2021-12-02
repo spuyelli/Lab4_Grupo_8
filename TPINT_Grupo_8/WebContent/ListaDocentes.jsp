@@ -83,8 +83,8 @@
 		            <td><%=docente.getTelefono() %></td>
 	            	<td><a class="btn btn-warning" href="servletListarDocente?dni=<%=docente.getDni()%>&btn=modificar"
 						name="Modificar">Modificar</a></td>
-					<td><input class="btn btn-danger" type="submit" name="btnEliminar" value="Eliminar"></input></td>
-
+					<td><a class="btn btn-danger" 	href="servletListarDocente?dni=<%=docente.getDni()%>&btn=eliminar" name="Eliminar">Eliminar</a></td>
+					
          	</tr>
 
         	<% } %>
@@ -92,16 +92,6 @@
 
     	</tbody>
 	</table>
-			<div class="row mb-4 justify-content-center" style="height: 50px;">
-				<div class="col-4 ml-4">
-					<button type="submit" name= "btnModificar" value= "Modificar" class="btn btn-primary w-100 mt-4 ml-2">Modificar</button>
-				</div>
-			</div>
-			<div class="row mb-4 justify-content-center" style="height: 50px;">
-				<div class="col-4 ml-4">
-					<button type="submit" name= "btnEliminar" onclick="return confirm('seguro que desea eliminar?')" value="Eliminar" class="btn btn-primary w-100 mt-4 ml-2">Eliminar</button>
-				</div>
-			</div>
 
 
 

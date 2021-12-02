@@ -62,19 +62,15 @@ public class servletListarAlumno extends HttpServlet {
 			request.getRequestDispatcher("ModificarAlumno.jsp").forward(request, response);
 		}
 		if (request.getParameter("btn").equals("eliminar")) {
-			
 			int dni = Integer.parseInt(request.getParameter("dni"));
+			
 			boolean eliminado = aNeg.eliminarAlumno(dni);
-
-			System.out.println("ACA");
+			
 			request.setAttribute("listaAlumnos", aNeg.listarAlumnos());
 			request.setAttribute("alumnoEliminado", false);
 			
-			//RequestDispatcher dispatcher = request.getRequestDispatcher("/ListaAlumnos.jsp");
-			//dispatcher.forward(request, response);
-			//RequestDispatcher dispatcher = request.getRequestDispatcher("servletListarAlumno?Param=list");
-			//dispatcher.forward(request, response);
-
+			RequestDispatcher dispatcherListar = request.getRequestDispatcher("ListaAlumnos.jsp");
+			dispatcherListar.forward(request, response);	
 		}
 	}
 
