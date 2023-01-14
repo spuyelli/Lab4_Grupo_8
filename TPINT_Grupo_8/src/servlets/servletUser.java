@@ -30,24 +30,23 @@ public class servletUser extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		if(session == null) {
+		if(request.getSession() == null) {
 			request.getSession(true);
 		}
 		if (request.getParameter("btnLogin") != null) {
 
 			if(request.getParameter("Usuario") != null) {
-				session.invalidate();
+				request.getSession().invalidate();
 				return;
 			} else {
 				Usuario user = userNegImp.select(Integer.parseInt(request.getParameter("txtDNI")));
 				if(user == null) {
-					session.setAttribute("Login_error", "Usuario incorrecto");
+					request.getSession().setAttribute("Login_error", "Usuario incorrecto");
 					response.sendRedirect("IniciarSesion.jsp");
 					return;
 				}
 				String passU = user.getPassword();
-				String passIN = request.getParameter("txtContraseña");
+				String passIN = request.getParameter("txtContrasena");
 				if(passU.equals(passIN)) {
 					user.setDomicilio(null);
 					user.setEmail("");
@@ -58,12 +57,12 @@ public class servletUser extends HttpServlet {
 					user.setPassword("");
 					user.setProvincia(null);
 					user.setTelefono(0);
-					session.setAttribute("Usuario", user);
-					session.setMaxInactiveInterval(60*3);
+					request.getSession().setAttribute("Usuario", user);
+					request.getSession().setMaxInactiveInterval(60*3);
 					response.sendRedirect("Home.jsp");
 				}
 				else {
-					session.setAttribute("Login_error", "Contraseña incorrecta");
+					request.getSession().setAttribute("Login_error", "ContraseÃ±a incorrecta");
 					response.sendRedirect("IniciarSesion.jsp");
 				}
 			}

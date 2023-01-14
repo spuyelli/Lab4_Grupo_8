@@ -13,7 +13,6 @@ public class Conexion {
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
  	private String pass = "root";
-	//private String pass = "admin";
 	private String dbName = "universidad";
 	
 	public Connection Open()
@@ -37,6 +36,7 @@ public class Conexion {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			this.connection = DriverManager.getConnection(host+dbName, user, pass);
 			this.connection.setAutoCommit(false);
+			
 		} catch (Exception e) {
 			System.out.println("problema constructor");
 			e.printStackTrace();

@@ -11,6 +11,8 @@ public class LocalidadNegImpl implements LocalidadNeg {
 
 	private LocalidadDao localidadDao = new LocalidadDaoImpl();
 
+	public LocalidadNegImpl() {} 
+	
 	@Override
 	public ArrayList<Localidad> listarLocalidades() {
 		

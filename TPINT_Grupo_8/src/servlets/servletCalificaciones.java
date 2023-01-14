@@ -25,9 +25,8 @@ public class servletCalificaciones extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("Redirect") == "true") {
-			request.setAttribute("ListaCalificaciones",null);
-			request.setAttribute("ListaCalificaciones", 
-					cNeg.readAll(((Curso)request.getSession().getAttribute("Curso")).getIdCurso() ));
+			//request.setAttribute("ListaCalificaciones",null);
+			request.setAttribute("ListaCalificaciones", cNeg.readAll(((Curso)request.getSession().getAttribute("Curso")).getIdCurso() ));
 			request.getSession().setAttribute("Redirect", null);
 			request.getRequestDispatcher("ListaCalificaciones.jsp").forward(request, response);
 		}
